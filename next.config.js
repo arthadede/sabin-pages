@@ -19,6 +19,7 @@ const nextConfig = {
 module.exports = withProgressBar(withLess(withOffline({
   ...nextConfig,
   webpack: (config) => {
+    config.optimization.minimize = false;
     return config
   }
 })))
