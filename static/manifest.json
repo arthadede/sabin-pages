@@ -1,0 +1,8 @@
+{
+  "name": "Sistem Anotasi Apps",
+  "short_name": "SAPPS",
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#673ab7",
+  "background_color": "#EEE"
+}
