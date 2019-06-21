@@ -3,6 +3,11 @@ const withOffline = require('next-offline')
 const withProgressBar = require('next-progressbar')
 
 const nextConfig = {
+  env: {
+    "API_HOST": "http://api.sabin.arthadede.com",
+    "PORT": 8000,
+    "SOCKET_HOST": "http://localhost:8000"
+  },
   workboxOpts: {
     runtimeCaching: [
       {
