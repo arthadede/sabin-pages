@@ -85,7 +85,8 @@ function AdminModel(props) {
   
   const columns = [
     { title: 'Name', width: 200, dataIndex: 'name', key: 'name' },
-    { title: 'Description', textWrap: 'ellipsis', dataIndex: 'desc', key: 'description' },
+    { title: 'Description', textWrap: 'ellipsis', dataIndex: 'desc', key: 'description',
+      render: text => <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph> },
     { title: 'Private', dataIndex: 'isPrivate', key: 'private', 
       render: text => <Tag className="ant-custom" color={!text ? '#1e90ff' : '#f9ca24'}>{text ? 'PRIVATE' : 'PUBLIC'}</Tag> },
     { key: 'status', width: 140, align: 'center', title: 'Status', dataIndex: 'isDeleted',
@@ -140,7 +141,7 @@ function AdminModel(props) {
         <Descriptions.Item span={3} label="Author">{`${user.firstname} ${user.lastname}`}</Descriptions.Item>
         <Descriptions.Item span={3} label="Name">{record.name}</Descriptions.Item>
         <Descriptions.Item span={3} label="Description">
-          <Typography.Paragraph ellipsis={{rows: 3}}>{record.desc}</Typography.Paragraph>
+          <Typography.Paragraph>{record.desc}</Typography.Paragraph>
         </Descriptions.Item>
         <Descriptions.Item span={3} label="Labels">
           {record.label.map((item, key) => (
