@@ -37,6 +37,7 @@ nextApp.prepare().then(() => {
   app.get('/rooms', (req, res) => {
     res.json(annotationProcess)
   })
+  
   app.get('/rooms/clear', (req, res) => {
     annotationProcess = []
     res.status(200).send({message: "ROOMS HAS BEEN EMPTY."})

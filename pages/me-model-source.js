@@ -113,13 +113,13 @@ ModelSource.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const source = await axios({
+    const sources = await axios({
       method: "GET",
       url: `${modelApi}/source`,
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const resource = await axios({
+    const resources = await axios({
       method: "GET",
       url: `${apiUrl}/source`,
       headers: {authorization: token}
@@ -131,7 +131,7 @@ ModelSource.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    return {modelApi, model, source, resource, sourceWithoutTrain}
+    return {modelApi, model, sources, resources, sourceWithoutTrain}
   } catch (error) {
     return {errorCode: error.response.status}
   }

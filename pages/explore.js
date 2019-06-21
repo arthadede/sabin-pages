@@ -19,7 +19,7 @@ function ExplorePage(props) {
               style={{marginBottom: 16}}
               onClick={() => Router.pushRoute('ModelInfo', {id: item.id})}>
               <List.Item.Meta
-                avatar={item.avatar !== null ? <Avatar size={50} src={item.avatar.path}/> : <Avatar size={50} style={{backgroundColor: getRandomInt(), fontSize: 25}}>{item.name[0]}</Avatar>}
+                avatar={<Avatar size={50} src={item.avatar.path}/>}
                 title={<Typography.Title level={4}>{item.name}</Typography.Title>} 
                 description={<Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>}/>
             </Card>

@@ -317,9 +317,7 @@ function ModelView(props) {
                     flexDirection: 'row',
                     alignItems: 'flex-end'
                   }}>
-                    {!model.avatar
-                    ? <Avatar size={70} style={{backgroundColor: getRandomInt(), fontSize: 39}}>{model.name[0]}</Avatar>
-                    : <Avatar size={70} src={model.avatar.path} />}
+                    <Avatar size={70} src={model.avatar.path} />}
                     <Upload {...uploudAvatar}>
                       <a style={{position: 'absolute', bottom: 0, right: 0}}><Icon type="edit"/></a>
                     </Upload> 
