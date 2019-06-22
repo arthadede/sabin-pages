@@ -30,7 +30,12 @@ export default class SabinApp extends App {
   }
 
   state = {
-    socket: io.connect(process.env.SOCKET_HOST)
+    socket: null
+  }
+
+  componentDidMount() {
+    const socket = io()
+    this.setState({ socket })
   }
 
   componentWillUnmount() {
