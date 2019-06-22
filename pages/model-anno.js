@@ -15,7 +15,9 @@ function ModelAnno(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
+  const socket = io.connect(process.env.SOCKET_HOST)
   const [state, setState] = useState([])
+    
   const selectedKeys = props.route.parsedUrl.pathname
   const Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor"
   const Annotation = props.model.annotator === 'classifier' ? Classifier : Extractor
@@ -63,7 +65,6 @@ function ModelAnno(props) {
   }
 
   useEffect(() => {
-    const socket = io.connect(process.env.SOCKET_HOST)
 
     if (props.source) {
       window.addEventListener("beforeunload", handleUnloadDialog)
@@ -143,16 +144,21 @@ function ModelAnno(props) {
 ModelAnno.getInitialProps = async ({res, apiUrl, token, query}) => {
   const id = query.id
   const modelApi = `${apiUrl}/model/${id}`
-  // const protocol = process.env.NODE_ENV !== 'production' ? 'http' : 'https'
-  const protocol = 'http'
-  const baseUrl = process.browser ? `${protocol}://${window.location.host}`: `${protocol}://${req.hostname}`
+  
+  const rooms = await axios({
+    method: "GET",
+    url: `${process.env.SOCKET_HOST}/rooms`
+  }).then(res => res.data)
+
+  const source = await axios({
+    method: "POST",
+    url: `${modelApi}/source/process`,
+    data: {rooms},
+    headers: {authorization: token}
+  }).then(res => res.data)
+
 
   try {
-    const rooms = await axios({
-      method: "GET",
-      url: `${baseUrl}/rooms`
-    }).then(res => res.data)
-
     const model = await axios({
       method: "GET",
       url: modelApi,
@@ -166,16 +172,10 @@ ModelAnno.getInitialProps = async ({res, apiUrl, token, query}) => {
     }).then(res => res.data)
 
     if (!config.UIAnnotation) throw {response: {status: 404}}
-
-    const source = await axios({
-      method: "POST",
-      url: `${modelApi}/source/process`,
-      data: {rooms},
-      headers: {authorization: token}
-    }).then(res => res.data)
     
     return {model, config, source}
   } catch (error) {
+    console.log(error)
     return {errorCode: error.response.status}
   }
 }
