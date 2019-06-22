@@ -1,35 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Col, Card, Form, Input, Button, Icon, message } from "antd";
 import {Router} from '../routes'
 import Head from 'next/head'
 import axios from 'axios'
 
-const containerProps = {
-  style: {
-    height: "inherit",
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "center"
-  }
-}
-
 function RegisterForm(props) {
   const { getFieldDecorator } = props.form;
-
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+          setLoading(true)
           const response = await axios({
             method: "POST",
             url: `${props.apiUrl}/register`,
             data: values
           })
-  
+          
           if (response.status === 200) {
-            message.success("Akun berhasil didaftarkan")
+            message.success("You have successfully registered.")
+            message.success("Please check your email.")
             Router.pushRoute("/login")
           }
         } catch (err) {
@@ -39,6 +32,8 @@ function RegisterForm(props) {
               message.error(err.response.data.message)
               break;
           }
+        } finally {
+          setLoading(false)
         }
       }
     })
@@ -101,7 +96,7 @@ function RegisterForm(props) {
             })(<Input type="password" placeholder="Password"/>)}
           </Form.Item>
           <Form.Item style={{margin: 0, textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" loading={loading} block>
               Register
             </Button>
             Already have an account? <a onClick={() => Router.pushRoute("/login")}>Sign in</a>

@@ -40,7 +40,7 @@ function ModelAnno(props) {
         headers: {authorization: props.token},
       }).then(response => {
         if (response.status === 200) {
-          message.success('Training source success!');
+          message.success('Training created successfully.');
           Router.pushRoute(`/me/model/${props.model.id}/train`)
         }
       }).catch(err => {

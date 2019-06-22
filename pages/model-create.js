@@ -11,6 +11,7 @@ const RadioButton = Radio.Button
 function ModelCreate(props) {
   const { getFieldDecorator, getFieldValue, setFieldsValue } = props.form
   const inputRef = useRef(null)
+  const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [inputValue, setInputValue] = useState(null)
@@ -46,6 +47,8 @@ function ModelCreate(props) {
         const {avatar, ...model} = values
 
         try {
+
+          setLoading(true)
           const resModel = await axios({
             method: "POST",
             url: `${props.apiUrl}/model`,
@@ -64,7 +67,7 @@ function ModelCreate(props) {
           })
   
           if (response.status === 200) {
-            message.success("Model berhasil dibuat.")
+            message.success("Model created successfully.")
             Router.pushRoute("/dashboard")
           }
         } catch (err) {
@@ -73,6 +76,8 @@ function ModelCreate(props) {
               message.error(err.response.data.message && err.response.statusText)
               break;
           }
+        } finally {
+          setLoading(false)
         }
       }
     })
@@ -225,7 +230,7 @@ function ModelCreate(props) {
                 )}
               </Form.Item>
               <div style={{display: "flex", justifyContent: "flex-end"}}>
-                <Button style={{marginLeft: 16}} type="primary" onClick={handleSubmit}>Create Model</Button>
+                <Button style={{marginLeft: 16}} type="primary" onClick={handleSubmit} loading={loading}>Create Model</Button>
                 <Button style={{marginLeft: 16}} className="btn-danger">Cancel</Button>
               </div>
             </Card>

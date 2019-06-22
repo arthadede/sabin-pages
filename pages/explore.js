@@ -11,12 +11,21 @@ function ExplorePage(props) {
 
   const ComponentModel = (
     <Row type="flex" gutter={16}>
-      {model.map((item, key) => (
-        <Col key={key} xs={24} sm={12} lg={8}>
+      <List 
+      pagination
+      grid={{
+        gutter: 16,
+        xs: 1,
+        sm: 2,
+        lg: 3
+      }}
+      dataSource={model}
+      renderItem={(item, key) => (
+        <List.Item>
           <Skeleton avatar title={false} loading={false} active>
             <Card 
               hoverable 
-              style={{marginBottom: 16}}
+              style={{marginBottom: 16, height: 163.090}}
               onClick={() => Router.pushRoute('ModelInfo', {id: item.id})}>
               <List.Item.Meta
                 avatar={<Avatar size={50} src={item.avatar.path}/>}
@@ -24,8 +33,8 @@ function ExplorePage(props) {
                 description={<Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>}/>
             </Card>
           </Skeleton>
-        </Col>
-      ))}
+        </List.Item>
+      )}/>
     </Row>
   )
 

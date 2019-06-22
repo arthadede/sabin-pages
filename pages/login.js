@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Head from 'next/head'
 import {Row, Card, Form, Input, Button, Icon, message} from "antd";
 import {Router} from '../routes'
@@ -7,6 +7,7 @@ import {login} from '../utils/auth'
 
 function LoginForm(props) {
   const { getFieldDecorator } = props.form;
+  const [loading, setLoading] = useState(false)
 
 
   const handleSubmit = e => {
@@ -14,6 +15,8 @@ function LoginForm(props) {
     props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+
+          setLoading(true)
           const response = await axios({
             method: "POST",
             url: `${props.apiUrl}/login`,
@@ -32,6 +35,8 @@ function LoginForm(props) {
               message.error('Something wrong.')
               break;
           }
+        } finally {
+          setLoading(false)
         }
       }
     })
@@ -74,7 +79,7 @@ function LoginForm(props) {
             })(<Input type="password" placeholder="Password"/>)}
           </Form.Item>
           <Form.Item style={{margin: 0, textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" loading={loading} block>
               Log in
             </Button>
           </Form.Item>

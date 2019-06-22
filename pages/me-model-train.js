@@ -111,7 +111,7 @@ function ModelTrain(props) {
       let elementScriptItem = document.querySelectorAll('.annotation-script-item')
       elementScriptItem.forEach(n => document.body.removeChild(n))
     })
-  }, [triggerExpand, expandSelected, windowSize, state])
+  }, [triggerExpand, expandSelected, filterState, windowSize, state])
 
   const expandedRowRender = record => {
     if (props.model.annotator === 'classifier') {
@@ -345,7 +345,7 @@ ModelTrain.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
     
-    return {model, train}
+    return {model, train, modelApi}
   } catch (error) {
     return {errorCode: error.response.status}
   }

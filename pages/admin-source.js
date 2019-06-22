@@ -21,7 +21,7 @@ function AdminSource(props) {
       })
       
       if (response.status === 200) {
-        message.success("Source berhasil dihapus.")
+        message.success("Source deleted successfully.")
         setSource(source.filter(item => {
           if (item.id === id) return false
           return true

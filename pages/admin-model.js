@@ -20,6 +20,7 @@ function AdminModel(props) {
     })
     
     if (response.status === 200) {
+      message.success("Model disabled successfully.")
       setModel(model.map(item => {
         if (item.id === id) item.isDeleted = true
         return item
@@ -36,6 +37,7 @@ function AdminModel(props) {
     })
     
     if (response.status === 200) {
+      message.success("Model recovery successfully.")
       setModel(model.map(item => {
         if (item.id === id) item.isDeleted = false
         return item
@@ -52,7 +54,7 @@ function AdminModel(props) {
       })
       
       if (response.status === 200) {
-        message.success("Model berhasil dihapus.")
+        message.success("Model deleted successfully.")
         setModel(model.filter(item => {
           if (item.id === id) return false
           return true

@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
 import moment from 'moment'
-import {Router} from '../routes'
 import { Row, Col, Card, Table, Button, Modal, message, Typography, Empty, Menu, Dropdown, Icon } from 'antd'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
@@ -32,7 +31,7 @@ function ModelSource(props) {
       })
 
       if (response.status === 200) {
-        message.success('Source berhasil dihapus.');
+        message.success('Source deleted successfully.');
         setSource(state => state.filter(item => {
           return item.id !== id ? true : false
         }))

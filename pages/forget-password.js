@@ -1,17 +1,19 @@
 import { Row, Col, Card, Form, Input, Button, Icon, message } from "antd";
+import React, {useState} from 'react'
 import {Router} from '../routes'
 import Head from 'next/head'
 import axios from 'axios'
 
 function ChangePassword(props) {
   const { getFieldDecorator } = props.form;
-
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
     props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+          setLoading(true)
           const response = await axios({
             method: "POST",
             url: `${props.apiUrl}/forget-password`,
@@ -19,7 +21,7 @@ function ChangePassword(props) {
           })
   
           if (response.status == 200) {
-            message.success("Permintaan terkirim, silahkan cek email anda.")
+            message.success("Reset password account has been sent.")
             Router.pushRoute("/")
           }
         } catch (err) {
@@ -31,6 +33,8 @@ function ChangePassword(props) {
               message.error(err.response.data.message && err.response.statusText)
               break;
           }
+        } finally {
+          setLoading(false)
         }
       }
     })
@@ -66,7 +70,7 @@ function ChangePassword(props) {
             })(<Input type="text" placeholder="Email"/>)}
           </Form.Item>
           <Form.Item style={{margin: 0, textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" loading={loading} block>
               Submit
             </Button>
             <span style={{ paddingTop: 4, paddingBottom: 4}}>Don't have an account? <a onClick={() => Router.pushRoute("/register")}>Sign up</a></span>

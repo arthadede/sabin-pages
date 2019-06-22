@@ -280,7 +280,7 @@ function ModelView(props) {
             ...state,
             avatar: response.data
           }))
-          message.success(`${info.file.name} file uploaded successfully`)
+          message.success(`Avatar changed successfully.`)
           window.location.reload()
         }
 
