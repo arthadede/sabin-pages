@@ -2,7 +2,6 @@ import { Row, Col, Card, Button, Modal, Empty, message } from 'antd'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
-import io from 'socket.io-client'
 import React, {useState, useEffect} from 'react'
 import {Router} from '../routes'
 import {withAuthSync} from '../utils/auth'
@@ -16,7 +15,6 @@ function ModelAnno(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
-  const socket = io.connect(process.env.SOCKET_HOST)
   const [state, setState] = useState([])
   const selectedKeys = props.route.parsedUrl.pathname
   const Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor"
@@ -68,7 +66,7 @@ function ModelAnno(props) {
   }
 
   const handleUnloadDialog = () => {
-    socket.emit('exitRoom', props.source.uuid)
+    props.socket.emit('exitRoom', props.source.uuid)
     return undefined
   }
 
@@ -77,19 +75,19 @@ function ModelAnno(props) {
     if (props.source) {
       window.addEventListener("beforeunload", handleUnloadDialog)
 
-      socket.on('disconnect', () => {
-        socket.emit('exitRoom', props.source.uuid)
+      props.socket.on('disconnect', () => {
+        props.socket.emit('exitRoom', props.source.uuid)
       });
 
-      socket.emit('joinRoom', props.source.uuid)
+      props.socket.emit('joinRoom', props.source.uuid)
       
       return (() => {
-        socket.emit('exitRoom', props.source.uuid)
+        props.socket.emit('exitRoom', props.source.uuid)
       })
     }
 
     return (() => {
-      socket.close()
+      props.socket.close()
     })
   }, [])
 

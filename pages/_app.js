@@ -3,6 +3,7 @@ import App, {Container} from 'next/app'
 import NProgress from 'nprogress'
 import routes, {Router} from '../routes'
 import nextCookie from 'next-cookies'
+import io from 'socket.io-client'
 
 Router.events.on('routeChangeStart', url => {
   console.log(`Loading: ${url}`)
@@ -13,7 +14,6 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 export default class SabinApp extends App {
   static async getInitialProps({Component, ctx}) {
-
     // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
     const protocol = 'http'
     const baseUrl = process.browser ? `${protocol}://${window.location.host}`: `${protocol}://${ctx.req.hostname}`
@@ -29,12 +29,20 @@ export default class SabinApp extends App {
     return {...pageProps, apiUrl, route, token, baseUrl}
   }
 
+  state = {
+    socket: io.connect(process.env.SOCKET_HOST)
+  }
+
+  componentWillUnmount() {
+    this.state.socket.close()
+  }
+
   render() {
     const {Component, ...rest} = this.props
 
     return (
       <Container>
-        <Component  {...rest}/>
+        <Component  {...rest} socket={this.state.socket}/>
       </Container>
     )
   }
