@@ -6,7 +6,7 @@ const nextConfig = {
   env: {
     "API_HOST": "http://api.sabin.arthadede.com",
     "PORT": 8000,
-    "SOCKET_HOST": "http://localhost:8000"
+    "SOCKET_HOST": "http://sabin.arthadede.com"
   },
   workboxOpts: {
     runtimeCaching: [

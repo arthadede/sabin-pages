@@ -42,7 +42,7 @@ function ModelAnno(props) {
       }).then(async response => {
         if (response.status === 200) {
           await Router.pushRoute(`/model/${props.model.id}/train`)
-          message.success('Training source success!');
+          message.success('Training created successfully!');
         }
       })
 

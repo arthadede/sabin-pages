@@ -1,19 +1,12 @@
 import { Row, Col, Card, Form, Input, Button, Icon, message } from "antd";
+import React, {useState} from 'react'
 import {Router} from '../routes'
 import Head from 'next/head'
 import axios from 'axios'
 
-const containerProps = {
-  style: {
-    height: "inherit",
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "center"
-  }
-}
-
 function ChangePassword(props) {
   const { getFieldDecorator, getFieldValue } = props.form;
+  const [loading, setLoading] = useState(false)
 
 
   const handleSubmit = e => {
@@ -21,6 +14,7 @@ function ChangePassword(props) {
     props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+          setLoading(true)
           const password = values.newPassword
           const response = await axios({
             method: "POST",
@@ -29,7 +23,7 @@ function ChangePassword(props) {
           })
 
           if (response.status === 200) {
-            message.success("Password berhasil diubah.")
+            message.success("Password has been changed successfully.")
             Router.pushRoute("/login")
           }
         } catch (err) {
@@ -41,6 +35,8 @@ function ChangePassword(props) {
               message.error(err.response.statusText)
               break;
           }
+        } finally {
+          setLoading(false)
         }
       }
     })
@@ -90,7 +86,7 @@ function ChangePassword(props) {
             })(<Input type="password" placeholder="Confirmation password"/>)}
           </Form.Item>
           <Form.Item style={{margin: 0, textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" loading={loading} block>
               Change password
             </Button>
           </Form.Item>

@@ -20,6 +20,7 @@ function AdminUser(props) {
     })
     
     if (response.status === 200) {
+      message.success("User recovered successfully.")
       setUser(user.map(item => {
         if (item.id === id) item.isDeleted = false
         return item
@@ -36,6 +37,7 @@ function AdminUser(props) {
     })
     
     if (response.status === 200) {
+      message.success("User disabled successfully.")
       setUser(user.map(item => {
         if (item.id === id) item.isDeleted = true
         return item
@@ -52,7 +54,7 @@ function AdminUser(props) {
       })
       
       if (response.status === 200) {
-        message.success("User berhasil dihapus.")
+        message.success("User deleted successfully.")
         setUser(user.filter(item => {
           if (item.id === id) return false
           return true
