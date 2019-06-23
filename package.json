@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "build": "rm -rf .next && next build",
     "start": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {

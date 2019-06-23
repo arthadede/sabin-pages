@@ -21,7 +21,7 @@ function ChangePassword(props) {
           })
   
           if (response.status == 200) {
-            message.success("Reset password account has been sent.")
+            message.success("Thanks! Please check your email for a link to reset your password.")
             Router.pushRoute("/")
           }
         } catch (err) {
@@ -80,12 +80,6 @@ function ChangePassword(props) {
     </Row>
     </div>
   )
-}
-
-ChangePassword.getInitialProps = ({query}) => {
-  return {
-    clientToken: query.token
-  }
 }
 
 const WrappedChangePassword = Form.create({name: "forget-password-form"})(ChangePassword)

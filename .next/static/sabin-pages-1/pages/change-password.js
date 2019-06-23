@@ -5278,8 +5278,9 @@ function ChangePassword(props) {
                 _context.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_13___default()({
                   method: "POST",
-                  url: "".concat(props.apiUrl, "/change-password/").concat(props.clientToken),
+                  url: "".concat(props.apiUrl, "/change-password"),
                   data: {
+                    token: props.clientToken,
                     password: password
                   }
                 });

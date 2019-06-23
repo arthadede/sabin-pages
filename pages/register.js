@@ -3,10 +3,12 @@ import { Row, Col, Card, Form, Input, Button, Icon, message } from "antd";
 import {Router} from '../routes'
 import Head from 'next/head'
 import axios from 'axios'
+import ConfirmEmail from '../components/ConfirmEmail'
 
 function RegisterForm(props) {
-  const { getFieldDecorator } = props.form;
+  const { getFieldDecorator, getFieldValue } = props.form;
   const [loading, setLoading] = useState(false)
+  const [sended, setSended] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -21,12 +23,9 @@ function RegisterForm(props) {
           })
           
           if (response.status === 200) {
-            message.success("You have successfully registered.")
-            message.success("Please check your email.")
-            Router.pushRoute("/login")
+            setSended(true)
           }
         } catch (err) {
-          console.log(err.response)
           switch (err.response.status) {
             case 400:
               message.error(err.response.data.message)
@@ -39,6 +38,9 @@ function RegisterForm(props) {
     })
   }
 
+  if (sended) {
+    return <ConfirmEmail email={getFieldValue('email')} />
+  }
 
   return (
     <div style={{

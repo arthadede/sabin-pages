@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -127,14 +127,6 @@ module.exports = __webpack_require__("k1wZ");
 
 /***/ }),
 
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("RNiq");
-
-
-/***/ }),
-
 /***/ "8cHP":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -143,7 +135,15 @@ module.exports = __webpack_require__("RNiq");
 
 var routes = __webpack_require__("90Kz");
 
-module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/login', '/login').add('RegisterPage', '/register', '/register').add('ForgetPassword', '/forget-password', '/forget-password').add('ChangePassword', '/change-password/:token', '/change-password').add('Dashboard', '/dasboard', '/dashboard').add('Explore', '/explore', '/explore').add('ModelCreate', '/create', '/model-create').add('MeModelInfo', '/me/model/:id', '/me-model-info').add('MeModelStats', '/me/model/:id/stats', '/me-model-stats').add('MeModelDemo', '/me/model/:id/demo', '/me-model-demo').add('MeModelBatch', '/me/model/:id/batch', '/me-model-batch').add('MeModelAnno', '/me/model/:id/anno', '/me-model-anno').add('MeModelTrain', '/me/model/:id/train', '/me-model-train').add('MeModelSource', '/me/model/:id/source', '/me-model-source').add('ModelInfo', '/model/:id', '/model-info').add('ModelStats', '/model/:id/stats', '/model-stats').add('ModelDemo', '/model/:id/demo', '/model-demo').add('ModelBatch', '/model/:id/batch', '/model-batch').add('ModelAnno', '/model/:id/anno', '/model-anno').add('ModelTrain', '/model/:id/train', '/model-train').add('AdminDashboard', '/admin', '/admin-dashboard').add('AdminUser', '/admin/user', '/admin-user').add('AdminSource', '/admin/source', '/admin-source').add('AdminModel', '/admin/model', '/admin-model');
+module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/login', '/login').add('RegisterPage', '/register', '/register').add('ConfirmAccount', '/confirm-account', '/confirm-account').add('ForgetPassword', '/forget-password', '/forget-password').add('ChangePassword', '/change-password/:token', '/change-password').add('Dashboard', '/dasboard', '/dashboard').add('Explore', '/explore', '/explore').add('ModelCreate', '/create', '/model-create').add('MeModelInfo', '/me/model/:id', '/me-model-info').add('MeModelStats', '/me/model/:id/stats', '/me-model-stats').add('MeModelDemo', '/me/model/:id/demo', '/me-model-demo').add('MeModelBatch', '/me/model/:id/batch', '/me-model-batch').add('MeModelAnno', '/me/model/:id/anno', '/me-model-anno').add('MeModelTrain', '/me/model/:id/train', '/me-model-train').add('MeModelSource', '/me/model/:id/source', '/me-model-source').add('ModelInfo', '/model/:id', '/model-info').add('ModelStats', '/model/:id/stats', '/model-stats').add('ModelDemo', '/model/:id/demo', '/model-demo').add('ModelBatch', '/model/:id/batch', '/model-batch').add('ModelAnno', '/model/:id/anno', '/model-anno').add('ModelTrain', '/model/:id/train', '/model-train').add('AdminDashboard', '/admin', '/admin-dashboard').add('AdminUser', '/admin/user', '/admin-user').add('AdminSource', '/admin/source', '/admin-source').add('AdminModel', '/admin/model', '/admin-model');
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("RNiq");
+
 
 /***/ }),
 
@@ -364,12 +364,12 @@ var pages_LandingPage = function LandingPage(props) {
     className: "mb-3"
   }, external_react_default.a.createElement("h3", null, "Create new value from your data"), external_react_default.a.createElement("p", {
     className: "h4 text-secondary"
-  }, "Bring your data to train for your models with this tools you already love.")), external_react_default.a.createElement("a", {
+  }, "Bring your own data and train it with this tools, once you try it you will never regret it.")), external_react_default.a.createElement("a", {
     onClick: function onClick() {
       return routes["Router"].pushRoute('/register');
     },
     className: "btn-link"
-  }, "Register Now")), external_react_default.a.createElement(external_antd_["Col"], {
+  }, "Let's get started")), external_react_default.a.createElement(external_antd_["Col"], {
     xs: 24,
     md: 16
   }, external_react_default.a.createElement("div", {
@@ -438,7 +438,7 @@ var pages_LandingPage = function LandingPage(props) {
     className: "ml-4 mb-0 block-inline"
   }, "Model Control")), external_react_default.a.createElement("p", {
     className: "h5"
-  }, "If you want they see your model set to public, that make they can see your model otherwise set to private."))), external_react_default.a.createElement(external_antd_["Col"], {
+  }, "Control who can see your model, if you want people see your model set it to public."))), external_react_default.a.createElement(external_antd_["Col"], {
     xs: 24,
     md: 8
   }, external_react_default.a.createElement("div", {
@@ -474,7 +474,7 @@ var pages_LandingPage = function LandingPage(props) {
     className: "ml-4 mb-0 block-inline"
   }, "File Upload")), external_react_default.a.createElement("p", {
     className: "h5"
-  }, "To make easy add source, we give fiture file uploud if you have source in format file like a ", external_react_default.a.createElement("code", null, "xls"), " or ", external_react_default.a.createElement("code", null, "xlsx"), "."))))));
+  }, "Upload your source with file like ", external_react_default.a.createElement("code", null, "xls"), " or ", external_react_default.a.createElement("code", null, "xlsx"), ". It can help you for creating sources."))))));
 };
 
 /* harmony default export */ var pages = __webpack_exports__["default"] = (pages_LandingPage);

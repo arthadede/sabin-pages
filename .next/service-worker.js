@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "url": "/_next/static/chunks/commons.f1c858cc0b96ed4f24ac.js",
-    "revision": "4e27e3a20f5a83fa957c"
+    "url": "/_next/static/chunks/commons.9c921d7e369e0d3df942.js",
+    "revision": "357172c82b0b807f8fab"
   },
   {
     "url": "/_next/static/runtime/main-6044c0738b44f12718d4.js",
@@ -37,7 +37,11 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\change-password.js",
-    "revision": "4b6131ee12dd8b171eb9"
+    "revision": "dba56f2ca61d6314487e"
+  },
+  {
+    "url": "/_next/static\\sabin-pages-1\\pages\\confirm-account.js",
+    "revision": "c2355e87ba12384deef8"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\dashboard.js",
@@ -49,11 +53,11 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\forget-password.js",
-    "revision": "9a73e1af1731bd6774d8"
+    "revision": "eee9fcc419ce4422b161"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\index.js",
-    "revision": "ba93399be62028dbaf39"
+    "revision": "3fba015412d9d47caf4e"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\login.js",
@@ -101,7 +105,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\register.js",
-    "revision": "cabe5ce723a057e1c2e4"
+    "revision": "e736cb378edf64799811"
   }
 ];
 

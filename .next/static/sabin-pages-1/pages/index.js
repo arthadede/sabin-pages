@@ -87,12 +87,12 @@ var pages_LandingPage = function LandingPage(props) {
     className: "mb-3"
   }, react_default.a.createElement("h3", null, "Create new value from your data"), react_default.a.createElement("p", {
     className: "h4 text-secondary"
-  }, "Bring your data to train for your models with this tools you already love.")), react_default.a.createElement("a", {
+  }, "Bring your own data and train it with this tools, once you try it you will never regret it.")), react_default.a.createElement("a", {
     onClick: function onClick() {
       return routes["Router"].pushRoute('/register');
     },
     className: "btn-link"
-  }, "Register Now")), react_default.a.createElement(col["a" /* default */], {
+  }, "Let's get started")), react_default.a.createElement(col["a" /* default */], {
     xs: 24,
     md: 16
   }, react_default.a.createElement("div", {
@@ -161,7 +161,7 @@ var pages_LandingPage = function LandingPage(props) {
     className: "ml-4 mb-0 block-inline"
   }, "Model Control")), react_default.a.createElement("p", {
     className: "h5"
-  }, "If you want they see your model set to public, that make they can see your model otherwise set to private."))), react_default.a.createElement(col["a" /* default */], {
+  }, "Control who can see your model, if you want people see your model set it to public."))), react_default.a.createElement(col["a" /* default */], {
     xs: 24,
     md: 8
   }, react_default.a.createElement("div", {
@@ -197,7 +197,7 @@ var pages_LandingPage = function LandingPage(props) {
     className: "ml-4 mb-0 block-inline"
   }, "File Upload")), react_default.a.createElement("p", {
     className: "h5"
-  }, "To make easy add source, we give fiture file uploud if you have source in format file like a ", react_default.a.createElement("code", null, "xls"), " or ", react_default.a.createElement("code", null, "xlsx"), "."))))));
+  }, "Upload your source with file like ", react_default.a.createElement("code", null, "xls"), " or ", react_default.a.createElement("code", null, "xlsx"), ". It can help you for creating sources."))))));
 };
 
 /* harmony default export */ var pages = __webpack_exports__["default"] = (pages_LandingPage);

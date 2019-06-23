@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ac7dab4eac110d5c446afb0a51d682cb",
+    "revision": "0b157b5b1b033d9cff95598b6e684d11",
     "url": "build-manifest.json"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "react-loadable-manifest.json"
   },
   {
-    "revision": "4e27e3a20f5a83fa957c",
-    "url": "static/chunks/commons.f1c858cc0b96ed4f24ac.js"
+    "revision": "357172c82b0b807f8fab",
+    "url": "static/chunks/commons.9c921d7e369e0d3df942.js"
   },
   {
     "revision": "40f32d2fa9a59d10f0a4",
@@ -44,8 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\admin-user.js"
   },
   {
-    "revision": "4b6131ee12dd8b171eb9",
+    "revision": "dba56f2ca61d6314487e",
     "url": "static\\sabin-pages-1\\pages\\change-password.js"
+  },
+  {
+    "revision": "c2355e87ba12384deef8",
+    "url": "static\\sabin-pages-1\\pages\\confirm-account.js"
   },
   {
     "revision": "aa0ee10f1f4dbf3197d1",
@@ -56,11 +60,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\explore.js"
   },
   {
-    "revision": "9a73e1af1731bd6774d8",
+    "revision": "eee9fcc419ce4422b161",
     "url": "static\\sabin-pages-1\\pages\\forget-password.js"
   },
   {
-    "revision": "ba93399be62028dbaf39",
+    "revision": "3fba015412d9d47caf4e",
     "url": "static\\sabin-pages-1\\pages\\index.js"
   },
   {
@@ -108,7 +112,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\model-train.js"
   },
   {
-    "revision": "cabe5ce723a057e1c2e4",
+    "revision": "e736cb378edf64799811",
     "url": "static\\sabin-pages-1\\pages\\register.js"
   }
 ]);

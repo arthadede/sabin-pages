@@ -16,9 +16,9 @@ const LandingPage = (props) => {
         <Col xs={24} md={8}>
           <div className="mb-3">
             <h3>Create new value from your data</h3>
-            <p className="h4 text-secondary">Bring your data to train for your models with this tools you already love.</p>
+            <p className="h4 text-secondary">Bring your own data and train it with this tools, once you try it you will never regret it.</p>
           </div>
-          <a onClick={() => Router.pushRoute('/register')} className="btn-link">Register Now</a>
+          <a onClick={() => Router.pushRoute('/register')} className="btn-link">Let's get started</a>
         </Col>
         <Col xs={24} md={16}>
           <div className="img-landing">
@@ -58,7 +58,7 @@ const LandingPage = (props) => {
                 <Icon className="icon" type="setting" theme="filled" style={{ fontSize: '19px', color: '#2ba35e' }}/>
                 <h4 className="ml-4 mb-0 block-inline">Model Control</h4>
               </div>
-              <p className="h5">If you want they see your model set to public, that make they can see your model otherwise set to private.</p>
+              <p className="h5">Control who can see your model, if you want people see your model set it to public.</p>
             </div>
           </Col>
           <Col xs={24} md={8}>
@@ -76,7 +76,7 @@ const LandingPage = (props) => {
                 <Icon className="icon" type="upload" style={{ fontSize: '19px', color: '#009aff' }}/>
                 <h4 className="ml-4 mb-0 block-inline">File Upload</h4>
               </div>
-              <p className="h5">To make easy add source, we give fiture file uploud if you have source in format file like a <code>xls</code> or <code>xlsx</code>.</p>
+              <p className="h5">Upload your source with file like <code>xls</code> or <code>xlsx</code>. It can help you for creating sources.</p>
             </div>
           </Col>
         </Row>

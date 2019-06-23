@@ -18,8 +18,11 @@ function ChangePassword(props) {
           const password = values.newPassword
           const response = await axios({
             method: "POST",
-            url: `${props.apiUrl}/change-password/${props.clientToken}`,
-            data: {password}
+            url: `${props.apiUrl}/change-password`,
+            data: {
+              token: props.clientToken,
+              password
+            }
           })
 
           if (response.status === 200) {

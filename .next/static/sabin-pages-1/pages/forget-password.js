@@ -72,7 +72,7 @@ function ChangePassword(props) {
                 response = _context.sent;
 
                 if (response.status == 200) {
-                  antd__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].success("Reset password account has been sent.");
+                  antd__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].success("Thanks! Please check your email for a link to reset your password.");
                   _routes__WEBPACK_IMPORTED_MODULE_11__["Router"].pushRoute("/");
                 }
 
@@ -170,13 +170,6 @@ function ChangePassword(props) {
     }
   }, "Sign up")))))));
 }
-
-ChangePassword.getInitialProps = function (_ref2) {
-  var query = _ref2.query;
-  return {
-    clientToken: query.token
-  };
-};
 
 var WrappedChangePassword = antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].create({
   name: "forget-password-form"

@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("Dsvi");
@@ -109,7 +109,7 @@ module.exports = __webpack_require__("Dsvi");
 
 var routes = __webpack_require__("90Kz");
 
-module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/login', '/login').add('RegisterPage', '/register', '/register').add('ForgetPassword', '/forget-password', '/forget-password').add('ChangePassword', '/change-password/:token', '/change-password').add('Dashboard', '/dasboard', '/dashboard').add('Explore', '/explore', '/explore').add('ModelCreate', '/create', '/model-create').add('MeModelInfo', '/me/model/:id', '/me-model-info').add('MeModelStats', '/me/model/:id/stats', '/me-model-stats').add('MeModelDemo', '/me/model/:id/demo', '/me-model-demo').add('MeModelBatch', '/me/model/:id/batch', '/me-model-batch').add('MeModelAnno', '/me/model/:id/anno', '/me-model-anno').add('MeModelTrain', '/me/model/:id/train', '/me-model-train').add('MeModelSource', '/me/model/:id/source', '/me-model-source').add('ModelInfo', '/model/:id', '/model-info').add('ModelStats', '/model/:id/stats', '/model-stats').add('ModelDemo', '/model/:id/demo', '/model-demo').add('ModelBatch', '/model/:id/batch', '/model-batch').add('ModelAnno', '/model/:id/anno', '/model-anno').add('ModelTrain', '/model/:id/train', '/model-train').add('AdminDashboard', '/admin', '/admin-dashboard').add('AdminUser', '/admin/user', '/admin-user').add('AdminSource', '/admin/source', '/admin-source').add('AdminModel', '/admin/model', '/admin-model');
+module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/login', '/login').add('RegisterPage', '/register', '/register').add('ConfirmAccount', '/confirm-account', '/confirm-account').add('ForgetPassword', '/forget-password', '/forget-password').add('ChangePassword', '/change-password/:token', '/change-password').add('Dashboard', '/dasboard', '/dashboard').add('Explore', '/explore', '/explore').add('ModelCreate', '/create', '/model-create').add('MeModelInfo', '/me/model/:id', '/me-model-info').add('MeModelStats', '/me/model/:id/stats', '/me-model-stats').add('MeModelDemo', '/me/model/:id/demo', '/me-model-demo').add('MeModelBatch', '/me/model/:id/batch', '/me-model-batch').add('MeModelAnno', '/me/model/:id/anno', '/me-model-anno').add('MeModelTrain', '/me/model/:id/train', '/me-model-train').add('MeModelSource', '/me/model/:id/source', '/me-model-source').add('ModelInfo', '/model/:id', '/model-info').add('ModelStats', '/model/:id/stats', '/model-stats').add('ModelDemo', '/model/:id/demo', '/model-demo').add('ModelBatch', '/model/:id/batch', '/model-batch').add('ModelAnno', '/model/:id/anno', '/model-anno').add('ModelTrain', '/model/:id/train', '/model-train').add('AdminDashboard', '/admin', '/admin-dashboard').add('AdminUser', '/admin/user', '/admin-user').add('AdminSource', '/admin/source', '/admin-source').add('AdminModel', '/admin/model', '/admin-model');
 
 /***/ }),
 
@@ -125,20 +125,69 @@ module.exports = require("next-routes");
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ln6h");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("O40h");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("doui");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("8cHP");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/regenerator/index.js
+var regenerator = __webpack_require__("ln6h");
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js
+var asyncToGenerator = __webpack_require__("O40h");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js + 3 modules
+var slicedToArray = __webpack_require__("doui");
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: external "antd"
+var external_antd_ = __webpack_require__("Exp3");
+
+// EXTERNAL MODULE: ./routes.js
+var routes = __webpack_require__("8cHP");
+
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
+// EXTERNAL MODULE: external "axios"
+var external_axios_ = __webpack_require__("zr5I");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
+
+// CONCATENATED MODULE: ./components/ConfirmEmail.js
+
+
+
+
+function ConfirmEmail(props) {
+  return external_react_default.a.createElement("div", {
+    style: {
+      height: "inherit",
+      display: 'flex',
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, external_react_default.a.createElement(external_antd_["Row"], {
+    type: "flex",
+    align: "middle",
+    justify: "center"
+  }, external_react_default.a.createElement(external_antd_["Card"], {
+    style: {
+      minWidth: 400
+    }
+  }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
+    title: "Check your email!",
+    description: external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Typography"].Paragraph, null, "We've emailed a special link to ", external_react_default.a.createElement("b", null, props.email), ". Click the link to confirm your address and get started."), external_react_default.a.createElement("a", {
+      onClick: function onClick() {
+        return routes["Router"].pushRoute('/');
+      }
+    }, "Go To Homepage"))
+  }))));
+}
+
+/* harmony default export */ var components_ConfirmEmail = (ConfirmEmail);
+// CONCATENATED MODULE: ./pages/register.js
+
 
 
 
@@ -149,35 +198,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RegisterForm(props) {
-  var getFieldDecorator = props.form.getFieldDecorator;
+  var _props$form = props.form,
+      getFieldDecorator = _props$form.getFieldDecorator,
+      getFieldValue = _props$form.getFieldValue;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(false),
-      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_useState, 2),
+  var _useState = Object(external_react_["useState"])(false),
+      _useState2 = Object(slicedToArray["a" /* default */])(_useState, 2),
       loading = _useState2[0],
       setLoading = _useState2[1];
+
+  var _useState3 = Object(external_react_["useState"])(false),
+      _useState4 = Object(slicedToArray["a" /* default */])(_useState3, 2),
+      sended = _useState4[0],
+      setSended = _useState4[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     props.form.validateFields(
     /*#__PURE__*/
     function () {
-      var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(
+      var _ref = Object(asyncToGenerator["a" /* default */])(
       /*#__PURE__*/
-      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(err, values) {
+      regenerator_default.a.mark(function _callee(err, values) {
         var response;
-        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        return regenerator_default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (err) {
-                  _context.next = 20;
+                  _context.next = 19;
                   break;
                 }
 
                 _context.prev = 1;
                 setLoading(true);
                 _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_7___default()({
+                return external_axios_default()({
                   method: "POST",
                   url: "".concat(props.apiUrl, "/register"),
                   data: values
@@ -187,37 +243,34 @@ function RegisterForm(props) {
                 response = _context.sent;
 
                 if (response.status === 200) {
-                  antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("You have successfully registered.");
-                  antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Please check your email.");
-                  _routes__WEBPACK_IMPORTED_MODULE_5__["Router"].pushRoute("/login");
+                  setSended(true);
                 }
 
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
               case 9:
                 _context.prev = 9;
                 _context.t0 = _context["catch"](1);
-                console.log(_context.t0.response);
                 _context.t1 = _context.t0.response.status;
-                _context.next = _context.t1 === 400 ? 15 : 17;
+                _context.next = _context.t1 === 400 ? 14 : 16;
                 break;
 
-              case 15:
-                antd__WEBPACK_IMPORTED_MODULE_4__["message"].error(_context.t0.response.data.message);
-                return _context.abrupt("break", 17);
+              case 14:
+                external_antd_["message"].error(_context.t0.response.data.message);
+                return _context.abrupt("break", 16);
 
-              case 17:
-                _context.prev = 17;
+              case 16:
+                _context.prev = 16;
                 setLoading(false);
-                return _context.finish(17);
+                return _context.finish(16);
 
-              case 20:
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9, 17, 20]]);
+        }, _callee, null, [[1, 9, 16, 19]]);
       }));
 
       return function (_x, _x2) {
@@ -226,32 +279,38 @@ function RegisterForm(props) {
     }());
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+  if (sended) {
+    return external_react_default.a.createElement(components_ConfirmEmail, {
+      email: getFieldValue('email')
+    });
+  }
+
+  return external_react_default.a.createElement("div", {
     style: {
       height: "inherit",
       display: 'flex',
       alignItems: "center",
       justifyContent: "center"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("title", null, "Register - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+  }, external_react_default.a.createElement(head_default.a, null, external_react_default.a.createElement("title", null, "Register - Sistem Anotasi Named Entity")), external_react_default.a.createElement(external_antd_["Row"], {
     type: "flex",
     align: "middle",
     justify: "center"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Card"], {
+  }, external_react_default.a.createElement(external_antd_["Card"], {
     title: "Register",
-    extra: react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+    extra: external_react_default.a.createElement("a", {
       onClick: function onClick() {
-        return _routes__WEBPACK_IMPORTED_MODULE_5__["Router"].pushRoute("/");
+        return routes["Router"].pushRoute("/");
       }
-    }, "Back ", react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Icon"], {
+    }, "Back ", external_react_default.a.createElement(external_antd_["Icon"], {
       type: "right"
     })),
     style: {
       minWidth: 400
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"], {
+  }, external_react_default.a.createElement(external_antd_["Form"], {
     onSubmit: handleSubmit
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"].Item, null, getFieldDecorator('firstname', {
+  }, external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('firstname', {
     rules: [{
       required: true,
       message: "This field is required."
@@ -262,9 +321,9 @@ function RegisterForm(props) {
       max: 20,
       message: "Minimum length is 20 characters."
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+  })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "First name"
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"].Item, null, getFieldDecorator('lastname', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('lastname', {
     rules: [{
       required: true,
       message: "This field is required."
@@ -275,9 +334,9 @@ function RegisterForm(props) {
       max: 20,
       message: "Minimum length is 20 characters."
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+  })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "Last name"
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"].Item, null, getFieldDecorator('email', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('email', {
     rules: [{
       required: true,
       message: "This field is required."
@@ -285,9 +344,9 @@ function RegisterForm(props) {
       type: 'email',
       message: "Please provide a valid email address."
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+  })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "Email"
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"].Item, null, getFieldDecorator('password', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('password', {
     rules: [{
       required: true,
       message: "This field is required."
@@ -298,30 +357,30 @@ function RegisterForm(props) {
       max: 20,
       message: "Minimum length is 20 characters."
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+  })(external_react_default.a.createElement(external_antd_["Input"], {
     type: "password",
     placeholder: "Password"
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Form"].Item, {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, {
     style: {
       margin: 0,
       textAlign: "center"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+  }, external_react_default.a.createElement(external_antd_["Button"], {
     type: "primary",
     htmlType: "submit",
     loading: loading,
     block: true
-  }, "Register"), "Already have an account? ", react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+  }, "Register"), "Already have an account? ", external_react_default.a.createElement("a", {
     onClick: function onClick() {
-      return _routes__WEBPACK_IMPORTED_MODULE_5__["Router"].pushRoute("/login");
+      return routes["Router"].pushRoute("/login");
     }
   }, "Sign in"))))));
 }
 
-var WrappedRegisterForm = antd__WEBPACK_IMPORTED_MODULE_4__["Form"].create({
+var WrappedRegisterForm = external_antd_["Form"].create({
   name: "register-form"
 })(RegisterForm);
-/* harmony default export */ __webpack_exports__["default"] = (WrappedRegisterForm);
+/* harmony default export */ var register = __webpack_exports__["default"] = (WrappedRegisterForm);
 
 /***/ }),
 
