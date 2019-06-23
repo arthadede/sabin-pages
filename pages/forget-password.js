@@ -27,7 +27,7 @@ function ChangePassword(props) {
         } catch (err) {
           switch (err.response.status) {
             case 404:
-              message.error('No search results.')
+              message.error(err.response.data.message)
               break;
             case 400:
               message.error(err.response.data.message && err.response.statusText)
