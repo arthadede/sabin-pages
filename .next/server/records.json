@@ -1,0 +1,61 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/admin-dashboard.js": 0,
+      "multi private-next-pages/admin-model.js": 1,
+      "multi private-next-pages/admin-source.js": 2,
+      "multi private-next-pages/admin-user.js": 3,
+      "multi private-next-pages/change-password.js": 4,
+      "multi private-next-pages/dashboard.js": 5,
+      "multi private-next-pages/explore.js": 6,
+      "multi private-next-pages/forget-password.js": 7,
+      "multi private-next-pages/index.js": 8,
+      "multi private-next-pages/login.js": 9,
+      "multi private-next-pages/me-model-anno.js": 10,
+      "multi private-next-pages/me-model-info.js": 11,
+      "multi private-next-pages/me-model-source.js": 12,
+      "multi private-next-pages/me-model-stats.js": 13,
+      "multi private-next-pages/me-model-train.js": 14,
+      "multi private-next-pages/model-anno.js": 15,
+      "multi private-next-pages/model-create.js": 16,
+      "multi private-next-pages/model-stats.js": 17,
+      "multi private-next-pages/model-info.js": 18,
+      "multi private-next-pages/model-train.js": 19,
+      "multi private-next-pages/register.js": 20,
+      "multi private-next-pages/_app.js": 21,
+      "multi private-next-pages/_document.js": 22,
+      "multi private-next-pages/_error.js": 23
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19,
+      "20": 20,
+      "21": 21,
+      "22": 22,
+      "23": 23
+    }
+  },
+  "chunks": {
+    "byName": {},
+    "bySource": {},
+    "usedIds": []
+  }
+}
