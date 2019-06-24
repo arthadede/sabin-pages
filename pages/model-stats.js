@@ -32,11 +32,22 @@ function ModelStats(props) {
   const [logLabel, setLogLabel] = useState(props.logLabel)
   const [logMonth, setLogMonth] = useState(props.logMonth)
   
+  const getLogLabel = () => {
+    const init = _.reduce(props.model.label, (result, item) => {
+      result[item] = 0
+      return result
+    }, {})
+
+    const compareLabel = {...init, ...logLabel}
+    const result = _.values(compareLabel)
+    return result
+  }
+
   const doughnutData = {
     labels: props.model.label,
     datasets: [
       {
-        data: _.values(logLabel),
+        data: getLogLabel(),
         backgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'],
         hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'],
       },

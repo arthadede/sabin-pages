@@ -1507,21 +1507,12 @@ function AddModelSourceModal(props) {
       gutter: 16,
       type: "flex"
     }, external_react_default.a.createElement(external_antd_["Col"], {
-      md: 16
+      md: 24
     }, external_react_default.a.createElement(external_antd_["Upload"], propsDagger, external_react_default.a.createElement(external_antd_["Button"], null, external_react_default.a.createElement(external_antd_["Icon"], {
       type: "upload"
     }), " Upload")), countFiles <= 0 && external_react_default.a.createElement(external_antd_["Empty"], {
       image: external_antd_["Empty"].PRESENTED_IMAGE_SIMPLE
-    })), external_react_default.a.createElement(external_antd_["Col"], {
-      md: 8
-    }, external_react_default.a.createElement(external_antd_["Card"], {
-      style: {
-        minHeight: '100%'
-      }
-    }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
-      title: "Rules",
-      description: "Data yang diambil"
-    }))))), external_react_default.a.createElement("div", {
+    })))), external_react_default.a.createElement("div", {
       className: "d-flex justify-content-flex-end"
     }, external_react_default.a.createElement(external_antd_["Button"], {
       type: "primary",

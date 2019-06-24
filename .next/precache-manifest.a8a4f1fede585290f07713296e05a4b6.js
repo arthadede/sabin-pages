@@ -80,11 +80,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\me-model-info.js"
   },
   {
-    "revision": "7a34adb4d439a558767c",
+    "revision": "4c2469f5738f5450b2fd",
     "url": "static\\sabin-pages-1\\pages\\me-model-source.js"
   },
   {
-    "revision": "d12c068ac0477f24ca0d",
+    "revision": "8abbbd46b824c633910c",
     "url": "static\\sabin-pages-1\\pages\\me-model-stats.js"
   },
   {
@@ -104,7 +104,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\model-info.js"
   },
   {
-    "revision": "777751aaf764b7c61305",
+    "revision": "9319198349ac1d367316",
     "url": "static\\sabin-pages-1\\pages\\model-stats.js"
   },
   {

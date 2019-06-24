@@ -190,20 +190,13 @@ function AddModelSourceModal(props) {
       <Row>
         <Card bordered={false}>
           <Row gutter={16} type="flex">
-            <Col md={16}>
+            <Col md={24}>
             <Upload {...propsDagger}>
               <Button>
                 <Icon type="upload" /> Upload
               </Button>
             </Upload>
             {countFiles <= 0 && <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>}
-            </Col>
-            <Col md={8}>
-              <Card style={{minHeight: '100%'}}>
-                <Card.Meta 
-                  title="Rules"
-                  description="Data yang diambil"/>
-              </Card>
             </Col>
           </Row>
         </Card>

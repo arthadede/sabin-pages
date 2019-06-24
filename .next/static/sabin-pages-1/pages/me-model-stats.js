@@ -8361,31 +8361,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ln6h");
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("O40h");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("doui");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("BMrR");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("kPKH");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("bx4M");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("wFql");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("sGsY");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("CtXQ");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("VXEj");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("Tckk");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("m/Pd");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("eomm");
-/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_error__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("LvDl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("vDqi");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("wd/R");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("q1tI");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("UDbo");
-/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("y6HG");
-/* harmony import */ var _components_MeModelSider__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__("AzOL");
-/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__("SMlj");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("zrwo");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("doui");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("BMrR");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("kPKH");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("bx4M");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("wFql");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("sGsY");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("CtXQ");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("VXEj");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("Tckk");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("m/Pd");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("eomm");
+/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(next_error__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("LvDl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("vDqi");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("wd/R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("q1tI");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("UDbo");
+/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__("y6HG");
+/* harmony import */ var _components_MeModelSider__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__("AzOL");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__("SMlj");
+
 
 
 
@@ -8412,35 +8414,48 @@ var getRandomInt = function getRandomInt() {
 };
 
 function ModelStats(props) {
-  if (props.errorCode) return react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_12___default.a, {
+  if (props.errorCode) return react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_13___default.a, {
     statusCode: props.errorCode
   });
   var selectedKeys = props.route.parsedUrl.pathname;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(props.stats),
-      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useState, 2),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_17__["useState"])(props.stats),
+      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__["default"])(_useState, 2),
       state = _useState2[0],
       setState = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(props.logTrain),
-      _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useState3, 2),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_17__["useState"])(props.logTrain),
+      _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__["default"])(_useState3, 2),
       logTrain = _useState4[0],
       setLogTrain = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(props.logLabel),
-      _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useState5, 2),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_17__["useState"])(props.logLabel),
+      _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__["default"])(_useState5, 2),
       logLabel = _useState6[0],
       setLogLabel = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(props.logMonth),
-      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useState7, 2),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_17__["useState"])(props.logMonth),
+      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__["default"])(_useState7, 2),
       logMonth = _useState8[0],
       setLogMonth = _useState8[1];
+
+  var getLogLabel = function getLogLabel() {
+    var init = lodash__WEBPACK_IMPORTED_MODULE_14___default.a.reduce(props.model.label, function (result, item) {
+      result[item] = 0;
+      return result;
+    }, {});
+
+    var compareLabel = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, init, logLabel);
+
+    var result = lodash__WEBPACK_IMPORTED_MODULE_14___default.a.values(compareLabel);
+
+    return result;
+  };
 
   var doughnutData = {
     labels: props.model.label,
     datasets: [{
-      data: lodash__WEBPACK_IMPORTED_MODULE_13___default.a.values(logLabel),
+      data: getLogLabel(),
       backgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'],
       hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
     }]
@@ -8469,80 +8484,80 @@ function ModelStats(props) {
       data: logMonth
     }]
   };
-  return react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_18__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {
+  return react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_19__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
     type: "flex",
     gutter: 32
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_11___default.a, null, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("title", null, "My Model Stats - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_12___default.a, null, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement("title", null, "My Model Stats - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 6
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(_components_MeModelSider__WEBPACK_IMPORTED_MODULE_19__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(_components_MeModelSider__WEBPACK_IMPORTED_MODULE_20__[/* default */ "a"], {
     current: selectedKeys,
     dataSource: props.model
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 18
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], {
     style: {
       padding: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].Title, {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].Title, {
     level: 4,
     style: {
       marginBottom: 32
     }
-  }, "Statistic Model"), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {
+  }, "Statistic Model"), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
     gutter: 32
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 12,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     title: "Verified",
     value: state.verified,
-    prefix: react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+    prefix: react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       type: "database"
     })
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 12,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     title: "Not Verified",
     value: state.notVerified,
-    prefix: react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+    prefix: react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       type: "container"
     })
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 12,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     title: "Source processed",
     value: state.sourceProcessed,
-    prefix: react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+    prefix: react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       type: "file-done"
     }),
     suffix: "/ ".concat(state.sourceNotProcessed)
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 12,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     title: "Contributed",
-    prefix: react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+    prefix: react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       type: "team"
     }),
     value: state.contributed
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 24,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].Title, {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].Title, {
     level: 4
-  }, "Lasts Contributed"), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
+  }, "Lasts Contributed"), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
     className: "ant-custom",
     style: {
       maxHeight: 300,
@@ -8550,8 +8565,8 @@ function ModelStats(props) {
     },
     dataSource: logTrain,
     renderItem: function renderItem(item) {
-      return react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"].Item, null, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"].Item.Meta, {
-        avatar: react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
+      return react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"].Item, null, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"].Item.Meta, {
+        avatar: react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
           style: {
             backgroundColor: getRandomInt()
           }
@@ -8562,22 +8577,22 @@ function ModelStats(props) {
         },
         title: "".concat(item.firstname, " ").concat(item.lastname),
         description: item.email
-      }), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("div", null, moment__WEBPACK_IMPORTED_MODULE_15___default()(item.activityDate).fromNow()));
+      }), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement("div", null, moment__WEBPACK_IMPORTED_MODULE_16___default()(item.activityDate).fromNow()));
     }
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     md: 24,
     style: {
       marginBottom: 60
     }
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].Title, {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].Title, {
     level: 4
-  }, "Labels statistic"), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_17__[/* Doughnut */ "b"], {
+  }, "Labels statistic"), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_18__[/* Doughnut */ "b"], {
     data: doughnutData
-  })), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+  })), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
     xs: 24
-  }, react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].Title, {
+  }, react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"].Title, {
     level: 4
-  }, "Activity model"), react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_17__[/* Line */ "c"], {
+  }, "Activity model"), react__WEBPACK_IMPORTED_MODULE_17___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_18__[/* Line */ "c"], {
     data: lineData
   })))))));
 }
@@ -8598,7 +8613,7 @@ function () {
             modelApi = "".concat(apiUrl, "/model/").concat(id);
             _context.prev = 3;
             _context.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_14___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_15___default()({
               method: "GET",
               url: modelApi,
               headers: {
@@ -8611,7 +8626,7 @@ function () {
           case 6:
             model = _context.sent;
             _context.next = 9;
-            return axios__WEBPACK_IMPORTED_MODULE_14___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_15___default()({
               method: "GET",
               url: "".concat(modelApi, "/stats"),
               headers: {
@@ -8624,7 +8639,7 @@ function () {
           case 9:
             stats = _context.sent;
             _context.next = 12;
-            return axios__WEBPACK_IMPORTED_MODULE_14___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_15___default()({
               method: "GET",
               url: "".concat(modelApi, "/stats/train"),
               headers: {
@@ -8637,7 +8652,7 @@ function () {
           case 12:
             logTrain = _context.sent;
             _context.next = 15;
-            return axios__WEBPACK_IMPORTED_MODULE_14___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_15___default()({
               method: "GET",
               url: "".concat(modelApi, "/stats/label"),
               headers: {
@@ -8650,7 +8665,7 @@ function () {
           case 15:
             logLabel = _context.sent;
             _context.next = 18;
-            return axios__WEBPACK_IMPORTED_MODULE_14___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_15___default()({
               method: "GET",
               url: "".concat(modelApi, "/stats/month"),
               headers: {
@@ -8690,7 +8705,7 @@ function () {
   };
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_20__[/* withAuthSync */ "c"])(ModelStats));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_21__[/* withAuthSync */ "c"])(ModelStats));
 
 /***/ }),
 
