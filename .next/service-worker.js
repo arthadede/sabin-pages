@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "url": "/_next/static/chunks/commons.9c921d7e369e0d3df942.js",
-    "revision": "357172c82b0b807f8fab"
+    "url": "/_next/static/chunks/commons.527df2c15abb722cddb0.js",
+    "revision": "8290c8ddd81eafb6ab3f"
   },
   {
     "url": "/_next/static/runtime/main-6044c0738b44f12718d4.js",
@@ -57,7 +57,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\index.js",
-    "revision": "3fba015412d9d47caf4e"
+    "revision": "0f9ef2256efef0c721ff"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\login.js",

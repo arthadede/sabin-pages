@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0b157b5b1b033d9cff95598b6e684d11",
+    "revision": "8bd50c71e1736560d927eea8756f2ea4",
     "url": "build-manifest.json"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "react-loadable-manifest.json"
   },
   {
-    "revision": "357172c82b0b807f8fab",
-    "url": "static/chunks/commons.9c921d7e369e0d3df942.js"
+    "revision": "8290c8ddd81eafb6ab3f",
+    "url": "static/chunks/commons.527df2c15abb722cddb0.js"
   },
   {
     "revision": "40f32d2fa9a59d10f0a4",
@@ -64,7 +64,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\forget-password.js"
   },
   {
-    "revision": "3fba015412d9d47caf4e",
+    "revision": "0f9ef2256efef0c721ff",
     "url": "static\\sabin-pages-1\\pages\\index.js"
   },
   {

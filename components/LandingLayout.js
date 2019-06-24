@@ -9,7 +9,6 @@ export default (props) => {
   
   const HeaderComponent = (
     <Header>
-      <div id="logo"/>
       <ul className="menu-items">
         {!props.token &&( <li className="item" onClick={() => Router.pushRoute('/login')}>
           <a className="item-btn">Log in</a>
@@ -34,7 +33,7 @@ export default (props) => {
         {HeaderComponent}
         <Content>{props.children}</Content>
         <Footer>
-          <div className="text-center">Sistem Anotasi Bahasa Indonesia ©2019</div>
+          <div className="text-center">Sistem Anotasi Named Entity ©2019</div>
         </Footer>
       </Layout>
     </div>

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -127,6 +127,14 @@ module.exports = __webpack_require__("k1wZ");
 
 /***/ }),
 
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("RNiq");
+
+
+/***/ }),
+
 /***/ "8cHP":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -136,14 +144,6 @@ module.exports = __webpack_require__("k1wZ");
 var routes = __webpack_require__("90Kz");
 
 module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/login', '/login').add('RegisterPage', '/register', '/register').add('ConfirmAccount', '/confirm-account', '/confirm-account').add('ForgetPassword', '/forget-password', '/forget-password').add('ChangePassword', '/change-password/:token', '/change-password').add('Dashboard', '/dasboard', '/dashboard').add('Explore', '/explore', '/explore').add('ModelCreate', '/create', '/model-create').add('MeModelInfo', '/me/model/:id', '/me-model-info').add('MeModelStats', '/me/model/:id/stats', '/me-model-stats').add('MeModelDemo', '/me/model/:id/demo', '/me-model-demo').add('MeModelBatch', '/me/model/:id/batch', '/me-model-batch').add('MeModelAnno', '/me/model/:id/anno', '/me-model-anno').add('MeModelTrain', '/me/model/:id/train', '/me-model-train').add('MeModelSource', '/me/model/:id/source', '/me-model-source').add('ModelInfo', '/model/:id', '/model-info').add('ModelStats', '/model/:id/stats', '/model-stats').add('ModelDemo', '/model/:id/demo', '/model-demo').add('ModelBatch', '/model/:id/batch', '/model-batch').add('ModelAnno', '/model/:id/anno', '/model-anno').add('ModelTrain', '/model/:id/train', '/model-train').add('AdminDashboard', '/admin', '/admin-dashboard').add('AdminUser', '/admin/user', '/admin-user').add('AdminSource', '/admin/source', '/admin-source').add('AdminModel', '/admin/model', '/admin-model');
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("RNiq");
-
 
 /***/ }),
 
@@ -318,9 +318,7 @@ var Header = external_antd_["Layout"].Header,
     Content = external_antd_["Layout"].Content,
     Footer = external_antd_["Layout"].Footer;
 /* harmony default export */ var LandingLayout = (function (props) {
-  var HeaderComponent = external_react_default.a.createElement(Header, null, external_react_default.a.createElement("div", {
-    id: "logo"
-  }), external_react_default.a.createElement("ul", {
+  var HeaderComponent = external_react_default.a.createElement(Header, null, external_react_default.a.createElement("ul", {
     className: "menu-items"
   }, !props.token && external_react_default.a.createElement("li", {
     className: "item",
@@ -344,7 +342,7 @@ var Header = external_antd_["Layout"].Header,
     className: "wrapper"
   }, external_react_default.a.createElement(external_antd_["Layout"], null, HeaderComponent, external_react_default.a.createElement(Content, null, props.children), external_react_default.a.createElement(Footer, null, external_react_default.a.createElement("div", {
     className: "text-center"
-  }, "Sistem Anotasi Bahasa Indonesia \xA92019"))));
+  }, "Sistem Anotasi Named Entity \xA92019"))));
 });
 // CONCATENATED MODULE: ./pages/index.js
 

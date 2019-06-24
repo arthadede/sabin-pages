@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -268,7 +268,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 15:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("qFB7");
@@ -1948,7 +1948,7 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
       style: {
         textAlign: 'center'
       }
-    }, "Sistem Anotasi Bahasa Indonesia \xA92019");
+    }, "SANE \xA92019");
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], {

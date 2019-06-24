@@ -49,7 +49,7 @@ export default function({route, children}) {
 
 
   const FooterComponent = () => (
-    <Footer style={{ textAlign: 'center' }}>Sistem Anotasi Bahasa Indonesia ©2019</Footer>
+    <Footer style={{ textAlign: 'center' }}>SANE ©2019</Footer>
   )
   
   return (

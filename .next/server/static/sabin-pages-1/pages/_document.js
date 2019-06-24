@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -144,7 +144,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("5w0S");
@@ -310,7 +310,11 @@ function (_Document) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(MyDocument, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Html"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Head"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+      return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Html"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Head"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("link", {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "static/favicon.ico"
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
         name: "viewport",
         content: "width=device-width, initial-scale=1"
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {

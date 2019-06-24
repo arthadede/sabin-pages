@@ -1,5 +1,20 @@
-.logo {
+#logo {
+  display: inline;
   height: 64px;
+  width: 64px;
+  position: relative;
+  &:after {
+   content: ''; 
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-image: url('../static/logo.png');
+   background-repeat: no-repeat, repeat;
+   background-position: center;
+   background-size: 60%;
+  }
 }
 
 .ant-custom.ant-layout-header {
@@ -225,6 +240,7 @@
     list-style: none;
     text-decoration: none;
     display: flex;
+    justify-content: flex-end;
     flex-direction: row;
     align-items: center;
   

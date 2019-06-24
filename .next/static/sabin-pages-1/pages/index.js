@@ -41,9 +41,7 @@ var Header = layout["a" /* default */].Header,
     Content = layout["a" /* default */].Content,
     Footer = layout["a" /* default */].Footer;
 /* harmony default export */ var LandingLayout = (function (props) {
-  var HeaderComponent = react_default.a.createElement(Header, null, react_default.a.createElement("div", {
-    id: "logo"
-  }), react_default.a.createElement("ul", {
+  var HeaderComponent = react_default.a.createElement(Header, null, react_default.a.createElement("ul", {
     className: "menu-items"
   }, !props.token && react_default.a.createElement("li", {
     className: "item",
@@ -67,7 +65,7 @@ var Header = layout["a" /* default */].Header,
     className: "wrapper"
   }, react_default.a.createElement(layout["a" /* default */], null, HeaderComponent, react_default.a.createElement(Content, null, props.children), react_default.a.createElement(Footer, null, react_default.a.createElement("div", {
     className: "text-center"
-  }, "Sistem Anotasi Bahasa Indonesia \xA92019"))));
+  }, "Sistem Anotasi Named Entity \xA92019"))));
 });
 // CONCATENATED MODULE: ./pages/index.js
 
