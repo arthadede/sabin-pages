@@ -93,41 +93,10 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "/+P4":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$getPrototypeOf = __webpack_require__("Bhuq");
-
-var _Object$setPrototypeOf = __webpack_require__("TRZx");
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = _Object$setPrototypeOf ? _Object$getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || _Object$getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-
 /***/ "/+oN":
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/get-prototype-of");
-
-/***/ }),
-
-/***/ "/HRN":
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
 
 /***/ }),
 
@@ -137,31 +106,26 @@ module.exports = _classCallCheck;
 "use strict";
 
 
+var _interopRequireDefault2 = __webpack_require__("KI45");
+
+var _classCallCheck2 = _interopRequireDefault2(__webpack_require__("0iUn"));
+
+var _createClass2 = _interopRequireDefault2(__webpack_require__("sLSF"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault2(__webpack_require__("MI3g"));
+
+var _getPrototypeOf2 = _interopRequireDefault2(__webpack_require__("a7VT"));
+
+var _inherits2 = _interopRequireDefault2(__webpack_require__("Tit0"));
+
 var _interopRequireDefault = __webpack_require__("KI45");
 
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__("/HRN"));
+exports.__esModule = true;
+exports["default"] = void 0;
 
-var _createClass2 = _interopRequireDefault(__webpack_require__("WaGi"));
+var _react = _interopRequireDefault(__webpack_require__("cDcd"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__("ZDA2"));
-
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__("/+P4"));
-
-var _inherits2 = _interopRequireDefault(__webpack_require__("N9n2"));
-
-var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var react_1 = __importDefault(__webpack_require__("cDcd"));
-
-var head_1 = __importDefault(__webpack_require__("U7sd"));
+var _head = _interopRequireDefault(__webpack_require__("U7sd"));
 
 var statusCodes = {
   400: 'Bad Request',
@@ -169,33 +133,36 @@ var statusCodes = {
   500: 'Internal Server Error',
   501: 'Not Implemented'
 };
+/**
+* `Error` component used for handling errors.
+*/
 
 var Error =
 /*#__PURE__*/
-function (_react_1$default$Comp) {
-  (0, _inherits2.default)(Error, _react_1$default$Comp);
+function (_react$default$Compon) {
+  (0, _inherits2["default"])(Error, _react$default$Compon);
 
   function Error() {
-    (0, _classCallCheck2.default)(this, Error);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Error).apply(this, arguments));
+    (0, _classCallCheck2["default"])(this, Error);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(Error).apply(this, arguments));
   }
 
-  (0, _createClass2.default)(Error, [{
+  (0, _createClass2["default"])(Error, [{
     key: "render",
     value: function render() {
       var statusCode = this.props.statusCode;
-      var title = statusCodes[statusCode] || 'An unexpected error has occurred';
-      return react_1.default.createElement("div", {
+      var title = this.props.title || statusCodes[statusCode] || 'An unexpected error has occurred';
+      return _react["default"].createElement("div", {
         style: styles.error
-      }, react_1.default.createElement(head_1.default, null, react_1.default.createElement("title", null, statusCode, ": ", title)), react_1.default.createElement("div", null, react_1.default.createElement("style", {
+      }, _react["default"].createElement(_head["default"], null, _react["default"].createElement("title", null, statusCode, ": ", title)), _react["default"].createElement("div", null, _react["default"].createElement("style", {
         dangerouslySetInnerHTML: {
           __html: 'body { margin: 0 }'
         }
-      }), statusCode ? react_1.default.createElement("h1", {
+      }), statusCode ? _react["default"].createElement("h1", {
         style: styles.h1
-      }, statusCode) : null, react_1.default.createElement("div", {
+      }, statusCode) : null, _react["default"].createElement("div", {
         style: styles.desc
-      }, react_1.default.createElement("h2", {
+      }, _react["default"].createElement("h2", {
         style: styles.h2
       }, title, "."))));
     }
@@ -211,10 +178,10 @@ function (_react_1$default$Comp) {
     }
   }]);
   return Error;
-}(react_1.default.Component);
+}(_react["default"].Component);
 
+exports["default"] = Error;
 Error.displayName = 'ErrorPage';
-exports.default = Error;
 var styles = {
   error: {
     color: '#000',
@@ -259,7 +226,8 @@ var styles = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _classCallCheck; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _classCallCheck; });
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -309,21 +277,6 @@ module.exports = require("next-routes");
 
 /***/ }),
 
-/***/ "AT/M":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _assertThisInitialized; });
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-/***/ }),
-
 /***/ "AzOL":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -367,12 +320,12 @@ function ModelSider(_ref) {
     key: "g2",
     title: "Build"
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
+    key: "/me/model/".concat(dataSource.id, "/source")
+  }, "Source"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
     key: "/me/model/".concat(dataSource.id, "/anno")
   }, "Annotation"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
     key: "/me/model/".concat(dataSource.id, "/train")
-  }, "Training"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Menu"].Item, {
-    key: "/me/model/".concat(dataSource.id, "/source")
-  }, "Source")));
+  }, "Confirmation")));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (ModelSider);
@@ -383,13 +336,6 @@ function ModelSider(_ref) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("/+oN");
-
-/***/ }),
-
-/***/ "Cg2A":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("y6vh");
 
 /***/ }),
 
@@ -414,27 +360,12 @@ module.exports = __webpack_require__("Z6Kq");
 
 /***/ }),
 
-/***/ "K47E":
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
 /***/ "KI45":
 /***/ (function(module, exports) {
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
-    default: obj
+    "default": obj
   };
 }
 
@@ -453,6 +384,7 @@ module.exports = require("core-js/library/fn/is-iterable");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
 var iterator = __webpack_require__("XVgq");
@@ -481,11 +413,16 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
-var assertThisInitialized = __webpack_require__("AT/M");
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
 
+  return self;
+}
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _possibleConstructorReturn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _possibleConstructorReturn; });
 
 
 function _possibleConstructorReturn(self, call) {
@@ -493,34 +430,8 @@ function _possibleConstructorReturn(self, call) {
     return call;
   }
 
-  return Object(assertThisInitialized["a" /* default */])(self);
+  return _assertThisInitialized(self);
 }
-
-/***/ }),
-
-/***/ "N9n2":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$create = __webpack_require__("SqZg");
-
-var setPrototypeOf = __webpack_require__("vjea");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = _Object$create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
 
 /***/ }),
 
@@ -664,15 +575,15 @@ var withAuthSync = function withAuthSync(WrappedComponent, roleId) {
   return _temp = _class =
   /*#__PURE__*/
   function (_Component) {
-    Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_class, _Component);
+    Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, _Component);
 
     function _class() {
-      Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(this, _class);
+      Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, _class);
 
-      return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_class).apply(this, arguments));
+      return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(_class).apply(this, arguments));
     }
 
-    Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_class, [{
+    Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(_class, [{
       key: "render",
       value: function render() {
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(WrappedComponent, this.props);
@@ -787,27 +698,11 @@ module.exports = require("core-js/library/fn/object/define-property");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/create.js
-var create = __webpack_require__("SqZg");
-var create_default = /*#__PURE__*/__webpack_require__.n(create);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js
-var set_prototype_of = __webpack_require__("TRZx");
-var set_prototype_of_default = /*#__PURE__*/__webpack_require__.n(set_prototype_of);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/setPrototypeOf.js
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = set_prototype_of_default.a || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _inherits; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _inherits; });
+/* harmony import */ var _core_js_object_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("SqZg");
+/* harmony import */ var _core_js_object_create__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_create__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("VLay");
 
 
 function _inherits(subClass, superClass) {
@@ -815,14 +710,14 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function");
   }
 
-  subClass.prototype = create_default()(superClass && superClass.prototype, {
+  subClass.prototype = _core_js_object_create__WEBPACK_IMPORTED_MODULE_0___default()(superClass && superClass.prototype, {
     constructor: {
       value: subClass,
       writable: true,
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf(subClass, superClass);
+  if (superClass) Object(_setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(subClass, superClass);
 }
 
 /***/ }),
@@ -841,29 +736,22 @@ module.exports = __webpack_require__("dGr4");
 
 /***/ }),
 
-/***/ "WaGi":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "VLay":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var _Object$defineProperty = __webpack_require__("hfKm");
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _setPrototypeOf; });
+/* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("TRZx");
+/* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0__);
 
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0___default.a || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
 
-    _Object$defineProperty(target, descriptor.key, descriptor);
-  }
+  return _setPrototypeOf(o, p);
 }
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
 
 /***/ }),
 
@@ -871,13 +759,6 @@ module.exports = _createClass;
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/set-prototype-of");
-
-/***/ }),
-
-/***/ "X1wy":
-/***/ (function(module, exports) {
-
-module.exports = require("xlsx");
 
 /***/ }),
 
@@ -916,30 +797,12 @@ module.exports = __webpack_require__("vqFK");
 
 /***/ }),
 
-/***/ "ZDA2":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__("iZP3");
-
-var assertThisInitialized = __webpack_require__("K47E");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
 /***/ "a7VT":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _getPrototypeOf; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _getPrototypeOf; });
 /* harmony import */ var _core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Bhuq");
 /* harmony import */ var _core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("TRZx");
@@ -1124,11 +987,15 @@ __webpack_require__.r(__webpack_exports__);
 var regenerator = __webpack_require__("ln6h");
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js
-var esm_extends = __webpack_require__("kOwS");
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js
 var asyncToGenerator = __webpack_require__("O40h");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js
+var objectSpread = __webpack_require__("zrwo");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
+var promise = __webpack_require__("eVuF");
+var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js + 3 modules
 var slicedToArray = __webpack_require__("doui");
@@ -1149,10 +1016,6 @@ var error_default = /*#__PURE__*/__webpack_require__.n(error);
 var external_axios_ = __webpack_require__("zr5I");
 var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
 
-// EXTERNAL MODULE: external "moment"
-var external_moment_ = __webpack_require__("wy2R");
-var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
-
 // EXTERNAL MODULE: external "antd"
 var external_antd_ = __webpack_require__("Exp3");
 
@@ -1162,26 +1025,17 @@ var MeModelSider = __webpack_require__("AzOL");
 // EXTERNAL MODULE: ./components/UserLayout.js
 var UserLayout = __webpack_require__("y6HG");
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/date/now.js
-var now = __webpack_require__("Cg2A");
-var now_default = /*#__PURE__*/__webpack_require__.n(now);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/promise.js
-var promise = __webpack_require__("eVuF");
-var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js
+var esm_extends = __webpack_require__("kOwS");
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js + 3 modules
 var toConsumableArray = __webpack_require__("dfwq");
-
-// EXTERNAL MODULE: external "xlsx"
-var external_xlsx_ = __webpack_require__("X1wy");
-var external_xlsx_default = /*#__PURE__*/__webpack_require__.n(external_xlsx_);
 
 // EXTERNAL MODULE: external "lodash"
 var external_lodash_ = __webpack_require__("YLtl");
 var external_lodash_default = /*#__PURE__*/__webpack_require__.n(external_lodash_);
 
-// CONCATENATED MODULE: ./components/AddModelSourceModal.js
+// CONCATENATED MODULE: ./components/ModalAddSource.js
 
 
 
@@ -1191,755 +1045,207 @@ var external_lodash_default = /*#__PURE__*/__webpack_require__.n(external_lodash
 
 
 
-
-
-var TextArea = external_antd_["Input"].TextArea;
-
-function AddModelSourceModal(props) {
-  var _useState = Object(external_react_["useState"])(0),
+function ModalAddSource(props) {
+  var _useState = Object(external_react_["useState"])(null),
       _useState2 = Object(slicedToArray["a" /* default */])(_useState, 2),
-      currentStep = _useState2[0],
-      setCurrentStep = _useState2[1];
+      state = _useState2[0],
+      setState = _useState2[1];
 
   var _useState3 = Object(external_react_["useState"])(null),
       _useState4 = Object(slicedToArray["a" /* default */])(_useState3, 2),
-      method = _useState4[0],
-      setMethod = _useState4[1];
+      selected = _useState4[0],
+      setSelected = _useState4[1];
 
-  var _useState5 = Object(external_react_["useState"])([]),
+  var _useState5 = Object(external_react_["useState"])(false),
       _useState6 = Object(slicedToArray["a" /* default */])(_useState5, 2),
-      resultData = _useState6[0],
-      setResultData = _useState6[1];
+      loading = _useState6[0],
+      setLoading = _useState6[1];
 
-  var handleNext = function handleNext() {
-    if (currentStep < steps.length) {
-      setCurrentStep(function (state) {
-        return state + 1;
+  var _useState7 = Object(external_react_["useState"])(""),
+      _useState8 = Object(slicedToArray["a" /* default */])(_useState7, 2),
+      loadingText = _useState8[0],
+      setLoadingText = _useState8[1];
+
+  var handleUpload = function handleUpload(file) {
+    setLoading(true);
+    setLoadingText("Uploading...");
+    var formData = new FormData();
+    formData.append('file', file);
+    external_axios_default()({
+      method: 'POST',
+      url: '/source',
+      data: formData
+    }).then(function (res) {
+      if (res.status === 200) {
+        setState(res.data);
+      }
+    })["catch"](function (err) {
+      external_antd_["message"].error(err);
+    })["finally"](function () {
+      setLoading(false);
+      setLoadingText("");
+    });
+  };
+
+  var handleAdd = function handleAdd(data) {
+    return new promise_default.a(function (resolve, reject) {
+      external_axios_default()({
+        method: "PATCH",
+        url: "".concat(props.modelApi, "/source/add"),
+        headers: {
+          authorization: props.token
+        },
+        data: {
+          json: data
+        }
+      }).then(function (res) {
+        return res.status === 200 && resolve(res.data);
+      })["catch"](function (err) {
+        return reject(err);
       });
+    });
+  };
+
+  var handleSubmit = function handleSubmit() {
+    if (!selected) {
+      external_antd_["message"].warning("Please select any check for submit to source.");
+      return;
+    }
+
+    setLoading(true);
+    setLoadingText("Importing Data...");
+    var data = [];
+
+    external_lodash_default.a.forEach(state.sheets, function (item, key) {
+      var picked = external_lodash_default.a.pick(item, selected);
+
+      var result = external_lodash_default.a.values(picked);
+
+      data.push.apply(data, Object(toConsumableArray["a" /* default */])(result));
+    });
+
+    handleAdd(data).then(function (result) {
+      external_antd_["message"].success("Added source successfully.");
+      props.onOk(result.json);
+    })["catch"](function () {
+      return external_antd_["message"].error("Something wrong.");
+    })["finally"](function () {
+      setLoading(false);
+      setLoadingText("");
+    });
+  };
+
+  var fileType = ['.csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'];
+  var confUpload = {
+    accept: fileType.join(','),
+    showUploadList: false,
+    beforeUpload: function beforeUpload(file) {
+      if (!fileType.includes(file.type)) {
+        external_antd_["message"].error('We only support CSV, XLS, or XLSX spreadsheet.');
+      } else if (file.size / 1024 / 1024 > 20) {
+        external_antd_["message"].error('Please upload a file smaller than 20 MB.');
+      } else {
+        handleUpload(file);
+      }
+
+      return false;
     }
   };
 
-  var handleOnClose =
-  /*#__PURE__*/
-  function () {
-    var _ref = Object(asyncToGenerator["a" /* default */])(
-    /*#__PURE__*/
-    regenerator_default.a.mark(function _callee() {
-      return regenerator_default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return props.onCancel();
+  var ComponentSheet = function ComponentSheet() {
+    if (state === null) return null;
 
-            case 2:
-              setCurrentStep(0);
+    var columnsArr = external_lodash_default.a.filter(state.columns, function (n) {
+      return n !== 'id';
+    });
 
-            case 3:
-            case "end":
-              return _context.stop();
-          }
+    var columns = external_lodash_default.a.map(columnsArr, function (item, key) {
+      return {
+        key: item,
+        width: 200,
+        title: external_react_default.a.createElement(external_antd_["Checkbox"], {
+          value: item
+        }, "Select Column"),
+        render: function render(text, record) {
+          return external_react_default.a.createElement("div", {
+            className: "table-text"
+          }, record[item]);
         }
-      }, _callee);
-    }));
-
-    return function handleOnClose() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-  /* COMPONENTS */
-
-
-  var TransferSource = function TransferSource() {
-    var _useState7 = Object(external_react_["useState"])([]),
-        _useState8 = Object(slicedToArray["a" /* default */])(_useState7, 2),
-        targetKeys = _useState8[0],
-        setTargetKeys = _useState8[1];
-
-    var sources = external_lodash_default.a.differenceWith(props.resources, props.sources, external_lodash_default.a.isEqual);
-
-    var handleConfirm = function handleConfirm() {
-      setResultData(props.resources.filter(function (item) {
-        return external_lodash_default.a.includes(targetKeys, item.key);
-      }));
-      handleNext();
-    };
-
-    return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Transfer"], {
-      rowKey: function rowKey(record) {
-        return record.id;
-      },
-      dataSource: sources,
-      targetKeys: targetKeys,
-      onChange: function onChange(val) {
-        return setTargetKeys(val);
-      },
-      titles: ['Sources', 'Selected'],
-      listStyle: {
-        width: 400,
-        height: 360
-      },
-      style: {
-        marginBottom: 16
-      },
-      render: function render(item) {
-        return item.text;
-      }
-    }), external_react_default.a.createElement("div", {
-      className: "d-flex justify-content-flex-end"
-    }, external_react_default.a.createElement(external_antd_["Button"], {
-      type: "primary",
-      onClick: handleConfirm,
-      disabled: targetKeys.length === 0
-    }, "Confirm")));
-  };
-
-  var UploudSource = function UploudSource() {
-    var _useState9 = Object(external_react_["useState"])([]),
-        _useState10 = Object(slicedToArray["a" /* default */])(_useState9, 2),
-        state = _useState10[0],
-        setState = _useState10[1];
-
-    var _useState11 = Object(external_react_["useState"])(0),
-        _useState12 = Object(slicedToArray["a" /* default */])(_useState11, 2),
-        countFiles = _useState12[0],
-        setCountFiles = _useState12[1];
-
-    var getRecord = function getRecord() {
-      var dataArr = [];
-
-      external_lodash_default.a.forEach(state, function (item) {
-        dataArr.push.apply(dataArr, Object(toConsumableArray["a" /* default */])(item.sheets));
-      });
-
-      var result = mergeAllSheet(dataArr);
-      return result;
-    };
-
-    var readerXLSX = function readerXLSX(file) {
-      return new promise_default.a(function (resolve, reject) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          var data = new Uint8Array(e.target.result);
-          var result = external_xlsx_default.a.read(data, {
-            type: 'array'
-          });
-          resolve(result);
-        };
-
-        reader.onerror = reject;
-        reader.readAsArrayBuffer(file);
-      });
-    };
-
-    var getSheet = function getSheet(_ref2) {
-      var Sheets = _ref2.Sheets;
-      var result = [];
-
-      external_lodash_default.a.forIn(Sheets, function (sheet) {
-        var sheetTransform = external_lodash_default.a.transform(sheet, function (result, value, key) {
-          if (key.indexOf('!') === -1) {
-            var keyCol = key.match(/[A-Z]+/g)[0];
-            if (!result.hasOwnProperty(keyCol)) result[keyCol] = [];
-            result[keyCol].push(value['w']);
-            return result;
-          }
-        }, {});
-
-        result.push(sheetTransform);
-      });
-
-      return result;
-    };
-
-    var mergeAllSheet = function mergeAllSheet(sheets) {
-      var result = {};
-
-      external_lodash_default.a.forEach(sheets, function (sheet) {
-        external_lodash_default.a.forIn(sheet, function (value, key) {
-          var _ref3;
-
-          (_ref3 = result[key] || (result[key] = [])).push.apply(_ref3, Object(toConsumableArray["a" /* default */])(value));
-        });
-      });
-
-      return result;
-    };
-
-    var handleUploud =
-    /*#__PURE__*/
-    function () {
-      var _ref4 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee2(info) {
-        var bufferData, sheets;
-        return regenerator_default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.t0 = info.file.status;
-                _context2.next = _context2.t0 === 'uploading' ? 3 : _context2.t0 === 'done' ? 4 : _context2.t0 === 'error' ? 17 : 18;
-                break;
-
-              case 3:
-                return _context2.abrupt("break", 18);
-
-              case 4:
-                _context2.prev = 4;
-                _context2.next = 7;
-                return readerXLSX(info.file.originFileObj);
-
-              case 7:
-                bufferData = _context2.sent;
-                sheets = getSheet(bufferData);
-                setState(function (state) {
-                  return [].concat(Object(toConsumableArray["a" /* default */])(state), [{
-                    name: info.file.name,
-                    sheets: sheets
-                  }]);
-                });
-                setCountFiles(function (state) {
-                  return state += 1;
-                });
-                _context2.next = 16;
-                break;
-
-              case 13:
-                _context2.prev = 13;
-                _context2.t1 = _context2["catch"](4);
-                console.log("ERROR");
-
-              case 16:
-                return _context2.abrupt("break", 18);
-
-              case 17:
-                return _context2.abrupt("break", 18);
-
-              case 18:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, null, [[4, 13]]);
-      }));
-
-      return function handleUploud(_x) {
-        return _ref4.apply(this, arguments);
       };
-    }();
+    });
 
-    var handleRemove =
-    /*#__PURE__*/
-    function () {
-      var _ref5 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee3(file) {
-        return regenerator_default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                setState(state.filter(function (sheet) {
-                  return sheet.name !== file.name;
-                }));
-                setCountFiles(function (state) {
-                  return state -= 1;
-                });
+    var dataSource = external_lodash_default.a.slice(state.sheets, 0, 10);
 
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      return function handleRemove(_x2) {
-        return _ref5.apply(this, arguments);
-      };
-    }();
-
-    var handleConfirm = function handleConfirm() {
-      var data = [];
-
-      external_lodash_default.a.forIn(getRecord(), function (value, key) {
-        var newData = value.map(function (text) {
-          return {
-            id: external_lodash_default.a.uniqueId(),
-            text: text,
-            new: true
-          };
-        });
-        data.push.apply(data, Object(toConsumableArray["a" /* default */])(newData));
-      });
-
-      setResultData(data);
-      handleNext();
-    };
-
-    var beforeUpload = function beforeUpload(file) {
-      var fileType = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-
-      if (!fileType) {
-        external_antd_["message"].error('We only support XLS, or XLSX spreadsheet.');
-      }
-
-      var fileSize = file.size / 1024 / 1024 < 500;
-
-      if (!fileSize) {
-        external_antd_["message"].error('Please upload a file smaller than 500 MB.');
-      }
-
-      return fileSize;
-    };
-
-    var propsDagger = {
-      accept: '.xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      action: '//jsonplaceholder.typicode.com/posts/',
-      listType: 'picture',
-      beforeUpload: beforeUpload,
-      onChange: handleUploud,
-      onRemove: handleRemove
-    };
-    return external_react_default.a.createElement(external_antd_["Row"], null, external_react_default.a.createElement(external_antd_["Card"], {
-      bordered: false
-    }, external_react_default.a.createElement(external_antd_["Row"], {
-      gutter: 16,
-      type: "flex"
-    }, external_react_default.a.createElement(external_antd_["Col"], {
-      md: 24
-    }, external_react_default.a.createElement(external_antd_["Upload"], propsDagger, external_react_default.a.createElement(external_antd_["Button"], null, external_react_default.a.createElement(external_antd_["Icon"], {
-      type: "upload"
-    }), " Upload")), countFiles <= 0 && external_react_default.a.createElement(external_antd_["Empty"], {
-      image: external_antd_["Empty"].PRESENTED_IMAGE_SIMPLE
-    })))), external_react_default.a.createElement("div", {
-      className: "d-flex justify-content-flex-end"
-    }, external_react_default.a.createElement(external_antd_["Button"], {
-      type: "primary",
-      onClick: handleConfirm,
-      disabled: state.length === 0
-    }, "Confirm")));
-  };
-
-  var ManualTextInput = function ManualTextInput() {
-    var _useState13 = Object(external_react_["useState"])([]),
-        _useState14 = Object(slicedToArray["a" /* default */])(_useState13, 2),
-        state = _useState14[0],
-        setState = _useState14[1];
-
-    var _useState15 = Object(external_react_["useState"])(null),
-        _useState16 = Object(slicedToArray["a" /* default */])(_useState15, 2),
-        input = _useState16[0],
-        setInput = _useState16[1];
-
-    var handlePushSource =
-    /*#__PURE__*/
-    function () {
-      var _ref6 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee4(text) {
-        return regenerator_default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                if (!external_lodash_default.a.isEmpty(text)) {
-                  _context4.next = 3;
-                  break;
-                }
-
-                external_antd_["message"].error("This field is empty.");
-                return _context4.abrupt("return");
-
-              case 3:
-                setState(function (state) {
-                  return [].concat(Object(toConsumableArray["a" /* default */])(state), [{
-                    id: now_default()(),
-                    text: text,
-                    new: true
-                  }]);
-                });
-                setInput(null);
-
-              case 5:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }));
-
-      return function handlePushSource(_x3) {
-        return _ref6.apply(this, arguments);
-      };
-    }();
-
-    var handleRemoveSource = function handleRemoveSource(idx) {
-      setState(function (state) {
-        return state.filter(function (item, i) {
-          return i !== idx;
-        });
-      });
-    };
-
-    var handleEditSource =
-    /*#__PURE__*/
-    function () {
-      var _ref7 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee5(idx) {
-        return regenerator_default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return setInput(state[idx].text);
-
-              case 2:
-                handleRemoveSource(idx);
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }));
-
-      return function handleEditSource(_x4) {
-        return _ref7.apply(this, arguments);
-      };
-    }();
-
-    var handleConfirm =
-    /*#__PURE__*/
-    function () {
-      var _ref8 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee6() {
-        return regenerator_default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                setResultData(state);
-                handleNext();
-
-              case 2:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }));
-
-      return function handleConfirm() {
-        return _ref8.apply(this, arguments);
-      };
-    }();
-
-    return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Row"], {
-      gutter: 16,
-      type: "flex"
-    }, external_react_default.a.createElement(external_antd_["Col"], {
-      md: 16
-    }, external_react_default.a.createElement(TextArea, {
-      rows: 15,
-      value: input,
-      onChange: function onChange(e) {
-        return setInput(e.target.value);
-      },
-      style: {
-        marginBottom: 16
-      },
-      autosize: false,
-      onPressEnter: function onPressEnter(e) {
-        return handlePushSource(e.target.value);
-      }
-    }), external_react_default.a.createElement("div", {
-      className: "d-flex justify-content-flex-end"
-    }, external_react_default.a.createElement(external_antd_["Button"], {
-      onClick: function onClick() {
-        return handlePushSource(input);
-      }
-    }, "Push"))), external_react_default.a.createElement(external_antd_["Col"], {
-      md: 8
-    }, external_react_default.a.createElement(external_antd_["List"], {
+    var propsTable = {
+      rowKey: 'id',
       bordered: true,
-      style: {
-        height: 325,
-        marginBottom: 16,
-        overflow: 'auto'
-      },
-      className: "pl-0",
-      itemLayout: "vertical",
-      dataSource: state,
-      header: external_react_default.a.createElement(external_antd_["Typography"].Text, null, state.length, " Items"),
-      renderItem: function renderItem(item, i) {
-        return external_react_default.a.createElement(external_antd_["List"].Item, {
-          actions: [external_react_default.a.createElement(external_antd_["Button"], {
-            size: "small",
-            onClick: function onClick() {
-              return handleEditSource(i);
-            }
-          }, "Change"), external_react_default.a.createElement(external_antd_["Button"], {
-            type: "danger",
-            size: "small",
-            onClick: function onClick() {
-              return handleRemoveSource(i);
-            }
-          }, "Pop")]
-        }, external_react_default.a.createElement(external_antd_["Typography"].Paragraph, {
-          ellipsis: {
-            rows: 3
-          }
-        }, item.text));
-      }
-    }), external_react_default.a.createElement("div", {
-      className: "d-flex justify-content-flex-end"
-    }, external_react_default.a.createElement(external_antd_["Button"], {
-      type: "primary",
-      onClick: handleConfirm,
-      disabled: state.length === 0
-    }, "Confirm")))));
-  };
-
-  var ConfirmSource = function ConfirmSource() {
-    var handleRemove = function handleRemove(key) {
-      setResultData(function (state) {
-        return state.filter(function (item) {
-          return item.id !== key;
-        });
-      });
-    };
-
-    var columns = [{
-      title: 'Text',
-      key: 'text',
-      render: function render(text, record) {
-        return external_react_default.a.createElement(external_antd_["Typography"].Paragraph, {
-          ellipsis: {
-            rows: 3
-          }
-        }, record.text);
-      }
-    }, {
-      key: 'operation',
-      width: 120,
-      align: 'center',
-      render: function render(text, record) {
-        return external_react_default.a.createElement(external_antd_["Button"], {
-          size: "small",
-          onClick: function onClick() {
-            return handleRemove(record.id);
-          }
-        }, "Remove");
-      }
-    }];
-
-    var handleSubmit =
-    /*#__PURE__*/
-    function () {
-      var _ref9 = Object(asyncToGenerator["a" /* default */])(
-      /*#__PURE__*/
-      regenerator_default.a.mark(function _callee7() {
-        var sources, input, _response, result, _result, response;
-
-        return regenerator_default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                sources = props.sources.map(function (item) {
-                  return item.id;
-                });
-
-                if (!resultData[0].new) {
-                  _context7.next = 9;
-                  break;
-                }
-
-                input = resultData.map(function (item) {
-                  return item.text;
-                });
-                _context7.next = 5;
-                return external_axios_default()({
-                  method: "POST",
-                  url: "".concat(props.apiUrl, "/source"),
-                  data: {
-                    text: input
-                  },
-                  headers: {
-                    authorization: props.token
-                  }
-                });
-
-              case 5:
-                _response = _context7.sent;
-
-                if (_response.status === 200) {
-                  result = _response.data.map(function (item) {
-                    return item.id;
-                  });
-                  sources = [].concat(Object(toConsumableArray["a" /* default */])(sources), Object(toConsumableArray["a" /* default */])(result));
-                }
-
-                _context7.next = 11;
-                break;
-
-              case 9:
-                _result = resultData.map(function (item) {
-                  return item.id;
-                });
-                sources = [].concat(Object(toConsumableArray["a" /* default */])(sources), Object(toConsumableArray["a" /* default */])(_result));
-
-              case 11:
-                _context7.next = 13;
-                return external_axios_default()({
-                  method: "POST",
-                  url: "".concat(props.modelApi, "/source"),
-                  data: {
-                    sourceIds: sources
-                  },
-                  headers: {
-                    authorization: props.token
-                  }
-                });
-
-              case 13:
-                response = _context7.sent;
-
-                if (response.status === 200) {
-                  props.onOk(response.data);
-                  setCurrentStep(0);
-                  external_antd_["message"].success("Source berhasil ditambahkan");
-                }
-
-              case 15:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }));
-
-      return function handleSubmit() {
-        return _ref9.apply(this, arguments);
-      };
-    }();
-
-    return external_react_default.a.createElement(external_antd_["Row"], null, external_react_default.a.createElement(external_antd_["Table"], {
-      rowKey: "id",
-      style: {
-        marginBottom: 16
-      },
       columns: columns,
-      dataSource: resultData
-    }), external_react_default.a.createElement("div", {
-      className: "d-flex justify-content-flex-end"
+      pagination: false,
+      dataSource: dataSource,
+      scroll: true
+    };
+    return external_react_default.a.createElement("div", {
+      className: "table-sheet"
+    }, external_react_default.a.createElement(external_antd_["Typography"].Title, {
+      level: 4
+    }, "Select Source"), external_react_default.a.createElement(external_antd_["Descriptions"], null, external_react_default.a.createElement(external_antd_["Descriptions"].Item, {
+      label: "Total rows"
+    }, state.sheets.length)), external_react_default.a.createElement(external_antd_["Checkbox"].Group, {
+      style: {
+        display: 'block'
+      },
+      value: selected,
+      onChange: function onChange(val) {
+        return setSelected(val);
+      }
+    }, external_react_default.a.createElement(external_antd_["Table"], Object(esm_extends["a" /* default */])({}, propsTable, {
+      className: "ant-custom table-sheet-wrapper"
+    }))), external_react_default.a.createElement("div", {
+      className: "d-flex justify-content-center",
+      style: {
+        marginTop: 16
+      }
     }, external_react_default.a.createElement(external_antd_["Button"], {
       type: "primary",
       onClick: handleSubmit,
-      disabled: resultData.length === 0
-    }, "Confirm")));
-  };
-  /* HANDLE MODAL */
-
-
-  var SelectingMethod = function SelectingMethod() {
-    var handleMethod = function handleMethod(key) {
-      setMethod(key);
-      handleNext();
-    };
-
-    return external_react_default.a.createElement(external_antd_["Row"], null, external_react_default.a.createElement(external_antd_["Card"], {
-      hoverable: true,
-      onClick: function onClick() {
-        return handleMethod(0);
-      },
-      style: {
-        marginBottom: 16
-      }
-    }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
-      title: "Get Data From Resource",
-      description: "Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting."
-    })), external_react_default.a.createElement(external_antd_["Card"], {
-      hoverable: true,
-      onClick: function onClick() {
-        return handleMethod(1);
-      },
-      style: {
-        marginBottom: 16
-      }
-    }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
-      title: "File Uploud",
-      description: "Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting."
-    })), external_react_default.a.createElement(external_antd_["Card"], {
-      hoverable: true,
-      onClick: function onClick() {
-        return handleMethod(2);
-      },
-      style: {
-        marginBottom: 16
-      }
-    }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
-      title: "Manual Text Input",
-      description: "Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf."
-    })));
+      disabled: state.length === null
+    }, "Submit")));
   };
 
-  var SelectingSource = function SelectingSource() {
-    return external_react_default.a.createElement(external_antd_["Row"], null, external_react_default.a.createElement("div", {
+  var ComponentUpload = function ComponentUpload() {
+    return external_react_default.a.createElement(external_antd_["Upload"].Dragger, confUpload, external_react_default.a.createElement("div", {
       style: {
-        marginBottom: 16
+        height: 400,
+        width: 900,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
       }
-    }, method === 0 ? external_react_default.a.createElement(TransferSource, null) : method === 1 ? external_react_default.a.createElement(UploudSource, null) : external_react_default.a.createElement(ManualTextInput, null)));
-  };
-
-  var steps = [{
-    key: 0,
-    title: "Select Method",
-    content: external_react_default.a.createElement(SelectingMethod, null)
-  }, {
-    key: 1,
-    title: "Set Source",
-    content: external_react_default.a.createElement(SelectingSource, null)
-  }, {
-    key: 2,
-    title: "Confirm",
-    content: external_react_default.a.createElement(ConfirmSource, null)
-  }];
-
-  var handleToRoute = function handleToRoute(key) {
-    setCurrentStep(key);
+    }, external_react_default.a.createElement(external_antd_["Typography"].Title, {
+      level: 4,
+      type: "secondary"
+    }, "Click or drag file CSV or XLS")));
   };
 
   return external_react_default.a.createElement(external_antd_["Modal"], {
     centered: true,
-    title: "Add Source",
-    width: 900,
+    width: "auto",
     visible: props.visible,
-    maskClosable: false,
-    onCancel: handleOnClose,
+    closable: state,
+    maskClosable: state === null,
+    onCancel: function onCancel() {
+      setState(null);
+      props.onCancel();
+    },
     footer: null
-  }, external_react_default.a.createElement(external_antd_["Breadcrumb"], null, steps.filter(function (item) {
-    return item.key <= currentStep;
-  }).map(function (item) {
-    return currentStep === item.key ? external_react_default.a.createElement(external_antd_["Breadcrumb"].Item, {
-      key: item.key
-    }, item.title) : external_react_default.a.createElement(external_antd_["Breadcrumb"].Item, {
-      key: item.key,
-      href: "#",
-      onClick: function onClick() {
-        return handleToRoute(item.key);
-      }
-    }, item.title);
-  })), external_react_default.a.createElement("div", {
-    className: "steps-content",
-    style: {
-      marginTop: 16
-    }
-  }, steps[currentStep].content));
+  }, external_react_default.a.createElement("div", null, external_react_default.a.createElement(external_antd_["Spin"], {
+    tip: loadingText,
+    spinning: loading
+  }, state !== null && external_react_default.a.createElement(ComponentSheet, null), state === null && external_react_default.a.createElement(ComponentUpload, null))));
 }
 
-/* harmony default export */ var components_AddModelSourceModal = (AddModelSourceModal);
+/* harmony default export */ var components_ModalAddSource = (ModalAddSource);
 // EXTERNAL MODULE: ./utils/auth.js
 var auth = __webpack_require__("SMlj");
 
@@ -1964,145 +1270,180 @@ function ModelSource(props) {
     statusCode: props.errorCode
   });
   var selectedKeys = props.route.parsedUrl.pathname;
+  var searchInput = Object(external_react_["useRef"])(null);
 
-  var _useState = Object(external_react_["useState"])(props.sourceWithoutTrain),
+  var _useState = Object(external_react_["useState"])(props.source.json),
       _useState2 = Object(slicedToArray["a" /* default */])(_useState, 2),
-      source = _useState2[0],
-      setSource = _useState2[1];
+      state = _useState2[0],
+      setState = _useState2[1];
 
-  var _useState3 = Object(external_react_["useState"])(false),
+  var _useState3 = Object(external_react_["useState"])([]),
       _useState4 = Object(slicedToArray["a" /* default */])(_useState3, 2),
-      modalVisible = _useState4[0],
-      setModalVisible = _useState4[1];
+      selected = _useState4[0],
+      setSelected = _useState4[1];
 
-  var handleInsert = function handleInsert(record) {
-    setModalVisible(false);
-    setSource(record);
+  var _useState5 = Object(external_react_["useState"])(null),
+      _useState6 = Object(slicedToArray["a" /* default */])(_useState5, 2),
+      searchText = _useState6[0],
+      setSearchText = _useState6[1];
+
+  var _useState7 = Object(external_react_["useState"])(false),
+      _useState8 = Object(slicedToArray["a" /* default */])(_useState7, 2),
+      modalVisible = _useState8[0],
+      setModalVisible = _useState8[1];
+
+  var selectedAll = state.length === selected.length && state.length !== 0;
+
+  var handleRemove = function handleRemove(data) {
+    return new promise_default.a(function (resolve, reject) {
+      external_axios_default()({
+        method: "PATCH",
+        url: "".concat(props.modelApi, "/source/remove"),
+        headers: {
+          authorization: props.token
+        },
+        data: {
+          sourceIds: data
+        }
+      }).then(function (res) {
+        return res.status === 200 && resolve(res.data);
+      })["catch"](function (err) {
+        return reject(err);
+      });
+    });
   };
 
-  function handleDelete(_x) {
-    return _handleDelete.apply(this, arguments);
-  }
-
-  function _handleDelete() {
-    _handleDelete = Object(asyncToGenerator["a" /* default */])(
-    /*#__PURE__*/
-    regenerator_default.a.mark(function _callee2(_ref) {
-      var id, text, handleOk;
-      return regenerator_default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              id = _ref.id, text = _ref.text;
-
-              handleOk =
-              /*#__PURE__*/
-              function () {
-                var _ref2 = Object(asyncToGenerator["a" /* default */])(
-                /*#__PURE__*/
-                regenerator_default.a.mark(function _callee() {
-                  var response;
-                  return regenerator_default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          _context.next = 2;
-                          return external_axios_default()({
-                            method: "DELETE",
-                            url: "".concat(props.modelApi, "/source/").concat(id),
-                            headers: {
-                              authorization: props.token
-                            }
-                          });
-
-                        case 2:
-                          response = _context.sent;
-
-                          if (response.status === 200) {
-                            external_antd_["message"].success('Source deleted successfully.');
-                            setSource(function (state) {
-                              return state.filter(function (item) {
-                                return item.id !== id ? true : false;
-                              });
-                            });
-                          }
-
-                        case 4:
-                        case "end":
-                          return _context.stop();
-                      }
-                    }
-                  }, _callee);
-                }));
-
-                return function handleOk() {
-                  return _ref2.apply(this, arguments);
-                };
-              }();
-
-              external_antd_["Modal"].confirm({
-                title: 'Are you sure?',
-                content: 'You will not be able to recover this source.',
-                okText: 'Yes',
-                onOk: handleOk,
-                cancelText: 'Cancel'
-              });
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-    return _handleDelete.apply(this, arguments);
-  }
-
-  var columns = [{
-    title: 'Text',
-    dataIndex: 'text',
-    render: function render(text) {
-      return external_react_default.a.createElement(external_antd_["Typography"].Paragraph, {
-        ellipsis: {
-          rows: 3
-        }
-      }, text);
-    }
-  }, {
-    title: 'Date',
-    key: 'createdAt',
-    width: 150,
-    align: 'center',
-    render: function render(text, record) {
-      return external_react_default.a.createElement("span", null, external_moment_default()(record.createdAt).fromNow());
-    }
-  }, {
-    title: 'Action',
-    key: 'operation',
-    width: 100,
-    render: function render(text, record) {
-      return external_react_default.a.createElement(external_antd_["Button"], {
-        className: "btn-danger",
-        onClick: function onClick() {
-          return handleDelete(record);
-        }
-      }, "Delete");
-    }
-  }];
-
-  var CardBody = function CardBody() {
-    if (source.length === 0) return external_react_default.a.createElement(external_antd_["Empty"], {
-      image: external_antd_["Empty"].PRESENTED_IMAGE_SIMPLE
+  var removeSource = function removeSource(id) {
+    external_antd_["Modal"].confirm({
+      title: 'Are you sure?',
+      content: 'You will not be able to recover this source.',
+      okText: 'Yes',
+      onOk: function onOk() {
+        handleRemove([id]).then(function (result) {
+          setState(result.json);
+          external_antd_["message"].success("Source removed successfully.");
+        })["catch"](function (err) {
+          external_antd_["message"].error("Something wrong.");
+        });
+      },
+      cancelText: 'Cancel'
     });
-    return external_react_default.a.createElement("div", {
-      style: {}
-    }, external_react_default.a.createElement(external_antd_["Table"], {
-      rowKey: "id",
-      showHeader: false,
-      columns: columns,
-      dataSource: source,
-      scroll: {
-        y: 500
+  };
+
+  var removeSources = function removeSources() {
+    if (selected.length === 0) {
+      external_antd_["message"].warning("Please select checkbox you want delete.");
+      return;
+    }
+
+    external_antd_["Modal"].confirm({
+      title: 'Are you sure?',
+      content: 'You will not be able to recover this source.',
+      okText: 'Yes',
+      onOk: function onOk() {
+        handleRemove(selected).then(function (result) {
+          setState(result.json);
+          setSelected([]);
+          external_antd_["message"].success("Source removed successfully.");
+        })["catch"](function (err) {
+          external_antd_["message"].error("Something wrong.");
+        });
+      },
+      cancelText: 'Cancel'
+    });
+  };
+
+  var addModelProps = Object(objectSpread["a" /* default */])({}, props, {
+    visible: modalVisible,
+    onOk: function onOk(record) {
+      setModalVisible(false);
+      setState(record);
+    },
+    onCancel: function onCancel() {
+      setModalVisible(false);
+    }
+  });
+
+  var selectAll = function selectAll() {
+    if (selectedAll) {
+      setSelected([]);
+      return;
+    }
+
+    setSelected(_.map(state, function (item, index) {
+      return index;
+    }));
+  };
+
+  var ComponentCardExtra = external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Button"], {
+    type: selectedAll ? "primary" : "default",
+    style: {
+      marginLeft: 8
+    },
+    onClick: function onClick() {
+      return selectAll();
+    }
+  }, "Select All"), external_react_default.a.createElement(external_antd_["Button"], {
+    type: "primary",
+    style: {
+      marginLeft: 8
+    },
+    onClick: function onClick() {
+      return setModalVisible(true);
+    }
+  }, "Add Source"), external_react_default.a.createElement(external_antd_["Button"], {
+    type: "danger",
+    style: {
+      marginLeft: 8
+    },
+    onClick: removeSources
+  }, "Delete Selected"));
+
+  var ComponentList = function ComponentList() {
+    return external_react_default.a.createElement(external_antd_["Checkbox"].Group, {
+      style: {
+        width: '100%'
+      },
+      value: selected,
+      onChange: function onChange(val) {
+        return setSelected(val);
+      }
+    }, external_react_default.a.createElement(external_antd_["List"], {
+      pagination: true,
+      dataSource: state,
+      renderItem: function renderItem(item, index) {
+        return external_react_default.a.createElement(external_antd_["List"].Item, {
+          actions: [external_react_default.a.createElement(external_antd_["Dropdown"], {
+            overlay: external_react_default.a.createElement(external_antd_["Menu"], null, external_react_default.a.createElement(external_antd_["Menu"].Item, {
+              key: "0"
+            }, external_react_default.a.createElement("a", {
+              onClick: function onClick() {
+                return removeSource(index);
+              }
+            }, "Remove")))
+          }, external_react_default.a.createElement(external_antd_["Button"], null, "Action ", external_react_default.a.createElement(external_antd_["Icon"], {
+            type: "down"
+          })))]
+        }, external_react_default.a.createElement(external_antd_["Skeleton"], {
+          avatar: true,
+          title: false,
+          loading: item.loading,
+          active: true
+        }, external_react_default.a.createElement(external_antd_["List"].Item.Meta, {
+          style: {
+            alignItems: 'center'
+          },
+          avatar: external_react_default.a.createElement(external_antd_["Checkbox"], {
+            style: {
+              marginLeft: 16,
+              marginRight: 16
+            },
+            value: index
+          }),
+          description: external_react_default.a.createElement("div", {
+            className: "table-text"
+          }, item)
+        })));
       }
     }));
   };
@@ -2121,20 +1462,10 @@ function ModelSource(props) {
     md: 18
   }, external_react_default.a.createElement(external_antd_["Card"], {
     title: "Sources",
-    extra: external_react_default.a.createElement(external_antd_["Button"], {
-      className: "ml-4",
-      type: "primary",
-      onClick: function onClick() {
-        return setModalVisible(true);
-      }
-    }, "Add Source")
-  }, external_react_default.a.createElement(CardBody, null))), external_react_default.a.createElement(components_AddModelSourceModal, Object(esm_extends["a" /* default */])({}, props, {
-    visible: modalVisible,
-    onOk: handleInsert,
-    onCancel: function onCancel() {
-      return setModalVisible(false);
-    }
-  }))));
+    extra: ComponentCardExtra
+  }, state.length > 0 ? external_react_default.a.createElement(ComponentList, null) : external_react_default.a.createElement(external_antd_["Empty"], {
+    image: external_antd_["Empty"].PRESENTED_IMAGE_SIMPLE
+  })))), external_react_default.a.createElement(components_ModalAddSource, addModelProps));
 }
 
 ModelSource.Layout = UserLayout["a" /* default */];
@@ -2142,19 +1473,19 @@ ModelSource.Layout = UserLayout["a" /* default */];
 ModelSource.getInitialProps =
 /*#__PURE__*/
 function () {
-  var _ref4 = Object(asyncToGenerator["a" /* default */])(
+  var _ref2 = Object(asyncToGenerator["a" /* default */])(
   /*#__PURE__*/
-  regenerator_default.a.mark(function _callee3(_ref3) {
-    var apiUrl, token, query, id, modelApi, model, sources, resources, sourceWithoutTrain;
-    return regenerator_default.a.wrap(function _callee3$(_context3) {
+  regenerator_default.a.mark(function _callee(_ref) {
+    var apiUrl, token, query, id, modelApi, model, source;
+    return regenerator_default.a.wrap(function _callee$(_context) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context.prev = _context.next) {
           case 0:
-            apiUrl = _ref3.apiUrl, token = _ref3.token, query = _ref3.query;
+            apiUrl = _ref.apiUrl, token = _ref.token, query = _ref.query;
             id = query.id;
             modelApi = "".concat(apiUrl, "/model/").concat(id);
-            _context3.prev = 3;
-            _context3.next = 6;
+            _context.prev = 3;
+            _context.next = 6;
             return external_axios_default()({
               method: "GET",
               url: modelApi,
@@ -2166,8 +1497,8 @@ function () {
             });
 
           case 6:
-            model = _context3.sent;
-            _context3.next = 9;
+            model = _context.sent;
+            _context.next = 9;
             return external_axios_default()({
               method: "GET",
               url: "".concat(modelApi, "/source"),
@@ -2179,58 +1510,30 @@ function () {
             });
 
           case 9:
-            sources = _context3.sent;
-            _context3.next = 12;
-            return external_axios_default()({
-              method: "GET",
-              url: "".concat(apiUrl, "/source"),
-              headers: {
-                authorization: token
-              }
-            }).then(function (res) {
-              return res.data;
-            });
-
-          case 12:
-            resources = _context3.sent;
-            _context3.next = 15;
-            return external_axios_default()({
-              method: "GET",
-              url: "".concat(modelApi, "/source/no_process"),
-              headers: {
-                authorization: token
-              }
-            }).then(function (res) {
-              return res.data;
-            });
-
-          case 15:
-            sourceWithoutTrain = _context3.sent;
-            return _context3.abrupt("return", {
+            source = _context.sent;
+            return _context.abrupt("return", {
               modelApi: modelApi,
               model: model,
-              sources: sources,
-              resources: resources,
-              sourceWithoutTrain: sourceWithoutTrain
+              source: source
             });
 
-          case 19:
-            _context3.prev = 19;
-            _context3.t0 = _context3["catch"](3);
-            return _context3.abrupt("return", {
-              errorCode: _context3.t0.response.status
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](3);
+            return _context.abrupt("return", {
+              errorCode: _context.t0.response.status
             });
 
-          case 22:
+          case 16:
           case "end":
-            return _context3.stop();
+            return _context.stop();
         }
       }
-    }, _callee3, null, [[3, 19]]);
+    }, _callee, null, [[3, 13]]);
   }));
 
-  return function (_x2) {
-    return _ref4.apply(this, arguments);
+  return function (_x) {
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -2249,33 +1552,6 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("TUA0");
-
-/***/ }),
-
-/***/ "iZP3":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Symbol$iterator = __webpack_require__("XVgq");
-
-var _Symbol = __webpack_require__("Z7t5");
-
-function _typeof2(obj) { if (typeof _Symbol === "function" && typeof _Symbol$iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
-
-function _typeof(obj) {
-  if (typeof _Symbol === "function" && _typeof2(_Symbol$iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : _typeof2(obj);
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
 
 /***/ }),
 
@@ -2417,7 +1693,8 @@ module.exports = require("core-js/library/fn/array/from");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _createClass; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _createClass; });
 /* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("hfKm");
 /* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -2473,24 +1750,6 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 
-/***/ "vjea":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _Object$setPrototypeOf = __webpack_require__("TRZx");
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = _Object$setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
 /***/ "vmXh":
 /***/ (function(module, exports) {
 
@@ -2502,13 +1761,6 @@ module.exports = require("js-cookie");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/symbol");
-
-/***/ }),
-
-/***/ "wy2R":
-/***/ (function(module, exports) {
-
-module.exports = require("moment");
 
 /***/ }),
 
@@ -2539,13 +1791,20 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
     Footer = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Footer;
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
   var route = _ref.route,
-      children = _ref.children;
+      children = _ref.children,
+      auth = _ref.auth;
   var selectedKeys = route.parsedUrl.pathname;
 
   var handleMenu = function handleMenu(n) {
     return _routes__WEBPACK_IMPORTED_MODULE_2__["Router"].pushRoute(n.key);
   };
 
+  var DropdownComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Menu"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+    key: "1",
+    onClick: _utils_auth__WEBPACK_IMPORTED_MODULE_3__[/* logout */ "b"]
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+    type: "logout"
+  }), " Logout"));
   var HeaderComp = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Header, {
     className: "ant-custom"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -2574,11 +1833,15 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
     md: 6
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h-100 d-flex align-items-center justify-content-flex-end"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    onClick: _utils_auth__WEBPACK_IMPORTED_MODULE_3__[/* logout */ "b"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
-    type: "logout"
-  }), " Logout")))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Dropdown"], {
+    overlay: DropdownComponent
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Typography"].Text, {
+    style: {
+      cursor: 'pointer'
+    }
+  }, auth.email, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+    type: "down"
+  })))))));
 
   var FooterComponent = function FooterComponent() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Footer, {
@@ -2598,13 +1861,6 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
     className: "content-custom"
   }, children)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(FooterComponent, null));
 });
-
-/***/ }),
-
-/***/ "y6vh":
-/***/ (function(module, exports) {
-
-module.exports = require("core-js/library/fn/date/now");
 
 /***/ }),
 

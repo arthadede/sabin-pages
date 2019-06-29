@@ -104,7 +104,8 @@ module.exports = require("core-js/library/fn/object/get-prototype-of");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _classCallCheck; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _classCallCheck; });
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -158,12 +159,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var RadioButton = antd__WEBPACK_IMPORTED_MODULE_5__["Radio"].Button;
 
+function handleInputLabelRef(ref, cb) {
+  function handleClickOutside(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      cb({
+        status: false
+      });
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(function () {
+    document.addEventListener('mousedown', handleClickOutside);
+    return function () {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
+}
+
 function ModelCreate(props) {
   var _props$form = props.form,
       getFieldDecorator = _props$form.getFieldDecorator,
       getFieldValue = _props$form.getFieldValue,
       setFieldsValue = _props$form.setFieldsValue;
   var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
+  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
+  var labelRef = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState, 2),
@@ -190,10 +210,21 @@ function ModelCreate(props) {
       inputVisible = _useState10[0],
       setInputVisible = _useState10[1];
 
+  handleInputLabelRef(labelWrapper, function (_ref) {
+    var status = _ref.status;
+
+    if (status === false && inputValue !== null) {
+      handleAddLabel();
+      setInputVisible(false);
+    } else {
+      setInputVisible(false);
+    }
+  });
+
   var handleInputVisible =
   /*#__PURE__*/
   function () {
-    var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
+    var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
     /*#__PURE__*/
     _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee() {
       return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee$(_context) {
@@ -216,17 +247,67 @@ function ModelCreate(props) {
     }));
 
     return function handleInputVisible() {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
-  var handleAddLabel = function handleAddLabel() {
-    var label = getFieldValue('label');
-    setFieldsValue({
-      label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(label), [inputValue])
-    });
-    setInputValue(null);
-    setInputVisible(false);
+  var handleAddLabel =
+  /*#__PURE__*/
+  function () {
+    var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
+    /*#__PURE__*/
+    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee2() {
+      var label;
+      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              label = getFieldValue('label');
+              setFieldsValue({
+                label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(label), [inputValue])
+              });
+              _context2.next = 4;
+              return setInputValue(null);
+
+            case 4:
+              _context2.next = 6;
+              return labelRef.current;
+
+            case 6:
+              _context2.t0 = _context2.sent;
+
+              if (!_context2.t0) {
+                _context2.next = 9;
+                break;
+              }
+
+              labelRef.current.focus();
+
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function handleAddLabel() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var handleTabLabel = function handleTabLabel(e) {
+    var keyCode = e.which || e.keyCode;
+
+    if (keyCode === 9) {
+      e.preventDefault();
+      handleAddLabel();
+    }
+
+    if (keyCode === 27) {
+      setInputValue(null);
+      setInputVisible(false);
+    }
   };
 
   var handleOnCloseLabel = function handleOnCloseLabel(key) {
@@ -243,23 +324,23 @@ function ModelCreate(props) {
     props.form.validateFields(
     /*#__PURE__*/
     function () {
-      var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
+      var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
       /*#__PURE__*/
-      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee2(err, values) {
+      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee3(err, values) {
         var avatar, model, resModel, formData, response;
-        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 if (err) {
-                  _context2.next = 26;
+                  _context3.next = 26;
                   break;
                 }
 
                 avatar = values.avatar, model = Object(_babel_runtime_corejs2_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(values, ["avatar"]);
-                _context2.prev = 2;
+                _context3.prev = 2;
                 setLoading(true);
-                _context2.next = 6;
+                _context3.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_7___default()({
                   method: "POST",
                   url: "".concat(props.apiUrl, "/model"),
@@ -270,11 +351,11 @@ function ModelCreate(props) {
                 });
 
               case 6:
-                resModel = _context2.sent;
+                resModel = _context3.sent;
                 formData = new FormData();
                 formData.append('avatar', avatar.originFileObj);
                 formData.append('model', resModel.data.id);
-                _context2.next = 12;
+                _context3.next = 12;
                 return axios__WEBPACK_IMPORTED_MODULE_7___default()({
                   method: 'POST',
                   url: "".concat(props.apiUrl, "/avatar"),
@@ -285,42 +366,42 @@ function ModelCreate(props) {
                 });
 
               case 12:
-                response = _context2.sent;
+                response = _context3.sent;
 
                 if (response.status === 200) {
                   antd__WEBPACK_IMPORTED_MODULE_5__["message"].success("Model created successfully.");
                   _routes__WEBPACK_IMPORTED_MODULE_9__["Router"].pushRoute("/dashboard");
                 }
 
-                _context2.next = 23;
+                _context3.next = 23;
                 break;
 
               case 16:
-                _context2.prev = 16;
-                _context2.t0 = _context2["catch"](2);
-                _context2.t1 = _context2.t0.response.status;
-                _context2.next = _context2.t1 === 400 ? 21 : 23;
+                _context3.prev = 16;
+                _context3.t0 = _context3["catch"](2);
+                _context3.t1 = _context3.t0.response.status;
+                _context3.next = _context3.t1 === 400 ? 21 : 23;
                 break;
 
               case 21:
-                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error(_context2.t0.response.data.message && _context2.t0.response.statusText);
-                return _context2.abrupt("break", 23);
+                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error(_context3.t0.response.data.message && _context3.t0.response.statusText);
+                return _context3.abrupt("break", 23);
 
               case 23:
-                _context2.prev = 23;
+                _context3.prev = 23;
                 setLoading(false);
-                return _context2.finish(23);
+                return _context3.finish(23);
 
               case 26:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[2, 16, 23, 26]]);
+        }, _callee3, null, [[2, 16, 23, 26]]);
       }));
 
       return function (_x, _x2) {
-        return _ref2.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
     }());
   };
@@ -334,20 +415,17 @@ function ModelCreate(props) {
   };
 
   var beforeUpload = function beforeUpload(file) {
-    var isPNG = file.type === 'image/png';
-
-    if (!isPNG) {
+    if (file.type !== 'image/png') {
       antd__WEBPACK_IMPORTED_MODULE_5__["message"].error('We only support PNG thumbnail.');
+      return false;
     }
 
-    console.log(file.size);
-    var fileSize = file.size / 1024 / 1024 < 1;
-
-    if (!fileSize) {
+    if (file.size / 1024 / 1024 > 5) {
       antd__WEBPACK_IMPORTED_MODULE_5__["message"].error('Please upload a picture smaller than 1 MB.');
+      return false;
     }
 
-    return isPNG && fileSize;
+    return true;
   };
 
   var handleChange = function handleChange(info) {
@@ -371,12 +449,12 @@ function ModelCreate(props) {
   }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
     className: "ant-upload-text"
   }, "Upload"));
-  return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("title", null, "Create Model - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+  return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("title", null, "Create Model - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Card"], {
+    title: "Create Model"
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Row"], {
     gutter: 16
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
-    md: 18
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Card"], {
-    title: "Create Model"
+    md: 4
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Avatar"
   }, getFieldDecorator('avatar', {
@@ -397,7 +475,9 @@ function ModelCreate(props) {
   }, imageUrl ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Avatar"], {
     src: imageUrl,
     size: 90
-  }) : uploadButton))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }) : uploadButton)))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
+    md: 20
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Name"
   }, getFieldDecorator('name', {
     rules: [{
@@ -419,8 +499,9 @@ function ModelCreate(props) {
     }]
   })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"].TextArea, {
     rows: 4
-  }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
-    label: "Labels"
+  }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+    label: "Labels",
+    extra: "Press tab or enter for new input label."
   }, getFieldDecorator('label', {
     initialValue: [],
     rules: [{
@@ -437,7 +518,12 @@ function ModelCreate(props) {
       },
       closable: true
     }, item);
-  }))), inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], {
+  }))), inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    style: {
+      display: 'inline-block'
+    },
+    ref: labelWrapper
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], {
     ref: inputRef,
     style: {
       width: 120
@@ -446,15 +532,18 @@ function ModelCreate(props) {
     onChange: function onChange(e) {
       return setInputValue(e.target.value);
     },
-    onPressEnter: handleAddLabel
-  }), !inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Tag"], {
-    className: "ant-custom",
+    onPressEnter: handleAddLabel,
+    onKeyDown: handleTabLabel
+  })), !inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+    ref: labelRef,
+    className: "ant-tag ant-custom",
     style: {
       background: '#fff',
       borderStyle: 'dashed',
       cursor: 'pointer'
     },
-    onClick: handleInputVisible
+    onClick: handleInputVisible,
+    onKeyPress: handleInputVisible
   }, "New Label")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Annotator"
   }, getFieldDecorator('annotator', {
@@ -468,7 +557,7 @@ function ModelCreate(props) {
     value: "classifier"
   }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(RadioButton, {
     value: "extractor"
-  }, "Extractor"))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }, "Extractor")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Type"
   }, getFieldDecorator('isPrivate', {
     rules: [{
@@ -497,6 +586,9 @@ function ModelCreate(props) {
     style: {
       marginLeft: 16
     },
+    onClick: function onClick() {
+      return _routes__WEBPACK_IMPORTED_MODULE_9__["Router"].pushRoute('/dashboard');
+    },
     className: "btn-danger"
   }, "Cancel")))))));
 }
@@ -505,19 +597,19 @@ ModelCreate.getInitialProps =
 /*#__PURE__*/
 Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
 /*#__PURE__*/
-_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee3() {
-  return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee3$(_context3) {
+_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee4() {
+  return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.wrap(function _callee4$(_context4) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
-          return _context3.abrupt("return", {});
+          return _context4.abrupt("return", {});
 
         case 1:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
     }
-  }, _callee3);
+  }, _callee4);
 }));
 var WrappedModelCreateForm = antd__WEBPACK_IMPORTED_MODULE_5__["Form"].create({
   name: "model-create-form"
@@ -556,21 +648,6 @@ module.exports = routes().add('Landing Page', '/', '/').add('Login Page', '/logi
 /***/ (function(module, exports) {
 
 module.exports = require("next-routes");
-
-/***/ }),
-
-/***/ "AT/M":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _assertThisInitialized; });
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
 
 /***/ }),
 
@@ -613,6 +690,7 @@ module.exports = require("core-js/library/fn/is-iterable");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
 var iterator = __webpack_require__("XVgq");
@@ -641,11 +719,16 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
-var assertThisInitialized = __webpack_require__("AT/M");
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
 
+  return self;
+}
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _possibleConstructorReturn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _possibleConstructorReturn; });
 
 
 function _possibleConstructorReturn(self, call) {
@@ -653,7 +736,7 @@ function _possibleConstructorReturn(self, call) {
     return call;
   }
 
-  return Object(assertThisInitialized["a" /* default */])(self);
+  return _assertThisInitialized(self);
 }
 
 /***/ }),
@@ -798,15 +881,15 @@ var withAuthSync = function withAuthSync(WrappedComponent, roleId) {
   return _temp = _class =
   /*#__PURE__*/
   function (_Component) {
-    Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_class, _Component);
+    Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(_class, _Component);
 
     function _class() {
-      Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(this, _class);
+      Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, _class);
 
-      return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_class).apply(this, arguments));
+      return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(_class).apply(this, arguments));
     }
 
-    Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_class, [{
+    Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(_class, [{
       key: "render",
       value: function render() {
         return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(WrappedComponent, this.props);
@@ -921,27 +1004,11 @@ module.exports = require("core-js/library/fn/object/define-property");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/create.js
-var create = __webpack_require__("SqZg");
-var create_default = /*#__PURE__*/__webpack_require__.n(create);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js
-var set_prototype_of = __webpack_require__("TRZx");
-var set_prototype_of_default = /*#__PURE__*/__webpack_require__.n(set_prototype_of);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/setPrototypeOf.js
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = set_prototype_of_default.a || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _inherits; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _inherits; });
+/* harmony import */ var _core_js_object_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("SqZg");
+/* harmony import */ var _core_js_object_create__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_create__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("VLay");
 
 
 function _inherits(subClass, superClass) {
@@ -949,14 +1016,33 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function");
   }
 
-  subClass.prototype = create_default()(superClass && superClass.prototype, {
+  subClass.prototype = _core_js_object_create__WEBPACK_IMPORTED_MODULE_0___default()(superClass && superClass.prototype, {
     constructor: {
       value: subClass,
       writable: true,
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf(subClass, superClass);
+  if (superClass) Object(_setPrototypeOf__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(subClass, superClass);
+}
+
+/***/ }),
+
+/***/ "VLay":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _setPrototypeOf; });
+/* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("TRZx");
+/* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0__);
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_0___default.a || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
 }
 
 /***/ }),
@@ -1000,7 +1086,8 @@ module.exports = __webpack_require__("vqFK");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _getPrototypeOf; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _getPrototypeOf; });
 /* harmony import */ var _core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Bhuq");
 /* harmony import */ var _core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_get_prototype_of__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _core_js_object_set_prototype_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("TRZx");
@@ -1284,7 +1371,8 @@ module.exports = require("core-js/library/fn/array/from");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _createClass; });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _createClass; });
 /* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("hfKm");
 /* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -1381,13 +1469,20 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
     Footer = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Footer;
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
   var route = _ref.route,
-      children = _ref.children;
+      children = _ref.children,
+      auth = _ref.auth;
   var selectedKeys = route.parsedUrl.pathname;
 
   var handleMenu = function handleMenu(n) {
     return _routes__WEBPACK_IMPORTED_MODULE_2__["Router"].pushRoute(n.key);
   };
 
+  var DropdownComponent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Menu"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+    key: "1",
+    onClick: _utils_auth__WEBPACK_IMPORTED_MODULE_3__[/* logout */ "b"]
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+    type: "logout"
+  }), " Logout"));
   var HeaderComp = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Header, {
     className: "ant-custom"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -1416,11 +1511,15 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
     md: 6
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h-100 d-flex align-items-center justify-content-flex-end"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    onClick: _utils_auth__WEBPACK_IMPORTED_MODULE_3__[/* logout */ "b"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
-    type: "logout"
-  }), " Logout")))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Dropdown"], {
+    overlay: DropdownComponent
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Typography"].Text, {
+    style: {
+      cursor: 'pointer'
+    }
+  }, auth.email, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+    type: "down"
+  })))))));
 
   var FooterComponent = function FooterComponent() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Footer, {

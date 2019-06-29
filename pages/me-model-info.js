@@ -1,4 +1,5 @@
 import { Typography, Row, Col, Avatar, Tag, Input, Card, Radio, Button, Modal, Icon, Upload, message } from "antd";
+import Highlight from 'react-highlight'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from "axios";
@@ -10,15 +11,6 @@ import {withAuthSync} from '../utils/auth'
 
 const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
 
-const getRandomInt = () => {
-  const colorArr = ['#FF6384', '#36A2EB', '#FFCE56', '#2ecc71', '#686de0']
-  let min=0, max=colorArr.length-1
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  let randomInt = Math.floor(Math.random() * (max - min + 1)) + min
-  return colorArr[randomInt]
-}
-
 function ModelView(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
@@ -27,9 +19,13 @@ function ModelView(props) {
   const selectedKeys = props.route.parsedUrl.pathname
   const inputRef = useRef(null)
   const [model, setModel] = useState(props.model)
-  const [config, setConfig] = useState(props.config)
   const [inputValue, setInputValue] = useState(null)
   const [inputVisible, setInputVisible] = useState(false)
+  
+  const handleInputVisible = async () => {
+    await setInputVisible(true)
+    await inputRef.current.focus()
+  }
 
   const handleModelRemove = () => {
     const handleOk = async () => {
@@ -52,208 +48,112 @@ function ModelView(props) {
       cancelText: 'Cancel',
     });
   }
-  
-  const handleInputVisible = async () => {
-    await setInputVisible(true)
-    await inputRef.current.focus()
-  }
 
-  const handleEditName = async text => {
-    const response = await axios({
-      method: 'PATCH',
-      url: props.modelApi,
-      headers: {authorization: props.token},
-      data: {name: text}
-    })
-    if (response.status === 200) {
-      setModel(state => ({...state, name: response.data.name}))
-      message.success("Informasi berhasil diubah.")
-    }
-  }
-
-  const handleEditDescription = async text => {
-    const response = await axios({
-      method: 'PATCH',
-      url: props.modelApi,
-      headers: {authorization: props.token},
-      data: {desc: text}
-    })
-    if (response.status === 200) {
-      setModel(state => ({...state, desc: response.data.desc}))
-      message.success("Informasi berhasil diubah.")
-    }
-  }
-
-  const handleRadioPrivate = async e => {
-    const handleOk = async () => {
-      const response = await axios({
+  const handleModelUpdate = async data => {
+    return new Promise((resolve, reject) => {
+      axios({
         method: 'PATCH',
         url: props.modelApi,
         headers: {authorization: props.token},
-        data: {isPrivate: e.target.value}
-      })
-      if (response.status === 200) {
-        setModel(state => ({...state, isPrivate: response.data.isPrivate}))
-        message.success("Informasi berhasil diubah.")
-      }
-    }
+        data: data
+      }).then(res => res.status === 200 && resolve(res.data))
+        .catch(err => console.log(err))
+    })
+  }
 
-    if (e.target.value === true) handleOk()
+  const handleEditName = text => {
+    handleModelUpdate({name: text})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
+  }
+
+  const handleEditDescription = text => {
+    handleModelUpdate({desc: text})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
+  }
+
+  const handleAddLabel = () => {
+    handleModelUpdate({label: [...model.label, inputValue]})
+    .then(data => {
+      setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} }))
+      setInputValue(null)
+      setInputVisible(false)
+    })
+  }
+
+  const handleRadioPrivate = e => {
+    const handle = () => handleModelUpdate({isPrivate: e.target.value})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
+
+    if (e.target.value === true) handle()
     else
       Modal.confirm({
         title: 'Are you sure?',
-        content: 'You will user can see your model in explore.',
+        content: 'You will share your model to public.',
         okText: 'Yes',
-        onOk: handleOk,
+        onOk: handle,
         cancelText: 'Cancel',
       })
   }
 
-  const beforeUpload = (file) => {
-    const isPNG = file.type === 'image/png';
-    if (!isPNG) {
-      message.error('You can only upload PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error('Image must smaller than 2MB!');
-    }
-    return isPNG && isLt2M;
-  }
-
-  // const handleRadioAnnotator = e => {
-  //   const handleOk = async () => {
-  //     const response = await axios({
-  //       method: 'PATCH',
-  //       url: props.modelApi,
-  //       headers: {authorization: props.token},
-  //       data: {annotator: e.target.value}
-  //     })
-  //     if (response.status === 200) {
-  //       setModel(state => ({...state, annotator: response.data.annotator}))
-  //     }
-  //   }
-
-  //   Modal.confirm({
-  //     title: 'Confirm',
-  //     content: 'Bla bla ...',
-  //     okText: 'Yes',
-  //     onOk: handleOk,
-  //     cancelText: 'Cancel',
-  //   })
-  // }
-
-  const handleAddLabel = async () => {
-    const response = await axios({
-      method: 'PATCH',
-      url: props.modelApi,
-      headers: {authorization: props.token},
-      data: {label: [...model.label, inputValue]}
-    })
-    if (response.status === 200) {
-      setModel(state => ({...state, label: response.data.label}))
-      setInputValue(null)
-      setInputVisible(false)
-      message.success("Informasi berhasil diubah.")
-    }
-  }
-
-  const handleOnCloseLabel = key => {
-    const handleOk = async () => {
-      const response = await axios({
-        method: 'PATCH',
-        url: props.modelApi,
-        headers: {authorization: props.token},
-        data: {label: model.label.filter((item, i) => i !== key)}
-      })
-      if (response.status === 200) {
-        setModel(state => ({...state, label: response.data.label}))
-        message.success("Informasi berhasil diubah.")
-      }
-    }
-
-    Modal.confirm({
-      title: 'Confirm',
-      content: 'Bla bla ...',
-      okText: 'Yes',
-      onOk: handleOk,
-      cancelText: 'Cancel',
-    })
-  }
 
   const handleRadioMenuStats = e => {
-    const handleOk = async () => {
-      const response = await axios({
-        method: 'PATCH',
-        url: `${props.modelApi}/config`,
-        headers: {authorization: props.token},
-        data: {UIStats: e.target.value}
-      })
-      if (response.status === 200) {
-        setConfig(state => ({...state, UIStats: response.data.configUI.UIStats}))
-        message.success("Informasi berhasil diubah.")
-      }
-    }
+    let handle = () => handleModelUpdate({UIStats: e.target.value})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
 
-    if (e.target.value === false) handleOk() 
+    if (e.target.value === false) handle()
     else
       Modal.confirm({
         title: 'Are you sure?',
         content: 'You will other can see stats your model.',
         okText: 'Yes',
-        onOk: handleOk,
+        onOk: handle,
         cancelText: 'Cancel',
       })
   }
 
-  // const handleRadioMenuRun = e => {
-  //   const handleOk = async () => {
-  //     const response = await axios({
-  //       method: 'PATCH',
-  //       url: `${props.modelApi}/config`,
-  //       headers: {authorization: props.token},
-  //       data: {UIRun: e.target.value}
-  //     })
-  //     if (response.status === 200) {
-  //       setConfig(state => ({...state, UIRun: response.data.configUI.UIRun}))
-  //     }
-  //   }
-
-  //   if (e.target.value === false) handleOk() 
-  //   else
-  //     Modal.confirm({
-  //       title: 'Are you sure?',
-  //       content: 'You will users can make annotation in your model.',
-  //       okText: 'Yes',
-  //       onOk: handleOk,
-  //       cancelText: 'Cancel',
-  //     })
-  // }
-
   const handleRadioAnnotation = e => {
-    const handleOk = async () => {
-      const response = await axios({
-        method: 'PATCH',
-        url: `${props.modelApi}/config`,
-        headers: {authorization: props.token},
-        data: {UIAnnotation: e.target.value}
-      })
-      if (response.status === 200) {
-        setConfig(state => ({...state, UIAnnotation: response.data.configUI.UIAnnotation}))
-        message.success("Informasi berhasil diubah.")
-      }
-    }
+    let handle = () => handleModelUpdate({UIAnnotation: e.target.value})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
 
-    if (e.target.value === false) handleOk() 
+    if (e.target.value === false) handle() 
     else
       Modal.confirm({
         title: 'Are you sure?',
         content: 'You will users can make annotation in your model.',
         okText: 'Yes',
-        onOk: handleOk,
+        onOk: handle,
         cancelText: 'Cancel',
       })
   }
+
+  const handleRemoveLabel = key => {
+    let value = model.label.filter((item, i) => i !== key)
+    let handle = () => handleModelUpdate({label: value})
+    .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
+    
+    Modal.confirm({
+      title: 'Are you sure?',
+      content: 'You will remove a label from your model.',
+      okText: 'Yes',
+      onOk: handle,
+      cancelText: 'Cancel',
+    })
+  }
+
+  const beforeUpload = (file) => {
+    if (file.type !== 'image/png') {
+      message.error('You can only upload PNG file!');
+      return false
+    }
+
+    if (file.size / 1024 / 1024 > 5) {
+      message.error('Image must smaller than 5MB!');
+      return false
+    }
+
+    return true;
+  }
+
 
   const uploudAvatar = {
     accept: 'image/png',
@@ -329,7 +229,10 @@ function ModelView(props) {
                   <div style={{display: "flex", flexDirection: "column"}}>
                     <div style={{marginBottom: 16}}>
                       <Typography.Title level={4} editable={{onChange: handleEditName}}>{model.name}</Typography.Title>
-                      <Typography.Paragraph editable={{onChange: handleEditDescription}}>{model.desc}</Typography.Paragraph>
+                      <Typography.Paragraph 
+                        style={{ textAlign: 'justify'}}
+                        editable={{onChange: handleEditDescription}}
+                        ellipsis={{rows: 4, expandable: true}}>{model.desc}</Typography.Paragraph>
                     </div>
                     <div style={{marginBottom: 16}}>
                       <Row>
@@ -349,37 +252,45 @@ function ModelView(props) {
                         </Col>
                         <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Label</Typography.Text>
-                          {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={colorUI[key]} style={{marginBottom: 8}} onClose={() => handleOnCloseLabel(key)} closable>{item}</Tag>)}
+                          {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={colorUI[key]} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable>{item}</Tag>)}
                           {inputVisible && <Input ref={inputRef} style={{width: 90}} type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} onPressEnter={handleAddLabel}/>}
                           {!inputVisible && <Tag className="ant-custom" style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }} onClick={handleInputVisible}>New Label</Tag>}
                         </Col>
                       </Row>
                     </div>
-                    <div>
+                    <div style={{marginBottom: 16}}>
                       <Typography.Text style={{marginBottom: 16}} strong>UI Control</Typography.Text>
                       <Row>
                         <Col md={12} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Menu Stats</Typography.Text>
-                          <Radio.Group value={config.UIStats} onChange={handleRadioMenuStats} buttonStyle="solid">
+                          <Radio.Group value={model.config.UIStats} onChange={handleRadioMenuStats} buttonStyle="solid">
                             <Radio.Button value={true}>Show</Radio.Button>
                             <Radio.Button value={false}>Hide</Radio.Button>
                           </Radio.Group>
                         </Col>
-                        {/* <Col md={12} style={{marginBottom: 16}}>
-                          <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Menu Run</Typography.Text>
-                          <Radio.Group value={config.UIRun} onChange={handleRadioMenuRun} buttonStyle="solid">
-                            <Radio.Button value={true}>Show</Radio.Button>
-                            <Radio.Button value={false}>Hide</Radio.Button>
-                          </Radio.Group>
-                        </Col> */}
                         <Col md={12} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Menu Annotation</Typography.Text>
-                          <Radio.Group value={config.UIAnnotation} onChange={handleRadioAnnotation} buttonStyle="solid">
+                          <Radio.Group value={model.config.UIAnnotation} onChange={handleRadioAnnotation} buttonStyle="solid">
                             <Radio.Button value={true}>Show</Radio.Button>
                             <Radio.Button value={false}>Hide</Radio.Button>
                           </Radio.Group>
                         </Col>
                       </Row>
+                    </div>
+                    <div style={{marginBottom: 16}}>
+                      <Typography.Text style={{display: 'block', marginBottom: 16}} strong>API Request</Typography.Text>
+                      <Typography.Text>To extract make a GET request to the following URL:</Typography.Text>
+                      <div style={{ width: '100%' }}>
+                        <Highlight>
+                          {`${process.env.API_HOST}/model/${props.model.id}/train`}
+                        </Highlight>
+                      </div>
+                      <Typography.Text style={{display: 'block', marginBottom: 16}} strong>Code Examples with Curl</Typography.Text>
+                      <div style={{ width: '100%' }}>
+                        <Highlight>
+                          {`curl -i -H "Authorization: ${props.token}" -H "Content-Type: application/json" -X GET ${process.env.API_HOST}/model/${props.model.id}/train`}
+                        </Highlight>
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -403,13 +314,8 @@ ModelView.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const config = await axios({
-      method: "GET",
-      url: `${modelApi}/config`,
-      headers: {authorization: token}
-    }).then(res => res.data)
     
-    return {modelApi, model, config}
+    return {modelApi, model}
   } catch (error) {
     return {errorCode: error.response.status}
   }

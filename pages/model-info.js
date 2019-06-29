@@ -27,7 +27,7 @@ function ModelView(props) {
         <Col md={6}>
           <ModelSider
             id={props.model.id}
-            config={props.config}
+            config={props.model.config}
             current={selectedKeys}/>
         </Col>
         <Col md={18}>
@@ -45,7 +45,9 @@ function ModelView(props) {
                   <div style={{display: "flex", flexDirection: "column"}}>
                     <div style={{marginBottom: 16}}>
                       <Typography.Title level={4}>{props.model.name}</Typography.Title>
-                      <Typography.Paragraph>{props.model.desc}</Typography.Paragraph>
+                      <Typography.Paragraph 
+                        style={{ textAlign: 'justify'}}
+                        ellipsis={{rows: 4, expandable: true}}>{props.model.desc}</Typography.Paragraph>
                     </div>
                     <div style={{marginBottom: 16}}>
                       <Row>
@@ -92,13 +94,7 @@ ModelView.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
   
-    const config = await axios({
-      method: "GET",
-      url: `${modelApi}/config`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    return {model, config}
+    return {model}
   } catch (error) {
     return {errorCode: error.response.status}
   }

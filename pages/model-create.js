@@ -1,35 +1,75 @@
 import { Row, Col, Avatar, Card, Form, Input, Upload, Button, Radio, Tag, Icon, message } from "antd";
 import Head from 'next/head'
 import axios from 'axios'
-import React, {useState, useRef} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {Router} from '../routes'
 import UserLayout from "../components/UserLayout";
 import {withAuthSync} from '../utils/auth'
 
 const RadioButton = Radio.Button
 
+function handleInputLabelRef(ref, cb) {
+  function handleClickOutside(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      cb({status: false})
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
+}
+
 function ModelCreate(props) {
   const { getFieldDecorator, getFieldValue, setFieldsValue } = props.form
   const inputRef = useRef(null)
+  const labelWrapper = useRef(null)
+  const labelRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [inputValue, setInputValue] = useState(null)
   const [inputVisible, setInputVisible] = useState(false)
 
+  handleInputLabelRef(labelWrapper, ({ status }) => {
+    if (status === false && inputValue !== null) {
+      handleAddLabel()
+      setInputVisible(false)
+    } else {
+      setInputVisible(false)
+    }
+  })
+
   const handleInputVisible = async () => {
     await setInputVisible(true)
     await inputRef.current.focus()
   }
 
-
-  const handleAddLabel = () => {
+  const handleAddLabel = async () => {
     const label = getFieldValue('label')
     setFieldsValue({
       label: [...label, inputValue]
     })
-    setInputValue(null)
-    setInputVisible(false)
+    await setInputValue(null)
+    // await setInputVisible(false)
+    await labelRef.current && labelRef.current.focus()
+  }
+
+  const handleTabLabel = e => {
+    const keyCode = e.which || e.keyCode
+
+    if (keyCode === 9) { 
+      e.preventDefault(); 
+      handleAddLabel()
+    }
+
+    if (keyCode === 27) { 
+      setInputValue(null)
+      setInputVisible(false)
+    }
   }
 
   const handleOnCloseLabel = key => {
@@ -55,7 +95,7 @@ function ModelCreate(props) {
             data: model,
             headers: {authorization: props.token}
           })
-  
+
           const formData = new FormData();
           formData.append('avatar', avatar.originFileObj)
           formData.append('model', resModel.data.id)
@@ -90,18 +130,17 @@ function ModelCreate(props) {
   }
 
   const beforeUpload = (file) => {
-    const isPNG = file.type === 'image/png';
-    if (!isPNG) {
+    if (file.type !== 'image/png') {
       message.error('We only support PNG thumbnail.');
+      return false
     }
     
-    console.log(file.size)
-    const fileSize = file.size / 1024 / 1024 < 1;
-    if (!fileSize) {
+    if (file.size / 1024 / 1024 > 5) {
       message.error('Please upload a picture smaller than 1 MB.');
+      return false
     }
 
-    return isPNG && fileSize;
+    return true
   }
 
   const handleChange = info => {
@@ -132,9 +171,9 @@ function ModelCreate(props) {
         <title>Create Model - Sistem Anotasi Named Entity</title>
       </Head>
       <Form>
-        <Row gutter={16}>
-          <Col md={18}>
-            <Card title="Create Model">
+        <Card title="Create Model">
+          <Row gutter={16}>
+            <Col md={4}>
               <Form.Item label="Avatar">
                 {getFieldDecorator('avatar', {
                   valuePropName: 'file',
@@ -156,86 +195,96 @@ function ModelCreate(props) {
                   </Upload>
                 )}
               </Form.Item>
-              <Form.Item label="Name">
-                {getFieldDecorator('name', {
-                  rules: [
-                    {required: true, message: `This field is required.`},
-                    {min: 4, message: `Minimum length is 6 characters.`},
-                    {max: 20, message: `Minimum length is 20 characters.`}
-                  ],
-                })(<Input />)}
-              </Form.Item>
-              <Form.Item label="Description">
-                {getFieldDecorator('desc', {
-                  rules: [
-                    {required: true, message: 'This field is required.'}
-                  ],
-                })(<Input.TextArea rows={4} />)}
-              </Form.Item>
-              <div>
-              <Form.Item label="Labels">
-                {getFieldDecorator('label', {
-                  initialValue: [],
-                  rules: [
-                    {required: true, message: 'This field is required.'}
-                  ]
-                })(
-                  <>
-                    {getFieldValue('label').map((item, i) => 
-                      <Tag key={i}
-                        className="ant-custom"
-                        color="#108ee9"
-                        onClose={() => handleOnCloseLabel(i)} 
-                        closable>
-                        {item}
-                      </Tag>)}
-                  </>
-                )}
-                {inputVisible && 
-                  <Input 
-                    ref={inputRef}
-                    style={{width: 120}}
-                    value={inputValue} 
-                    onChange={e => setInputValue(e.target.value)} 
-                    onPressEnter={handleAddLabel}/>}
-                {!inputVisible && 
-                  <Tag 
-                  className="ant-custom" 
-                  style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }} 
-                  onClick={handleInputVisible}>New Label</Tag>}
-              </Form.Item>
-              <Form.Item label="Annotator">
-                {getFieldDecorator('annotator', {
-                  rules: [
-                    {required: true, message: 'This field is required.'}
-                  ],
-                })(
-                  <Radio.Group buttonStyle="solid">
-                    <RadioButton value="classifier">Classifier</RadioButton>
-                    <RadioButton value="extractor">Extractor</RadioButton>
-                  </Radio.Group>,
-                )}
-              </Form.Item>
-              </div>
-              <Form.Item label="Type">
-                {getFieldDecorator('isPrivate', {
-                  rules: [
-                    {required: true, message: 'This field is required.'}
-                  ]
-                })(
-                  <Radio.Group buttonStyle="solid">
-                    <RadioButton value={false}>Public</RadioButton>
-                    <RadioButton value={true}>Private</RadioButton>
-                  </Radio.Group>,
-                )}
-              </Form.Item>
-              <div style={{display: "flex", justifyContent: "flex-end"}}>
-                <Button style={{marginLeft: 16}} type="primary" onClick={handleSubmit} loading={loading}>Create Model</Button>
-                <Button style={{marginLeft: 16}} className="btn-danger">Cancel</Button>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+            </Col>
+            <Col md={20}>
+                <Form.Item label="Name">
+                  {getFieldDecorator('name', {
+                    rules: [
+                      {required: true, message: `This field is required.`},
+                      {min: 4, message: `Minimum length is 6 characters.`},
+                      {max: 20, message: `Minimum length is 20 characters.`}
+                    ],
+                  })(<Input />)}
+                </Form.Item>
+                <Form.Item label="Description">
+                  {getFieldDecorator('desc', {
+                    rules: [
+                      {required: true, message: 'This field is required.'}
+                    ],
+                  })(<Input.TextArea rows={4} />)}
+                </Form.Item>
+                <Form.Item label="Labels" extra="Press tab or enter for new input label.">
+                  {getFieldDecorator('label', {
+                    initialValue: [],
+                    rules: [
+                      {required: true, message: 'This field is required.'}
+                    ]
+                  })(
+                    <>
+                      {getFieldValue('label').map((item, i) => 
+                        <Tag key={i}
+                          className="ant-custom"
+                          color="#108ee9"
+                          onClose={() => handleOnCloseLabel(i)} 
+                          closable>
+                          {item}
+                        </Tag>)}
+                    </>
+                  )}
+                  {inputVisible && 
+                    <div 
+                      style={{display: 'inline-block'}}
+                      ref={labelWrapper}>
+                      <Input 
+                      ref={inputRef}
+                      style={{width: 120}}
+                      value={inputValue} 
+                      onChange={e => setInputValue(e.target.value)} 
+                      onPressEnter={handleAddLabel}
+                      onKeyDown={handleTabLabel}
+                      />
+                    </div>}
+                  {!inputVisible && 
+                    <button
+                      ref={labelRef}
+                      className="ant-tag ant-custom"
+                      style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }}
+                      onClick={handleInputVisible}
+                      onKeyPress={handleInputVisible}>
+                      New Label
+                    </button>}
+                </Form.Item>
+                <Form.Item label="Annotator">
+                  {getFieldDecorator('annotator', {
+                    rules: [
+                      {required: true, message: 'This field is required.'}
+                    ],
+                  })(
+                    <Radio.Group buttonStyle="solid">
+                      <RadioButton value="classifier">Classifier</RadioButton>
+                      <RadioButton value="extractor">Extractor</RadioButton>
+                    </Radio.Group>,
+                  )}
+                </Form.Item>
+                <Form.Item label="Type">
+                  {getFieldDecorator('isPrivate', {
+                    rules: [
+                      {required: true, message: 'This field is required.'}
+                    ]
+                  })(
+                    <Radio.Group buttonStyle="solid">
+                      <RadioButton value={false}>Public</RadioButton>
+                      <RadioButton value={true}>Private</RadioButton>
+                    </Radio.Group>,
+                  )}
+                </Form.Item>
+                <div style={{display: "flex", justifyContent: "flex-end"}}>
+                  <Button style={{marginLeft: 16}} type="primary" onClick={handleSubmit} loading={loading}>Create Model</Button>
+                  <Button style={{marginLeft: 16}} onClick={() => Router.pushRoute('/dashboard')} className="btn-danger">Cancel</Button>
+                </div>
+            </Col>
+          </Row>
+        </Card>
       </Form>
     </UserLayout>
   )

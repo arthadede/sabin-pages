@@ -3,7 +3,7 @@ import App, {Container} from 'next/app'
 import NProgress from 'nprogress'
 import routes, {Router} from '../routes'
 import nextCookie from 'next-cookies'
-import io from 'socket.io-client'
+import jwt from 'jsonwebtoken'
 
 Router.events.on('routeChangeStart', url => {
   console.log(`Loading: ${url}`)
@@ -20,29 +20,22 @@ export default class SabinApp extends App {
     const apiUrl = process.env.API_HOST || `${protocol}://localhost:3000`
     const route = routes.match(ctx.asPath)
     const {token} = nextCookie(ctx)
+    const auth = token && jwt.verify(token, 'SECRET')
 
     ctx.apiUrl = apiUrl
     ctx.route = route
     ctx.token = token
     const pageProps = Component.getInitialProps && (await Component.getInitialProps(ctx))
 
-    return {...pageProps, apiUrl, route, token, baseUrl}
+    return {...pageProps, apiUrl, route, token, baseUrl, auth}
   }
-
-  state = {
-    socket: io.connect(process.env.SOCKET_HOST)
-  }
-
-  componentWillUnmount() {
-    this.state.socket.close()
-  }
-
+  
   render() {
     const {Component, ...rest} = this.props
 
     return (
       <Container>
-        <Component  {...rest} socket={this.state.socket}/>
+        <Component {...rest}/>
       </Container>
     )
   }

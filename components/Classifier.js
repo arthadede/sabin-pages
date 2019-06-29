@@ -45,7 +45,7 @@ function Classifier(props) {
       </div>
       <div>
         <Typography.Paragraph id="annotation-script">
-          {props.dataSource.text}
+          {props.dataSource}
         </Typography.Paragraph>
       </div>
     </div>

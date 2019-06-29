@@ -1,12 +1,12 @@
-import { Layout, Menu, Button, Icon, Row, Col, Typography } from 'antd'
+import { Layout, Menu, Button, Icon, Row, Col, Typography, Dropdown } from 'antd'
 import React, { useState } from 'react'
 import { Router } from '../routes'
 import {logout} from '../utils/auth'
 
 const { Header, Content, Sider } = Layout
 
-export default ({route, children}) => {
-  const [collapsed, setCollapsed] = useState(false)
+export default ({route, children, auth}) => {
+  const [collapsed, setCollapsed] = useState(true)
   const selectedKeys = route.parsedUrl.pathname
 
   const handleToggle = () => setCollapsed(n => !n)
@@ -25,17 +25,14 @@ export default ({route, children}) => {
         onClick={handleMenu}
         selectedKeys={[selectedKeys]}
         theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <div style={{height: 64}}/>
         <Menu.Item key="/admin">
-          <Icon type="user" />
+          <Icon type="appstore" />
           <span>Dashboard</span>
         </Menu.Item>
         <Menu.Item key="/admin/model">
-          <Icon type="video-camera" />
+          <Icon type="crown" />
           <span>Model</span>
-        </Menu.Item>
-        <Menu.Item key="/admin/source">
-          <Icon type="upload" />
-          <span>Sources</span>
         </Menu.Item>
         <Menu.Item key="/admin/user">
           <Icon type="user" />
@@ -44,6 +41,14 @@ export default ({route, children}) => {
       </Menu>
     </Sider>
   )
+
+  const DropdownComponent = (
+    <Menu>
+      <Menu.Item key="1" onClick={logout}>
+        <Icon type="logout" /> Logout
+      </Menu.Item>
+    </Menu>
+  );
 
   const HeaderComp = (
     <Header style={{ background: '#fff'}}>
@@ -57,9 +62,11 @@ export default ({route, children}) => {
         </Col>
         <Col md={20}>
           <div className="h-100 d-flex align-items-center justify-content-flex-end">
-            <Button onClick={logout}>
-              <Icon type="logout" /> Logout
-            </Button>
+            <Dropdown overlay={DropdownComponent}>
+              <Typography.Text style={{cursor: 'pointer'}}>
+                {auth.email} <Icon type="down" />
+              </Typography.Text>
+            </Dropdown>
           </div>
         </Col>
       </Row>

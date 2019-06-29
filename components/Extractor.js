@@ -86,7 +86,7 @@ function Extractor(props) {
 
   const handleAddSource = item => {
     if (window.getSelection().anchorNode !== null) {
-      if (window.getSelection().anchorNode.wholeText === props.dataSource.text) {
+      if (window.getSelection().anchorNode.wholeText === props.dataSource) {
         let pos = window.getSelection().getRangeAt(0)
         props.onChange(state => [
           ...state, 
@@ -128,7 +128,7 @@ function Extractor(props) {
       <div>
         <Typography.Paragraph 
           id="annotation-script">
-          {props.dataSource.text}
+          {props.dataSource}
         </Typography.Paragraph>
       </div>
     </div>

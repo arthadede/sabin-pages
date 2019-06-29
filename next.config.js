@@ -8,17 +8,22 @@ const nextConfig = {
     "PORT": 8000,
     "SOCKET_HOST": process.env.NODE_ENV  !== 'production' ? "http://localhost:8000" : "http://sabin.arthadede.com"
   },
-  workboxOpts: {
-    runtimeCaching: [
-      {
-        urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'image-cache',
-        }
-      }
-    ]
+  cssModules: true,
+  cssLoaderOptions: {
+    importLoaders: 1,
+    localIdentName: "[local]___[hash:base64:5]",
   }
+  // workboxOpts: {
+  //   runtimeCaching: [
+  //     {
+  //       urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+  //       handler: 'CacheFirst',
+  //       options: {
+  //         cacheName: 'image-cache',
+  //       }
+  //     }
+  //   ]
+  // }
 }
 
 module.exports = withProgressBar(withLess(withOffline({
@@ -27,8 +32,4 @@ module.exports = withProgressBar(withLess(withOffline({
     // For example get the latest git commit hash here
     return 'sabin-pages-1'
   },
-  webpack: (config) => {
-    config.optimization.minimize = false;
-    return config
-  }
 })))

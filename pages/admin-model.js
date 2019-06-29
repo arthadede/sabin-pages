@@ -3,62 +3,46 @@ import axios from 'axios'
 import Head from 'next/head'
 import moment from 'moment'
 import {withAuthSync} from '../utils/auth'
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import _ from 'lodash'
+import Highlighter from 'react-highlight-words'
 import AdminLayout from "../components/AdminLayout"
 
 function AdminModel(props) {
+  const searchInput = useRef(null)
   const [model, setModel] = useState(props.model)
-  const [search, setSearch] = useState('')
+  const [selected, setSelected] = useState([])
+  const [filteredInfo, setFilteredInfo] = useState({})
+  const [sortedInfo, setSortedInfo] = useState({})
+  const [searchText, setSearchText] = useState(null)
 
-  const deleteSoft = async id => {
+  const handleDeleteSoft = async (ids, isDeleted) => {
     const response = await axios({
       method: 'PATCH',
-      url: `${props.apiModel}/${id}`,
-      data: {isDeleted: true},
+      url: `${props.apiModel}`,
+      data: {ids, isDeleted},
       headers: {authorization: props.token}
     })
     
     if (response.status === 200) {
-      message.success("Model disabled successfully.")
-      setModel(model.map(item => {
-        if (item.id === id) item.isDeleted = true
-        return item
-      }))
+      message.success("Model updated successfully.")
+      setModel(response.data)
     }
   }
 
-  const unDeleteSoft = async id => {
-    const response = await axios({
-      method: 'PATCH',
-      url: `${props.apiModel}/${id}`,
-      data: {isDeleted: false},
-      headers: {authorization: props.token}
-    })
-    
-    if (response.status === 200) {
-      message.success("Model recovery successfully.")
-      setModel(model.map(item => {
-        if (item.id === id) item.isDeleted = false
-        return item
-      }))
-    }
-  }
 
-  const destroy = id => {
+  const handleDestroy = ids => {
     const handleOk = async () => {
       const response = await axios({
         method: 'DELETE',
-        url: `${props.apiModel}/${id}`,
-        headers: {authorization: props.token}
+        url: `${props.apiModel}`,
+        headers: {authorization: props.token},
+        data: { ids }
       })
       
       if (response.status === 200) {
         message.success("Model deleted successfully.")
-        setModel(model.filter(item => {
-          if (item.id === id) return false
-          return true
-        }))
+        setModel(response.data)
       }
     }
 
@@ -71,37 +55,141 @@ function AdminModel(props) {
     })
   }
 
+  const getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm)}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys, confirm)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Search
+        </Button>
+        <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          Reset
+        </Button>
+      </div>
+    ),
+    filterIcon: filtered => (
+      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: visible => {
+      if (visible) {
+        setTimeout(() => searchInput.current.select());
+      }
+    },
+    render: text => (
+      <Highlighter
+        className="table-text"
+        highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+        searchWords={[searchText]}
+        autoEscape
+        textToHighlight={text.toString()}
+      />
+    ),
+  })
+
+  const handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+  };
+
+  const handleReset = clearFilters => {
+    clearFilters();
+    setSearchText('');
+  }
+
+  const handleTable = (pagination, filters, sorter) => {
+    setFilteredInfo(filters)
+    setSortedInfo(sorter)
+  }
+
+  const handleRemoves = () => {
+    if (selected.length === 0) {
+      message.warning("Nothing was selected.")
+      return
+    }
+
+    handleDestroy(selected)
+  }
+
   const handleMenuClick = (e, id) => {
     switch (e.key) {
       case 'undelete_soft':
-        unDeleteSoft(id)
+        handleDeleteSoft(id, false)
         break
       case 'delete_soft':
-        deleteSoft(id)
+        handleDeleteSoft(id, true)
         break
       case 'destroy':
-        destroy(id)
+        handleDestroy(id)
         break
     }
   }
   
   const columns = [
-    { title: 'Name', width: 200, dataIndex: 'name', key: 'name' },
-    { title: 'Description', textWrap: 'ellipsis', dataIndex: 'desc', key: 'description',
-      render: text => <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph> },
-    { title: 'Private', dataIndex: 'isPrivate', key: 'private', 
-      render: text => <Tag className="ant-custom" color={!text ? '#1e90ff' : '#f9ca24'}>{text ? 'PRIVATE' : 'PUBLIC'}</Tag> },
-    { key: 'status', width: 140, align: 'center', title: 'Status', dataIndex: 'isDeleted',
-      render: text => <Badge status={text ? 'error' : 'success'} text={text ? 'Deleted' : 'Active'}/> },
-    { key: 'updatedAt', width: 140, align: 'center', title: 'Last Modified', dataIndex: 'updatedAt',
-      render: text => <Typography.Text>{moment(text).fromNow()}</Typography.Text> },
-    { key: 'operation', 
+    { 
+      title: 'Name', 
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a, b) => a.name - b.name,
+      sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
+      ...getColumnSearchProps('name')
+    },
+    { 
+      title: 'Author', 
+      dataIndex: 'author', 
+      key: 'author', 
+      width: 200, 
+      sorter: (a, b) => a.author - b.author,
+      sortOrder: sortedInfo.columnKey === 'author' && sortedInfo.order
+    },
+    { 
+      title: 'Type', 
+      dataIndex: 'isPrivate', 
+      width: 110,
+      align: 'center',
+      render: text => <Badge status={!text ? 'green' : 'blue'} text={text ? 'Private' : 'Public'}/> 
+    },
+    { 
+      title: 'Status', 
+      dataIndex: 'isDeleted',
+      width: 110, 
+      align: 'center', 
+      render: text => <Badge status={text ? 'error' : 'success'} text={text ? 'Disabled' : 'Active'}/> 
+    },
+    { 
+      title: 'Last Modified', 
+      dataIndex: 'updatedAt',
+      width: 200,
+      align: 'center', 
+      render: text => <Typography.Text>{moment(text).fromNow()}</Typography.Text> 
+    },
+    { 
+      key: 'operation',
+      width: 200,
+      align: 'right',
       render: (text, record) => (
       <Dropdown overlay={
         <Menu onClick={key => handleMenuClick(key, record.id)}>
           {record.isDeleted && <Menu.Item key="undelete_soft">Recovery</Menu.Item>}
-          {!record.isDeleted && <Menu.Item key="delete_soft">Delete</Menu.Item>}
-          <Menu.Item key="destroy">Destroy</Menu.Item>
+          {!record.isDeleted && <Menu.Item key="delete_soft">Disable</Menu.Item>}
+          <Menu.Item key="destroy">Delete</Menu.Item>
         </Menu>}>
         <Button>
           Actions <Icon type="down" />
@@ -110,33 +198,9 @@ function AdminModel(props) {
     )},
   ]
 
-  const compareObjects = (o1, o2) => {
-    var k = '';
-    for(k in o1) if(o1[k] != o2[k]) return false;
-    for(k in o2) if(o1[k] != o2[k]) return false;
-    return true;
-  }
   
-  const itemExists = (haystack, needle) => {
-    for(var i=0; i<haystack.length; i++) if(compareObjects(haystack[i], needle)) return true;
-    return false;
-  }
-
-  const searchAll = (objects) => {
-    let results = [];
-    let toSearch = search.trim()
-    for(let i=0; i<objects.length; i++) {
-      for(let key in objects[i]) {
-        if(_.includes(objects[i][key], toSearch)) {
-          if(!itemExists(results, objects[i])) results.push(objects[i]);
-        }
-      }
-    }
-    return results;
-  }
-
   const ExpandedComponent = record => {
-    const config = record.configUI
+    const config = record.config
     const user = record.user
     return (
       <Descriptions title="Model Information" bordered>
@@ -154,20 +218,21 @@ function AdminModel(props) {
         <Descriptions.Item label="Annotator">{record.annotator.toUpperCase()}</Descriptions.Item>
         <Descriptions.Item label="Created Date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
         <Descriptions.Item span={3} label="Status">
-          <Badge status={config.isDeleted ? 'error' : 'success'} text={config.isDeleted ? 'Offline' : 'Online'} />
+          <Badge status={record.isDeleted ? 'error' : 'success'} text={record.isDeleted ? 'Not Active' : 'Active'} />
         </Descriptions.Item>
         <Descriptions.Item label="UI Stats">
-          <Badge status={config.UIStats ? 'error' : 'success'} text={config.UIStats ? 'Not Active' : 'Active'} />
-        </Descriptions.Item>
-        <Descriptions.Item label="UI Run">
-          <Badge status={config.UIRun ? 'error' : 'success'} text={config.UIRun ? 'Not Active' : 'Active'} />
+          <Badge status={config.UIStats ? 'success' : 'error'} text={config.UIStats ? 'Active' : 'Not Active'} />
         </Descriptions.Item>
         <Descriptions.Item label="UI Annotation">
-          <Badge status={config.UIAnnotation ? 'error' : 'success'} text={config.UIAnnotation ? 'Not Active' : 'Active'} />
+          <Badge status={config.UIAnnotation ? 'success' : 'error'} text={config.UIAnnotation ? 'Active' : 'Not Active'} />
         </Descriptions.Item>
       </Descriptions>
     )
   }
+
+  const CardExtra = [
+    <Button key="0" type="danger" onClick={handleRemoves}>Delete Selected</Button>
+  ]
 
   return (
     <AdminLayout {...props}>
@@ -178,13 +243,20 @@ function AdminModel(props) {
         <Card 
           bordered={false}
           title="Model Data"
-          extra={
-            <Input.Search value={search} onChange={e => setSearch(e.target.value)}/>
-          }>
+          extra={CardExtra}
+          >
           <Table
             rowKey="id"
+            scroll={{x: 1100}}
             columns={columns}
-            dataSource={searchAll(model)}
+            dataSource={model}
+            onChange={handleTable}
+            rowSelection={{
+              selectedRowKeys: selected,
+              onChange: selectedRowKeys => {
+                setSelected(selectedRowKeys)
+              }
+            }}
             expandedRowRender={ExpandedComponent}
           />
         </Card>

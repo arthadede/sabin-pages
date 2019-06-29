@@ -1,15 +1,12 @@
 {
   "modules": {
     "byIdentifier": {
-      "ignored node_modules/xlsx fs": 0,
+      "ignored node_modules/engine.io-client/lib/transports ws": 0,
       "multi node_modules/next-offline/register-sw-compiled.js .\\node_modules\\next\\dist\\client\\next.js": 1,
       "ignored node_modules/readable-stream/lib util": 2,
       "ignored node_modules/readable-stream/lib/internal/streams util": 3,
       "ignored node_modules/bn.js/lib buffer": 4,
-      "ignored node_modules/brorand crypto": 5,
-      "ignored node_modules/xlsx crypto": 6,
-      "ignored node_modules/xlsx stream": 7,
-      "ignored node_modules/engine.io-client/lib/transports ws": 8
+      "ignored node_modules/brorand crypto": 5
     },
     "usedIds": {
       "0": 0,
@@ -17,15 +14,68 @@
       "2": 2,
       "3": 3,
       "4": 4,
-      "5": 5,
-      "6": 6,
-      "7": 7,
-      "8": 8
+      "5": 5
     }
   },
   "chunks": {
-    "byName": {},
+    "byName": {
+      "commons": 0,
+      "static/runtime/webpack.js": 1,
+      "static/runtime/main.js": 2,
+      "static\\sabin-pages-1\\pages\\_app.js": 3,
+      "static\\sabin-pages-1\\pages\\_error.js": 4,
+      "static\\sabin-pages-1\\pages\\admin-dashboard.js": 5,
+      "static\\sabin-pages-1\\pages\\admin-model.js": 6,
+      "static\\sabin-pages-1\\pages\\admin-source.js": 7,
+      "static\\sabin-pages-1\\pages\\admin-user.js": 8,
+      "static\\sabin-pages-1\\pages\\change-password.js": 9,
+      "static\\sabin-pages-1\\pages\\confirm-account.js": 10,
+      "static\\sabin-pages-1\\pages\\dashboard.js": 11,
+      "static\\sabin-pages-1\\pages\\explore.js": 12,
+      "static\\sabin-pages-1\\pages\\forget-password.js": 13,
+      "static\\sabin-pages-1\\pages\\index.js": 14,
+      "static\\sabin-pages-1\\pages\\login.js": 15,
+      "static\\sabin-pages-1\\pages\\me-model-anno.js": 16,
+      "static\\sabin-pages-1\\pages\\me-model-info.js": 17,
+      "static\\sabin-pages-1\\pages\\me-model-source.js": 18,
+      "static\\sabin-pages-1\\pages\\me-model-stats.js": 19,
+      "static\\sabin-pages-1\\pages\\me-model-train.js": 20,
+      "static\\sabin-pages-1\\pages\\model-anno.js": 21,
+      "static\\sabin-pages-1\\pages\\model-create.js": 22,
+      "static\\sabin-pages-1\\pages\\model-info.js": 23,
+      "static\\sabin-pages-1\\pages\\model-stats.js": 24,
+      "static\\sabin-pages-1\\pages\\model-train.js": 25,
+      "static\\sabin-pages-1\\pages\\register.js": 26
+    },
     "bySource": {},
-    "usedIds": []
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      2,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
   }
 }

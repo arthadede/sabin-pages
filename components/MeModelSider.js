@@ -23,9 +23,9 @@ function ModelSider({dataSource, current, ...rest}) {
         <Menu.Item key={`/me/model/${dataSource.id}/batch`}>Batch</Menu.Item>
       </MenuItemGroup> */}
       <MenuItemGroup key="g2" title="Build">
-        <Menu.Item key={`/me/model/${dataSource.id}/anno`}>Annotation</Menu.Item>
-        <Menu.Item key={`/me/model/${dataSource.id}/train`}>Training</Menu.Item>
         <Menu.Item key={`/me/model/${dataSource.id}/source`}>Source</Menu.Item>
+        <Menu.Item key={`/me/model/${dataSource.id}/anno`}>Annotation</Menu.Item>
+        <Menu.Item key={`/me/model/${dataSource.id}/train`}>Confirmation</Menu.Item>
       </MenuItemGroup>
     </Menu>
   )

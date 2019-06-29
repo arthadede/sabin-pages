@@ -1,67 +1,143 @@
-import React, {useState, useEffect} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
-import moment from 'moment'
-import { Row, Col, Card, Table, Button, Modal, message, Typography, Empty, Menu, Dropdown, Icon } from 'antd'
+import { Row, Col, Card, Button, Modal, message, Empty, Menu, Dropdown, Icon, Skeleton, List, Checkbox } from 'antd'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
-import AddModelSourceModal from '../components/AddModelSourceModal'
+import ModalAddSource from '../components/ModalAddSource'
 import {withAuthSync} from '../utils/auth'
 
 
 function ModelSource(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
+
   const selectedKeys = props.route.parsedUrl.pathname
-  const [source, setSource] = useState(props.sourceWithoutTrain)
+  const searchInput = useRef(null)
+  const [state, setState] = useState(props.source.json)
+  const [selected, setSelected] = useState([])
+  const [searchText, setSearchText] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
 
-  const handleInsert = record => {
-    setModalVisible(false)
-    setSource(record)
+  const selectedAll = state.length ===  selected.length && state.length !== 0
+
+  const handleRemove = data => {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "PATCH",
+        url: `${props.modelApi}/source/remove`,
+        headers: {authorization: props.token},
+        data: {sourceIds: data}
+      })
+      .then(res => res.status === 200 && resolve(res.data))
+      .catch(err => reject(err))
+    })
   }
 
-  async function handleDelete({id, text}) {
-    const handleOk = async () => {
-      const response = await axios({
-        method: "DELETE",
-        url: `${props.modelApi}/source/${id}`,
-        headers: {authorization: props.token}
-      })
+  const removeSource = id => {
+    Modal.confirm({
+      title: 'Are you sure?',
+      content: 'You will not be able to recover this source.',
+      okText: 'Yes',
+      onOk: () => {
+        handleRemove([id])
+        .then(result => {
+          setState(result.json)
+          message.success("Source removed successfully.")
+        }).catch(err => {
+          message.error("Something wrong.")
+        })
+      },
+      cancelText: 'Cancel',
+    })
+  }
 
-      if (response.status === 200) {
-        message.success('Source deleted successfully.');
-        setSource(state => state.filter(item => {
-          return item.id !== id ? true : false
-        }))
-      }
+  const removeSources = () => {
+    if (selected.length === 0) {
+      message.warning("Please select checkbox you want delete.")
+      return
     }
 
     Modal.confirm({
       title: 'Are you sure?',
       content: 'You will not be able to recover this source.',
       okText: 'Yes',
-      onOk: handleOk,
+      onOk: () => {
+        handleRemove(selected)
+        .then(result => {
+          setState(result.json)
+          setSelected([])
+          message.success("Source removed successfully.")
+        }).catch(err => {
+          message.error("Something wrong.")
+        })
+      },
       cancelText: 'Cancel',
     })
   }
-  
-  const columns = [
-    { title: 'Text', dataIndex: 'text', 
-      render: text => <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph>}, 
-    { title: 'Date', key: 'createdAt', width: 150, align: 'center', 
-      render: (text, record) => <span>{moment(record.createdAt).fromNow()}</span>},
-    { title: 'Action', key: 'operation', width: 100, 
-      render: (text, record) => <Button className="btn-danger" onClick={() => handleDelete(record)}>Delete</Button>}
-  ]
 
-  const CardBody = () => {
-    if (source.length === 0) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+  const addModelProps = {
+    ...props,
+    visible: modalVisible,
+    onOk: record => {
+      setModalVisible(false)
+      setState(record)
+    },
+    onCancel: () => {
+      setModalVisible(false)
+    }
+  }
+
+  const selectAll = () => {
+    if (selectedAll) {
+      setSelected([])
+      return
+    }
+    setSelected(_.map(state, (item, index) => index))
+  }
+
+  const ComponentCardExtra = (
+    <>
+      <Button type={selectedAll ? "primary" : "default"}  style={{marginLeft: 8}} onClick={() => selectAll()}>Select All</Button>
+      <Button type="primary" style={{marginLeft: 8}} onClick={() => setModalVisible(true)}>Add Source</Button>
+      <Button type="danger" style={{marginLeft: 8}} onClick={removeSources}>Delete Selected</Button>
+    </>
+  )
+  
+  const ComponentList = () => {
     return (
-      <div style={{}}>
-        <Table rowKey="id" showHeader={false} columns={columns} dataSource={source} scroll={{ y: 500 }}/>
-      </div>
+      <Checkbox.Group 
+        style={{width: '100%'}}
+        value={selected}
+        onChange={val => setSelected(val)}>
+        <List
+          pagination
+          dataSource={state}
+          renderItem={(item, index) => (
+            <List.Item actions={[
+              <Dropdown overlay={(
+                <Menu>
+                  <Menu.Item key="0">
+                    <a onClick={() => removeSource(index)}>Remove</a>
+                  </Menu.Item>
+                </Menu>
+              )}>
+                <Button>
+                  Action <Icon type="down" />
+                </Button>
+              </Dropdown>
+            ]}>
+              <Skeleton avatar title={false} loading={item.loading} active>
+                <List.Item.Meta
+                  style={{alignItems: 'center'}}
+                  avatar={<Checkbox style={{marginLeft: 16, marginRight: 16}} value={index}/>}
+                  description={(<div className="table-text">{item}</div>)}/>
+              </Skeleton>
+            </List.Item>
+          )}>
+        </List>
+      </Checkbox.Group>
     )
   }
 
@@ -74,28 +150,17 @@ function ModelSource(props) {
           <title>My Model Source - Sistem Anotasi Named Entity</title>
         </Head>
         <Col xs={24} md={6}>
-          <ModelSider
-            current={selectedKeys}
-            dataSource={props.model}/>
+          <ModelSider current={selectedKeys} dataSource={props.model}/>
         </Col>
         <Col xs={24} md={18}>
-          <Card
-            title="Sources"
-            extra={<Button 
-              className="ml-4" 
-              type="primary" 
-              onClick={() => setModalVisible(true)}>
-              Add Source</Button>}>
-            <CardBody/>
+          <Card title="Sources" extra={ComponentCardExtra}>
+            {state.length > 0
+            ? <ComponentList/>
+            : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>}
           </Card>
         </Col>
-        <AddModelSourceModal 
-          {...props}
-          visible={modalVisible}
-          onOk={handleInsert}
-          onCancel={() => setModalVisible(false)}/>
-        
       </Row>
+      <ModalAddSource {...addModelProps}/>
     </UserLayout>
   )
 }
@@ -112,25 +177,13 @@ ModelSource.getInitialProps = async ({apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const sources = await axios({
+    const source = await axios({
       method: "GET",
       url: `${modelApi}/source`,
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const resources = await axios({
-      method: "GET",
-      url: `${apiUrl}/source`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    const sourceWithoutTrain = await axios({
-      method: "GET",
-      url: `${modelApi}/source/no_process`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    return {modelApi, model, sources, resources, sourceWithoutTrain}
+    return {modelApi, model, source}
   } catch (error) {
     return {errorCode: error.response.status}
   }

@@ -10,44 +10,19 @@ import UserLayout from "../components/UserLayout";
 import ModelSider from "../components/ModelSider";
 import {withAuthSync} from '../utils/auth'
 
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
-
-const getRandomInt = () => {
-  const colorArr = ['#FF6384', '#36A2EB', '#FFCE56', '#2ecc71', '#686de0']
-  let min=0, max=colorArr.length-1
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  let randomInt = Math.floor(Math.random() * (max - min + 1)) + min
-  return colorArr[randomInt]
-}
-
-
 function ModelStats(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
   const selectedKeys = props.route.parsedUrl.pathname
   const [state, setState] = useState(props.stats)
-  const [logTrain, setLogTrain] = useState(props.logTrain)
-  const [logLabel, setLogLabel] = useState(props.logLabel)
-  const [logMonth, setLogMonth] = useState(props.logMonth)
-  
-  const getLogLabel = () => {
-    const init = _.reduce(props.model.label, (result, item) => {
-      result[item] = 0
-      return result
-    }, {})
 
-    const compareLabel = {...init, ...logLabel}
-    const result = _.values(compareLabel)
-    return result
-  }
 
   const doughnutData = {
-    labels: props.model.label,
+    labels: state.statsLabel.keys,
     datasets: [
       {
-        data: getLogLabel(),
+        data: state.statsLabel.values,
         backgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'],
         hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'],
       },
@@ -58,6 +33,7 @@ function ModelStats(props) {
     labels: ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
     datasets: [
       {
+        data: state.statsTrainMonth.values,
         label: new Date().getFullYear(),
         fill: false,
         lineTension: 0.1,
@@ -76,7 +52,6 @@ function ModelStats(props) {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: logMonth,
       },
     ],
   }
@@ -93,7 +68,7 @@ function ModelStats(props) {
         <Col md={6}>
           <ModelSider
             id={props.model.id}
-            config={props.config}
+            config={props.model.config}
             current={selectedKeys}/>
         </Col>
         <Col md={18}>
@@ -105,29 +80,29 @@ function ModelStats(props) {
               <Col md={12} style={{ marginBottom: 60 }}>
                 <Statistic
                   title="Verified"
-                  value={state.verified}
+                  value={state.countVerified}
                   prefix={<Icon type="database" />}
                 />
               </Col>
               <Col md={12} style={{ marginBottom: 60 }}>
                 <Statistic 
                   title="Not Verified"
-                  value={state.notVerified}
+                  value={state.countUnverified}
                   prefix={<Icon type="container" />}
                 />
               </Col>
               <Col md={12} style={{ marginBottom: 60 }}>
                 <Statistic
                   title="Source processed"
-                  value={state.sourceProcessed}
+                  value={state.countTraining}
                   prefix={<Icon type="file-done" />}
-                  suffix={`/ ${state.sourceNotProcessed}`}
+                  suffix={`/ ${state.countSource + state.countUnverified + state.countVerified}`}
                 />
               </Col>
               <Col md={12} style={{ marginBottom: 60 }}>
                 <Statistic title="Contributed"
                   prefix={<Icon type="team" />}
-                  value={state.contributed}
+                  value={state.countContributed}
                 />
               </Col>
               <Col md={24} style={{ marginBottom: 60 }}>
@@ -135,11 +110,11 @@ function ModelStats(props) {
                 <List
                   className="ant-custom"
                   style={{maxHeight: 300, overflow: 'auto'}}
-                  dataSource={logTrain}
+                  dataSource={state.tenContributed}
                   renderItem={item => (
                     <List.Item>
                       <List.Item.Meta
-                        avatar={<Avatar style={{ backgroundColor: getRandomInt()}}>{`${item.firstname[0]}${item.lastname[0]}`}</Avatar>}
+                        avatar={<Avatar style={{ backgroundColor: item.avatar}}>{`${item.firstname[0]}${item.lastname[0]}`}</Avatar>}
                         style={{maxHeight: 300, overflow: 'auto'}}
                         title={`${item.firstname} ${item.lastname}`}
                         description={item.email}/>
@@ -175,46 +150,13 @@ ModelStats.getInitialProps = async ({res, apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const config = await axios({
-      method: "GET",
-      url: `${modelApi}/config`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    if (!config.UIStats) throw {response: {status: 404}}
-
     const stats = await axios({
       method: "GET",
       url: `${modelApi}/stats`,
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const logTrain = await axios({
-      method: "GET",
-      url: `${modelApi}/stats/train`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    const logActivity = await axios({
-      method: "GET",
-      url: `${modelApi}/stats/activity`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    const logLabel = await axios({
-      method: "GET",
-      url: `${modelApi}/stats/label`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    const logMonth = await axios({
-      method: "GET",
-      url: `${modelApi}/stats/month`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-
-    return {model, config, stats, logTrain, logActivity, logLabel, logMonth}
+    return {model, stats}
   } catch (error) {
     return {errorCode: error.response.status}
   }

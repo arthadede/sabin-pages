@@ -4,11 +4,13 @@ const { join } = require('path')
 const compression = require('compression')  
 const next = require('next')
 const cors = require('cors')
+const busboy = require('connect-busboy');
 
 const app = require('express')()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const routes = require('./routes')
+const {parsingSheet} = require('./utils/parsing')
 
 const port = parseInt(process.env.PORT, 10) || 8000
 const dev = process.env.NODE_ENV !== 'production'
@@ -33,6 +35,7 @@ io.on('connection', socket => {
 nextApp.prepare().then(() => {
   app.use(compression())
   app.use(cors())
+  app.use(busboy())
   
   app.get('/rooms', (req, res) => {
     res.json(annotationProcess)
@@ -42,6 +45,8 @@ nextApp.prepare().then(() => {
     annotationProcess = []
     res.status(200).send({message: "ROOMS HAS BEEN EMPTY."})
   })
+
+  app.post('/source', parsingSheet)
 
   app.get('/service-worker.js', (req, res) => {
     const filePath = join(__dirname, 'src', '.next', '/service-worker.js');

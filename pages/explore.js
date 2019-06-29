@@ -10,32 +10,34 @@ function ExplorePage(props) {
   const [model, setModel] = useState(props.model)
 
   const ComponentModel = (
-    <Row type="flex" gutter={16}>
-      <List 
-      pagination
-      grid={{
-        gutter: 16,
-        xs: 1,
-        sm: 2,
-        lg: 3
-      }}
-      dataSource={model}
-      renderItem={(item, key) => (
-        <List.Item>
-          <Skeleton avatar title={false} loading={false} active>
-            <Card 
-              hoverable 
-              style={{marginBottom: 16, height: 163.090}}
-              onClick={() => Router.pushRoute('ModelInfo', {id: item.id})}>
-              <List.Item.Meta
-                avatar={<Avatar size={50} src={item.avatar.path}/>}
-                title={<Typography.Title level={4}>{item.name}</Typography.Title>} 
-                description={<Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>}/>
-            </Card>
-          </Skeleton>
-        </List.Item>
-      )}/>
-    </Row>
+    <List 
+    pagination
+    grid={{
+      gutter: 16,
+      xs: 1,
+      sm: 2,
+      xl: 3
+    }}
+    dataSource={model}
+    renderItem={(item, key) => (
+      <List.Item>
+        <Skeleton avatar title={false} loading={false} active>
+          <Card 
+            hoverable 
+            style={{marginBottom: 16, height: 163.090}}
+            onClick={() => Router.pushRoute('ModelInfo', {id: item.id})}>
+            <List.Item.Meta
+              avatar={<Avatar size={50} src={item.avatar.path}/>}
+              description={
+                <>
+                  <Typography.Title level={4}>{item.name}</Typography.Title>
+                  <Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>
+                </>
+              }/>
+          </Card>
+        </Skeleton>
+      </List.Item>
+    )}/>
   )
 
   return (

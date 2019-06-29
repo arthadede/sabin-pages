@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
             }
           `}</style>
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css"/>
+          <link rel="stylesheet" type="text/css" href="/static/vs2015.css"/>
           <link rel="stylesheet" href="/static/antd.min.css"/>
           <link rel="stylesheet/less" type="text/css" href="/static/sabin.less"/>
         </Head>

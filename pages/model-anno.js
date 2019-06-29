@@ -3,7 +3,8 @@ import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
-import {Router} from '../routes'
+import io from 'socket.io-client'
+
 import ModelSider from '../components/ModelSider'
 import UserLayout from '../components/UserLayout'
 import Classifier from '../components/Classifier'
@@ -14,83 +15,72 @@ function ModelAnno(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
+  const [source, setSource] = useState(null)
   const [state, setState] = useState([])
-    
+  const socket = io.connect(process.env.API_HOST)
   const selectedKeys = props.route.parsedUrl.pathname
   const Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor"
   const Annotation = props.model.annotator === 'classifier' ? Classifier : Extractor
-
-
   const handleConfirm = () => {
-    const modelId = props.model.id
-    const sourceId = props.source.id
-
     if (state.length === 0) {
       message.error("This field is empty.")
       return
     }
 
     const handleOk = () => {
-      axios({
-        method: 'POST',
-        url: `${props.apiUrl}/model/${modelId}/train`,
-        data: {
-          source: sourceId,
-          training: state
-        },
-        headers: {authorization: props.token},
-      }).then(async response => {
-        if (response.status === 200) {
-          await Router.pushRoute(`/model/${props.model.id}/train`)
-          message.success('Training created successfully!');
-        }
+      socket.emit('post', {
+        modelId: props.model.id,
+        userId: props.token,
+        training: state,
+        source: source
       })
 
+      socket.on('post', res => {
+        message.success("Traning created successfully.")
+        socket.emit('get', props.model.id)
+        socket.on('response', res => setSource(...res))
+        setState([])
+      })
     }
 
     Modal.confirm({
       title: 'Are you sure?',
-      content: 'You will add to train data and not be able to edit this annotation.',
+      content: 'You will save to train and not be able to edit this annotation.',
       okText: 'Yes',
       onOk: handleOk,
       cancelText: 'Cancel',
     })
   }
 
-  const handleUnloadDialog = () => {
-    props.socket.emit('exitRoom', props.source.uuid)
-    return undefined
+  const handleNext = () => {
+    socket.emit('get', props.model.id)
+    socket.on('response', res => setSource(...res))
+    setState([])
   }
 
   useEffect(() => {
+    socket.on('disconnect', () => {
+      socket.open()
+    })
 
-    if (props.source) {
-      window.addEventListener("beforeunload", handleUnloadDialog)
-
-      props.socket.on('disconnect', () => {
-        props.socket.emit('exitRoom', props.source.uuid)
-      });
-
-      props.socket.emit('joinRoom', props.source.uuid)
-      
-      return (() => {
-        // componentWillUnmout
-        props.socket.emit('exitRoom', props.source.uuid)
-      })
-    }
+    socket.emit('get', props.model.id)
+    socket.on('response', res => setSource(...res))
+    
+    
     return (() => {
-      props.socket.close()
+      socket.emit('cancel', (props.model.id, source))
+      socket.close()
     })
   }, [])
 
   const AnnotationComponent = () => {
-    if (!props.source) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+    if (!source) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
 
     return (
       <div>
         <Annotation 
           dataLabel={props.model.label} 
-          dataSource={props.source}
+          dataSource={source}
           value={state}
           onChange={val => setState(val)}/>
         <div 
@@ -99,7 +89,7 @@ function ModelAnno(props) {
           justify-content-flex-end">
           <Button
             icon="reload"
-            onClick={() => window.location.reload()}
+            onClick={handleNext}
             style={{marginLeft: 16}}>
           </Button>
           <Button
@@ -124,13 +114,12 @@ function ModelAnno(props) {
         <Col md={6}>
           <ModelSider
             id={props.model.id}
-            config={props.config}
+            config={props.model.config}
             current={selectedKeys}/>
         </Col>
         <Col md={18}>
           <Card 
-          title={Title}
-          style={{minHeight: '100%'}}>
+          title={Title}>
             <AnnotationComponent/>
           </Card>
         </Col>
@@ -141,39 +130,17 @@ function ModelAnno(props) {
 
 ModelAnno.getInitialProps = async ({res, apiUrl, token, query}) => {
   const id = query.id
-  const modelApi = `${apiUrl}/model/${id}`
-  
-  const rooms = await axios({
-    method: "GET",
-    url: `${process.env.SOCKET_HOST}/rooms`
-  }).then(res => res.data)
-
-  const source = await axios({
-    method: "POST",
-    url: `${modelApi}/source/process`,
-    data: {rooms},
-    headers: {authorization: token}
-  }).then(res => res.data)
-
 
   try {
     const model = await axios({
       method: "GET",
-      url: modelApi,
+      url: `${apiUrl}/model/${id}`,
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const config = await axios({
-      method: "GET",
-      url: `${modelApi}/config`,
-      headers: {authorization: token}
-    }).then(res => res.data)
 
-    if (!config.UIAnnotation) throw {response: {status: 404}}
-    
-    return {model, config, source}
+    return {model}
   } catch (error) {
-    console.log(error)
     return {errorCode: error.response.status}
   }
 }

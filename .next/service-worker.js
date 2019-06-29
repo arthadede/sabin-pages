@@ -1,111 +1,111 @@
 self.__precacheManifest = [
   {
-    "url": "/_next/static/chunks/commons.527df2c15abb722cddb0.js",
-    "revision": "8290c8ddd81eafb6ab3f"
+    "url": "/_next/static/chunks/commons.8aca9b801fa3dd6c308a.js",
+    "revision": "4a3397e3c671bb711b1f"
   },
   {
-    "url": "/_next/static/runtime/main-6044c0738b44f12718d4.js",
-    "revision": "40f32d2fa9a59d10f0a4"
+    "url": "/_next/static/runtime/main-e570dc72efd003735c72.js",
+    "revision": "73ae6fe0966fa0b7fe3c"
   },
   {
-    "url": "/_next/static/runtime/webpack-51ac50431fd9d3cbe717.js",
-    "revision": "411e1127740e500699da"
+    "url": "/_next/static/runtime/webpack-f5e50b6b501ccea2a79b.js",
+    "revision": "ae583f202258b164868a"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_app.js",
-    "revision": "86c62d9ec5ab99a78fec"
+    "revision": "501e38d01ad31cc44df7"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_error.js",
-    "revision": "a937746d18641dfc8427"
+    "revision": "a6c8044ad03405d28fc4"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\admin-dashboard.js",
-    "revision": "0268532c526d39fde7e8"
+    "revision": "05f28afe0ddf8a96a7e7"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\admin-model.js",
-    "revision": "7e11f282f45295e4d176"
+    "revision": "9ba47768b8ebe111ad74"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\admin-source.js",
-    "revision": "2c6d994c51313bb8a96b"
+    "revision": "af63df51b02a2f6716fe"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\admin-user.js",
-    "revision": "2c42cb7b10489f5952fb"
+    "revision": "ba1fedf2439b84babe40"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\change-password.js",
-    "revision": "dba56f2ca61d6314487e"
+    "revision": "749430965d8cb1037882"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\confirm-account.js",
-    "revision": "c2355e87ba12384deef8"
+    "revision": "eda3f1712708f0052e2b"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\dashboard.js",
-    "revision": "aa0ee10f1f4dbf3197d1"
+    "revision": "2de6c70c33e6ff60cb43"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\explore.js",
-    "revision": "d51a00d4904270342781"
+    "revision": "c18479aee762d20c5374"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\forget-password.js",
-    "revision": "eee9fcc419ce4422b161"
+    "revision": "20213a0121d14c3de07f"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\index.js",
-    "revision": "0f9ef2256efef0c721ff"
+    "revision": "85794545dd7930d3a0d2"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\login.js",
-    "revision": "11ce181d7336136e533f"
+    "revision": "5c57e4a3d5dd20253dfa"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\me-model-anno.js",
-    "revision": "0844dd08d167b756a60f"
+    "revision": "5ce4e67186bf26807dd6"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\me-model-info.js",
-    "revision": "9544314b917fb8b1d9cd"
+    "revision": "5dcf84a560dcc8b5dcea"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\me-model-source.js",
-    "revision": "4c2469f5738f5450b2fd"
+    "revision": "c60c8a609ef90c1a56b7"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\me-model-stats.js",
-    "revision": "8abbbd46b824c633910c"
+    "revision": "e7856885e3633b454fb7"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\me-model-train.js",
-    "revision": "cec433029f25b76f3597"
+    "revision": "f85088fde86a9d1307ff"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\model-anno.js",
-    "revision": "11972cb06889a86c85bd"
+    "revision": "f8cd8d3454bef9269de2"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\model-create.js",
-    "revision": "30b0a2cd0b6abb327f15"
+    "revision": "b2d534e28f572ba0917d"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\model-info.js",
-    "revision": "93f21fd168311436743e"
+    "revision": "438a22ef34f5806baf39"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\model-stats.js",
-    "revision": "9319198349ac1d367316"
+    "revision": "ca1cf31e484664d712fc"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\model-train.js",
-    "revision": "33e223cdc1cdcad2fdbd"
+    "revision": "3db9f71890969c1bfa40"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\register.js",
-    "revision": "e736cb378edf64799811"
+    "revision": "54daf898db2c04dd2184"
   }
 ];
 
@@ -139,7 +139,44 @@ self.addEventListener('message', (event) => {
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
+self.__precacheManifest = [
+  {
+    "url": "static/antd.min.css",
+    "revision": "f4c159d541736a87b3caea9798dd3ba7"
+  },
+  {
+    "url": "static/favicon.ico",
+    "revision": "22d06a256e29a645199d46298462c285"
+  },
+  {
+    "url": "static/icon/classifier.png",
+    "revision": "31f64c139922dac2764996d3b14e2c9c"
+  },
+  {
+    "url": "static/icon/extractor.png",
+    "revision": "0d438f13945c651f15d3a2a681c9b9eb"
+  },
+  {
+    "url": "static/logo.png",
+    "revision": "47c0f269382b23eb9eeacd378d14e34f"
+  },
+  {
+    "url": "static/manifest.json",
+    "revision": "e240537a420fdc41a5a9f4212bb72c0e"
+  },
+  {
+    "url": "static/nprogress.css",
+    "revision": "2a22de66fcc0f7a2dc2ee618f50f2691"
+  },
+  {
+    "url": "static/sabin.less",
+    "revision": "cd7eea903063cc14bd4deb43faf4aacb"
+  },
+  {
+    "url": "static/vs2015.css",
+    "revision": "163911e35ea1c131dc4ce4ffd0388e35"
+  }
+].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerRoute(/\.(?:png|jpg|jpeg|svg)$/, new workbox.strategies.CacheFirst({ "cacheName":"image-cache", plugins: [] }), 'GET');
+workbox.routing.registerRoute(/^https?.*/, new workbox.strategies.NetworkFirst({ "cacheName":"offlineCache", plugins: [new workbox.expiration.Plugin({ maxEntries: 200, purgeOnQuotaError: false })] }), 'GET');

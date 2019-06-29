@@ -1,10 +1,12 @@
+import { Badge, Row, Col, Card, message, Button, Empty, Input, Typography, Table, Dropdown, Menu, Icon, Modal, Tag, Descriptions } from 'antd'
+import React, {useRef, useState, useEffect} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
 import moment from 'moment'
 import _ from 'lodash'
-import React, {useState, useEffect} from 'react'
-import { Badge, Row, Col, Card, message, Button, Empty, Popconfirm, Typography, Table, Dropdown, Menu, Icon, Modal, Tag, Descriptions, Select } from 'antd'
+
+import Highlighter from 'react-highlight-words'
 import ModelSider from '../components/ModelSider'
 import UserLayout from '../components/UserLayout'
 import {withAuthSync} from '../utils/auth'
@@ -16,37 +18,26 @@ function ModelTrain(props) {
     return <Error statusCode={props.errorCode}/>
 
   const selectedKeys = props.route.parsedUrl.pathname
+  const searchInput = useRef(null)
   const [windowSize, setWindowSize] = useState(null)
   const [state, setState] = useState(props.train)
+  const [selected, setSelected] = useState([])
+  const [searchText, setSearchText] = useState(null)
+  const [filteredInfo, setFilteredInfo] = useState({})
   const [triggerExpand, setTriggerExpand] = useState(false)
   const [expandSelected, setExpandSelected] = useState(null)
-  const [filterState, setFilterState] = useState('all')
 
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return (() => window.addEventListener("resize", null))
+  }, [])
 
   const handleResize = () => {
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight
     })
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    
-    return (() => {
-      window.addEventListener("resize", null);
-    })
-  }, [])
-
-  const getStateByFilter = () => {
-    switch (filterState) {
-      case 'all':
-        return state
-      case 'verified':
-        return state.filter(item => item.confirm === true)
-      case 'not_verified':
-        return state.filter(item => item.confirm === false)
-    }
   }
 
   const createScriptItem = (pos, data) => {
@@ -110,82 +101,20 @@ function ModelTrain(props) {
       let elementScriptItem = document.querySelectorAll('.annotation-script-item')
       elementScriptItem.forEach(n => document.body.removeChild(n))
     })
-  }, [triggerExpand, expandSelected, filterState, windowSize, state])
+  }, [triggerExpand, expandSelected, windowSize, state])
 
-  const expandedRowRender = record => {
-    if (props.model.annotator === 'classifier') {
-      return (
-        <div style={{marginBottom: 16}}>
-          <Descriptions title="Training Information" bordered border>
-            <Descriptions.Item span={3} label="Created date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
-            <Descriptions.Item span={3} label="Status">
-              {record.confirm
-              ? <Badge color='green' text='Verified' />
-              : <Badge color='red' text='Unverified' />}
-            </Descriptions.Item>
-            {/* <Descriptions.Item span={2} label="User">{`${record.user.firstname} ${record.user.lastname}`}</Descriptions.Item> */}
-            {/* <Descriptions.Item span={1} label="Email">{record.user.email}</Descriptions.Item> */}
-            <Descriptions.Item span={3} label="Tags">
-              {record[props.model.annotator].map((item, key) => <Tag key={key} className="ant-custom" color="#108ee9" style={{marginBottom: 8}}>{item}</Tag>)}
-            </Descriptions.Item>
-            <Descriptions.Item span={3} label="Text">{record.text}</Descriptions.Item>
-          </Descriptions>
-        </div>
-      )
-    }
-
-    const labels = props.model.label.map((item, key) => ({
-      color: colorUI[key],
-      text: item
-    }))
-
-    return (
-      <div style={{marginBottom: 16}}>
-        <Descriptions title="Training Information" bordered border>
-          <Descriptions.Item span={3} label="Created date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
-          <Descriptions.Item span={3} label="Status">
-            {record.confirm
-            ? <Badge color='green' text='Verified' />
-            : <Badge color='red' text='Unverified' />}
-          </Descriptions.Item>
-          <Descriptions.Item span={3} label="Tags">
-            {labels.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}}>{item.text}</Tag>)}
-          </Descriptions.Item>
-          <Descriptions.Item span={3} label="Text">
-            <Typography.Paragraph className="annotation-script" data-source={record.id}>
-              {record.text}
-            </Typography.Paragraph>
-          </Descriptions.Item>
-        </Descriptions>
-      </div>
-    )
-  }
-
-  const tableTrain = {
-    rowKey: "id",
-    showHeader: false,
-    expandedRowRender,
-    onExpand: (expanded, record) => {
-      setTriggerExpand(expanded)
-      setExpandSelected(record)
-    }
-  }
-
-
-  const handleDecline = id => {
+  const handleRemove = ids => {
     const handleOk = async () => {
       const response = await axios({
         method: "DELETE",
-        url: `${props.modelApi}/train/${id}/decline`,
-        headers: {authorization: props.token}
+        url: `${props.modelApi}/train`,
+        headers: {authorization: props.token},
+        data: {ids: _.flattenDeep([ids])}
       })
   
       if (response.status === 200) {
-        message.success('Decline successful')
-        setState(state => state.filter(item => {
-          if (item.id === id) return false
-          return item
-        }))
+        message.success('Removed successful')
+        setState(response.data)
       }
     }
 
@@ -198,30 +127,183 @@ function ModelTrain(props) {
     })
   }
 
+  const expandedRowRender = record => {
+    if (props.model.annotator === 'classifier') {
+      return (
+        <div style={{marginBottom: 16}}>
+          <Descriptions title="Result Annotation" bordered border>
+            <Descriptions.Item span={3} label="Created date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
+            <Descriptions.Item span={3} label="Status">
+              {record.confirm
+              ? <Badge color='green' text='Verified' />
+              : <Badge color='red' text='Unverified' />}
+            </Descriptions.Item>
+            <Descriptions.Item span={3} label="Tags">
+              {record[props.model.annotator].map((item, key) => <Tag key={key} className="ant-custom" color="#108ee9" style={{marginBottom: 8}}>{item}</Tag>)}
+            </Descriptions.Item>
+            <Descriptions.Item span={3} label="Text">{record.source}</Descriptions.Item>
+          </Descriptions>
+        </div>
+      )
+    }
+
+    return (
+      <div style={{marginBottom: 16}}>
+        <Descriptions title="Result Annotation" bordered border>
+          <Descriptions.Item span={3} label="Created date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
+          <Descriptions.Item span={3} label="Status">
+            {record.confirm
+            ? <Badge color='green' text='Verified' />
+            : <Badge color='red' text='Unverified' />}
+          </Descriptions.Item>
+          <Descriptions.Item span={3} label="Text">
+            <Typography.Paragraph className="annotation-script" data-source={record.id}>
+              {record.source}
+            </Typography.Paragraph>
+          </Descriptions.Item>
+        </Descriptions>
+      </div>
+    )
+  }
+
+  const handleChange = (pagination, filters, sorter) => {
+    setFilteredInfo(filters)
+  }
+
+  const getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm)}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys, confirm)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Search
+        </Button>
+        <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          Reset
+        </Button>
+      </div>
+    ),
+    filterIcon: filtered => (
+      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: visible => {
+      if (visible) {
+        setTimeout(() => searchInput.current.select());
+      }
+    },
+    render: text => (
+      <Highlighter
+        className="table-text"
+        highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+        searchWords={[searchText]}
+        autoEscape
+        textToHighlight={text.toString()}
+      />
+    ),
+  })
+
+  const handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+  };
+
+  const handleReset = clearFilters => {
+    clearFilters();
+    setSearchText('');
+  };
+
   const columns = [
     {
-      title: 'Text',
       key: 'text',
-      filtered: true,
-      render: (text, record) => (
-        <Typography.Paragraph ellipsis={{rows: 3}}>
-          {record.text}
-        </Typography.Paragraph>
-      )
-    }, {
-      title: 'Action',
+      title: 'Source',
+      dataIndex: 'source',
+      ...getColumnSearchProps('source')
+    }, 
+    {
+      title: 'Status',
+      dataIndex: 'confirm',
+      width: 200,
+      sorter: (a, b) => a.confirm - b.confirm,
+      filters: [{ text: 'Verified', value: true }, { text: 'Unverified', value: false }],
+      filteredValue: filteredInfo.confirm || null,
+      onFilter: (value, record) => record.confirm === value,
+      render: (text, record) => text ? <Badge status="success" text="Verified" /> : <Badge status="warning" text="Unverified" />
+    },
+    {
       key: 'operation',
       width: 200,
-      align: 'right',
       render: (text, record) => {
-        if (record.confirm) {
-          return <Tag className="ant-custom" style={{fontSize: 14}} color="#27ae60">Confirmed</Tag>
-        }
-        return <Button onClick={() => handleDecline(record.id)} className="btn-danger">Remove</Button>
-      },
+        const menu = (
+          <Menu>
+            {!record.confirm && <Menu.Item key="2"><a onClick={() => handleRemove(record.id)}>Remove</a></Menu.Item>}
+          </Menu>
+        )
+
+        return (
+          <Dropdown overlay={menu} disabled={record.confirm}>
+            <Button >
+              Action <Icon type="down" />
+            </Button>
+          </Dropdown>
+        )
+      }
     }
   ]
 
+  const tableTrain = {
+    rowKey: "id",
+    columns: columns,
+    dataSource: state,
+    rowSelection: {
+      selectedRowKeys: selected,
+      onChange: selectedRowKeys => setSelected(selectedRowKeys),
+      getCheckboxProps: record => ({
+        disabled: record.confirm,
+        name: record.name
+      }),
+    },
+    expandedRowRender,
+    onExpand: (expanded, record) => {
+      setTriggerExpand(expanded)
+      setExpandSelected(record)
+    }
+  }
+
+  const ComponentCardExtra = () => {
+    const menu = (
+      <Menu>
+        <Menu.Item key="2"><a onClick={() => handleRemove(selected)}>Remove</a></Menu.Item>
+      </Menu>
+    )
+  
+    return (
+      <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <Typography style={{marginRight: 16}}>Selected: </Typography>
+        <Dropdown overlay={menu}>
+          <Button>
+            Action <Icon type="down" />
+          </Button>
+        </Dropdown>
+      </div>
+    )
+  }
 
   return (
     <UserLayout {...props}>
@@ -234,27 +316,16 @@ function ModelTrain(props) {
         <Col md={6}>
           <ModelSider
             id={props.model.id}
-            config={props.config}
+            config={props.model.config}
             current={selectedKeys}/>
         </Col>
         <Col md={18}>
           <Card 
             title="Training Data"
-            extra={
-              <Select
-                size="large"
-                defaultValue="all"
-                onChange={val => setFilterState(val)}
-                style={{ width: 150 }}
-                >
-                <Select.Option value="all">All</Select.Option>
-                <Select.Option value="verified">Verified</Select.Option>
-                <Select.Option value="not_verified">Not Verified</Select.Option>
-              </Select>
-            }
+            extra={<ComponentCardExtra/>}
             style={{minHeight: '100%'}}>
             {state.length !== 0
-            ? <Table {...tableTrain} columns={columns} dataSource={getStateByFilter()}/>
+            ? <Table {...tableTrain}/>
             : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>}
           </Card>
         </Col>
@@ -274,21 +345,14 @@ ModelTrain.getInitialProps = async ({res, apiUrl, token, query}) => {
       headers: {authorization: token}
     }).then(res => res.data)
 
-    const config = await axios({
-      method: "GET",
-      url: `${modelApi}/config`,
-      headers: {authorization: token}
-    }).then(res => res.data)
-
-    if (!config.UIAnnotation) throw {response: {status: 404}}
 
     const train = await axios({
       method: "GET",
-      url: `${modelApi}/train/me`,
+      url: `${modelApi}/train`,
       headers: {authorization: token}
     }).then(res => res.data)
 
-    return {model, config, train, modelApi}
+    return {model, train, modelApi}
   } catch (error) {
     return {errorCode: error.response.status}
   }
