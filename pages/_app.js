@@ -5,6 +5,7 @@ import routes, {Router} from '../routes'
 import nextCookie from 'next-cookies'
 import jwt from 'jsonwebtoken'
 
+
 Router.events.on('routeChangeStart', url => {
   console.log(`Loading: ${url}`)
   NProgress.start()
@@ -16,7 +17,7 @@ export default class SabinApp extends App {
   static async getInitialProps({Component, ctx}) {
     // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
     const protocol = 'http'
-    const baseUrl = process.browser ? `${protocol}://${window.location.host}`: `${protocol}://${ctx.req.hostname}`
+    const baseUrl = process.browser ? `${protocol}://${window.location.host}` : `${protocol}://${ctx.req.hostname}`
     const apiUrl = process.env.API_HOST || `${protocol}://localhost:3000`
     const route = routes.match(ctx.asPath)
     const {token} = nextCookie(ctx)
@@ -38,13 +39,14 @@ export default class SabinApp extends App {
       });
     }
   }
+
   
   render() {
     const {Component, ...rest} = this.props
 
     return (
       <Container>
-        <Component {...rest}/>
+        <Component {...rest} />
       </Container>
     )
   }

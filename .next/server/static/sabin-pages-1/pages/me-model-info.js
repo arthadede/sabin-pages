@@ -1664,7 +1664,7 @@ function ModelView(props) {
     style: {
       width: '100%'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "".concat("http://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "".concat("http://localhost:3000", "/model/").concat(props.model.id, "/train"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: 'block',
       marginBottom: 16
@@ -1674,7 +1674,7 @@ function ModelView(props) {
     style: {
       width: '100%'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "curl -i -H \"Authorization: ".concat(props.token, "\" -H \"Content-Type: application/json\" -X GET ").concat("http://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train"))))))))))));
+  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "curl -i -H \"Authorization: ".concat(props.token, "\" -H \"Content-Type: application/json\" -X GET ").concat("http://localhost:3000", "/model/").concat(props.model.id, "/train"))))))))))));
 }
 
 ModelView.getInitialProps =

@@ -742,17 +742,21 @@ function ModelAnno(props) {
     statusCode: props.errorCode
   });
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(null),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(socket_io_client__WEBPACK_IMPORTED_MODULE_9___default.a.connect("http://localhost:3000")),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState, 2),
-      source = _useState2[0],
-      setSource = _useState2[1];
+      socket = _useState2[0],
+      setSocket = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(null),
       _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState3, 2),
-      state = _useState4[0],
-      setState = _useState4[1];
+      source = _useState4[0],
+      setSource = _useState4[1];
 
-  var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_9___default.a.connect("http://api.sabin.arthadede.com");
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])([]),
+      _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState5, 2),
+      state = _useState6[0],
+      setState = _useState6[1];
+
   var selectedKeys = props.route.parsedUrl.pathname;
   var Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor";
   var Annotation = props.model.annotator === 'classifier' ? _components_Classifier__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"] : _components_Extractor__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"];
@@ -806,7 +810,6 @@ function ModelAnno(props) {
       return setSource.apply(void 0, Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(res));
     });
     return function () {
-      socket.emit('cancel', (props.model.id, source));
       socket.close();
     };
   }, []);
@@ -860,15 +863,16 @@ function () {
   var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(
   /*#__PURE__*/
   _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-    var req, apiUrl, token, query, id, model;
+    var res, apiUrl, token, query, id, model;
     return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            req = _ref.req, apiUrl = _ref.apiUrl, token = _ref.token, query = _ref.query;
+            res = _ref.res, apiUrl = _ref.apiUrl, token = _ref.token, query = _ref.query;
             id = query.id;
-            _context.prev = 2;
-            _context.next = 5;
+             false ? undefined : res.redirect("/me/model/".concat(id), 302);
+            _context.prev = 3;
+            _context.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_7___default()({
               method: "GET",
               url: "".concat(apiUrl, "/model/").concat(id),
@@ -879,25 +883,25 @@ function () {
               return res.data;
             });
 
-          case 5:
+          case 6:
             model = _context.sent;
             return _context.abrupt("return", {
               model: model
             });
 
-          case 9:
-            _context.prev = 9;
-            _context.t0 = _context["catch"](2);
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](3);
             return _context.abrupt("return", {
               errorCode: _context.t0.response.status
             });
 
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 9]]);
+    }, _callee, null, [[3, 10]]);
   }));
 
   return function (_x) {

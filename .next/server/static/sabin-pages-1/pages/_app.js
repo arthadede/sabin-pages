@@ -328,7 +328,7 @@ function (_App) {
                 // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
                 protocol = 'http';
                 baseUrl =  false ? undefined : "".concat(protocol, "://").concat(ctx.req.hostname);
-                apiUrl = "http://api.sabin.arthadede.com" || false;
+                apiUrl = "http://localhost:3000" || false;
                 route = _routes__WEBPACK_IMPORTED_MODULE_12___default.a.match(ctx.asPath);
                 _nextCookie = next_cookies__WEBPACK_IMPORTED_MODULE_13___default()(ctx), token = _nextCookie.token;
                 auth = token && jsonwebtoken__WEBPACK_IMPORTED_MODULE_14___default.a.verify(token, 'SECRET');

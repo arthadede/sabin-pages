@@ -15,12 +15,13 @@ function ModelAnno(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
+  const [socket, setSocket] = useState(io.connect(process.env.API_HOST))
   const [source, setSource] = useState(null)
   const [state, setState] = useState([])
-  const socket = io.connect(process.env.API_HOST)
   const selectedKeys = props.route.parsedUrl.pathname
   const Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor"
   const Annotation = props.model.annotator === 'classifier' ? Classifier : Extractor
+  
   const handleConfirm = () => {
     if (state.length === 0) {
       message.error("This field is empty.")
@@ -65,10 +66,8 @@ function ModelAnno(props) {
 
     socket.emit('get', props.model.id)
     socket.on('response', res => setSource(...res))
-    
-    
+
     return (() => {
-      socket.emit('cancel', (props.model.id, source))
       socket.close()
     })
   }, [])
@@ -130,6 +129,10 @@ function ModelAnno(props) {
 
 ModelAnno.getInitialProps = async ({res, apiUrl, token, query}) => {
   const id = query.id
+
+  process.browser
+  ? null 
+  : res.redirect(`/model/${id}`, 302)
 
   try {
     const model = await axios({
