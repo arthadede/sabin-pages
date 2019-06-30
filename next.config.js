@@ -4,7 +4,7 @@ const withProgressBar = require('next-progressbar')
 
 const nextConfig = {
   env: {
-    "API_HOST": process.env.NODE_ENV  !== 'production' ? "http://localhost:3000" : "http://api.sabin.arthadede.com",
+    "API_HOST": process.env.NODE_ENV  !== 'production' ? "//localhost:3000" : "https://api.sabin.arthadede.com",
     "PORT": 8000
   },
   cssModules: true,

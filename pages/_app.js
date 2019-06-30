@@ -7,7 +7,6 @@ import jwt from 'jsonwebtoken'
 
 
 Router.events.on('routeChangeStart', url => {
-  console.log(`Loading: ${url}`)
   NProgress.start()
 })
 Router.events.on('routeChangeComplete', () => NProgress.done())
@@ -15,10 +14,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 export default class SabinApp extends App {
   static async getInitialProps({Component, ctx}) {
-    // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
-    const protocol = 'http'
-    const baseUrl = process.browser ? `${protocol}://${window.location.host}` : `${protocol}://${ctx.req.hostname}`
-    const apiUrl = process.env.API_HOST || `${protocol}://localhost:3000`
+    const apiUrl = process.env.API_HOST
     const route = routes.match(ctx.asPath)
     const {token} = nextCookie(ctx)
     const auth = token && jwt.verify(token, 'SECRET')
@@ -28,13 +24,12 @@ export default class SabinApp extends App {
     ctx.token = token
     const pageProps = Component.getInitialProps && (await Component.getInitialProps(ctx))
 
-    return {...pageProps, apiUrl, route, token, baseUrl, auth}
+    return {...pageProps, apiUrl, route, token, auth}
   }
 
   componentDidMount() {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        console.log("PWA LOAD")
         navigator.serviceWorker.register('/service-worker.js');
       });
     }
