@@ -11,18 +11,20 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta charSet="utf-8" />
+          <meta name="theme-color" content="#0984e3" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+          <link rel="manifest" href="/static/manifest.json" />
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css"/>
+          <link rel="stylesheet" type="text/css" href="/static/vs2015.css"/>
+          <link rel="stylesheet" href="/static/antd.min.css"/>
+          <link rel="stylesheet/less" type="text/css" href="/static/sabin.less"/>
           <style>{`
             #__next {
               height: inherit;
             }
           `}</style>
-          <link rel="stylesheet" type="text/css" href="/static/nprogress.css"/>
-          <link rel="stylesheet" type="text/css" href="/static/vs2015.css"/>
-          <link rel="stylesheet" href="/static/antd.min.css"/>
-          <link rel="stylesheet/less" type="text/css" href="/static/sabin.less"/>
         </Head>
         <body>
           <Main />

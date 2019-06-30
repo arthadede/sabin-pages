@@ -13,21 +13,11 @@ const nextConfig = {
     importLoaders: 1,
     localIdentName: "[local]___[hash:base64:5]",
   }
-  // workboxOpts: {
-  //   runtimeCaching: [
-  //     {
-  //       urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-  //       handler: 'CacheFirst',
-  //       options: {
-  //         cacheName: 'image-cache',
-  //       }
-  //     }
-  //   ]
-  // }
 }
 
 module.exports = withProgressBar(withLess(withOffline({
   ...nextConfig,
+  generateInDevMode: true,
   generateBuildId: async () => {
     // For example get the latest git commit hash here
     return 'sabin-pages-1'

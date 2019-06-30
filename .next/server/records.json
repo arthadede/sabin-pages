@@ -3,8 +3,8 @@
     "byIdentifier": {
       "multi private-next-pages/admin-dashboard.js": 0,
       "multi private-next-pages/admin-model.js": 1,
-      "multi private-next-pages/admin-user.js": 2,
-      "multi private-next-pages/admin-source.js": 3,
+      "multi private-next-pages/admin-source.js": 2,
+      "multi private-next-pages/admin-user.js": 3,
       "multi private-next-pages/change-password.js": 4,
       "multi private-next-pages/confirm-account.js": 5,
       "multi private-next-pages/dashboard.js": 6,

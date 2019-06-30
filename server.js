@@ -49,7 +49,7 @@ nextApp.prepare().then(() => {
   app.post('/source', parsingSheet)
 
   app.get('/service-worker.js', (req, res) => {
-    const filePath = join(__dirname, 'src', '.next', '/service-worker.js');
+    const filePath = join(__dirname, '.next', '/service-worker.js');
     nextApp.serveStatic(req, res, filePath);
   })
   

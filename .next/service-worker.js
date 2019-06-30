@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "url": "/_next/static/chunks/commons.8aca9b801fa3dd6c308a.js",
-    "revision": "4a3397e3c671bb711b1f"
+    "url": "/_next/static/chunks/commons.448b3c240a1979b812ac.js",
+    "revision": "16686310390273755420"
   },
   {
     "url": "/_next/static/runtime/main-e570dc72efd003735c72.js",
@@ -13,7 +13,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_app.js",
-    "revision": "501e38d01ad31cc44df7"
+    "revision": "b8bf2ea44187b144a66a"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_error.js",
@@ -157,12 +157,20 @@ self.__precacheManifest = [
     "revision": "0d438f13945c651f15d3a2a681c9b9eb"
   },
   {
+    "url": "static/logo_192.png",
+    "revision": "d496bd7255e15e86cc89922376b3620f"
+  },
+  {
+    "url": "static/logo_512.png",
+    "revision": "c3730df66d9d6e3bf2a6bf7e1c2844f5"
+  },
+  {
     "url": "static/logo.png",
     "revision": "47c0f269382b23eb9eeacd378d14e34f"
   },
   {
     "url": "static/manifest.json",
-    "revision": "e240537a420fdc41a5a9f4212bb72c0e"
+    "revision": "42778d0fc4f6ccff44517030c89a4dc9"
   },
   {
     "url": "static/nprogress.css",

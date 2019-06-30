@@ -60,7 +60,7 @@ export default function({route, children, auth}) {
 
 
   const FooterComponent = () => (
-    <Footer style={{ textAlign: 'center' }}>SANE ©2019</Footer>
+    <Footer style={{ textAlign: 'center' }}>Sistem Anotasi Named Entity ©2019</Footer>
   )
   
   return (

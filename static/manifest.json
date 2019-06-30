@@ -1,8 +1,20 @@
 {
-  "name": "Sistem Anotasi Apps",
-  "short_name": "SAPPS",
+  "name": "Sistem Anotasi Named Entity",
+  "short_name": "SANE",
+  "icons": [
+    {
+      "src": "/static/logo_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "start_url": "/",
   "display": "fullscreen",
-  "theme_color": "#673ab7",
+  "theme_color": "#0984e3",
   "background_color": "#EEE"
 }

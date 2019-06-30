@@ -1322,7 +1322,7 @@ var Header = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Header,
       style: {
         textAlign: 'center'
       }
-    }, "SANE \xA92019");
+    }, "Sistem Anotasi Named Entity \xA92019");
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], {
