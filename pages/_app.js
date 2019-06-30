@@ -27,15 +27,6 @@ export default class SabinApp extends App {
     return {...pageProps, apiUrl, route, token, auth}
   }
 
-  componentDidMount() {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js');
-      });
-    }
-  }
-
-  
   render() {
     const {Component, ...rest} = this.props
 

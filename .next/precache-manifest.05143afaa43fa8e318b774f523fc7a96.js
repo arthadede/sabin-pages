@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static/runtime/webpack-f5e50b6b501ccea2a79b.js"
   },
   {
-    "revision": "24d9847ec1e00cb74c5c",
+    "revision": "c24495d8a3e7ce105bc3",
     "url": "static\\sabin-pages-1\\pages\\_app.js"
   },
   {
@@ -72,11 +72,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\login.js"
   },
   {
-    "revision": "5be863b38d4136707c98",
+    "revision": "07fee328867fed812993",
     "url": "static\\sabin-pages-1\\pages\\me-model-anno.js"
   },
   {
-    "revision": "5dcf84a560dcc8b5dcea",
+    "revision": "db09dffb72da0620962b",
     "url": "static\\sabin-pages-1\\pages\\me-model-info.js"
   },
   {
@@ -92,7 +92,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static\\sabin-pages-1\\pages\\me-model-train.js"
   },
   {
-    "revision": "613508edf4ff010c3334",
+    "revision": "ebdf32cfc146d782b2cc",
     "url": "static\\sabin-pages-1\\pages\\model-anno.js"
   },
   {

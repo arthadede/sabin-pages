@@ -272,7 +272,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _routes__WEBPACK_IMPORTED_MODULE_12__["Router"].events.on('routeChangeStart', function (url) {
-  console.log("Loading: ".concat(url));
   nprogress__WEBPACK_IMPORTED_MODULE_11___default.a.start();
 });
 _routes__WEBPACK_IMPORTED_MODULE_12__["Router"].events.on('routeChangeComplete', function () {
@@ -294,16 +293,6 @@ function (_App) {
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_5__["default"])(SabinApp, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          console.log("PWA LOAD");
-          navigator.serviceWorker.register('/service-worker.js');
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -318,17 +307,14 @@ function (_App) {
       var _getInitialProps = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(
       /*#__PURE__*/
       _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-        var Component, ctx, protocol, baseUrl, apiUrl, route, _nextCookie, token, auth, pageProps;
+        var Component, ctx, apiUrl, route, _nextCookie, token, auth, pageProps;
 
         return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 Component = _ref.Component, ctx = _ref.ctx;
-                // const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
-                protocol = 'http';
-                baseUrl =  false ? undefined : "".concat(protocol, "://").concat(ctx.req.hostname);
-                apiUrl = "http://api.sabin.arthadede.com" || false;
+                apiUrl = "https://api.sabin.arthadede.com";
                 route = _routes__WEBPACK_IMPORTED_MODULE_12___default.a.match(ctx.asPath);
                 _nextCookie = next_cookies__WEBPACK_IMPORTED_MODULE_13___default()(ctx), token = _nextCookie.token;
                 auth = token && jsonwebtoken__WEBPACK_IMPORTED_MODULE_14___default.a.verify(token, 'SECRET');
@@ -338,27 +324,26 @@ function (_App) {
                 _context.t0 = Component.getInitialProps;
 
                 if (!_context.t0) {
-                  _context.next = 15;
+                  _context.next = 13;
                   break;
                 }
 
-                _context.next = 14;
+                _context.next = 12;
                 return Component.getInitialProps(ctx);
 
-              case 14:
+              case 12:
                 _context.t0 = _context.sent;
 
-              case 15:
+              case 13:
                 pageProps = _context.t0;
                 return _context.abrupt("return", Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, pageProps, {
                   apiUrl: apiUrl,
                   route: route,
                   token: token,
-                  baseUrl: baseUrl,
                   auth: auth
                 }));
 
-              case 17:
+              case 15:
               case "end":
                 return _context.stop();
             }
