@@ -536,7 +536,7 @@ function ModelAnno(props) {
     statusCode: props.errorCode
   });
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(socket_io_client__WEBPACK_IMPORTED_MODULE_9___default.a.connect("http://localhost:3000")),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(socket_io_client__WEBPACK_IMPORTED_MODULE_9___default.a.connect("http://api.sabin.arthadede.com")),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState, 2),
       socket = _useState2[0],
       setSocket = _useState2[1];

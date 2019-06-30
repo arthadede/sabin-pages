@@ -21,6 +21,11 @@ nextApp.prepare().then(() => {
   app.use(cors())
   app.use(busboy())
 
+  app.use(function(req, res, next){
+    res.header('Service-Worker-Allowed', '/');
+    next();
+  });
+
   app.post('/source', parsingSheet)
 
   app.get('/service-worker.js', (req, res) => {
