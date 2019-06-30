@@ -13,7 +13,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_app.js",
-    "revision": "b8bf2ea44187b144a66a"
+    "revision": "24d9847ec1e00cb74c5c"
   },
   {
     "url": "/_next/static\\sabin-pages-1\\pages\\_error.js",

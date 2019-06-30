@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static/runtime/webpack-f5e50b6b501ccea2a79b.js"
   },
   {
-    "revision": "b8bf2ea44187b144a66a",
+    "revision": "24d9847ec1e00cb74c5c",
     "url": "static\\sabin-pages-1\\pages\\_app.js"
   },
   {

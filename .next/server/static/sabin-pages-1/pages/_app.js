@@ -295,7 +295,14 @@ function (_App) {
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_5__["default"])(SabinApp, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          console.log("PWA LOAD");
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    }
   }, {
     key: "render",
     value: function render() {
