@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Table, Tag, Dropdown, Menu, Button, Icon, Card, Input, Modal, message } from 'antd'
+import { Row, Typography, Table, Dropdown, Menu, Button, Icon, Card, Input, Modal, message } from 'antd'
 import AdminLayout from "../components/AdminLayout"
 import Head from 'next/head'
 import axios from 'axios'
@@ -47,14 +47,18 @@ function AdminSource(props) {
   }
 
   const compareObjects = (o1, o2) => {
-    var k = '';
+    var k = ''
     for(k in o1) if(o1[k] != o2[k]) return false;
     for(k in o2) if(o1[k] != o2[k]) return false;
     return true;
   }
   
   const itemExists = (haystack, needle) => {
-    for(var i=0; i<haystack.length; i++) if(compareObjects(haystack[i], needle)) return true;
+    for (var i = 0; i < haystack.length; i++) {
+      if (compareObjects(haystack[i], needle)) {
+        return true;
+      }
+    }
     return false;
   }
 
@@ -72,11 +76,22 @@ function AdminSource(props) {
   }
   
   const columns = [
-    { title: 'Text', key: 'text', dataIndex: 'text',
-      render: text => <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph> },
-    { key: 'createdAt', width: 140, align: 'center', title: 'Created date', dataIndex: 'createdAt',
-      render: text => <Typography.Text>{moment(text).fromNow()}</Typography.Text> },
-    { key: 'operation', 
+    { 
+      key: 'text', 
+      title: 'Text',
+      dataIndex: 'text',
+      render: text => <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph> 
+    },
+    { 
+      key: 'createdAt', 
+      title: 'Created date', 
+      dataIndex: 'createdAt',
+      width: 140, 
+      align: 'center', 
+      render: text => <Typography.Text>{moment(text).fromNow()}</Typography.Text>
+    },
+    { 
+      key: 'operation', 
       render: (text, record) => (
       <Dropdown overlay={
         <Menu onClick={e => handleMenuClick(e, record.id)}>
@@ -97,9 +112,7 @@ function AdminSource(props) {
         <Card 
           bordered={false}
           title="Source Data"
-          extra={
-            <Input.Search value={search} onChange={e => setSearch(e.target.value)}/>
-          }>
+          extra={<Input.Search value={search} onChange={e => setSearch(e.target.value)}/>}>
           <Table
             rowKey="id"
             columns={columns}

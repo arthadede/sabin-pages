@@ -277,6 +277,13 @@ module.exports = require("next-routes");
 
 /***/ }),
 
+/***/ "9Jkg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("fozc");
+
+/***/ }),
+
 /***/ "Bhuq":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -288,6 +295,317 @@ module.exports = __webpack_require__("/+oN");
 /***/ (function(module, exports) {
 
 module.exports = require("antd");
+
+/***/ }),
+
+/***/ "F7gn":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9Jkg");
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("dfwq");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("pLtp");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vYYK");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("zrwo");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("doui");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_highlight__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("wRN9");
+/* harmony import */ var react_highlight__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_highlight__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_9__);
+
+
+
+
+
+
+
+
+
+
+
+function PatternExtractor(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(null),
+      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState, 2),
+      windowSize = _useState2[0],
+      setWindowSize = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(null),
+      _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState3, 2),
+      selected = _useState4[0],
+      setSelected = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({}),
+      _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState5, 2),
+      onProcess = _useState6[0],
+      setOnProcess = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mouseup", handleOnKeyDown);
+    return function () {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mouseup", handleOnKeyDown);
+    };
+  }, []);
+
+  var createScriptItem = function createScriptItem(pos, data, zIndex, classname) {
+    var element = document.createElement('span');
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    element.className = "".concat(classname, " annotation-script-item annotation-script-item-mark");
+    element.style.position = 'absolute';
+    element.style.top = "".concat(pos.top + scrollTop, "px");
+    element.style.left = "".concat(pos.left + scrollLeft, "px");
+    element.style.width = "".concat(pos.width, "px");
+    element.style.height = "".concat(pos.height, "px");
+    element.style.background = data.color;
+    element.style.zIndex = zIndex;
+    document.body.appendChild(element);
+  };
+
+  var createLabelItem = function createLabelItem(pos, data, zIndex, classname) {
+    var element = document.createElement('span');
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    element.className = "".concat(classname, " annotation-script-item annotation-script-item-label");
+    element.style.position = 'absolute';
+    element.style.color = '#fff';
+    element.style.background = data.color;
+    element.style.padding = '0px 6px';
+    element.style.top = "".concat(pos.top + scrollTop - 15, "px");
+    element.style.left = "".concat(pos.left + scrollLeft, "px");
+    element.innerText = data.label;
+    element.style.zIndex = zIndex;
+    element.style.cursor = 'pointer';
+    element.addEventListener('click', function (e) {
+      return props.onChange(function (state) {
+        return state.filter(function (item) {
+          return item.startOffset !== data.startOffset && item.endOffset !== data.endOffset;
+        });
+      });
+    });
+    document.body.appendChild(element);
+  };
+
+  var handleResize = function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  };
+
+  var handleOnKeyDown = function handleOnKeyDown(e) {
+    var current = e.target.childNodes[0];
+    var el = document.getElementById("annotation-script").childNodes[0];
+    if (current === el) handleAddSource();
+  };
+
+  var recursiveDefineLabel = function recursiveDefineLabel(data, node, zIndex) {
+    lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(data, function (item) {
+      var pos, range;
+      range = document.createRange();
+      range.setStart(node, item.startOffset);
+      range.setEnd(node, item.endOffset);
+      pos = range.getClientRects();
+
+      if (item.label) {
+        createLabelItem(pos[0], item, zIndex[1]);
+
+        lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
+          return createScriptItem(n, {
+            color: "".concat(item.color, "a1")
+          }, zIndex[0], 'annotation-contianer');
+        });
+      } else lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
+        return createScriptItem(n, {
+          color: item.color
+        }, zIndex[0], 'annotation-contianer');
+      });
+
+      item.script && recursiveDefineLabel(item.script, node, zIndex);
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    var node = document.getElementById("annotation-script").childNodes[0];
+    recursiveDefineLabel(props.value, node, [5, 100]);
+    return function () {
+      var elementScriptItem = document.querySelectorAll('.annotation-script-item');
+      elementScriptItem.forEach(function (n) {
+        return document.body.removeChild(n);
+      });
+    };
+  }, [props.value, windowSize]);
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    var node = document.getElementById("annotation-script-drawer");
+
+    if (node) {
+      var pos, range;
+      var elementScript = node.childNodes[0];
+
+      var _loop = function _loop(item) {
+        if (onProcess.hasOwnProperty(item) && elementScript) {
+          range = document.createRange();
+          range.setStart(elementScript, onProcess[item].startOffset);
+          range.setEnd(elementScript, onProcess[item].endOffset);
+          pos = range.getClientRects();
+          createLabelItem(pos[0], onProcess[item], 1500, 'annotation-drawer');
+
+          lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
+            return createScriptItem(n, {
+              color: "".concat(onProcess[item].color, "a1")
+            }, 1000, 'annotation-drawer');
+          });
+        }
+      };
+
+      for (var item in onProcess) {
+        _loop(item);
+      }
+
+      return function () {
+        var elementScriptItem = document.querySelectorAll('.annotation-drawer.annotation-script-item');
+        elementScriptItem.forEach(function (n) {
+          return document.body.removeChild(n);
+        });
+      };
+    }
+  }, [onProcess, windowSize]);
+
+  var handleAddSource = function handleAddSource() {
+    if (window.getSelection().anchorNode !== null) {
+      if (window.getSelection().anchorNode.wholeText === props.dataSource) {
+        var pos = window.getSelection().getRangeAt(0);
+        setSelected({
+          startOffset: pos.startOffset,
+          endOffset: pos.endOffset - pos.startOffset + pos.startOffset,
+          color: '#1e90ff3b',
+          text: props.dataSource.substr(pos.startOffset, pos.endOffset - pos.startOffset)
+        });
+        window.getSelection().removeAllRanges();
+      } else {
+        antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Element invalid.");
+      }
+    } else {
+      antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Please mark your text.");
+    }
+  };
+
+  var handleAddScript = function handleAddScript(label) {
+    var current = document.getElementById("annotation-script-drawer").childNodes[0].wholeText;
+
+    if (window.getSelection().anchorNode !== null) {
+      if (window.getSelection().anchorNode.wholeText === current) {
+        console.log(window.getSelection().toString());
+        var pos = window.getSelection().getRangeAt(0);
+        setOnProcess(function (state) {
+          return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, state, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, label.name, {
+            startOffset: pos.startOffset,
+            endOffset: pos.endOffset,
+            color: label.color,
+            label: label.name,
+            text: current.substr(pos.startOffset, pos.endOffset)
+          }));
+        });
+        window.getSelection().removeAllRanges();
+      } else {
+        antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Element invalid.");
+      }
+    } else {
+      antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Please mark your text.");
+    }
+  };
+
+  var handleSubmitDrawer = function handleSubmitDrawer() {
+    if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(onProcess).length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Label is not defined.");
+    }
+
+    var convert = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.values(onProcess);
+
+    var script = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.map(convert, function (item) {
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, item, {
+        startOffset: selected.startOffset + item.startOffset,
+        endOffset: selected.startOffset + item.endOffset
+      });
+    });
+
+    var transform = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, selected, {
+      script: script
+    });
+
+    props.onChange(function (state) {
+      return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(state), [transform]);
+    });
+    setSelected(null);
+    setOnProcess({});
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    style: {
+      minHeight: 500
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Paragraph, {
+    id: "annotation-script"
+  }, props.dataSource)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Drawer"], {
+    title: "Pattern Extractor",
+    width: 700,
+    placement: "right",
+    closable: false,
+    onClose: function onClose() {
+      setSelected(null);
+      setOnProcess({});
+    },
+    visible: selected !== null
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+    md: 24
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+    style: {
+      marginBottom: 16,
+      display: 'block'
+    },
+    strong: true
+  }, "Select text and press the label"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    id: "annotation-script-drawer"
+  }, selected && selected.text, !selected && 'SANE TEXT'), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    className: "annotation-script-label"
+  }, props.dataLabel.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+      key: index,
+      className: "ant-custom ant-tag",
+      style: {
+        background: item.color,
+        color: '#fff'
+      },
+      onClick: function onClick() {
+        return handleAddScript(item);
+      }
+    }, item.name);
+  }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+    md: 24
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Title, {
+    level: 4
+  }, "Result:"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    style: {
+      height: 300
+    }
+  }, _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(onProcess, null, 2))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+    md: 24
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+    type: "primary",
+    block: true,
+    onClick: handleSubmitDrawer,
+    disabled: lodash__WEBPACK_IMPORTED_MODULE_9___default.a.keys(onProcess).length === 0
+  }, "Submit")))));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (PatternExtractor);
 
 /***/ }),
 
@@ -510,11 +828,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("pI2v");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_ModelSider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("I6wF");
-/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("y6HG");
-/* harmony import */ var _components_Classifier__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("kpJY");
-/* harmony import */ var _components_Extractor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("gJvo");
-/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("SMlj");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("SMlj");
+/* harmony import */ var _components_ModelSider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("I6wF");
+/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("y6HG");
+/* harmony import */ var _components_Classifier__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("kpJY");
+/* harmony import */ var _components_Extractor__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("gJvo");
+/* harmony import */ var _components_PatternExtractor__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("F7gn");
+
 
 
 
@@ -552,8 +872,8 @@ function ModelAnno(props) {
       setState = _useState6[1];
 
   var selectedKeys = props.route.parsedUrl.pathname;
-  var Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor";
-  var Annotation = props.model.annotator === 'classifier' ? _components_Classifier__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"] : _components_Extractor__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"];
+  var Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a word";
+  var Annotation = props.model.annotator === 'classifier' ? _components_Classifier__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"] : props.model.annotator === 'extractor' ? _components_Extractor__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"] : _components_PatternExtractor__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"];
 
   var handleConfirm = function handleConfirm() {
     if (state.length === 0) {
@@ -569,13 +889,13 @@ function ModelAnno(props) {
         source: source
       });
       socket.on('post', function (res) {
-        antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Traning created successfully.");
         socket.emit('get', props.model.id);
         socket.on('response', function (res) {
           return setSource.apply(void 0, Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(res));
         });
         setState([]);
       });
+      antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Traning created successfully.");
     };
 
     antd__WEBPACK_IMPORTED_MODULE_4__["Modal"].confirm({
@@ -636,12 +956,12 @@ function ModelAnno(props) {
     }, "Confirm")));
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+  return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Row"], {
     type: "flex",
     gutter: 32
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("title", null, "Model Annotation - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Col"], {
     md: 6
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_ModelSider__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_ModelSider__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
     id: props.model.id,
     config: props.model.config,
     current: selectedKeys
@@ -704,7 +1024,7 @@ function () {
   };
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_14__[/* withAuthSync */ "c"])(ModelAnno));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_10__[/* withAuthSync */ "c"])(ModelAnno));
 
 /***/ }),
 
@@ -1196,6 +1516,13 @@ module.exports = __webpack_require__("/a9y")
 
 /***/ }),
 
+/***/ "fozc":
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/json/stringify");
+
+/***/ }),
+
 /***/ "gHn/":
 /***/ (function(module, exports) {
 
@@ -1208,25 +1535,22 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 
 "use strict";
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("dfwq");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("zrwo");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("doui");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YLtl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("doui");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
-
-var colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'];
 
 function Extractor(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(null),
-      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_useState, 2),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(null),
+      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(_useState, 2),
       windowSize = _useState2[0],
       setWindowSize = _useState2[1];
 
@@ -1276,13 +1600,13 @@ function Extractor(props) {
     });
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
     window.addEventListener("resize", handleResize);
     return function () {
       window.addEventListener("resize", null);
     };
   }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
     var elementScript = document.getElementById("annotation-script").childNodes[0];
     props.value.forEach(function (item) {
       var pos, range, color;
@@ -1290,15 +1614,10 @@ function Extractor(props) {
       range.setStart(elementScript, item.startOffset);
       range.setEnd(elementScript, item.endOffset);
       pos = range.getClientRects();
-      color = colorUI[lodash__WEBPACK_IMPORTED_MODULE_3___default.a.indexOf(props.dataLabel, item.label)];
-      createLabelItem(pos[0], Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, item, {
-        color: color
-      }));
+      createLabelItem(pos[0], item);
 
-      lodash__WEBPACK_IMPORTED_MODULE_3___default.a.forEach(pos, function (n) {
-        createScriptItem(n, {
-          color: color
-        });
+      lodash__WEBPACK_IMPORTED_MODULE_2___default.a.forEach(pos, function (n) {
+        createScriptItem(n, item);
       });
     });
     return function () {
@@ -1317,44 +1636,45 @@ function Extractor(props) {
           return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(state), [{
             startOffset: pos.startOffset,
             endOffset: pos.endOffset,
-            label: item
+            color: item.color,
+            label: item.name
           }]);
         });
         window.getSelection().removeAllRanges();
       } else {
-        antd__WEBPACK_IMPORTED_MODULE_4__["message"].warning("Text yang ditandai tidak valid.");
+        antd__WEBPACK_IMPORTED_MODULE_3__["message"].warning("Text yang ditandai tidak valid.");
       }
     } else {
-      antd__WEBPACK_IMPORTED_MODULE_4__["message"].warning("Tidak ada yang ditandai.");
+      antd__WEBPACK_IMPORTED_MODULE_3__["message"].warning("Tidak ada yang ditandai.");
     }
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     style: {
       minHeight: 500
     }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Affix"], {
+  }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Affix"], {
     offsetTop: 10
   }, props.dataLabel.map(function (item, index) {
-    return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-      key: item,
+    return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      key: index,
       className: "ant-custom ant-tag",
       style: {
         marginBottom: 8,
-        background: colorUI[index],
-        border: colorUI[index],
+        background: item.color,
+        border: item.color,
         color: '#fff',
         cursor: 'pointer'
       },
       onClick: function onClick() {
         return handleAddSource(item);
       }
-    }, item);
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
+    }, item.name);
+  }))), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
     id: "annotation-script"
   }, props.dataSource)));
 }
@@ -1410,30 +1730,30 @@ function _extends() {
 
 "use strict";
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("dfwq");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("YLtl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("zrwo");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
-var colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'];
+
 
 function Classifier(props) {
   var dataLabel = props.dataLabel.map(function (item) {
-    return {
+    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, item, {
       selected: props.value.find(function (n) {
-        return n === item;
-      }) ? true : false,
-      text: item
-    };
+        return n === item.name;
+      }) ? true : false
+    });
   });
 
   var handleSet = function handleSet(text) {
-    if (lodash__WEBPACK_IMPORTED_MODULE_1___default.a.includes(props.value, text)) {
+    if (lodash__WEBPACK_IMPORTED_MODULE_2___default.a.includes(props.value, text)) {
       props.onChange(function (state) {
         return props.value.filter(function (item) {
           return item !== text;
@@ -1446,35 +1766,35 @@ function Classifier(props) {
     }
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     style: {
       minHeight: 500,
       display: 'flex',
       flexDirection: 'column'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Text, {
     type: "secondary",
     style: {
       marginRight: 16
     }
   }, "Tags: "), dataLabel.map(function (item, index) {
-    return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tag"], {
-      key: item.text,
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Tag"], {
+      key: index,
       className: "ant-custom",
-      color: item.selected ? colorUI[index] : 'blue',
+      color: item.selected && item.color,
       style: {
         marginBottom: 8,
         cursor: 'pointer'
       },
       onClick: function onClick() {
-        return handleSet(item.text);
+        return handleSet(item.name);
       }
-    }, item.text);
-  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
+    }, item.name);
+  })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
     id: "annotation-script"
   }, props.dataSource)));
 }
@@ -1661,6 +1981,13 @@ module.exports = require("js-cookie");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/symbol");
+
+/***/ }),
+
+/***/ "wRN9":
+/***/ (function(module, exports) {
+
+module.exports = require("react-highlight");
 
 /***/ }),
 

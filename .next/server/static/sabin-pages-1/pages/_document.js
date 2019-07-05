@@ -391,7 +391,7 @@ function (_Document) {
         rel: "stylesheet/less",
         type: "text/css",
         href: "/static/sabin.less"
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("style", null, "\n            #__next {\n              height: inherit;\n            }\n          ")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("body", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("script", {
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("style", null, "#__next { height: inherit; }")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("body", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], null), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("script", {
         src: "//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"
       })));
     }

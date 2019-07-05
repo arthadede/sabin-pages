@@ -1130,6 +1130,8 @@ function ModalAddSource(props) {
     })["catch"](function () {
       return external_antd_["message"].error("Something wrong.");
     })["finally"](function () {
+      setState(null);
+      setSelected([]);
       setLoading(false);
       setLoadingText("");
     });
@@ -1232,7 +1234,7 @@ function ModalAddSource(props) {
     centered: true,
     width: "auto",
     visible: props.visible,
-    closable: state,
+    closable: state !== null,
     maskClosable: state === null,
     onCancel: function onCancel() {
       setState(null);
@@ -1270,7 +1272,6 @@ function ModelSource(props) {
     statusCode: props.errorCode
   });
   var selectedKeys = props.route.parsedUrl.pathname;
-  var searchInput = Object(external_react_["useRef"])(null);
 
   var _useState = Object(external_react_["useState"])(props.source.json),
       _useState2 = Object(slicedToArray["a" /* default */])(_useState, 2),
@@ -1282,15 +1283,10 @@ function ModelSource(props) {
       selected = _useState4[0],
       setSelected = _useState4[1];
 
-  var _useState5 = Object(external_react_["useState"])(null),
+  var _useState5 = Object(external_react_["useState"])(false),
       _useState6 = Object(slicedToArray["a" /* default */])(_useState5, 2),
-      searchText = _useState6[0],
-      setSearchText = _useState6[1];
-
-  var _useState7 = Object(external_react_["useState"])(false),
-      _useState8 = Object(slicedToArray["a" /* default */])(_useState7, 2),
-      modalVisible = _useState8[0],
-      setModalVisible = _useState8[1];
+      modalVisible = _useState6[0],
+      setModalVisible = _useState6[1];
 
   var selectedAll = state.length === selected.length && state.length !== 0;
 

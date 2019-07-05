@@ -1,6 +1,8 @@
 import { Row, Col, Avatar, Card, Form, Input, Upload, Button, Radio, Tag, Icon, message } from "antd";
 import Head from 'next/head'
 import axios from 'axios'
+import _ from 'lodash'
+import randomColor from 'randomcolor'
 import React, {useRef, useState, useEffect} from 'react'
 import {Router} from '../routes'
 import UserLayout from "../components/UserLayout";
@@ -51,18 +53,31 @@ function ModelCreate(props) {
   const handleAddLabel = async () => {
     const label = getFieldValue('label')
     setFieldsValue({
-      label: [...label, inputValue]
+      label: [
+        ...label, 
+        {
+          name: inputValue,
+          color: randomColor({
+            luminosity: 'dark',
+            hue: 'blue'
+          })
+        }]
     })
+      
     await setInputValue(null)
-    // await setInputVisible(false)
     await labelRef.current && labelRef.current.focus()
   }
 
   const handleTabLabel = e => {
     const keyCode = e.which || e.keyCode
 
-    if (keyCode === 9) { 
-      e.preventDefault(); 
+    if (keyCode === 9) {
+      e.preventDefault();
+      if (!inputValue) {
+        setInputVisible(false)
+        return
+      }
+      
       handleAddLabel()
     }
 
@@ -185,7 +200,7 @@ function ModelCreate(props) {
                   <Upload
                     accept=".png,image/png"
                     name="avatar"
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    action="/source"
                     listType="picture-card"
                     className="avatar-uploader"
                     showUploadList={false}
@@ -213,7 +228,20 @@ function ModelCreate(props) {
                     ],
                   })(<Input.TextArea rows={4} />)}
                 </Form.Item>
-                <Form.Item label="Labels" extra="Press tab or enter for new input label.">
+                <Form.Item label="Annotator">
+                  {getFieldDecorator('annotator', {
+                    rules: [
+                      {required: true, message: 'This field is required.'},
+                    ],
+                  })(
+                    <Radio.Group buttonStyle="solid">
+                      <RadioButton value="classifier">Classifier</RadioButton>
+                      <RadioButton value="extractor">Extractor</RadioButton>
+                      <RadioButton value="pattern-extractor">Pattern Extractor</RadioButton>
+                    </Radio.Group>,
+                  )}
+                </Form.Item>
+                <Form.Item label="Labels" extra='Press tab or enter for new input label.'>
                   {getFieldDecorator('label', {
                     initialValue: [],
                     rules: [
@@ -221,17 +249,18 @@ function ModelCreate(props) {
                     ]
                   })(
                     <>
-                      {getFieldValue('label').map((item, i) => 
-                        <Tag key={i}
+                      {getFieldValue('label').map((item, key) => (
+                        <Tag key={key}
                           className="ant-custom"
-                          color="#108ee9"
-                          onClose={() => handleOnCloseLabel(i)} 
+                          color={item.color}
+                          onClose={() => handleOnCloseLabel(key)}
                           closable>
-                          {item}
-                        </Tag>)}
+                            {item.name}
+                          </Tag>
+                      ))}
                     </>
                   )}
-                  {inputVisible && 
+                  {inputVisible && (
                     <div 
                       style={{display: 'inline-block'}}
                       ref={labelWrapper}>
@@ -243,8 +272,8 @@ function ModelCreate(props) {
                       onPressEnter={handleAddLabel}
                       onKeyDown={handleTabLabel}
                       />
-                    </div>}
-                  {!inputVisible && 
+                    </div>)}
+                  {!inputVisible && (
                     <button
                       ref={labelRef}
                       className="ant-tag ant-custom"
@@ -252,20 +281,8 @@ function ModelCreate(props) {
                       onClick={handleInputVisible}
                       onKeyPress={handleInputVisible}>
                       New Label
-                    </button>}
-                </Form.Item>
-                <Form.Item label="Annotator">
-                  {getFieldDecorator('annotator', {
-                    rules: [
-                      {required: true, message: 'This field is required.'}
-                    ],
-                  })(
-                    <Radio.Group buttonStyle="solid">
-                      <RadioButton value="classifier">Classifier</RadioButton>
-                      <RadioButton value="extractor">Extractor</RadioButton>
-                    </Radio.Group>,
-                  )}
-                </Form.Item>
+                    </button>)}
+                  </Form.Item>
                 <Form.Item label="Type">
                   {getFieldDecorator('isPrivate', {
                     rules: [

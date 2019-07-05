@@ -5,12 +5,12 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import io from 'socket.io-client'
 
-
 import {withAuthSync} from '../utils/auth'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
 import Classifier from '../components/Classifier'
 import Extractor from '../components/Extractor'
+import PatternExtractor from '../components/PatternExtractor'
 
 
 function ModelAnno(props) {
@@ -21,8 +21,8 @@ function ModelAnno(props) {
   const [source, setSource] = useState(null)
   const [state, setState] = useState([])
   const selectedKeys = props.route.parsedUrl.pathname
-  const Title = props.model.annotator === 'classifier' ? "Text Classification" : "Text Extractor"
-  const Annotation = props.model.annotator === 'classifier' ? Classifier : Extractor
+  const Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a word"
+  const Annotation = props.model.annotator === 'classifier' ? Classifier  :  props.model.annotator === 'extractor' ? Extractor : PatternExtractor
 
   const handleConfirm = () => {
     if (state.length === 0) {
@@ -39,11 +39,12 @@ function ModelAnno(props) {
       })
 
       socket.on('post', res => {
-        message.success("Traning created successfully.")
         socket.emit('get', props.model.id)
         socket.on('response', res => setSource(...res))
         setState([])
       })
+      
+      message.success("Traning created successfully.")
     }
 
     Modal.confirm({

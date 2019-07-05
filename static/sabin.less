@@ -102,7 +102,9 @@
 
 .pl-0 .ant-list-items { padding-left: 0}
 
-#annotation-script, .annotation-script {
+#annotation-script, 
+#annotation-script-drawer,
+.annotation-script {
   z-index: 10;
   position: relative;
   overflow-wrap: break-word;
@@ -322,4 +324,118 @@
 .box-code {
   padding: 16px;
   width: 100%;
+}
+
+.label-control {
+  display: flex;
+  flex-direction: row;
+
+  &>.labels-recursive:first-child {
+    display: flex;
+    flex-direction: column;
+  
+    &>.label-root:not(:first-child),
+    &>.label-root:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.label-control > .labels-recursive:first-child {
+  display: flex;
+  flex-direction: column;
+  /* align-items: stretch; */
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.label-root-tree {
+  display: flex;
+  flex-direction: column!important;
+  align-items: stretch;
+  width: 100%;
+}
+
+.label-root-tree {
+  &>.label-root-children {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+
+    &>.labels-recursive {
+      
+      &>.label-root {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.label-root {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 4px;
+  margin-right: 8px;
+  background: #1e90ff;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  
+  .labels-recursive {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.label-root-title {
+  line-height: 3;
+  color: #fff;
+  padding: 0px 16px;
+  margin-bottom: 0px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+}
+
+.label-root-children {
+  padding: 8px 16px;
+}
+
+.label-root-draggable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.label-root-action {
+  width: 100%;
+  background: #fff !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tag-inline {
+  display: inline-block;
+}
+
+.selected {
+  border: 1px dashed #d9d9d9;
+}
+
+.hide {
+  z-index: -1!important;
+}
+
+#annotation-script-drawer {
+  margin-bottom: 30px;
+  display: block;
+}
+.annotation-script-label {
+  margin-bottom: 30px;
+
 }

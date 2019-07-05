@@ -7,6 +7,7 @@ import React, {useRef, useState} from 'react'
 import _ from 'lodash'
 import Highlighter from 'react-highlight-words'
 import AdminLayout from "../components/AdminLayout"
+import sort from 'js-flock/sort'
 
 function AdminModel(props) {
   const searchInput = useRef(null)
@@ -147,17 +148,13 @@ function AdminModel(props) {
       title: 'Name', 
       dataIndex: 'name',
       key: 'name',
-      sorter: (a, b) => a.name - b.name,
-      sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
       ...getColumnSearchProps('name')
     },
     { 
       title: 'Author', 
       dataIndex: 'author', 
       key: 'author', 
-      width: 200, 
-      sorter: (a, b) => a.author - b.author,
-      sortOrder: sortedInfo.columnKey === 'author' && sortedInfo.order
+      width: 200,
     },
     { 
       title: 'Type', 
@@ -211,11 +208,11 @@ function AdminModel(props) {
         </Descriptions.Item>
         <Descriptions.Item span={3} label="Labels">
           {record.label.map((item, key) => (
-            <Tag key={key} className="ant-custom" color="#1e90ff">{item}</Tag>
+            <Tag key={key} className="ant-custom" color={item.color}>{item.name}</Tag>
           ))}
         </Descriptions.Item>
-        <Descriptions.Item label="Type">{record.isPrivate ? 'PRIVATE' : 'PUBLIC'}</Descriptions.Item>
-        <Descriptions.Item label="Annotator">{record.annotator.toUpperCase()}</Descriptions.Item>
+        <Descriptions.Item label="Type">{record.isPrivate ? 'Private' : 'Public'}</Descriptions.Item>
+        <Descriptions.Item label="Annotator">{_.capitalize(record.annotator)}</Descriptions.Item>
         <Descriptions.Item label="Created Date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
         <Descriptions.Item span={3} label="Status">
           <Badge status={record.isDeleted ? 'error' : 'success'} text={record.isDeleted ? 'Not Active' : 'Active'} />

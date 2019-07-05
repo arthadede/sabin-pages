@@ -202,6 +202,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("1lYi");
 /* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_highlight_words__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _components_AdminLayout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("hJmc");
+/* harmony import */ var js_flock_sort__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("N6Po");
+/* harmony import */ var js_flock_sort__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(js_flock_sort__WEBPACK_IMPORTED_MODULE_13__);
+
 
 
 
@@ -466,20 +469,12 @@ function AdminModel(props) {
   var columns = [Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({
     title: 'Name',
     dataIndex: 'name',
-    key: 'name',
-    sorter: function sorter(a, b) {
-      return a.name - b.name;
-    },
-    sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order
+    key: 'name'
   }, getColumnSearchProps('name')), {
     title: 'Author',
     dataIndex: 'author',
     key: 'author',
-    width: 200,
-    sorter: function sorter(a, b) {
-      return a.author - b.author;
-    },
-    sortOrder: sortedInfo.columnKey === 'author' && sortedInfo.order
+    width: 200
   }, {
     title: 'Type',
     dataIndex: 'isPrivate',
@@ -555,13 +550,13 @@ function AdminModel(props) {
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Tag"], {
         key: key,
         className: "ant-custom",
-        color: "#1e90ff"
-      }, item);
+        color: item.color
+      }, item.name);
     })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       label: "Type"
-    }, record.isPrivate ? 'PRIVATE' : 'PUBLIC'), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+    }, record.isPrivate ? 'Private' : 'Public'), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       label: "Annotator"
-    }, record.annotator.toUpperCase()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+    }, lodash__WEBPACK_IMPORTED_MODULE_10___default.a.capitalize(record.annotator)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       label: "Created Date"
     }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.createdAt).fromNow()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       span: 3,
@@ -729,6 +724,13 @@ function _possibleConstructorReturn(self, call) {
 
   return _assertThisInitialized(self);
 }
+
+/***/ }),
+
+/***/ "N6Po":
+/***/ (function(module, exports) {
+
+module.exports = require("js-flock/sort");
 
 /***/ }),
 

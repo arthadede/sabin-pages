@@ -15,16 +15,10 @@ const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const handle = routes.getRequestHandler(nextApp)
 
-
 nextApp.prepare().then(() => {
-  app.use(compression())
   app.use(cors())
+  app.use(compression())
   app.use(busboy())
-
-  app.use(function(req, res, next){
-    res.header('Service-Worker-Allowed', '/');
-    next();
-  });
 
   app.post('/source', parsingSheet)
 

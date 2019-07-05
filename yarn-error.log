@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add next-css
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add randomColor
 
 PATH: 
   D:\DevTools\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\BIN\INTEL64;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\WINDOWS\SYSTEM32\OPENSSH\;C:\PROGRAM FILES\GIT\CMD;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\XAMPP\PHP;C:\PROGRAMDATA\COMPOSERSETUP\BIN;C:\PROGRAM FILES\PUTTY\;C:\METASPLOIT-FRAMEWORK\BIN\;C:\PROGRAMDATA\CHOCOLATEY\BIN;C:\PYTHON27;C:\PROGRAM FILES\JAVA\JDK1.8.0_201\BIN;C:\PROGRAM FILES (X86)\YARN\BIN\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\nodejs\;C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\MyDay\.windows-build-tools\python27\;C:\Users\MyDay\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Users\MyDay\AppData\Roaming\npm\node_modules\windows-build-tools\node_modules\.bin;C:\Users\MyDay\AppData\Roaming\npm\node_modules\.bin;D:\DevTools\cmder\bin;D:\DevTools\cmder\vendor\conemu-maximus5\ConEmu\Scripts;D:\DevTools\cmder\vendor\conemu-maximus5;D:\DevTools\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\BIN\INTEL64;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\Windows\SYSTEM32\OPENSSH\;C:\PROGRAM FILES\GIT\CMD;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\XAMPP\PHP;C:\PROGRAMDATA\COMPOSERSETUP\BIN;C:\PROGRAM FILES\PUTTY\;C:\METASPLOIT-FRAMEWORK\BIN\;C:\PROGRAMDATA\CHOCOLATEY\BIN;C:\PYTHON27;C:\PROGRAM FILES\JAVA\JDK1.8.0_201\BIN;C:\PROGRAM FILES (X86)\YARN\BIN\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files\nodejs\;C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp;C:\Users\MyDay\AppData\Roaming\npm;C:\Program Files\Git\mingw64;C:\Program Files\Git\usr\bin;D:\DevTools\cmder;C:\Users\MyDay\AppData\Local\Programs\Microsoft VS Code\bin;D:\DevTools\mongodb\bin;C:\Users\MyDay\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Java\jdk1.8.0_201\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/next-css: Not found
+  Error: https://registry.yarnpkg.com/randomColor: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65364:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129397:22)
       at Request.emit (events.js:197:13)
@@ -31,7 +31,7 @@ npm manifest:
     "name": "sabin-pages",
     "version": "1.0.0",
     "scripts": {
-      "dev": "node server.js",
+      "dev": "nodemon -w server.js server.js",
       "build": "rm -rf .next && next build",
       "start": "cross-env NODE_ENV=production node server.js"
     },
@@ -41,6 +41,7 @@ npm manifest:
       "axios": "^0.18.0",
       "chart.js": "^2.8.0",
       "compression": "^1.7.4",
+      "connect-busboy": "^0.0.2",
       "cors": "^2.8.5",
       "dotenv": "^8.0.0",
       "express": "^4.14.0",
@@ -57,10 +58,10 @@ npm manifest:
       "react": "^16.8.6",
       "react-chartjs-2": "^2.7.6",
       "react-dom": "^16.8.6",
+      "react-highlight": "^0.12.0",
+      "react-highlight-words": "^0.16.0",
       "socket.io": "^2.2.0",
       "socket.io-client": "^2.2.0",
-      "webpack": "^4.35.0",
-      "workbox-webpack-plugin": "^4.3.1",
       "xlsx": "^0.14.3"
     },
     "devDependencies": {
@@ -1803,6 +1804,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
     integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
   
+  busboy@*:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/busboy/-/busboy-0.3.1.tgz#170899274c5bf38aae27d5c62b71268cd585fd1b"
+    integrity sha512-y7tTxhGKXcyBxRKAni+awqx8uqaJKrSFSNFSeRG5CsWNdmy2BIK+6VGWEW7TZnIO/533mtMEA4rOevQV815YJw==
+    dependencies:
+      dicer "0.3.0"
+  
   bytes@3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -2219,6 +2227,13 @@ Lockfile:
       unique-string "^1.0.0"
       write-file-atomic "^2.0.0"
       xdg-basedir "^3.0.0"
+  
+  connect-busboy@^0.0.2:
+    version "0.0.2"
+    resolved "https://registry.yarnpkg.com/connect-busboy/-/connect-busboy-0.0.2.tgz#ac5c9c96672171885e576c66b2bfd95d3bb11097"
+    integrity sha1-rFyclmchcYheV2xmsr/ZXTuxEJc=
+    dependencies:
+      busboy "*"
   
   consola@^1.4.3:
     version "1.4.5"
@@ -2662,6 +2677,13 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
     integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  
+  dicer@0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.3.0.tgz#eacd98b3bfbf92e8ab5c2fdb71aaac44bb06b872"
+    integrity sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==
+    dependencies:
+      streamsearch "0.1.2"
   
   diffie-hellman@^5.0.0:
     version "5.0.3"
@@ -3529,6 +3551,16 @@ Lockfile:
     dependencies:
       inherits "^2.0.3"
       minimalistic-assert "^1.0.1"
+  
+  highlight-words-core@^1.2.0:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
+    integrity sha512-BXUKIkUuh6cmmxzi5OIbUJxrG8OAk2MqoL1DtO3Wo9D2faJg2ph5ntyuQeLqaHJmzER6H5tllCDA9ZnNe9BVGg==
+  
+  highlight.js@^9.11.0:
+    version "9.15.8"
+    resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.8.tgz#f344fda123f36f1a65490e932cf90569e4999971"
+    integrity sha512-RrapkKQWwE+wKdF73VsOa2RQdIoO3mxwJ4P8mhbI6KYJUraUHRKM5w5zQQKXNk0xNL4UVRdulV9SBJcmzJNzVA==
   
   hmac-drbg@^1.0.0:
     version "1.0.1"
@@ -4430,6 +4462,11 @@ Lockfile:
     version "0.3.0"
     resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
     integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
+  
+  memoize-one@^4.0.0:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
+    integrity sha512-2GApq0yI/b22J2j9rhbrAlsHb0Qcz+7yWxeLG8h+95sl1XPUgeLimQSOdur4Vw7cUhrBHwaUZxWFZueojqNRzA==
   
   memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
     version "0.4.1"
@@ -6095,6 +6132,22 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
     integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
   
+  react-highlight-words@^0.16.0:
+    version "0.16.0"
+    resolved "https://registry.yarnpkg.com/react-highlight-words/-/react-highlight-words-0.16.0.tgz#4b4b9824e3d2b98789d3e3b3aedb5e961ae1b7cf"
+    integrity sha512-q34TwCSJOL+5pVDv6LUj3amaoyXdNDwd7zRqVAvceOrO9g1haWLAglK6WkGLMNUa3PFN8EgGedLg/k8Gpndxqg==
+    dependencies:
+      highlight-words-core "^1.2.0"
+      memoize-one "^4.0.0"
+      prop-types "^15.5.8"
+  
+  react-highlight@^0.12.0:
+    version "0.12.0"
+    resolved "https://registry.yarnpkg.com/react-highlight/-/react-highlight-0.12.0.tgz#34de986a0bfdf228904d0c269b69538d95b35802"
+    integrity sha512-j04EWbYOFM0PryhF5Vvl0FDa/dD3M6q0Sl+nFN9kTvWQ9hFkfISNNs85+ssL4TSkDM+4pQTpMdxlDRi8yfIxjw==
+    dependencies:
+      highlight.js "^9.11.0"
+  
   react-is@16.8.6, react-is@^16.7.0, react-is@^16.8.1:
     version "16.8.6"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
@@ -6844,6 +6897,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
     integrity sha1-1cdSgl5TZ+eG944Y5EXqIjoVWVI=
   
+  streamsearch@0.1.2:
+    version "0.1.2"
+    resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+    integrity sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo=
+  
   string-convert@^0.2.0:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/string-convert/-/string-convert-0.2.1.tgz#6982cc3049fbb4cd85f8b24568b9d9bf39eeff97"
@@ -7494,7 +7552,7 @@ Lockfile:
       watchpack "^1.5.0"
       webpack-sources "^1.3.0"
   
-  webpack@^4.19.1, webpack@^4.35.0:
+  webpack@^4.19.1:
     version "4.35.0"
     resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.35.0.tgz#ad3f0f8190876328806ccb7a36f3ce6e764b8378"
     integrity sha512-M5hL3qpVvtr8d4YaJANbAQBc4uT01G33eDpl/psRTBCfjxFTihdhin1NtAKB1ruDwzeVdcsHHV3NX+QsAgOosw==

@@ -177,7 +177,7 @@ function ConfirmEmail(props) {
     }
   }, external_react_default.a.createElement(external_antd_["Card"].Meta, {
     title: "Check your email!",
-    description: external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Typography"].Paragraph, null, "We've emailed a special link to ", external_react_default.a.createElement("b", null, props.email), ". Click the link to confirm your address and get started."), external_react_default.a.createElement("a", {
+    description: external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(external_antd_["Typography"].Paragraph, null, "We've emailed a special link to", external_react_default.a.createElement("b", null, props.email), ". Click the link to confirm your address and get started."), external_react_default.a.createElement("a", {
       onClick: function onClick() {
         return routes["Router"].pushRoute('/');
       }

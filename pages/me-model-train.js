@@ -1,17 +1,16 @@
-import axios from 'axios'
-import moment from 'moment'
+import { Badge, Row, Col, Card, message, Button, Empty, Input, Typography, Table, Dropdown, Menu, Icon, Modal, Tag, Descriptions } from 'antd'
+import React, {useRef, useState, useEffect} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
+import axios from 'axios'
+import moment from 'moment'
 import _ from 'lodash'
-import React, {useRef, useState, useEffect} from 'react'
-import { Badge, Row, Col, Card, message, Button, Empty, Input, Typography, Table, Dropdown, Menu, Icon, Modal, Tag, Descriptions } from 'antd'
+
 import Highlighter from 'react-highlight-words'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
 import {withAuthSync} from '../utils/auth'
 
-
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
 
 function ModelTrain(props) {
   if (props.errorCode) 
@@ -49,7 +48,7 @@ function ModelTrain(props) {
     element.style.left = `${pos.left + scrollLeft}px`
     element.style.width = `${pos.width}px`
     element.style.height = `${pos.height}px`
-    element.style.background = `${colorUI[_.indexOf(props.model.label, data.label)]}a1`
+    element.style.background = props.model.annotator !== 'pattern-extractor' ? `${data.color}a1` : data.color
     element.style.zIndex = 5
     document.body.appendChild(element)
   }
@@ -61,13 +60,39 @@ function ModelTrain(props) {
     element.className = 'annotation-script-item'
     element.style.position = 'absolute'
     element.style.color = '#fff'
-    element.style.background = colorUI[_.indexOf(props.model.label, data.label)]
+    element.style.background = data.color
     element.style.padding = '0px 6px'
     element.style.top = `${(pos.top + scrollTop) - 15}px`
     element.style.left = `${pos.left + scrollLeft}px`
     element.innerText = data.label
     element.style.zIndex = 25
     document.body.appendChild(element)
+  }
+
+  const recursiveDefineLabel = (data, node) => {
+    _.forEach(data, item => {
+      let pos, range
+      range = document.createRange();
+      range.setStart(node, item.startOffset);
+      range.setEnd(node, item.endOffset);
+      pos = range.getClientRects()
+
+
+      if (pos.length !== 0) {
+        if (item.label) {
+          createLabelItem(pos[0], item)
+          _.forEach(pos, n => {
+            createScriptItem(n, {color: `${item.color}a1`})
+          })
+        } else {
+          _.forEach(pos, n => {
+            createScriptItem(n, {color: item.color})
+          })
+        }
+        item.script && recursiveDefineLabel(item.script, node)
+      }
+
+    })
   }
 
   useEffect(() => {
@@ -94,7 +119,18 @@ function ModelTrain(props) {
           }
         })
       })
-    } 
+    } else if (props.model.annotator === 'pattern-extractor') {
+      let elementsScript = document.querySelectorAll(".annotation-script")
+
+      _.forEach(elementsScript, item => {
+        const trainIndex = _.findIndex(state, record => record.id == item.dataset.source)
+        const dataTrain = state[trainIndex]
+        const elementText = item.childNodes[0]
+        
+        recursiveDefineLabel(dataTrain.patternExtractor, elementText)
+      })
+
+    }
     
     return (() => {
       let elementScriptItem = document.querySelectorAll('.annotation-script-item')
@@ -111,7 +147,7 @@ function ModelTrain(props) {
     })
 
     if (response.status === 200) {
-      message.success('Verify successful');
+      message.success('Training modified successfully.');
       setState(response.data)
     }
   }
@@ -126,7 +162,7 @@ function ModelTrain(props) {
       })
   
       if (response.status === 200) {
-        message.success('Removed successful')
+        message.success('Training removed successfully.')
         setState(response.data)
       }
     }
@@ -155,7 +191,7 @@ function ModelTrain(props) {
             <Descriptions.Item span={2} label="User">{`${record.user.firstname} ${record.user.lastname}`}</Descriptions.Item>
             <Descriptions.Item span={1} label="Email">{record.user.email}</Descriptions.Item>
             <Descriptions.Item span={3} label="Tags">
-              {record[props.model.annotator].map((item, key) => <Tag key={key} className="ant-custom" color="#108ee9" style={{marginBottom: 8}}>{item}</Tag>)}
+              {record[props.model.annotator].map((item, key) => <Tag key={key} className="ant-custom" color="#1890ff" style={{marginBottom: 8}}>{item}</Tag>)}
             </Descriptions.Item>
             <Descriptions.Item span={3} label="Text">{record.source}</Descriptions.Item>
           </Descriptions>

@@ -403,20 +403,12 @@ function AdminUser(props) {
 
   var columns = [Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({
     title: 'Email',
-    dataIndex: 'email',
-    sorter: function sorter(a, b) {
-      return a.email - b.email;
-    },
-    sortOrder: sortedInfo.columnKey === 'email' && sortedInfo.order
+    dataIndex: 'email'
   }, getColumnSearchProps('email')), {
     key: 'firstname',
     title: 'Name',
     width: 200,
     align: 'left',
-    sorter: function sorter(a, b) {
-      return a.firstname - b.firstname;
-    },
-    sortOrder: sortedInfo.columnKey === 'firstname' && sortedInfo.order,
     render: function render(text, record) {
       return "".concat(record.firstname, " ").concat(record.lastname);
     }
@@ -425,19 +417,12 @@ function AdminUser(props) {
     dataIndex: 'role.name',
     width: 150,
     align: 'center',
-    sorter: function sorter(a, b) {
-      return a.role.name - b.role.name;
-    },
     sortOrder: sortedInfo.columnKey === 'role.name' && sortedInfo.order
   }, {
     title: 'Status',
     dataIndex: 'isDeleted',
     width: 150,
     align: 'center',
-    sorter: function sorter(a, b) {
-      return a.isDeleted - b.isDeleted;
-    },
-    sortOrder: sortedInfo.columnKey === 'isDeleted' && sortedInfo.order,
     render: function render(text) {
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
         status: text ? 'error' : 'success',
@@ -449,10 +434,6 @@ function AdminUser(props) {
     dataIndex: 'createdAt',
     width: 200,
     align: 'center',
-    sorter: function sorter(a, b) {
-      return a.createdAt - b.createdAt;
-    },
-    sortOrder: sortedInfo.columnKey === 'createdAt' && sortedInfo.order,
     render: function render(text) {
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Text, null, moment__WEBPACK_IMPORTED_MODULE_8___default()(text).fromNow());
     }

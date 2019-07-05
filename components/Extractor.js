@@ -2,11 +2,9 @@ import _ from 'lodash'
 import {Typography, Button, Affix, message} from 'antd'
 import React, {useState, useEffect} from 'react'
 
-
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
-
 function Extractor(props) {
   const [windowSize, setWindowSize] = useState(null)
+
   const createScriptItem = (pos, data) => {
     const element = document.createElement('span')
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -71,10 +69,9 @@ function Extractor(props) {
       range.setEnd(elementScript, item.endOffset);
       pos = range.getClientRects()
 
-      color = colorUI[_.indexOf(props.dataLabel, item.label)]
-      createLabelItem(pos[0], {...item, color})
+      createLabelItem(pos[0], item)
       _.forEach(pos, n => {
-        createScriptItem(n, {color})
+        createScriptItem(n, item)
       })
     })
 
@@ -93,7 +90,8 @@ function Extractor(props) {
           {
             startOffset: pos.startOffset, 
             endOffset: pos.endOffset, 
-            label: item
+            color: item.color, 
+            label: item.name
           }
         ])
         window.getSelection().removeAllRanges()
@@ -112,16 +110,16 @@ function Extractor(props) {
         <Affix offsetTop={10}>
           {props.dataLabel.map((item, index) => (
             <Button 
-              key={item}
+              key={index}
               className="ant-custom ant-tag"
               style={{
                 marginBottom: 8,
-                background: colorUI[index],
-                border: colorUI[index],
+                background: item.color,
+                border: item.color,
                 color: '#fff',
                 cursor: 'pointer'
               }}
-              onClick={() => handleAddSource(item)}>{item}</Button>
+              onClick={() => handleAddSource(item)}>{item.name}</Button>
           ))}
         </Affix>
       </div>

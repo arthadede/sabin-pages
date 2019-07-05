@@ -164,20 +164,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("doui");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("O40h");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_AdminLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("hJmc");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("YLtl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("t3hY");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SMlj");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("Exp3");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("t3hY");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_AdminLayout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("hJmc");
 
 
 
@@ -189,12 +189,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var colorPallet = ['#36A2EBa1', '#FF6384', '#FFCE56a1', '#2ecc71a1', '#9b59b6a1', '#7ed6dfa1', '#686de0a1'];
-var colorPalletBorder = ['#36A2EBbf', '#FF6384bf', '#FFCE56bf', '#2ecc71bf', '#9b59b6bf', '#7ed6dfbf', '#686de0bf'];
+var initMonth = ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'];
 
 function AdminDashboard(props) {
   var logAnno = {
-    labels: ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+    labels: initMonth,
     datasets: [{
       data: props.training.logTraining.values,
       label: new Date().getFullYear(),
@@ -218,7 +217,7 @@ function AdminDashboard(props) {
     }]
   };
   var logUser = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+    labels: initMonth,
     datasets: [{
       data: props.user.logUser.values,
       label: new Date().getFullYear(),
@@ -241,138 +240,138 @@ function AdminDashboard(props) {
       pointHitRadius: 10
     }]
   };
-  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_AdminLayout__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], {
+  return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_AdminLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], {
     title: "Dashboard",
     bordered: false
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("title", null, "Admin Dashboard - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Row"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "Admin Dashboard - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Row"], {
     gutter: 16
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 10
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "Model",
     value: props.model.countModel
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "User",
     value: props.user.countUser
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "Source",
     value: props.model.countSource
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "Source Used",
     value: props.training.countTraining
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "Training Verified",
     value: props.training.countTrainingVerified
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 12,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
     title: "Training Unverified",
     value: props.training.countTrainingUnverified
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 24,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
     title: "Top user",
     style: {
       marginBottom: 16
     }
-  }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
+  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
     itemLayout: "horizontal",
     dataSource: props.user.fiveBestUserTraining,
     renderItem: function renderItem(item, key) {
-      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
         key: item.id
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
-        avatar: react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
+        avatar: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
           style: {
             backgroundColor: item.avatar
           }
         }, [item.firstname[0], item.lastname[0]].join("")),
         title: [item.firstname, item.lastname].join(" "),
         description: item.email
-      }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, item.sumTraining, " Contributed"));
+      }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, item.sumTraining, " Contributed"));
     }
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 24,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
     title: "Top model",
     style: {
       marginBottom: 16
     }
-  }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
+  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
     itemLayout: "horizontal",
     dataSource: props.model.fiveBestModelTraining,
     renderItem: function renderItem(item, key) {
-      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
         key: item.id
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
-        avatar: react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
+      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
+        avatar: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
           src: item.avatar.path
         }),
         title: item.name,
-        description: react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Tag"], {
+        description: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Tag"], {
           color: item.annotator !== 'extractor' ? '#74b9ff' : '#ff7675'
         }, item.annotator)
-      }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, "".concat(item.sumTraining, " Training")));
+      }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "".concat(item.sumTraining, " Training")));
     }
-  })))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  })))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 14
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 24,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
     title: "Log Annotation",
     style: {
       marginBottom: 16
     }
-  }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_10__["Line"], {
+  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__["Line"], {
     data: logAnno
-  })))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
+  })))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
     md: 24,
     style: {
       marginBottom: 24
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
+  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
     title: "Log User",
     style: {
       marginBottom: 16
     }
-  }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_10__["Bar"], {
+  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__["Bar"], {
     data: logUser,
     width: 100,
     height: 390,
@@ -400,7 +399,7 @@ function () {
             apiTrain = "".concat(apiUrl, "/admin/training/stats");
 
             fetchModelStats = function fetchModelStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_7___default()({
+              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
                 method: 'GET',
                 url: apiModel,
                 headers: {
@@ -410,7 +409,7 @@ function () {
             };
 
             fetchUserStats = function fetchUserStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_7___default()({
+              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
                 method: 'GET',
                 url: apiUser,
                 headers: {
@@ -420,7 +419,7 @@ function () {
             };
 
             fetchTrainingStats = function fetchTrainingStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_7___default()({
+              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
                 method: 'GET',
                 url: apiTrain,
                 headers: {
@@ -430,7 +429,7 @@ function () {
             };
 
             _context.next = 9;
-            return axios__WEBPACK_IMPORTED_MODULE_7___default.a.all([fetchModelStats(), fetchUserStats(), fetchTrainingStats()]);
+            return axios__WEBPACK_IMPORTED_MODULE_4___default.a.all([fetchModelStats(), fetchUserStats(), fetchTrainingStats()]);
 
           case 9:
             _ref3 = _context.sent;

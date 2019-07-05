@@ -67,6 +67,8 @@ function ModalAddSource(props) {
     })
     .catch(() => message.error("Something wrong."))
     .finally(() => { 
+      setState(null)
+      setSelected([])
       setLoading(false)
       setLoadingText("")
     })
@@ -101,15 +103,8 @@ function ModalAddSource(props) {
     const columns = _.map(columnsArr, (item, key) => ({
       key: item,
       width: 200,
-      title: (
-        <Checkbox 
-          value={item}>
-            Select Column
-          </Checkbox>
-      ),
-      render: (text, record) => (
-        <div className="table-text">{record[item]}</div>
-      )
+      title: <Checkbox value={item}>Select Column</Checkbox>,
+      render: (text, record) => <div className="table-text">{record[item]}</div>
     }))
     
     const dataSource = _.slice(state.sheets, 0, 10)
@@ -162,7 +157,7 @@ function ModalAddSource(props) {
       centered
       width="auto"
       visible={props.visible}
-      closable={state}
+      closable={state !== null}
       maskClosable={state === null}
       onCancel={() => {
         setState(null)

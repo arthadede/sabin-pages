@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -114,7 +114,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 18:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("33J4");
@@ -139,12 +139,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("8cHP");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("y6HG");
-/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("SMlj");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("eDAA");
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(randomcolor__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("8cHP");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("y6HG");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("SMlj");
+
+
 
 
 
@@ -168,7 +174,7 @@ function handleInputLabelRef(ref, cb) {
     }
   }
 
-  Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_10__["useEffect"])(function () {
     document.addEventListener('mousedown', handleClickOutside);
     return function () {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -181,31 +187,31 @@ function ModelCreate(props) {
       getFieldDecorator = _props$form.getFieldDecorator,
       getFieldValue = _props$form.getFieldValue,
       setFieldsValue = _props$form.setFieldsValue;
-  var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
-  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
-  var labelRef = Object(react__WEBPACK_IMPORTED_MODULE_8__["useRef"])(null);
+  var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_10__["useRef"])(null);
+  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_10__["useRef"])(null);
+  var labelRef = Object(react__WEBPACK_IMPORTED_MODULE_10__["useRef"])(null);
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(false),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState, 2),
       loading = _useState2[0],
       setLoading = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(null),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(null),
       _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState3, 2),
       imageUrl = _useState4[0],
       setImageUrl = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(false),
       _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState5, 2),
       imageLoading = _useState6[0],
       setImageLoading = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(null),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(null),
       _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState7, 2),
       inputValue = _useState8[0],
       setInputValue = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_10__["useState"])(false),
       _useState10 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(_useState9, 2),
       inputVisible = _useState10[0],
       setInputVisible = _useState10[1];
@@ -264,7 +270,13 @@ function ModelCreate(props) {
             case 0:
               label = getFieldValue('label');
               setFieldsValue({
-                label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(label), [inputValue])
+                label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(label), [{
+                  name: inputValue,
+                  color: randomcolor__WEBPACK_IMPORTED_MODULE_9___default()({
+                    luminosity: 'dark',
+                    hue: 'blue'
+                  })
+                }])
               });
               _context2.next = 4;
               return setInputValue(null);
@@ -301,6 +313,12 @@ function ModelCreate(props) {
 
     if (keyCode === 9) {
       e.preventDefault();
+
+      if (!inputValue) {
+        setInputVisible(false);
+        return;
+      }
+
       handleAddLabel();
     }
 
@@ -370,7 +388,7 @@ function ModelCreate(props) {
 
                 if (response.status === 200) {
                   antd__WEBPACK_IMPORTED_MODULE_5__["message"].success("Model created successfully.");
-                  _routes__WEBPACK_IMPORTED_MODULE_9__["Router"].pushRoute("/dashboard");
+                  _routes__WEBPACK_IMPORTED_MODULE_11__["Router"].pushRoute("/dashboard");
                 }
 
                 _context3.next = 23;
@@ -444,18 +462,18 @@ function ModelCreate(props) {
     }
   };
 
-  var uploadButton = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Icon"], {
+  var uploadButton = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Icon"], {
     type: imageLoading ? 'loading' : 'plus'
-  }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+  }), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
     className: "ant-upload-text"
   }, "Upload"));
-  return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("title", null, "Create Model - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"], null, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Card"], {
+  return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("title", null, "Create Model - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"], null, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Card"], {
     title: "Create Model"
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Row"], {
     gutter: 16
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
     md: 4
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Avatar"
   }, getFieldDecorator('avatar', {
     valuePropName: 'file',
@@ -464,20 +482,20 @@ function ModelCreate(props) {
       required: true,
       message: 'This field is required.'
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Upload"], {
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Upload"], {
     accept: ".png,image/png",
     name: "avatar",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    action: "/source",
     listType: "picture-card",
     className: "avatar-uploader",
     showUploadList: false,
     beforeUpload: beforeUpload
-  }, imageUrl ? react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Avatar"], {
+  }, imageUrl ? react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Avatar"], {
     src: imageUrl,
     size: 90
-  }) : uploadButton)))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
+  }) : uploadButton)))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Col"], {
     md: 20
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Name"
   }, getFieldDecorator('name', {
     rules: [{
@@ -490,16 +508,31 @@ function ModelCreate(props) {
       max: 20,
       message: "Minimum length is 20 characters."
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], null))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], null))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Description"
   }, getFieldDecorator('desc', {
     rules: [{
       required: true,
       message: 'This field is required.'
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"].TextArea, {
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"].TextArea, {
     rows: 4
-  }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+    label: "Annotator"
+  }, getFieldDecorator('annotator', {
+    rules: [{
+      required: true,
+      message: 'This field is required.'
+    }]
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Radio"].Group, {
+    buttonStyle: "solid"
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(RadioButton, {
+    value: "classifier"
+  }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(RadioButton, {
+    value: "extractor"
+  }, "Extractor"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(RadioButton, {
+    value: "pattern-extractor"
+  }, "Pattern Extractor")))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Labels",
     extra: "Press tab or enter for new input label."
   }, getFieldDecorator('label', {
@@ -508,22 +541,22 @@ function ModelCreate(props) {
       required: true,
       message: 'This field is required.'
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, getFieldValue('label').map(function (item, i) {
-    return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Tag"], {
-      key: i,
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_10___default.a.Fragment, null, getFieldValue('label').map(function (item, key) {
+    return react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Tag"], {
+      key: key,
       className: "ant-custom",
-      color: "#108ee9",
+      color: item.color,
       onClose: function onClose() {
-        return handleOnCloseLabel(i);
+        return handleOnCloseLabel(key);
       },
       closable: true
-    }, item);
-  }))), inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+    }, item.name);
+  }))), inputVisible && react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
     style: {
       display: 'inline-block'
     },
     ref: labelWrapper
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], {
     ref: inputRef,
     style: {
       width: 120
@@ -534,7 +567,7 @@ function ModelCreate(props) {
     },
     onPressEnter: handleAddLabel,
     onKeyDown: handleTabLabel
-  })), !inputVisible && react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+  })), !inputVisible && react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("button", {
     ref: labelRef,
     className: "ant-tag ant-custom",
     style: {
@@ -544,50 +577,37 @@ function ModelCreate(props) {
     },
     onClick: handleInputVisible,
     onKeyPress: handleInputVisible
-  }, "New Label")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
-    label: "Annotator"
-  }, getFieldDecorator('annotator', {
-    rules: [{
-      required: true,
-      message: 'This field is required.'
-    }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Radio"].Group, {
-    buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(RadioButton, {
-    value: "classifier"
-  }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(RadioButton, {
-    value: "extractor"
-  }, "Extractor")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
+  }, "New Label")), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, {
     label: "Type"
   }, getFieldDecorator('isPrivate', {
     rules: [{
       required: true,
       message: 'This field is required.'
     }]
-  })(react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Radio"].Group, {
+  })(react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Radio"].Group, {
     buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(RadioButton, {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(RadioButton, {
     value: false
-  }, "Public"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(RadioButton, {
+  }, "Public"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(RadioButton, {
     value: true
-  }, "Private")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+  }, "Private")))), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "flex-end"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Button"], {
+  }, react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Button"], {
     style: {
       marginLeft: 16
     },
     type: "primary",
     onClick: handleSubmit,
     loading: loading
-  }, "Create Model"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Button"], {
+  }, "Create Model"), react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Button"], {
     style: {
       marginLeft: 16
     },
     onClick: function onClick() {
-      return _routes__WEBPACK_IMPORTED_MODULE_9__["Router"].pushRoute('/dashboard');
+      return _routes__WEBPACK_IMPORTED_MODULE_11__["Router"].pushRoute('/dashboard');
     },
     className: "btn-danger"
   }, "Cancel")))))));
@@ -614,7 +634,7 @@ _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(f
 var WrappedModelCreateForm = antd__WEBPACK_IMPORTED_MODULE_5__["Form"].create({
   name: "model-create-form"
 })(ModelCreate);
-/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_11__[/* withAuthSync */ "c"])(WrappedModelCreateForm));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_13__[/* withAuthSync */ "c"])(WrappedModelCreateForm));
 
 /***/ }),
 
@@ -1068,6 +1088,13 @@ module.exports = __webpack_require__("J3/a");
 
 /***/ }),
 
+/***/ "YLtl":
+/***/ (function(module, exports) {
+
+module.exports = require("lodash");
+
+/***/ }),
+
 /***/ "Z6Kq":
 /***/ (function(module, exports) {
 
@@ -1237,6 +1264,13 @@ function _nonIterableRest() {
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
+
+/***/ }),
+
+/***/ "eDAA":
+/***/ (function(module, exports) {
+
+module.exports = require("randomcolor");
 
 /***/ }),
 

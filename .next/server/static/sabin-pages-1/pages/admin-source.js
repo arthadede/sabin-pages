@@ -253,7 +253,9 @@ function AdminSource(props) {
 
   var itemExists = function itemExists(haystack, needle) {
     for (var i = 0; i < haystack.length; i++) {
-      if (compareObjects(haystack[i], needle)) return true;
+      if (compareObjects(haystack[i], needle)) {
+        return true;
+      }
     }
 
     return false;
@@ -275,8 +277,8 @@ function AdminSource(props) {
   };
 
   var columns = [{
-    title: 'Text',
     key: 'text',
+    title: 'Text',
     dataIndex: 'text',
     render: function render(text) {
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
@@ -287,10 +289,10 @@ function AdminSource(props) {
     }
   }, {
     key: 'createdAt',
-    width: 140,
-    align: 'center',
     title: 'Created date',
     dataIndex: 'createdAt',
+    width: 140,
+    align: 'center',
     render: function render(text) {
       return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Text, null, moment__WEBPACK_IMPORTED_MODULE_7___default()(text).fromNow());
     }

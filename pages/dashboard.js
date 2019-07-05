@@ -57,7 +57,9 @@ DashboardPage.getInitialProps = async ({apiUrl, token}) => {
     return axios({
       method: "GET",
       url: `${apiUrl}/model/me`,
-      headers: {authorization: token}
+      headers: {
+        authorization: token,
+      }
     })
   }
 

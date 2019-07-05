@@ -776,6 +776,13 @@ module.exports = __webpack_require__("J3/a");
 
 /***/ }),
 
+/***/ "YLtl":
+/***/ (function(module, exports) {
+
+module.exports = require("lodash");
+
+/***/ }),
+
 /***/ "Z6Kq":
 /***/ (function(module, exports) {
 
@@ -955,6 +962,13 @@ function _slicedToArray(arr, i) {
 
 /***/ }),
 
+/***/ "eDAA":
+/***/ (function(module, exports) {
+
+module.exports = require("randomcolor");
+
+/***/ }),
+
 /***/ "eVuF":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1078,6 +1092,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("y6HG");
 /* harmony import */ var _components_MeModelSider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("AzOL");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("SMlj");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("eDAA");
+/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(randomcolor__WEBPACK_IMPORTED_MODULE_17__);
 
 
 
@@ -1094,7 +1112,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'];
+
+
 
 function ModelView(props) {
   if (props.errorCode) return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_9___default.a, {
@@ -1174,7 +1193,7 @@ function ModelView(props) {
 
                 if (response.status === 200) {
                   _routes__WEBPACK_IMPORTED_MODULE_12__["Router"].pushRoute('/dashboard');
-                  antd__WEBPACK_IMPORTED_MODULE_6__["message"].success("Modal berhasil dihapus.");
+                  antd__WEBPACK_IMPORTED_MODULE_6__["message"].success("Modal deleted successfully.");
                 }
 
               case 4:
@@ -1263,7 +1282,13 @@ function ModelView(props) {
 
   var handleAddLabel = function handleAddLabel() {
     handleModelUpdate({
-      label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(model.label), [inputValue])
+      label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(model.label), [{
+        name: inputValue,
+        color: randomcolor__WEBPACK_IMPORTED_MODULE_17___default()({
+          luminosity: 'dark',
+          hue: 'blue'
+        })
+      }])
     }).then(function (data) {
       setModel(function (state) {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, state, data[0], {
@@ -1373,8 +1398,8 @@ function ModelView(props) {
       return false;
     }
 
-    if (file.size / 1024 / 1024 > 5) {
-      antd__WEBPACK_IMPORTED_MODULE_6__["message"].error('Image must smaller than 5MB!');
+    if (file.size / 1024 / 1024 > 10) {
+      antd__WEBPACK_IMPORTED_MODULE_6__["message"].error('Image must smaller than 10MB!');
       return false;
     }
 
@@ -1384,7 +1409,7 @@ function ModelView(props) {
   var uploudAvatar = {
     accept: 'image/png',
     name: 'file',
-    action: "//jsonplaceholder.typicode.com/posts/",
+    action: "/source",
     showUploadList: false,
     beforeUpload: beforeUpload,
     onChange: function () {
@@ -1524,7 +1549,7 @@ function ModelView(props) {
       marginBottom: 16
     }
   }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-    md: 12,
+    md: 24,
     style: {
       marginBottom: 16
     }
@@ -1543,7 +1568,7 @@ function ModelView(props) {
   }, "Private"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: false
   }, "Public"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-    md: 12,
+    md: 24,
     style: {
       marginBottom: 16
     }
@@ -1560,7 +1585,9 @@ function ModelView(props) {
     value: "classifier"
   }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: "extractor"
-  }, "Extractor"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "Extractor"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+    value: "pattern-extractor"
+  }, "Pattern Extractor"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24,
     style: {
       marginBottom: 16
@@ -1575,7 +1602,7 @@ function ModelView(props) {
     return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
       key: key,
       className: "ant-custom",
-      color: colorUI[key],
+      color: item.color,
       style: {
         marginBottom: 8
       },
@@ -1583,7 +1610,7 @@ function ModelView(props) {
         return handleRemoveLabel(key);
       },
       closable: true
-    }, item);
+    }, item.name);
   }), inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Input"], {
     ref: inputRef,
     style: {

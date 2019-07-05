@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -236,7 +236,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("PeXQ");
@@ -498,7 +498,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'];
 
 function ModelView(props) {
   var selectedKeys = props.route.parsedUrl.pathname;
@@ -555,7 +554,7 @@ function ModelView(props) {
       marginBottom: 16
     }
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-    md: 12,
+    md: 24,
     style: {
       marginBottom: 16
     }
@@ -573,7 +572,7 @@ function ModelView(props) {
   }, "Private"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: false
   }, "Public"))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
-    md: 12,
+    md: 24,
     style: {
       marginBottom: 16
     }
@@ -590,7 +589,9 @@ function ModelView(props) {
     value: "classifier"
   }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: "extractor"
-  }, "Extractor"))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "Extractor"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+    value: "pattern-extractor"
+  }, "Pattern Extractor"))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24,
     style: {
       marginBottom: 16
@@ -605,11 +606,11 @@ function ModelView(props) {
     return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
       key: key,
       className: "ant-custom",
-      color: colorUI[key],
+      color: item.color,
       style: {
         marginBottom: 8
       }
-    }, item);
+    }, item.name);
   }))))))))))));
 }
 

@@ -20,11 +20,7 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" type="text/css" href="/static/vs2015.css"/>
           <link rel="stylesheet" href="/static/antd.min.css"/>
           <link rel="stylesheet/less" type="text/css" href="/static/sabin.less"/>
-          <style>{`
-            #__next {
-              height: inherit;
-            }
-          `}</style>
+          <style>{`#__next { height: inherit; }`}</style>
         </Head>
         <body>
           <Main />

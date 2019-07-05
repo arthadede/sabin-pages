@@ -1,19 +1,19 @@
-import React from 'react'
-import AdminLayout from "../components/AdminLayout";
-import Head from 'next/head'
 import _ from 'lodash'
 import axios from 'axios'
+import React from 'react'
+import Head from 'next/head'
+import {Bar, Line } from 'react-chartjs-2'
 import {withAuthSync} from '../utils/auth'
 import {Row, Col, Card, Statistic, List, Avatar, Tag} from 'antd'
-import {Bar, Polar, Line } from 'react-chartjs-2'
+import AdminLayout from "../components/AdminLayout";
 
-const colorPallet = ['#36A2EBa1', '#FF6384', '#FFCE56a1', '#2ecc71a1', '#9b59b6a1', '#7ed6dfa1', '#686de0a1']
-const colorPalletBorder = ['#36A2EBbf', '#FF6384bf', '#FFCE56bf', '#2ecc71bf', '#9b59b6bf', '#7ed6dfbf', '#686de0bf']
+
+const initMonth = ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des']
+
 function AdminDashboard(props) {
 
-
   const logAnno = {
-    labels: ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+    labels: initMonth,
     datasets: [
       {
         data: props.training.logTraining.values,
@@ -40,7 +40,7 @@ function AdminDashboard(props) {
   }
 
   const logUser = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+    labels: initMonth,
     datasets:  [
       {
         data: props.user.logUser.values,

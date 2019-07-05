@@ -11,7 +11,6 @@ import ModelSider from '../components/ModelSider'
 import UserLayout from '../components/UserLayout'
 import {withAuthSync} from '../utils/auth'
 
-const colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
 
 function ModelTrain(props) {
   if (props.errorCode) 
@@ -50,7 +49,7 @@ function ModelTrain(props) {
     element.style.left = `${pos.left + scrollLeft}px`
     element.style.width = `${pos.width}px`
     element.style.height = `${pos.height}px`
-    element.style.background = `${colorUI[_.indexOf(props.model.label, data.label)]}a1`
+    element.style.background = props.model.annotator !== 'pattern-extractor' ? `${data.color}a1` : data.color
     element.style.zIndex = 5
     document.body.appendChild(element)
   }
@@ -62,7 +61,7 @@ function ModelTrain(props) {
     element.className = 'annotation-script-item'
     element.style.position = 'absolute'
     element.style.color = '#fff'
-    element.style.background = colorUI[_.indexOf(props.model.label, data.label)]
+    element.style.background = data.color
     element.style.padding = '0px 6px'
     element.style.top = `${(pos.top + scrollTop) - 15}px`
     element.style.left = `${pos.left + scrollLeft}px`
@@ -71,6 +70,32 @@ function ModelTrain(props) {
     document.body.appendChild(element)
   }
 
+  const recursiveDefineLabel = (data, node) => {
+    _.forEach(data, item => {
+      let pos, range
+      range = document.createRange();
+      range.setStart(node, item.startOffset);
+      range.setEnd(node, item.endOffset);
+      pos = range.getClientRects()
+
+
+      if (pos.length !== 0) {
+        if (item.label) {
+          createLabelItem(pos[0], item)
+          _.forEach(pos, n => {
+            createScriptItem(n, {color: `${item.color}a1`})
+          })
+        } else {
+          _.forEach(pos, n => {
+            createScriptItem(n, {color: item.color})
+          })
+        }
+        item.script && recursiveDefineLabel(item.script, node)
+      }
+
+    })
+  }
+  
   useEffect(() => {
     if (props.model.annotator === 'extractor') {
       let elementsScript = document.querySelectorAll(".annotation-script")
@@ -95,12 +120,24 @@ function ModelTrain(props) {
           }
         })
       })
-    } 
+    } else if (props.model.annotator === 'pattern-extractor') {
+      let elementsScript = document.querySelectorAll(".annotation-script")
+
+      _.forEach(elementsScript, item => {
+        const trainIndex = _.findIndex(state, record => record.id == item.dataset.source)
+        const dataTrain = state[trainIndex]
+        const elementText = item.childNodes[0]
+        
+        recursiveDefineLabel(dataTrain.patternExtractor, elementText)
+      })
+
+    }
     
     return (() => {
       let elementScriptItem = document.querySelectorAll('.annotation-script-item')
       elementScriptItem.forEach(n => document.body.removeChild(n))
     })
+
   }, [triggerExpand, expandSelected, windowSize, state])
 
   const handleRemove = ids => {
@@ -113,7 +150,7 @@ function ModelTrain(props) {
       })
   
       if (response.status === 200) {
-        message.success('Removed successful')
+        message.success('Training removed successfully.')
         setState(response.data)
       }
     }
@@ -164,10 +201,6 @@ function ModelTrain(props) {
         </Descriptions>
       </div>
     )
-  }
-
-  const handleChange = (pagination, filters, sorter) => {
-    setFilteredInfo(filters)
   }
 
   const getColumnSearchProps = dataIndex => ({
@@ -348,7 +381,7 @@ ModelTrain.getInitialProps = async ({res, apiUrl, token, query}) => {
 
     const train = await axios({
       method: "GET",
-      url: `${modelApi}/train`,
+      url: `${modelApi}/train/me`,
       headers: {authorization: token}
     }).then(res => res.data)
 

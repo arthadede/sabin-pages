@@ -889,7 +889,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var colorUI = ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0'];
 
 function ModelTrain(props) {
   if (props.errorCode) return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_7___default.a, {
@@ -957,7 +956,7 @@ function ModelTrain(props) {
     element.style.left = "".concat(pos.left + scrollLeft, "px");
     element.style.width = "".concat(pos.width, "px");
     element.style.height = "".concat(pos.height, "px");
-    element.style.background = "".concat(colorUI[lodash__WEBPACK_IMPORTED_MODULE_10___default.a.indexOf(props.model.label, data.label)], "a1");
+    element.style.background = props.model.annotator !== 'pattern-extractor' ? "".concat(data.color, "a1") : data.color;
     element.style.zIndex = 5;
     document.body.appendChild(element);
   };
@@ -969,13 +968,43 @@ function ModelTrain(props) {
     element.className = 'annotation-script-item';
     element.style.position = 'absolute';
     element.style.color = '#fff';
-    element.style.background = colorUI[lodash__WEBPACK_IMPORTED_MODULE_10___default.a.indexOf(props.model.label, data.label)];
+    element.style.background = data.color;
     element.style.padding = '0px 6px';
     element.style.top = "".concat(pos.top + scrollTop - 15, "px");
     element.style.left = "".concat(pos.left + scrollLeft, "px");
     element.innerText = data.label;
     element.style.zIndex = 25;
     document.body.appendChild(element);
+  };
+
+  var recursiveDefineLabel = function recursiveDefineLabel(data, node) {
+    lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(data, function (item) {
+      var pos, range;
+      range = document.createRange();
+      range.setStart(node, item.startOffset);
+      range.setEnd(node, item.endOffset);
+      pos = range.getClientRects();
+
+      if (pos.length !== 0) {
+        if (item.label) {
+          createLabelItem(pos[0], item);
+
+          lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(pos, function (n) {
+            createScriptItem(n, {
+              color: "".concat(item.color, "a1")
+            });
+          });
+        } else {
+          lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(pos, function (n) {
+            createScriptItem(n, {
+              color: item.color
+            });
+          });
+        }
+
+        item.script && recursiveDefineLabel(item.script, node);
+      }
+    });
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_5__["useEffect"])(function () {
@@ -1004,6 +1033,18 @@ function ModelTrain(props) {
             });
           }
         });
+      });
+    } else if (props.model.annotator === 'pattern-extractor') {
+      var _elementsScript = document.querySelectorAll(".annotation-script");
+
+      lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(_elementsScript, function (item) {
+        var trainIndex = lodash__WEBPACK_IMPORTED_MODULE_10___default.a.findIndex(state, function (record) {
+          return record.id == item.dataset.source;
+        });
+
+        var dataTrain = state[trainIndex];
+        var elementText = item.childNodes[0];
+        recursiveDefineLabel(dataTrain.patternExtractor, elementText);
       });
     }
 
@@ -1043,7 +1084,7 @@ function ModelTrain(props) {
                 response = _context.sent;
 
                 if (response.status === 200) {
-                  antd__WEBPACK_IMPORTED_MODULE_4__["message"].success('Removed successful');
+                  antd__WEBPACK_IMPORTED_MODULE_4__["message"].success('Training removed successfully.');
                   setState(response.data);
                 }
 
@@ -1136,10 +1177,6 @@ function ModelTrain(props) {
       className: "annotation-script",
       "data-source": record.id
     }, record.source))));
-  };
-
-  var handleChange = function handleChange(pagination, filters, sorter) {
-    setFilteredInfo(filters);
   };
 
   var getColumnSearchProps = function getColumnSearchProps(dataIndex) {
@@ -1383,7 +1420,7 @@ function () {
             _context2.next = 9;
             return axios__WEBPACK_IMPORTED_MODULE_8___default()({
               method: "GET",
-              url: "".concat(modelApi, "/train"),
+              url: "".concat(modelApi, "/train/me"),
               headers: {
                 authorization: token
               }

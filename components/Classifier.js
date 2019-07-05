@@ -2,12 +2,10 @@ import _ from 'lodash'
 import React from 'react'
 import {Typography, Tag} from 'antd'
 
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
-
 function Classifier(props) {
   const dataLabel = props.dataLabel.map((item) => ({
-    selected: props.value.find(n => n === item) ? true : false,
-    text: item
+    ...item,
+    selected: props.value.find(n => n === item.name) ? true : false,
   }))
 
   const handleSet = text => {
@@ -33,14 +31,13 @@ function Classifier(props) {
         <Typography.Text type="secondary" style={{marginRight: 16}}>Tags: </Typography.Text>
         {dataLabel.map((item, index) => (
           <Tag 
-            key={item.text}
-            className="ant-custom"
-            color={item.selected ? colorUI[index] : 'blue'}
-            style={{
-              marginBottom: 8,
-              cursor: 'pointer'
-            }}
-            onClick={() => handleSet(item.text)}>{item.text}</Tag>
+            key={index} 
+            className="ant-custom" 
+            color={item.selected && item.color} 
+            style={{marginBottom: 8, cursor: 'pointer'}}
+            onClick={() => handleSet(item.name)}>
+              {item.name}
+            </Tag>
         ))}
       </div>
       <div>

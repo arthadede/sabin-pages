@@ -8,20 +8,19 @@ import {Router} from '../routes'
 import UserLayout from "../components/UserLayout";
 import ModelSider from "../components/MeModelSider";
 import {withAuthSync} from '../utils/auth'
-
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
+import _ from 'lodash'
+import randomColor from 'randomcolor'
 
 function ModelView(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
-
 
   const selectedKeys = props.route.parsedUrl.pathname
   const inputRef = useRef(null)
   const [model, setModel] = useState(props.model)
   const [inputValue, setInputValue] = useState(null)
   const [inputVisible, setInputVisible] = useState(false)
-  
+
   const handleInputVisible = async () => {
     await setInputVisible(true)
     await inputRef.current.focus()
@@ -36,7 +35,7 @@ function ModelView(props) {
       })
       if (response.status === 200) {
         Router.pushRoute('/dashboard')
-        message.success("Modal berhasil dihapus.")
+        message.success("Modal deleted successfully.")
       }
     }
 
@@ -70,9 +69,18 @@ function ModelView(props) {
     handleModelUpdate({desc: text})
     .then(data => setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} })))
   }
-
+  
   const handleAddLabel = () => {
-    handleModelUpdate({label: [...model.label, inputValue]})
+    handleModelUpdate({label: [
+      ...model.label, 
+      {
+        name: inputValue,
+        color: randomColor({
+          luminosity: 'dark',
+          hue: 'blue'
+        }),
+      }]
+    })
     .then(data => {
       setModel(state => ({...state, ...data[0], config: {...state.config, ...data[1]} }))
       setInputValue(null)
@@ -146,8 +154,8 @@ function ModelView(props) {
       return false
     }
 
-    if (file.size / 1024 / 1024 > 5) {
-      message.error('Image must smaller than 5MB!');
+    if (file.size / 1024 / 1024 > 10) {
+      message.error('Image must smaller than 10MB!');
       return false
     }
 
@@ -158,7 +166,7 @@ function ModelView(props) {
   const uploudAvatar = {
     accept: 'image/png',
     name: 'file',
-    action: "//jsonplaceholder.typicode.com/posts/",
+    action: "/source",
     showUploadList: false,
     beforeUpload: beforeUpload,
     async onChange(info) {
@@ -236,23 +244,24 @@ function ModelView(props) {
                     </div>
                     <div style={{marginBottom: 16}}>
                       <Row>
-                        <Col md={12} style={{marginBottom: 16}}>
+                        <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Type</Typography.Text>
                           <Radio.Group value={model.isPrivate} onChange={handleRadioPrivate} buttonStyle="solid">
                             <Radio.Button value={true}>Private</Radio.Button>
                             <Radio.Button value={false}>Public</Radio.Button>
                           </Radio.Group>
                         </Col>
-                        <Col md={12} style={{marginBottom: 16}}>
+                        <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Annotator</Typography.Text>
                           <Radio.Group value={model.annotator} buttonStyle="solid">
                             <Radio.Button value="classifier">Classifier</Radio.Button>
                             <Radio.Button value="extractor">Extractor</Radio.Button>
+                            <Radio.Button value="pattern-extractor">Pattern Extractor</Radio.Button>
                           </Radio.Group>
                         </Col>
                         <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Label</Typography.Text>
-                          {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={colorUI[key]} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable>{item}</Tag>)}
+                          {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable>{item.name}</Tag>)}
                           {inputVisible && <Input ref={inputRef} style={{width: 90}} type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} onPressEnter={handleAddLabel}/>}
                           {!inputVisible && <Tag className="ant-custom" style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }} onClick={handleInputVisible}>New Label</Tag>}
                         </Col>

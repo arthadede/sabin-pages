@@ -7,8 +7,6 @@ import UserLayout from "../components/UserLayout";
 import ModelSider from "../components/ModelSider";
 import {withAuthSync} from '../utils/auth'
 
-const colorUI =  ['#36A2EB', '#FFCE56', '#2ecc71', '#9b59b6', '#7ed6df', '#686de0']
-
 function ModelView(props) {
   const selectedKeys = props.route.parsedUrl.pathname
 
@@ -51,23 +49,24 @@ function ModelView(props) {
                     </div>
                     <div style={{marginBottom: 16}}>
                       <Row>
-                        <Col md={12} style={{marginBottom: 16}}>
+                        <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Type</Typography.Text>
                           <Radio.Group value={props.model.isPrivate} buttonStyle="solid">
                             <Radio.Button value={true}>Private</Radio.Button>
                             <Radio.Button value={false}>Public</Radio.Button>
                           </Radio.Group>
                         </Col>
-                        <Col md={12} style={{marginBottom: 16}}>
+                        <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Annotator</Typography.Text>
                           <Radio.Group value={props.model.annotator}  buttonStyle="solid">
                             <Radio.Button value="classifier">Classifier</Radio.Button>
                             <Radio.Button value="extractor">Extractor</Radio.Button>
+                            <Radio.Button value="pattern-extractor">Pattern Extractor</Radio.Button>
                           </Radio.Group>
                         </Col>
                         <Col md={24} style={{marginBottom: 16}}>
                           <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Label</Typography.Text>
-                          {props.model.label.map((item, key) => <Tag key={key} className="ant-custom" color={colorUI[key]} style={{marginBottom: 8}} >{item}</Tag>)}
+                          {props.model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} >{item.name}</Tag>)}
                         </Col>
                       </Row>
                     </div>

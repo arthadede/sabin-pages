@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
@@ -14,10 +14,8 @@ function ModelSource(props) {
     return <Error statusCode={props.errorCode}/>
 
   const selectedKeys = props.route.parsedUrl.pathname
-  const searchInput = useRef(null)
   const [state, setState] = useState(props.source.json)
   const [selected, setSelected] = useState([])
-  const [searchText, setSearchText] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
 
   const selectedAll = state.length ===  selected.length && state.length !== 0

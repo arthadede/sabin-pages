@@ -17,10 +17,6 @@ function ModelSider({current, id, config, ...rest}) {
     >
       <Menu.Item key={`/model/${id}`}>Info</Menu.Item>
       {config.UIStats && <Menu.Item key={`/model/${id}/stats`}>Stats</Menu.Item>}
-      {/* <MenuItemGroup key="g1" title="Run">
-        <Menu.Item key={`/model/${id}/demo`} disabled={!config.UIRun}>Demo</Menu.Item>
-        <Menu.Item key={`/model/${id}/batch`} disabled={!config.UIRun}>Batch</Menu.Item>
-      </MenuItemGroup> */}
       {config.UIAnnotation && (
         <MenuItemGroup key="g2" title="Build">
           <Menu.Item key={`/model/${id}/anno`}>Annotation</Menu.Item>

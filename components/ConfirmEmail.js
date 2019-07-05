@@ -20,8 +20,14 @@ function ConfirmEmail(props) {
             title="Check your email!"
             description={(
               <>
-                <Typography.Paragraph>We've emailed a special link to <b>{props.email}</b>. Click the link to confirm your address and get started.</Typography.Paragraph>
-                <a onClick={() => Router.pushRoute('/')}>Go To Homepage</a>
+                <Typography.Paragraph>
+                  We've emailed a special link to 
+                  <b>{props.email}</b>. 
+                  Click the link to confirm your address and get started.
+                </Typography.Paragraph>
+                <a onClick={() => Router.pushRoute('/')}>
+                  Go To Homepage
+                </a>
               </>
             )}/>
         </Card>

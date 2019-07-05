@@ -146,8 +146,6 @@ function AdminUser(props) {
     { 
       title: 'Email', 
       dataIndex: 'email',
-      sorter: (a, b) => a.email - b.email,
-      sortOrder: sortedInfo.columnKey === 'email' && sortedInfo.order,
       ...getColumnSearchProps('email') 
     },
     { 
@@ -155,8 +153,6 @@ function AdminUser(props) {
       title: 'Name', 
       width: 200,
       align: 'left',
-      sorter: (a, b) => a.firstname - b.firstname,
-      sortOrder: sortedInfo.columnKey === 'firstname' && sortedInfo.order,
       render: (text, record) => `${record.firstname} ${record.lastname}` 
     },
     { 
@@ -164,7 +160,6 @@ function AdminUser(props) {
       dataIndex: 'role.name',
       width: 150,
       align: 'center',
-      sorter: (a, b) => a.role.name - b.role.name,
       sortOrder: sortedInfo.columnKey === 'role.name' && sortedInfo.order,
     },
     { 
@@ -172,8 +167,6 @@ function AdminUser(props) {
       dataIndex: 'isDeleted',
       width: 150,
       align: 'center',
-      sorter: (a, b) => a.isDeleted - b.isDeleted,
-      sortOrder: sortedInfo.columnKey === 'isDeleted' && sortedInfo.order,
       render: text => <Badge status={text ? 'error' : 'success'} text={text ? 'Disable' : 'Active'}/> 
     },
     { 
@@ -181,8 +174,6 @@ function AdminUser(props) {
       dataIndex: 'createdAt',
       width: 200,
       align: 'center',
-      sorter: (a, b) => a.createdAt - b.createdAt,
-      sortOrder: sortedInfo.columnKey === 'createdAt' && sortedInfo.order,
       render: text => <Typography.Text>{moment(text).fromNow()}</Typography.Text> 
     },
     { 

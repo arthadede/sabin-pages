@@ -15,12 +15,8 @@ export default (props) => {
         </li>)}
         {props.token && (
           <>
-            <li className="item" onClick={() => Router.pushRoute('/dashboard')}>
-              <a>Dashboard</a>
-            </li>
-            <li className="item" onClick={logout}>
-              <a className="item-btn">Log out</a>
-            </li>
+            <li className="item" onClick={() => Router.pushRoute('/dashboard')}><a>Dashboard</a></li>
+            <li className="item" onClick={logout}><a className="item-btn">Log out</a></li>
           </>
         )}
       </ul>
