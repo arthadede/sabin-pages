@@ -40,6 +40,7 @@ function ModelTrain(props) {
   }
 
   const createScriptItem = (pos, data) => {
+    const label = _(props.model.label).find(item => item.name === data.label)
     const element = document.createElement('span')
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
@@ -49,19 +50,22 @@ function ModelTrain(props) {
     element.style.left = `${pos.left + scrollLeft}px`
     element.style.width = `${pos.width}px`
     element.style.height = `${pos.height}px`
-    element.style.background = props.model.annotator !== 'pattern-extractor' ? `${data.color}a1` : data.color
+    element.style.background = data.hasOwnProperty('label') 
+      ? label ? (label.color + '70') : '#bfbfbf'
+      : '#e6f7ff'
     element.style.zIndex = 5
     document.body.appendChild(element)
   }
   
   const createLabelItem = (pos, data) => {
+    const label = _(props.model.label).find(item => item.name === data.label)
     const element = document.createElement('span')
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item'
     element.style.position = 'absolute'
     element.style.color = '#fff'
-    element.style.background = data.color
+    element.style.background = label ? label.color : '#595959'
     element.style.padding = '0px 6px'
     element.style.top = `${(pos.top + scrollTop) - 15}px`
     element.style.left = `${pos.left + scrollLeft}px`
@@ -83,11 +87,11 @@ function ModelTrain(props) {
         if (item.label) {
           createLabelItem(pos[0], item)
           _.forEach(pos, n => {
-            createScriptItem(n, {color: `${item.color}a1`})
+            createScriptItem(n, item)
           })
         } else {
           _.forEach(pos, n => {
-            createScriptItem(n, {color: item.color})
+            createScriptItem(n, item)
           })
         }
         item.script && recursiveDefineLabel(item.script, node)
@@ -173,7 +177,7 @@ function ModelTrain(props) {
             <Descriptions.Item span={3} label="Status">
               {record.confirm
               ? <Badge color='green' text='Verified' />
-              : <Badge color='red' text='Unverified' />}
+              : <Badge color='warning' text='Unverified' />}
             </Descriptions.Item>
             <Descriptions.Item span={3} label="Tags">
               {record[props.model.annotator].map((item, key) => <Tag key={key} className="ant-custom" color="#108ee9" style={{marginBottom: 8}}>{item}</Tag>)}
@@ -191,7 +195,7 @@ function ModelTrain(props) {
           <Descriptions.Item span={3} label="Status">
             {record.confirm
             ? <Badge color='green' text='Verified' />
-            : <Badge color='red' text='Unverified' />}
+            : <Badge color='warning' text='Unverified' />}
           </Descriptions.Item>
           <Descriptions.Item span={3} label="Text">
             <Typography.Paragraph className="annotation-script" data-source={record.id}>

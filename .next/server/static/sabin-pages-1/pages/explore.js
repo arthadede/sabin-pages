@@ -764,13 +764,17 @@ function ExplorePage(props) {
           size: 50,
           src: item.avatar.path
         }),
-        description: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Title, {
-          level: 4
-        }, item.name), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
+        title: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Title, {
+          level: 4,
+          ellipsis: {
+            rows: 1
+          }
+        }, item.name)),
+        description: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
           ellipsis: {
             rows: 3
           }
-        }, item.desc))
+        }, item.desc)
       }))));
     }
   });

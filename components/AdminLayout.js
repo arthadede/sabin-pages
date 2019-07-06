@@ -1,4 +1,4 @@
-import { Layout, Menu, Button, Icon, Row, Col, Typography, Dropdown } from 'antd'
+import { Layout, Menu, Icon, Row, Col, Typography, Dropdown } from 'antd'
 import React, { useState } from 'react'
 import { Router } from '../routes'
 import {logout} from '../utils/auth'

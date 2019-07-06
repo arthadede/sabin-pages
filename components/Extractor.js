@@ -7,6 +7,7 @@ function Extractor(props) {
 
   const createScriptItem = (pos, data) => {
     const element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item annotation-script-item-mark'
@@ -15,19 +16,20 @@ function Extractor(props) {
     element.style.left = `${pos.left + scrollLeft}px`
     element.style.width = `${pos.width}px`
     element.style.height = `${pos.height}px`
-    element.style.background = `${data.color}a1`
+    element.style.background = data.hasOwnProperty('label') ? (label.color + '70') : '#e6f7ff'
     element.style.zIndex = 5
     document.body.appendChild(element)
   }
   
   const createLabelItem = (pos, data) => {
     let element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item annotation-script-item-label'
     element.style.position = 'absolute'
     element.style.color = '#fff'
-    element.style.background = data.color
+    element.style.background = label.color
     element.style.padding = '0px 6px'
     element.style.top = `${(pos.top + scrollTop) - 15}px`
     element.style.left = `${pos.left+ scrollLeft}px`
@@ -90,7 +92,6 @@ function Extractor(props) {
           {
             startOffset: pos.startOffset, 
             endOffset: pos.endOffset, 
-            color: item.color, 
             label: item.name
           }
         ])

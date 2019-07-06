@@ -240,6 +240,20 @@ function AdminDashboard(props) {
       pointHitRadius: 10
     }]
   };
+
+  var transformAnnotator = function transformAnnotator(annotator) {
+    return annotator === 'classifier' ? {
+      text: 'Classifier',
+      color: '#3498db'
+    } : annotator === 'extractor' ? {
+      text: 'Extractor',
+      color: '#f1c40f'
+    } : {
+      text: 'Pattern Extractor',
+      color: '#e74c3c'
+    };
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_AdminLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], {
     title: "Dashboard",
     bordered: false
@@ -309,6 +323,8 @@ function AdminDashboard(props) {
     itemLayout: "horizontal",
     dataSource: props.user.fiveBestUserTraining,
     renderItem: function renderItem(item, key) {
+      var fullName = [item.firstname, item.lastname].join(" ");
+      var avatar = [item.firstname[0], item.lastname[0]].join("");
       return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
         key: item.id
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
@@ -316,8 +332,11 @@ function AdminDashboard(props) {
           style: {
             backgroundColor: item.avatar
           }
-        }, [item.firstname[0], item.lastname[0]].join("")),
-        title: [item.firstname, item.lastname].join(" "),
+        }, avatar),
+        title: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Typography"].Text, {
+          ellipsis: true,
+          strong: true
+        }, fullName),
         description: item.email
       }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, item.sumTraining, " Contributed"));
     }
@@ -341,10 +360,13 @@ function AdminDashboard(props) {
         avatar: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
           src: item.avatar.path
         }),
-        title: item.name,
+        title: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Typography"].Text, {
+          ellipsis: true,
+          strong: true
+        }, item.name),
         description: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Tag"], {
-          color: item.annotator !== 'extractor' ? '#74b9ff' : '#ff7675'
-        }, item.annotator)
+          color: transformAnnotator(item.annotator).color
+        }, transformAnnotator(item.annotator).text)
       }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "".concat(item.sumTraining, " Training")));
     }
   })))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {

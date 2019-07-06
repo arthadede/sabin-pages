@@ -531,6 +531,11 @@ function AdminModel(props) {
   var ExpandedComponent = function ExpandedComponent(record) {
     var config = record.config;
     var user = record.user;
+
+    var getAnnotator = function getAnnotator() {
+      return record.annotator === 'classifier' ? 'Classifier' : record.annotator === 'extractor' ? 'Extractor' : 'Pattern Extractor';
+    };
+
     return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"], {
       title: "Model Information",
       bordered: true
@@ -553,28 +558,36 @@ function AdminModel(props) {
         color: item.color
       }, item.name);
     })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Annotator"
+    }, getAnnotator()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
       label: "Type"
     }, record.isPrivate ? 'Private' : 'Public'), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
-      label: "Annotator"
-    }, lodash__WEBPACK_IMPORTED_MODULE_10___default.a.capitalize(record.annotator)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
-      label: "Created Date"
-    }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.createdAt).fromNow()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       span: 3,
       label: "Status"
     }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
       status: record.isDeleted ? 'error' : 'success',
       text: record.isDeleted ? 'Not Active' : 'Active'
     })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
       label: "UI Stats"
     }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
       status: config.UIStats ? 'success' : 'error',
       text: config.UIStats ? 'Active' : 'Not Active'
     })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
       label: "UI Annotation"
     }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
       status: config.UIAnnotation ? 'success' : 'error',
       text: config.UIAnnotation ? 'Active' : 'Not Active'
-    })));
+    })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Created Date"
+    }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.createdAt).fromNow()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Updated Date"
+    }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.updatedAt).fromNow()));
   };
 
   var CardExtra = [react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {

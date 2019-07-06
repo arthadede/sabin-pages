@@ -947,6 +947,10 @@ function ModelTrain(props) {
   };
 
   var createScriptItem = function createScriptItem(pos, data) {
+    var label = lodash__WEBPACK_IMPORTED_MODULE_10___default()(props.model.label).find(function (item) {
+      return item.name === data.label;
+    });
+
     var element = document.createElement('span');
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
@@ -956,19 +960,23 @@ function ModelTrain(props) {
     element.style.left = "".concat(pos.left + scrollLeft, "px");
     element.style.width = "".concat(pos.width, "px");
     element.style.height = "".concat(pos.height, "px");
-    element.style.background = props.model.annotator !== 'pattern-extractor' ? "".concat(data.color, "a1") : data.color;
+    element.style.background = data.hasOwnProperty('label') ? label ? label.color + '70' : '#bfbfbf' : '#e6f7ff';
     element.style.zIndex = 5;
     document.body.appendChild(element);
   };
 
   var createLabelItem = function createLabelItem(pos, data) {
+    var label = lodash__WEBPACK_IMPORTED_MODULE_10___default()(props.model.label).find(function (item) {
+      return item.name === data.label;
+    });
+
     var element = document.createElement('span');
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item';
     element.style.position = 'absolute';
     element.style.color = '#fff';
-    element.style.background = data.color;
+    element.style.background = label ? label.color : '#595959';
     element.style.padding = '0px 6px';
     element.style.top = "".concat(pos.top + scrollTop - 15, "px");
     element.style.left = "".concat(pos.left + scrollLeft, "px");
@@ -990,15 +998,11 @@ function ModelTrain(props) {
           createLabelItem(pos[0], item);
 
           lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(pos, function (n) {
-            createScriptItem(n, {
-              color: "".concat(item.color, "a1")
-            });
+            createScriptItem(n, item);
           });
         } else {
           lodash__WEBPACK_IMPORTED_MODULE_10___default.a.forEach(pos, function (n) {
-            createScriptItem(n, {
-              color: item.color
-            });
+            createScriptItem(n, item);
           });
         }
 
@@ -1130,7 +1134,7 @@ function ModelTrain(props) {
         color: "green",
         text: "Verified"
       }) : react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
-        color: "red",
+        color: "warning",
         text: "Unverified"
       })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
         span: 3,
@@ -1168,7 +1172,7 @@ function ModelTrain(props) {
       color: "green",
       text: "Verified"
     }) : react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
-      color: "red",
+      color: "warning",
       text: "Unverified"
     })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
       span: 3,

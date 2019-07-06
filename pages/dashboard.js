@@ -1,4 +1,4 @@
-import { Row, Col, Card, Typography, List, Avatar, Skeleton, PageHeader, Button, Empty } from "antd";
+import { Card, Typography, List, Avatar, Button, Empty } from "antd";
 import axios from "axios";
 import Head from 'next/head'
 import React, {useState} from 'react'
@@ -27,12 +27,14 @@ function DashboardPage(props) {
             onClick={() => Router.pushRoute('MeModelInfo', {id: item.id})}>
               <List.Item.Meta
                 avatar={<Avatar size={50} src={item.avatar.path}/>}
-                description={(
-                  <>
-                    <Typography.Title level={4}>{item.name}</Typography.Title>
-                    <Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>
-                  </>
-                )}/>
+                title={
+                  <div>
+                    <Typography.Title level={4} ellipsis>
+                      {item.name}
+                    </Typography.Title>
+                  </div>
+                  }
+                description={<Typography.Paragraph ellipsis={{rows: 3}}>{item.desc}</Typography.Paragraph>}/>
             </Card>
           </List.Item>
       )}/>

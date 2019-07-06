@@ -6,8 +6,9 @@ import _ from 'lodash'
 
 function PatternExtractor(props) {
   const [windowSize, setWindowSize] = useState(null)
+  const [drawer, setDrawer] = useState(false)
   const [selected, setSelected] = useState(null)
-  const [onProcess, setOnProcess] = useState({})
+  const [selectedNested, setSelectedNested] = useState({})
 
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function PatternExtractor(props) {
 
   const createScriptItem = (pos, data, zIndex, classname) => {
     const element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = `${classname} annotation-script-item annotation-script-item-mark`
@@ -30,27 +32,55 @@ function PatternExtractor(props) {
     element.style.left = `${pos.left + scrollLeft}px`
     element.style.width = `${pos.width}px`
     element.style.height = `${pos.height}px`
-    element.style.background = data.color
+    element.style.background = data.hasOwnProperty('label') ? (label.color + '70') : '#e6f7ff'
     element.style.zIndex = zIndex
     document.body.appendChild(element)
   }
   
   const createLabelItem = (pos, data, zIndex, classname) => {
     let element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = `${classname} annotation-script-item annotation-script-item-label`
     element.style.position = 'absolute'
     element.style.color = '#fff'
-    element.style.background = data.color
+    element.style.background = label.color
     element.style.padding = '0px 6px'
     element.style.top = `${(pos.top + scrollTop) - 15}px`
     element.style.left = `${pos.left+ scrollLeft}px`
     element.innerText = data.label
     element.style.zIndex = zIndex
     element.style.cursor = 'pointer'
-    element.addEventListener('click', e => props.onChange(state => state.filter(item => item.startOffset !== data.startOffset && item.endOffset !== data.endOffset)))
+    element.addEventListener('click', e => handleRemoveLabel(data))
     document.body.appendChild(element)
+  }
+
+  const handleRemoveLabel = data => {
+    if (selected) {
+      setSelectedNested(state => {
+        let result = {} 
+
+        for (const key in state) {
+          if (state[key].startOffset !== data.startOffset) {
+            if (state[key].endOffset !== data.endOffset) {
+              result[key] = state[key]
+            }
+          }
+        }
+        return result
+      })
+    } else {
+      let result = _.filter(props.value, item => {
+        if (data.startOffset >= item.startOffset && data.endOffset <= item.endOffset) {
+          return false
+        }
+
+        return true
+      })
+
+      props.onChange(result)
+    }
   }
 
   const handleResize = () => {
@@ -64,7 +94,9 @@ function PatternExtractor(props) {
     const current = e.target.childNodes[0]
     const el = document.getElementById("annotation-script").childNodes[0];
 
-    if (current === el) handleAddSource()
+    if (current === el) {
+      handleAddSource()
+    }
   }
 
   const recursiveDefineLabel = (data, node, zIndex) => {
@@ -77,8 +109,8 @@ function PatternExtractor(props) {
 
       if (item.label) {
         createLabelItem(pos[0], item, zIndex[1])
-        _.forEach(pos, n => createScriptItem(n, {color: `${item.color}a1`}, zIndex[0], 'annotation-contianer'))
-      } else _.forEach(pos, n => createScriptItem(n, {color: item.color}, zIndex[0], 'annotation-contianer'))
+        _.forEach(pos, n => createScriptItem(n, item, zIndex[0], 'annotation-contianer'))
+      } else _.forEach(pos, n => createScriptItem(n, item, zIndex[0], 'annotation-contianer'))
 
       item.script && recursiveDefineLabel(item.script, node, zIndex)
     })
@@ -87,13 +119,15 @@ function PatternExtractor(props) {
   useEffect(() => {
     let node = document.getElementById("annotation-script").childNodes[0];
 
-    recursiveDefineLabel(props.value, node, [5, 100])
+    selected
+    ? recursiveDefineLabel([...props.value, selected], node, [5, 100])
+    : recursiveDefineLabel(props.value, node, [5, 100])
 
     return () => {
       let elementScriptItem = document.querySelectorAll('.annotation-script-item')
       elementScriptItem.forEach(n => document.body.removeChild(n))
     }
-  }, [props.value, windowSize])
+  }, [props.value, selected, windowSize])
 
   useEffect(() => {
     let node = document.getElementById("annotation-script-drawer");
@@ -102,15 +136,15 @@ function PatternExtractor(props) {
       let pos, range
       let elementScript = node.childNodes[0]
   
-      for (const item in onProcess) {
-        if (onProcess.hasOwnProperty(item) && elementScript) {
+      for (const item in selectedNested) {
+        if (selectedNested.hasOwnProperty(item) && elementScript) {
           range = document.createRange();
-          range.setStart(elementScript, onProcess[item].startOffset);
-          range.setEnd(elementScript, onProcess[item].endOffset);
+          range.setStart(elementScript, selectedNested[item].startOffset);
+          range.setEnd(elementScript, selectedNested[item].endOffset);
           pos = range.getClientRects()
   
-          createLabelItem(pos[0], onProcess[item], 1500, 'annotation-drawer')
-          _.forEach(pos, n => createScriptItem(n, {color: `${onProcess[item].color}a1`}, 1000, 'annotation-drawer'))
+          createLabelItem(pos[0], selectedNested[item], 1500, 'annotation-drawer')
+          _.forEach(pos, n => createScriptItem(n, selectedNested[item], 1000, 'annotation-drawer'))
         }
       }
   
@@ -119,18 +153,21 @@ function PatternExtractor(props) {
         elementScriptItem.forEach(n => document.body.removeChild(n))
       }
     }
-  }, [onProcess, windowSize])
+  }, [selectedNested, windowSize])
 
   const handleAddSource = () => {
     if (window.getSelection().anchorNode !== null) {
       if (window.getSelection().anchorNode.wholeText === props.dataSource) {
         let pos = window.getSelection().getRangeAt(0)
-        setSelected({
-          startOffset: pos.startOffset, 
-          endOffset: (pos.endOffset - pos.startOffset) + pos.startOffset, 
-          color: '#1e90ff3b',
-          text: props.dataSource.substr(pos.startOffset, pos.endOffset - pos.startOffset),
-        })
+        if (pos.startOffset !== pos.endOffset) {
+          setDrawer(true)
+          setSelected({
+            startOffset: pos.startOffset, 
+            endOffset: (pos.endOffset - pos.startOffset) + pos.startOffset, 
+            // color: '#bae7ff',
+            // text: props.dataSource.substr(pos.startOffset, pos.endOffset - pos.startOffset),
+          })
+        }
         window.getSelection().removeAllRanges()
       } else {
         message.warning("Element invalid.")
@@ -146,16 +183,15 @@ function PatternExtractor(props) {
     
     if (window.getSelection().anchorNode !== null) {
       if (window.getSelection().anchorNode.wholeText === current) {
-        console.log(window.getSelection().toString())
         let pos = window.getSelection().getRangeAt(0)
-        setOnProcess(state => ({
+        setSelectedNested(state => ({
           ...state,
           [label.name]: {
             startOffset: pos.startOffset, 
             endOffset: pos.endOffset, 
-            color: label.color,
             label: label.name,
-            text: current.substr(pos.startOffset, pos.endOffset),
+            // color: label.color,
+            // text: current.substr(pos.startOffset, pos.endOffset),
           }
         }))
         window.getSelection().removeAllRanges()
@@ -168,30 +204,29 @@ function PatternExtractor(props) {
   }
 
   const handleSubmitDrawer = () => {
-    if (Object.keys(onProcess).length === 0) {
+    if (Object.keys(selectedNested).length === 0) {
       message.warning("Label is not defined.")
+      return
     }
 
-    const convert = _.values(onProcess)
+    // Konversi dari obj key ke object array
+    const convert = _.values(selectedNested)
     const script = _.map(convert, item => ({
       ...item,
       startOffset: selected.startOffset + item.startOffset,
       endOffset: selected.startOffset + item.endOffset,
     }))
 
-    const transform = {
-      ...selected,
-      script
-    }
+    const transform = { ...selected, script }
 
     props.onChange(state => [
       ...state,
       transform
     ])
 
-
+    setDrawer(false)
     setSelected(null)
-    setOnProcess({})
+    setSelectedNested({})
   }
   
   return (
@@ -206,20 +241,15 @@ function PatternExtractor(props) {
       <Drawer
         title="Pattern Extractor"
         width={700}
-        placement="right"
+        placement="left"
+        visible={drawer}
         closable={false}
-        onClose={() => {
-          setSelected(null)
-          setOnProcess({})
-        }}
-        visible={selected !== null}
-      >
+        maskClosable={false}>
         <Row>
           <Col md={24}>
             <Typography.Text style={{marginBottom: 16, display: 'block'}} strong>Select text and press the label</Typography.Text>
             <div id="annotation-script-drawer">
-              {selected && selected.text}
-              {!selected && 'SANE TEXT'}
+              {selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)}
             </div>
             <div className="annotation-script-label">
               {props.dataLabel.map((item, index) => (
@@ -234,11 +264,33 @@ function PatternExtractor(props) {
           <Col md={24}>
             <Typography.Title level={4}>Result:</Typography.Title>
             <Highlight style={{height: 300}}>
-              {JSON.stringify(onProcess, null, 2)}
+              {JSON.stringify(selectedNested, null, 2)}
             </Highlight>
           </Col>
           <Col md={24}>
-            <Button type="primary" block onClick={handleSubmitDrawer} disabled={_.keys(onProcess).length === 0}>Submit</Button>
+            <Button 
+              block 
+              type="primary" 
+              style={{marginBottom: 16}}
+              onClick={handleSubmitDrawer} 
+              disabled={_.keys(selectedNested).length === 0}
+              >
+                Submit
+            </Button>
+            <Button 
+              type="default" 
+              block 
+              style={{marginBottom: 16}}
+              onClick={() => {
+                setDrawer(false)
+                setTimeout(() => {
+                  setSelected(null)
+                  setSelectedNested({})
+                }, 500)
+              }}
+              >
+                Cancel
+            </Button>
           </Col>
         </Row>
       </Drawer>

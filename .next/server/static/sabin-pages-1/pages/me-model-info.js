@@ -251,6 +251,13 @@ module.exports = require("next-cookies");
 
 /***/ }),
 
+/***/ "4jX/":
+/***/ (function(module, exports) {
+
+module.exports = require("react-color");
+
+/***/ }),
+
 /***/ "4mXO":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -962,13 +969,6 @@ function _slicedToArray(arr, i) {
 
 /***/ }),
 
-/***/ "eDAA":
-/***/ (function(module, exports) {
-
-module.exports = require("randomcolor");
-
-/***/ }),
-
 /***/ "eVuF":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1094,8 +1094,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("SMlj");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("YLtl");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("eDAA");
-/* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(randomcolor__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react_color__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("4jX/");
+/* harmony import */ var react_color__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_color__WEBPACK_IMPORTED_MODULE_17__);
 
 
 
@@ -1114,33 +1114,96 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+function handleInputLabelRef(ref, cb) {
+  function handleClickOutside(event) {
+    if (ref.current && !ref.current.contains(event.target) && !event.target.title) {
+      cb({
+        status: false
+      });
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_11__["useEffect"])(function () {
+    document.addEventListener('mousedown', handleClickOutside);
+    return function () {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
+}
 
 function ModelView(props) {
-  if (props.errorCode) return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_9___default.a, {
-    statusCode: props.errorCode
-  });
   var selectedKeys = props.route.parsedUrl.pathname;
+
+  if (props.errorCode > 200) {
+    return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_9___default.a, {
+      statusCode: props.errorCode
+    });
+  }
+
   var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_11__["useRef"])(null);
+  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_11__["useRef"])(null);
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(props.model),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])("#0088ff"),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState, 2),
-      model = _useState2[0],
-      setModel = _useState2[1];
+      colorPicker = _useState2[0],
+      setColorPicker = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(null),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(props.model),
       _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState3, 2),
-      inputValue = _useState4[0],
-      setInputValue = _useState4[1];
+      model = _useState4[0],
+      setModel = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(false),
       _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState5, 2),
-      inputVisible = _useState6[0],
-      setInputVisible = _useState6[1];
+      spinning = _useState6[0],
+      setSpinning = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(null),
+      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState7, 2),
+      inputValue = _useState8[0],
+      setInputValue = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(false),
+      _useState10 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState9, 2),
+      inputVisible = _useState10[0],
+      setInputVisible = _useState10[1];
+
+  handleInputLabelRef(labelWrapper, function (_ref) {
+    var status = _ref.status;
+
+    if (status === false && inputValue !== null) {
+      handleAddLabel();
+      setInputVisible(false);
+    } else {
+      setInputVisible(false);
+    }
+  });
+
+  var handleTabLabel = function handleTabLabel(e) {
+    var keyCode = e.which || e.keyCode;
+
+    if (keyCode === 9) {
+      e.preventDefault();
+
+      if (!inputValue) {
+        setInputVisible(false);
+        return;
+      }
+
+      handleAddLabel();
+    }
+
+    if (keyCode === 27) {
+      setInputValue(null);
+      setInputVisible(false);
+    }
+  };
 
   var handleInputVisible =
   /*#__PURE__*/
   function () {
-    var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+    var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
     /*#__PURE__*/
     _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee() {
       return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
@@ -1163,7 +1226,7 @@ function ModelView(props) {
     }));
 
     return function handleInputVisible() {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -1171,7 +1234,7 @@ function ModelView(props) {
     var handleOk =
     /*#__PURE__*/
     function () {
-      var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+      var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
       /*#__PURE__*/
       _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee2() {
         var response;
@@ -1205,7 +1268,7 @@ function ModelView(props) {
       }));
 
       return function handleOk() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }();
 
@@ -1221,7 +1284,7 @@ function ModelView(props) {
   var handleModelUpdate =
   /*#__PURE__*/
   function () {
-    var _ref3 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+    var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
     /*#__PURE__*/
     _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee3(data) {
       return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee3$(_context3) {
@@ -1229,6 +1292,7 @@ function ModelView(props) {
           switch (_context3.prev = _context3.next) {
             case 0:
               return _context3.abrupt("return", new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_2___default.a(function (resolve, reject) {
+                setSpinning(true);
                 axios__WEBPACK_IMPORTED_MODULE_10___default()({
                   method: 'PATCH',
                   url: props.modelApi,
@@ -1240,6 +1304,8 @@ function ModelView(props) {
                   return res.status === 200 && resolve(res.data);
                 })["catch"](function (err) {
                   return console.log(err);
+                })["finally"](function () {
+                  setSpinning(false);
                 });
               }));
 
@@ -1252,7 +1318,7 @@ function ModelView(props) {
     }));
 
     return function handleModelUpdate(_x) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
 
@@ -1284,10 +1350,7 @@ function ModelView(props) {
     handleModelUpdate({
       label: [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(model.label), [{
         name: inputValue,
-        color: randomcolor__WEBPACK_IMPORTED_MODULE_17___default()({
-          luminosity: 'dark',
-          hue: 'blue'
-        })
+        color: colorPicker
       }])
     }).then(function (data) {
       setModel(function (state) {
@@ -1412,71 +1475,36 @@ function ModelView(props) {
     action: "/source",
     showUploadList: false,
     beforeUpload: beforeUpload,
-    onChange: function () {
-      var _onChange = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
-      /*#__PURE__*/
-      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee4(info) {
-        var formData, response;
-        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                if (info.file.status !== 'uploading') {}
+    onChange: function onChange(info) {
+      if (info.file.status !== 'uploading') {}
 
-                if (!(info.file.status === 'done')) {
-                  _context4.next = 10;
-                  break;
-                }
-
-                formData = new FormData();
-                formData.append('avatar', info.file.originFileObj);
-                _context4.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_10___default()({
-                  method: 'PATCH',
-                  url: "".concat(props.apiUrl, "/avatar/").concat(model.id),
-                  data: formData,
-                  headers: {
-                    authorization: props.token
-                  }
-                });
-
-              case 6:
-                response = _context4.sent;
-
-                if (response.status === 200) {
-                  setModel(function (state) {
-                    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, state, {
-                      avatar: response.data
-                    });
-                  });
-                  antd__WEBPACK_IMPORTED_MODULE_6__["message"].success("Avatar changed successfully.");
-                  window.location.reload();
-                }
-
-                _context4.next = 11;
-                break;
-
-              case 10:
-                if (info.file.status === 'error') {
-                  antd__WEBPACK_IMPORTED_MODULE_6__["message"].error("".concat(info.file.name, " file upload failed."));
-                }
-
-              case 11:
-              case "end":
-                return _context4.stop();
-            }
+      if (info.file.status === 'done') {
+        setSpinning(true);
+        var formData = new FormData();
+        formData.append('avatar', info.file.originFileObj);
+        axios__WEBPACK_IMPORTED_MODULE_10___default()({
+          method: 'PATCH',
+          url: "".concat(props.apiUrl, "/avatar/").concat(model.id),
+          data: formData,
+          headers: {
+            authorization: props.token
           }
-        }, _callee4);
-      }));
-
-      function onChange(_x2) {
-        return _onChange.apply(this, arguments);
+        }).then(function (res) {
+          if (res.status === 200) {
+            antd__WEBPACK_IMPORTED_MODULE_6__["message"].success("Avatar changed successfully.");
+          }
+        })["finally"](function () {
+          setSpinning(false);
+          window.location.reload();
+        });
+      } else if (info.file.status === 'error') {
+        antd__WEBPACK_IMPORTED_MODULE_6__["message"].error("".concat(info.file.name, " file upload failed."));
       }
-
-      return onChange;
-    }()
+    }
   };
-  return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+  return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Spin"], {
+    spinning: spinning
+  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], {
     type: "flex",
     gutter: 32
   }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("title", null, "My Model Info - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
@@ -1611,18 +1639,48 @@ function ModelView(props) {
       },
       closable: true
     }, item.name);
-  }), inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Input"], {
+  }), inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+    style: {
+      display: 'inline-block'
+    },
+    ref: labelWrapper
+  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Input"], {
     ref: inputRef,
     style: {
-      width: 90
+      width: 120,
+      outlineColor: colorPicker
     },
-    type: "text",
     value: inputValue,
     onChange: function onChange(e) {
       return setInputValue(e.target.value);
     },
-    onPressEnter: handleAddLabel
-  }), !inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
+    onPressEnter: handleAddLabel,
+    onKeyDown: handleTabLabel,
+    suffix: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Popover"], {
+      placement: "bottomRight",
+      content: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_color__WEBPACK_IMPORTED_MODULE_17__["CirclePicker"], {
+        color: colorPicker,
+        onChange: function onChange(color) {
+          setColorPicker(color.hex);
+          inputRef.current.focus();
+        }
+      }),
+      trigger: "click"
+    }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      style: {
+        width: 15,
+        height: 15,
+        background: colorPicker
+      }
+    }))
+  })) //  <Input 
+  //   ref={inputRef} 
+  //   style={{width: 90}} 
+  //   type="text" 
+  //   value={inputValue} 
+  //   onChange={e => setInputValue(e.target.value)} 
+  //   onPressEnter={handleAddLabel}/>
+  , !inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
     className: "ant-custom",
     style: {
       background: '#fff',
@@ -1701,25 +1759,25 @@ function ModelView(props) {
     style: {
       width: '100%'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "curl -i -H \"Authorization: ".concat(props.token, "\" -H \"Content-Type: application/json\" -X GET ").concat("https://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train"))))))))))));
+  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "curl -i -H \"Authorization: ".concat(props.token, "\" -H \"Content-Type: application/json\" -X GET ").concat("https://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train")))))))))))));
 }
 
 ModelView.getInitialProps =
 /*#__PURE__*/
 function () {
-  var _ref5 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+  var _ref6 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee5(_ref4) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee4(_ref5) {
     var apiUrl, token, query, id, modelApi, model;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee5$(_context5) {
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            apiUrl = _ref4.apiUrl, token = _ref4.token, query = _ref4.query;
+            apiUrl = _ref5.apiUrl, token = _ref5.token, query = _ref5.query;
             id = query.id;
             modelApi = "".concat(apiUrl, "/model/").concat(id);
-            _context5.prev = 3;
-            _context5.next = 6;
+            _context4.prev = 3;
+            _context4.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_10___default()({
               method: "GET",
               url: modelApi,
@@ -1731,29 +1789,29 @@ function () {
             });
 
           case 6:
-            model = _context5.sent;
-            return _context5.abrupt("return", {
+            model = _context4.sent;
+            return _context4.abrupt("return", {
               modelApi: modelApi,
               model: model
             });
 
           case 10:
-            _context5.prev = 10;
-            _context5.t0 = _context5["catch"](3);
-            return _context5.abrupt("return", {
-              errorCode: _context5.t0.response.status
+            _context4.prev = 10;
+            _context4.t0 = _context4["catch"](3);
+            return _context4.abrupt("return", {
+              errorCode: _context4.t0.response.status
             });
 
           case 13:
           case "end":
-            return _context5.stop();
+            return _context4.stop();
         }
       }
-    }, _callee5, null, [[3, 10]]);
+    }, _callee4, null, [[3, 10]]);
   }));
 
-  return function (_x3) {
-    return _ref5.apply(this, arguments);
+  return function (_x2) {
+    return _ref6.apply(this, arguments);
   };
 }();
 

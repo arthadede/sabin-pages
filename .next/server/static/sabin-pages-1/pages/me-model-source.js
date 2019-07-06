@@ -1183,8 +1183,7 @@ function ModalAddSource(props) {
       bordered: true,
       columns: columns,
       pagination: false,
-      dataSource: dataSource,
-      scroll: true
+      dataSource: dataSource
     };
     return external_react_default.a.createElement("div", {
       className: "table-sheet"

@@ -845,13 +845,15 @@ function DashboardPage(props) {
           size: 50,
           src: item.avatar.path
         }),
-        description: react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_6___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Title, {
-          level: 4
-        }, item.name), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
+        title: react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Title, {
+          level: 4,
+          ellipsis: true
+        }, item.name)),
+        description: react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph, {
           ellipsis: {
             rows: 3
           }
-        }, item.desc))
+        }, item.desc)
       })));
     }
   });

@@ -114,7 +114,6 @@ function ModalAddSource(props) {
       columns: columns,
       pagination: false,
       dataSource: dataSource,
-      scroll: true,
     }
 
     return (

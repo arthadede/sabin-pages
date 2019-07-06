@@ -1,9 +1,9 @@
-import { Row, Col, Avatar, Card, Form, Input, Upload, Button, Radio, Tag, Icon, message } from "antd";
+import { Row, Col, Avatar, Card, Form, Input, Upload, Button, Radio, Tag, Icon, message, Popover } from "antd";
 import Head from 'next/head'
 import axios from 'axios'
 import _ from 'lodash'
-import randomColor from 'randomcolor'
 import React, {useRef, useState, useEffect} from 'react'
+import { CirclePicker } from 'react-color'
 import {Router} from '../routes'
 import UserLayout from "../components/UserLayout";
 import {withAuthSync} from '../utils/auth'
@@ -12,7 +12,7 @@ const RadioButton = Radio.Button
 
 function handleInputLabelRef(ref, cb) {
   function handleClickOutside(event) {
-    if (ref.current && !ref.current.contains(event.target)) {
+    if (ref.current && !ref.current.contains(event.target) && !event.target.title) {
       cb({status: false})
     }
   }
@@ -30,12 +30,13 @@ function ModelCreate(props) {
   const inputRef = useRef(null)
   const labelWrapper = useRef(null)
   const labelRef = useRef(null)
+  const [colorPicker, setColorPicker] = useState("#0088ff")
   const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [inputValue, setInputValue] = useState(null)
   const [inputVisible, setInputVisible] = useState(false)
-
+  
   handleInputLabelRef(labelWrapper, ({ status }) => {
     if (status === false && inputValue !== null) {
       handleAddLabel()
@@ -55,13 +56,11 @@ function ModelCreate(props) {
     setFieldsValue({
       label: [
         ...label, 
-        {
+        { 
           name: inputValue,
-          color: randomColor({
-            luminosity: 'dark',
-            hue: 'blue'
-          })
-        }]
+          color: colorPicker,
+       }
+      ]
     })
       
     await setInputValue(null)
@@ -266,12 +265,22 @@ function ModelCreate(props) {
                       ref={labelWrapper}>
                       <Input 
                       ref={inputRef}
-                      style={{width: 120}}
+                      style={{width: 120, outlineColor: colorPicker}}
                       value={inputValue} 
                       onChange={e => setInputValue(e.target.value)} 
                       onPressEnter={handleAddLabel}
                       onKeyDown={handleTabLabel}
-                      />
+                      suffix={
+                        <Popover 
+                          placement="bottomRight" 
+                          content={<CirclePicker color={colorPicker} onChange={color => {
+                            setColorPicker(color.hex)
+                            inputRef.current.focus()
+                          }}/>} 
+                          trigger="click">
+                          <div style={{width: 15, height: 15, background: colorPicker}}/>    
+                        </Popover>
+                      }/>
                     </div>)}
                   {!inputVisible && (
                     <button

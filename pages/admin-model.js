@@ -199,6 +199,15 @@ function AdminModel(props) {
   const ExpandedComponent = record => {
     const config = record.config
     const user = record.user
+
+    const getAnnotator = () => {
+      return record.annotator === 'classifier'
+      ? 'Classifier'
+      : record.annotator === 'extractor'
+      ? 'Extractor'
+      : 'Pattern Extractor'
+    }
+
     return (
       <Descriptions title="Model Information" bordered>
         <Descriptions.Item span={3} label="Author">{`${user.firstname} ${user.lastname}`}</Descriptions.Item>
@@ -211,18 +220,19 @@ function AdminModel(props) {
             <Tag key={key} className="ant-custom" color={item.color}>{item.name}</Tag>
           ))}
         </Descriptions.Item>
-        <Descriptions.Item label="Type">{record.isPrivate ? 'Private' : 'Public'}</Descriptions.Item>
-        <Descriptions.Item label="Annotator">{_.capitalize(record.annotator)}</Descriptions.Item>
-        <Descriptions.Item label="Created Date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
+        <Descriptions.Item span={3} label="Annotator">{getAnnotator()}</Descriptions.Item>
+        <Descriptions.Item span={3} label="Type">{record.isPrivate ? 'Private' : 'Public'}</Descriptions.Item>
         <Descriptions.Item span={3} label="Status">
           <Badge status={record.isDeleted ? 'error' : 'success'} text={record.isDeleted ? 'Not Active' : 'Active'} />
         </Descriptions.Item>
-        <Descriptions.Item label="UI Stats">
+        <Descriptions.Item span={3} label="UI Stats">
           <Badge status={config.UIStats ? 'success' : 'error'} text={config.UIStats ? 'Active' : 'Not Active'} />
         </Descriptions.Item>
-        <Descriptions.Item label="UI Annotation">
+        <Descriptions.Item span={3} label="UI Annotation">
           <Badge status={config.UIAnnotation ? 'success' : 'error'} text={config.UIAnnotation ? 'Active' : 'Not Active'} />
         </Descriptions.Item>
+        <Descriptions.Item span={3}label="Created Date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
+        <Descriptions.Item span={3}label="Updated Date">{moment(record.updatedAt).fromNow()}</Descriptions.Item>
       </Descriptions>
     )
   }

@@ -359,11 +359,11 @@ module.exports = require("antd");
 "use strict";
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9Jkg");
 /* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("dfwq");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("pLtp");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vYYK");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("zrwo");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("pLtp");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("vYYK");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("zrwo");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("dfwq");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("doui");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("Exp3");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_6__);
@@ -390,15 +390,20 @@ function PatternExtractor(props) {
       windowSize = _useState2[0],
       setWindowSize = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(null),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(false),
       _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState3, 2),
-      selected = _useState4[0],
-      setSelected = _useState4[1];
+      drawer = _useState4[0],
+      setDrawer = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({}),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(null),
       _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState5, 2),
-      onProcess = _useState6[0],
-      setOnProcess = _useState6[1];
+      selected = _useState6[0],
+      setSelected = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({}),
+      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState7, 2),
+      selectedNested = _useState8[0],
+      setSelectedNested = _useState8[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
     window.addEventListener("resize", handleResize);
@@ -411,6 +416,11 @@ function PatternExtractor(props) {
 
   var createScriptItem = function createScriptItem(pos, data, zIndex, classname) {
     var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_9___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = "".concat(classname, " annotation-script-item annotation-script-item-mark");
@@ -419,19 +429,24 @@ function PatternExtractor(props) {
     element.style.left = "".concat(pos.left + scrollLeft, "px");
     element.style.width = "".concat(pos.width, "px");
     element.style.height = "".concat(pos.height, "px");
-    element.style.background = data.color;
+    element.style.background = data.hasOwnProperty('label') ? label.color + '70' : '#e6f7ff';
     element.style.zIndex = zIndex;
     document.body.appendChild(element);
   };
 
   var createLabelItem = function createLabelItem(pos, data, zIndex, classname) {
     var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_9___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = "".concat(classname, " annotation-script-item annotation-script-item-label");
     element.style.position = 'absolute';
     element.style.color = '#fff';
-    element.style.background = data.color;
+    element.style.background = label.color;
     element.style.padding = '0px 6px';
     element.style.top = "".concat(pos.top + scrollTop - 15, "px");
     element.style.left = "".concat(pos.left + scrollLeft, "px");
@@ -439,13 +454,37 @@ function PatternExtractor(props) {
     element.style.zIndex = zIndex;
     element.style.cursor = 'pointer';
     element.addEventListener('click', function (e) {
-      return props.onChange(function (state) {
-        return state.filter(function (item) {
-          return item.startOffset !== data.startOffset && item.endOffset !== data.endOffset;
-        });
-      });
+      return handleRemoveLabel(data);
     });
     document.body.appendChild(element);
+  };
+
+  var handleRemoveLabel = function handleRemoveLabel(data) {
+    if (selected) {
+      setSelectedNested(function (state) {
+        var result = {};
+
+        for (var key in state) {
+          if (state[key].startOffset !== data.startOffset) {
+            if (state[key].endOffset !== data.endOffset) {
+              result[key] = state[key];
+            }
+          }
+        }
+
+        return result;
+      });
+    } else {
+      var result = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.filter(props.value, function (item) {
+        if (data.startOffset >= item.startOffset && data.endOffset <= item.endOffset) {
+          return false;
+        }
+
+        return true;
+      });
+
+      props.onChange(result);
+    }
   };
 
   var handleResize = function handleResize() {
@@ -458,7 +497,10 @@ function PatternExtractor(props) {
   var handleOnKeyDown = function handleOnKeyDown(e) {
     var current = e.target.childNodes[0];
     var el = document.getElementById("annotation-script").childNodes[0];
-    if (current === el) handleAddSource();
+
+    if (current === el) {
+      handleAddSource();
+    }
   };
 
   var recursiveDefineLabel = function recursiveDefineLabel(data, node, zIndex) {
@@ -473,14 +515,10 @@ function PatternExtractor(props) {
         createLabelItem(pos[0], item, zIndex[1]);
 
         lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
-          return createScriptItem(n, {
-            color: "".concat(item.color, "a1")
-          }, zIndex[0], 'annotation-contianer');
+          return createScriptItem(n, item, zIndex[0], 'annotation-contianer');
         });
       } else lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
-        return createScriptItem(n, {
-          color: item.color
-        }, zIndex[0], 'annotation-contianer');
+        return createScriptItem(n, item, zIndex[0], 'annotation-contianer');
       });
 
       item.script && recursiveDefineLabel(item.script, node, zIndex);
@@ -489,14 +527,14 @@ function PatternExtractor(props) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
     var node = document.getElementById("annotation-script").childNodes[0];
-    recursiveDefineLabel(props.value, node, [5, 100]);
+    selected ? recursiveDefineLabel([].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(props.value), [selected]), node, [5, 100]) : recursiveDefineLabel(props.value, node, [5, 100]);
     return function () {
       var elementScriptItem = document.querySelectorAll('.annotation-script-item');
       elementScriptItem.forEach(function (n) {
         return document.body.removeChild(n);
       });
     };
-  }, [props.value, windowSize]);
+  }, [props.value, selected, windowSize]);
   Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
     var node = document.getElementById("annotation-script-drawer");
 
@@ -505,22 +543,20 @@ function PatternExtractor(props) {
       var elementScript = node.childNodes[0];
 
       var _loop = function _loop(item) {
-        if (onProcess.hasOwnProperty(item) && elementScript) {
+        if (selectedNested.hasOwnProperty(item) && elementScript) {
           range = document.createRange();
-          range.setStart(elementScript, onProcess[item].startOffset);
-          range.setEnd(elementScript, onProcess[item].endOffset);
+          range.setStart(elementScript, selectedNested[item].startOffset);
+          range.setEnd(elementScript, selectedNested[item].endOffset);
           pos = range.getClientRects();
-          createLabelItem(pos[0], onProcess[item], 1500, 'annotation-drawer');
+          createLabelItem(pos[0], selectedNested[item], 1500, 'annotation-drawer');
 
           lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
-            return createScriptItem(n, {
-              color: "".concat(onProcess[item].color, "a1")
-            }, 1000, 'annotation-drawer');
+            return createScriptItem(n, selectedNested[item], 1000, 'annotation-drawer');
           });
         }
       };
 
-      for (var item in onProcess) {
+      for (var item in selectedNested) {
         _loop(item);
       }
 
@@ -531,18 +567,23 @@ function PatternExtractor(props) {
         });
       };
     }
-  }, [onProcess, windowSize]);
+  }, [selectedNested, windowSize]);
 
   var handleAddSource = function handleAddSource() {
     if (window.getSelection().anchorNode !== null) {
       if (window.getSelection().anchorNode.wholeText === props.dataSource) {
         var pos = window.getSelection().getRangeAt(0);
-        setSelected({
-          startOffset: pos.startOffset,
-          endOffset: pos.endOffset - pos.startOffset + pos.startOffset,
-          color: '#1e90ff3b',
-          text: props.dataSource.substr(pos.startOffset, pos.endOffset - pos.startOffset)
-        });
+
+        if (pos.startOffset !== pos.endOffset) {
+          setDrawer(true);
+          setSelected({
+            startOffset: pos.startOffset,
+            endOffset: pos.endOffset - pos.startOffset + pos.startOffset // color: '#bae7ff',
+            // text: props.dataSource.substr(pos.startOffset, pos.endOffset - pos.startOffset),
+
+          });
+        }
+
         window.getSelection().removeAllRanges();
       } else {
         antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Element invalid.");
@@ -557,15 +598,14 @@ function PatternExtractor(props) {
 
     if (window.getSelection().anchorNode !== null) {
       if (window.getSelection().anchorNode.wholeText === current) {
-        console.log(window.getSelection().toString());
         var pos = window.getSelection().getRangeAt(0);
-        setOnProcess(function (state) {
-          return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, state, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, label.name, {
+        setSelectedNested(function (state) {
+          return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, state, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, label.name, {
             startOffset: pos.startOffset,
             endOffset: pos.endOffset,
-            color: label.color,
-            label: label.name,
-            text: current.substr(pos.startOffset, pos.endOffset)
+            label: label.name // color: label.color,
+            // text: current.substr(pos.startOffset, pos.endOffset),
+
           }));
         });
         window.getSelection().removeAllRanges();
@@ -578,28 +618,31 @@ function PatternExtractor(props) {
   };
 
   var handleSubmitDrawer = function handleSubmitDrawer() {
-    if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_2___default()(onProcess).length === 0) {
+    if (_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default()(selectedNested).length === 0) {
       antd__WEBPACK_IMPORTED_MODULE_6__["message"].warning("Label is not defined.");
-    }
+      return;
+    } // Konversi dari obj key ke object array
 
-    var convert = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.values(onProcess);
+
+    var convert = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.values(selectedNested);
 
     var script = lodash__WEBPACK_IMPORTED_MODULE_9___default.a.map(convert, function (item) {
-      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, item, {
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, item, {
         startOffset: selected.startOffset + item.startOffset,
         endOffset: selected.startOffset + item.endOffset
       });
     });
 
-    var transform = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({}, selected, {
+    var transform = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, selected, {
       script: script
     });
 
     props.onChange(function (state) {
-      return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(state), [transform]);
+      return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(state), [transform]);
     });
+    setDrawer(false);
     setSelected(null);
-    setOnProcess({});
+    setSelectedNested({});
   };
 
   return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
@@ -611,13 +654,10 @@ function PatternExtractor(props) {
   }, props.dataSource)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Drawer"], {
     title: "Pattern Extractor",
     width: 700,
-    placement: "right",
+    placement: "left",
+    visible: drawer,
     closable: false,
-    onClose: function onClose() {
-      setSelected(null);
-      setOnProcess({});
-    },
-    visible: selected !== null
+    maskClosable: false
   }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24
   }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
@@ -628,7 +668,7 @@ function PatternExtractor(props) {
     strong: true
   }, "Select text and press the label"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
     id: "annotation-script-drawer"
-  }, selected && selected.text, !selected && 'SANE TEXT'), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+  }, selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
     className: "annotation-script-label"
   }, props.dataLabel.map(function (item, index) {
     return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
@@ -650,14 +690,30 @@ function PatternExtractor(props) {
     style: {
       height: 300
     }
-  }, _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(onProcess, null, 2))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(selectedNested, null, 2))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24
   }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
-    type: "primary",
     block: true,
+    type: "primary",
+    style: {
+      marginBottom: 16
+    },
     onClick: handleSubmitDrawer,
-    disabled: lodash__WEBPACK_IMPORTED_MODULE_9___default.a.keys(onProcess).length === 0
-  }, "Submit")))));
+    disabled: lodash__WEBPACK_IMPORTED_MODULE_9___default.a.keys(selectedNested).length === 0
+  }, "Submit"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+    type: "default",
+    block: true,
+    style: {
+      marginBottom: 16
+    },
+    onClick: function onClick() {
+      setDrawer(false);
+      setTimeout(function () {
+        setSelected(null);
+        setSelectedNested({});
+      }, 500);
+    }
+  }, "Cancel")))));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (PatternExtractor);
@@ -1556,6 +1612,11 @@ function Extractor(props) {
 
   var createScriptItem = function createScriptItem(pos, data) {
     var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_2___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item annotation-script-item-mark';
@@ -1564,19 +1625,24 @@ function Extractor(props) {
     element.style.left = "".concat(pos.left + scrollLeft, "px");
     element.style.width = "".concat(pos.width, "px");
     element.style.height = "".concat(pos.height, "px");
-    element.style.background = "".concat(data.color, "a1");
+    element.style.background = data.hasOwnProperty('label') ? label.color + '70' : '#e6f7ff';
     element.style.zIndex = 5;
     document.body.appendChild(element);
   };
 
   var createLabelItem = function createLabelItem(pos, data) {
     var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_2___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     element.className = 'annotation-script-item annotation-script-item-label';
     element.style.position = 'absolute';
     element.style.color = '#fff';
-    element.style.background = data.color;
+    element.style.background = label.color;
     element.style.padding = '0px 6px';
     element.style.top = "".concat(pos.top + scrollTop - 15, "px");
     element.style.left = "".concat(pos.left + scrollLeft, "px");
@@ -1636,7 +1702,6 @@ function Extractor(props) {
           return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(state), [{
             startOffset: pos.startOffset,
             endOffset: pos.endOffset,
-            color: item.color,
             label: item.name
           }]);
         });

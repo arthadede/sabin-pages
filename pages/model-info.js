@@ -81,7 +81,6 @@ function ModelView(props) {
   )
 }
 
-ModelView.Layout = UserLayout
 ModelView.getInitialProps = async ({apiUrl, token, query}) => {
   const id = query.id
   const modelApi = `${apiUrl}/model/${id}`

@@ -78,6 +78,7 @@ function ModelAnno(props) {
 
   const AnnotationComponent = () => {
     if (!source) return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
+    
     return (
       <div>
         <Annotation 

@@ -614,8 +614,6 @@ function ModelView(props) {
   }))))))))))));
 }
 
-ModelView.Layout = _components_UserLayout__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"];
-
 ModelView.getInitialProps =
 /*#__PURE__*/
 function () {

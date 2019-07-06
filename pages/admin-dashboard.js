@@ -4,14 +4,13 @@ import React from 'react'
 import Head from 'next/head'
 import {Bar, Line } from 'react-chartjs-2'
 import {withAuthSync} from '../utils/auth'
-import {Row, Col, Card, Statistic, List, Avatar, Tag} from 'antd'
+import {Row, Col, Card, Statistic, List, Avatar, Tag, Typography} from 'antd'
 import AdminLayout from "../components/AdminLayout";
 
 
 const initMonth = ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des']
 
 function AdminDashboard(props) {
-
   const logAnno = {
     labels: initMonth,
     datasets: [
@@ -66,6 +65,15 @@ function AdminDashboard(props) {
     ],
   }
 
+  const transformAnnotator = annotator => {
+    return annotator === 'classifier'
+    ? {text: 'Classifier', color: '#3498db'}
+    : annotator === 'extractor'
+    ? {text: 'Extractor', color: '#f1c40f'}
+    : {text: 'Pattern Extractor', color: '#e74c3c'}
+  }
+
+
   return (
     <AdminLayout {...props}>
       <Card title="Dashboard" bordered={false}>
@@ -110,16 +118,21 @@ function AdminDashboard(props) {
                 <List
                   itemLayout="horizontal"
                   dataSource={props.user.fiveBestUserTraining}
-                  renderItem={(item, key) => (
-                    <List.Item key={item.id}>
-                      <List.Item.Meta
-                        avatar={<Avatar style={{backgroundColor: item.avatar}}>{[item.firstname[0], item.lastname[0]].join("")}</Avatar>}
-                        title={[item.firstname, item.lastname].join(" ")}
-                        description={item.email}
-                      />
-                      <div>{item.sumTraining} Contributed</div>
-                    </List.Item>
-                  )}
+                  renderItem={(item, key) => {
+                    const fullName = [item.firstname, item.lastname].join(" ")
+                    const avatar = [item.firstname[0], item.lastname[0]].join("")
+
+                    return (
+                      <List.Item key={item.id}>
+                        <List.Item.Meta
+                          avatar={<Avatar style={{backgroundColor: item.avatar}}>{avatar}</Avatar>}
+                          title={<Typography.Text ellipsis strong>{fullName}</Typography.Text>}
+                          description={item.email}
+                        />
+                        <div>{item.sumTraining} Contributed</div>
+                      </List.Item>
+                    )
+                  }}
                 />
               </Card>
             </Col>
@@ -133,11 +146,10 @@ function AdminDashboard(props) {
                     <List.Item key={item.id}>
                       <List.Item.Meta
                         avatar={<Avatar src={item.avatar.path}/>}
-                        title={item.name}
+                        title={<Typography.Text ellipsis strong>{item.name}</Typography.Text>}
                         description={
-                          <Tag 
-                          color={item.annotator !== 'extractor' ? '#74b9ff' : '#ff7675'}>
-                          {item.annotator}
+                          <Tag color={transformAnnotator(item.annotator).color}>
+                          {transformAnnotator(item.annotator).text}
                           </Tag>
                         }
                       />
