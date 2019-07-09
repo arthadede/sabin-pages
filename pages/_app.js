@@ -27,6 +27,14 @@ export default class SabinApp extends App {
     return {...pageProps, apiUrl, route, token, auth}
   }
 
+  componentDidMount() {
+    window.addEventListener('appinstalled', (evt) => { console.log('PWA installed') })
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+    })
+  }
+
   render() {
     const {Component, ...rest} = this.props
 

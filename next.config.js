@@ -15,9 +15,5 @@ const nextConfig = {
 }
 
 module.exports = withProgressBar(withLess(withOffline({
-  ...nextConfig,
-  generateBuildId: async () => {
-    // For example get the latest git commit hash here
-    return 'sabin-pages-1'
-  },
+  ...nextConfig
 })))

@@ -29,7 +29,7 @@ export default (props) => {
         {HeaderComponent}
         <Content>{props.children}</Content>
         <Footer>
-          <div className="text-center">Sistem Anotasi Named Entity ©2019</div>
+          <div className="text-center">Aplikasi Anotasi Data Teks ©2019</div>
         </Footer>
       </Layout>
     </div>

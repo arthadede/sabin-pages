@@ -1,5 +1,4 @@
 import { Typography, Popover, Row, Col, Avatar, Tag, Input, Card, Radio, Button, Modal, Icon, Upload, message, Spin } from "antd";
-import Highlight from 'react-highlight'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from "axios"

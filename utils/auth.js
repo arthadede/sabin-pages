@@ -44,7 +44,7 @@ export const auth = (ctx, roleId) => {
 
   const user = token && jwt.verify(token, 'SECRET')
 
-  if (roleId !== undefined && user.roleId !== roleId) {
+  if (roleId !== undefined && user && user.roleId !== roleId) {
     if (ctx.req) {
       ctx.res.writeHead(302, { Location: '/login' })
       ctx.res.end()
