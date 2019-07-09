@@ -1468,16 +1468,11 @@ function ModelTrain(props) {
         }
       },
       render: function render(text) {
-        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_highlight_words__WEBPACK_IMPORTED_MODULE_11___default.a, {
-          className: "table-text",
-          highlightStyle: {
-            backgroundColor: '#ffc069',
-            padding: 0
-          },
-          searchWords: [searchText],
-          autoEscape: true,
-          textToHighlight: text
-        });
+        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
+          ellipsis: {
+            rows: 3
+          }
+        }, text);
       }
     };
   };

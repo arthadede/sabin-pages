@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
-import { Row, Col, Card, Button, Modal, message, Empty, Menu, Dropdown, Icon, Skeleton, List, Checkbox } from 'antd'
+import { Row, Col, Card, Button, Modal, message, Empty, Menu, Dropdown, Icon, Skeleton, List, Checkbox, Typography } from 'antd'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
 import ModalAddSource from '../components/ModalAddSource'
@@ -130,7 +130,7 @@ function ModelSource(props) {
                 <List.Item.Meta
                   style={{alignItems: 'center'}}
                   avatar={<Checkbox style={{marginLeft: 16, marginRight: 16}} value={index}/>}
-                  description={(<div className="table-text">{item}</div>)}/>
+                  description={<Typography.Paragraph ellipsis={{rows: 3}}>{item}</Typography.Paragraph>}/>
               </Skeleton>
             </List.Item>
           )}>

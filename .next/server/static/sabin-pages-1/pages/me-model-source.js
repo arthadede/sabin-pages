@@ -1169,8 +1169,10 @@ function ModalAddSource(props) {
           value: item
         }, "Select Column"),
         render: function render(text, record) {
-          return external_react_default.a.createElement("div", {
-            className: "table-text"
+          return external_react_default.a.createElement(external_antd_["Typography"].Paragraph, {
+            ellipsis: {
+              rows: 3
+            }
           }, record[item]);
         }
       };
@@ -1435,8 +1437,10 @@ function ModelSource(props) {
             },
             value: index
           }),
-          description: external_react_default.a.createElement("div", {
-            className: "table-text"
+          description: external_react_default.a.createElement(external_antd_["Typography"].Paragraph, {
+            ellipsis: {
+              rows: 3
+            }
           }, item)
         })));
       }

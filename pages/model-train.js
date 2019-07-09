@@ -246,13 +246,7 @@ function ModelTrain(props) {
       }
     },
     render: text => (
-      <Highlighter
-        className="table-text"
-        highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-        searchWords={[searchText]}
-        autoEscape
-        textToHighlight={text.toString()}
-      />
+      <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph>
     ),
   })
 

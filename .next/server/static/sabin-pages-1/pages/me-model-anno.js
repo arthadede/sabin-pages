@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -236,7 +236,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 11:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("TYlL");
@@ -660,16 +660,23 @@ function PatternExtractor(props) {
     maskClosable: false
   }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24
-  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Title, {
+    strong: true,
+    level: 4,
     style: {
-      marginBottom: 16,
-      display: 'block'
-    },
-    strong: true
-  }, "Select text and press the label"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-    id: "annotation-script-drawer"
-  }, selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-    className: "annotation-script-label"
+      marginBottom: 16
+    }
+  }, "Select text and press the label for annotation"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    style: {
+      minHeight: 300,
+      border: '1px dashed #d2d2d2',
+      padding: '20px 16px',
+      marginBottom: 16
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    style: {
+      paddingBottom: 16
+    }
   }, props.dataLabel.map(function (item, index) {
     return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
       key: index,
@@ -682,11 +689,13 @@ function PatternExtractor(props) {
         return handleAddScript(item);
       }
     }, item.name);
-  }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  })), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+    id: "annotation-script-drawer"
+  }, selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24
   }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Title, {
     level: 4
-  }, "Result:"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_8___default.a, {
+  }, "Result Annotation:"), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_8___default.a, {
     style: {
       height: 300
     }
@@ -1134,7 +1143,7 @@ function ModelAnno(props) {
       setState = _useState6[1];
 
   var selectedKeys = props.route.parsedUrl.pathname;
-  var Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a word";
+  var Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a sentence for annotation";
   var Annotation = props.model.annotator === 'classifier' ? _components_Classifier__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"] : props.model.annotator === 'extractor' ? _components_Extractor__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"] : _components_PatternExtractor__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"];
 
   var handleConfirm = function handleConfirm() {

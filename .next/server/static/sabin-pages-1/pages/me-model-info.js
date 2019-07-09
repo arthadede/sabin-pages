@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -236,7 +236,7 @@ function _classCallCheck(instance, Constructor) {
 
 /***/ }),
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("pvUb");
@@ -769,6 +769,13 @@ module.exports = require("core-js/library/fn/object/set-prototype-of");
 
 /***/ }),
 
+/***/ "X1wy":
+/***/ (function(module, exports) {
+
+module.exports = require("xlsx");
+
+/***/ }),
+
 /***/ "XVgq":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1033,6 +1040,13 @@ function _extends() {
 
 /***/ }),
 
+/***/ "lYhb":
+/***/ (function(module, exports) {
+
+module.exports = require("file-saver");
+
+/***/ }),
+
 /***/ "ln6h":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1085,17 +1099,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_error__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("8cHP");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("y6HG");
-/* harmony import */ var _components_MeModelSider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("AzOL");
-/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("SMlj");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("YLtl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("X1wy");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("8cHP");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_UserLayout__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("y6HG");
+/* harmony import */ var _components_MeModelSider__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("AzOL");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("SMlj");
 /* harmony import */ var react_color__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("4jX/");
 /* harmony import */ var react_color__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(react_color__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("lYhb");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_19__);
+
+
 
 
 
@@ -1124,7 +1144,7 @@ function handleInputLabelRef(ref, cb) {
     }
   }
 
-  Object(react__WEBPACK_IMPORTED_MODULE_11__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_12__["useEffect"])(function () {
     document.addEventListener('mousedown', handleClickOutside);
     return function () {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -1136,35 +1156,35 @@ function ModelView(props) {
   var selectedKeys = props.route.parsedUrl.pathname;
 
   if (props.errorCode > 200) {
-    return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_9___default.a, {
+    return react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(next_error__WEBPACK_IMPORTED_MODULE_9___default.a, {
       statusCode: props.errorCode
     });
   }
 
-  var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_11__["useRef"])(null);
-  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_11__["useRef"])(null);
+  var inputRef = Object(react__WEBPACK_IMPORTED_MODULE_12__["useRef"])(null);
+  var labelWrapper = Object(react__WEBPACK_IMPORTED_MODULE_12__["useRef"])(null);
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])("#0088ff"),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_12__["useState"])("#0088ff"),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState, 2),
       colorPicker = _useState2[0],
       setColorPicker = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(props.model),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_12__["useState"])(props.model),
       _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState3, 2),
       model = _useState4[0],
       setModel = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_12__["useState"])(false),
       _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState5, 2),
       spinning = _useState6[0],
       setSpinning = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(null),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_12__["useState"])(null),
       _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState7, 2),
       inputValue = _useState8[0],
       setInputValue = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_11__["useState"])(false),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_12__["useState"])(false),
       _useState10 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_useState9, 2),
       inputVisible = _useState10[0],
       setInputVisible = _useState10[1];
@@ -1255,7 +1275,7 @@ function ModelView(props) {
                 response = _context2.sent;
 
                 if (response.status === 200) {
-                  _routes__WEBPACK_IMPORTED_MODULE_12__["Router"].pushRoute('/dashboard');
+                  _routes__WEBPACK_IMPORTED_MODULE_13__["Router"].pushRoute('/dashboard');
                   antd__WEBPACK_IMPORTED_MODULE_6__["message"].success("Modal deleted successfully.");
                 }
 
@@ -1502,66 +1522,127 @@ function ModelView(props) {
       }
     }
   };
-  return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Spin"], {
+
+  var getTrain = function getTrain() {
+    return axios__WEBPACK_IMPORTED_MODULE_10___default()({
+      method: "GET",
+      url: "".concat(props.modelApi, "/train/export"),
+      headers: {
+        authorization: props.token
+      }
+    }).then(function (res) {
+      return res.data;
+    })["catch"](function (err) {
+      return console.log(err.response.status);
+    });
+  };
+
+  var generateCSV = function generateCSV(data) {
+    var buffered = new ArrayBuffer(data.length);
+    var view = new Uint8Array(buffered);
+
+    for (var i = 0; i != data.length; ++i) {
+      view[i] = data.charCodeAt(i) & 0xFF;
+    }
+
+    return buffered;
+  };
+
+  var handleExportCSV =
+  /*#__PURE__*/
+  function () {
+    var _ref5 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+    /*#__PURE__*/
+    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee4() {
+      var trainings, worksheet, csv;
+      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return getTrain();
+
+            case 2:
+              trainings = _context4.sent;
+              worksheet = xlsx__WEBPACK_IMPORTED_MODULE_11___default.a.utils.json_to_sheet(trainings);
+              csv = xlsx__WEBPACK_IMPORTED_MODULE_11___default.a.utils.sheet_to_csv(worksheet);
+              Object(file_saver__WEBPACK_IMPORTED_MODULE_18__["saveAs"])(new Blob([generateCSV(csv)], {
+                type: "application/octet-stream"
+              }), "".concat(props.model.name, ".csv"));
+
+            case 6:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function handleExportCSV() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  return react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(_components_UserLayout__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Spin"], {
     spinning: spinning
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], {
     type: "flex",
     gutter: 32
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("title", null, "My Model Info - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, null, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("title", null, "My Model Info - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     xs: 24,
     md: 6
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_MeModelSider__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(_components_MeModelSider__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"], {
     current: selectedKeys,
     dataSource: model
-  })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  })), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     xs: 24,
     md: 18
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
     className: "ant-custom",
-    actions: [react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+    actions: [react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
       className: "btn-danger",
       onClick: handleModelRemove
     }, "Delete Model")]
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 4
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
     bordered: false
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'flex-end'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Avatar"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Avatar"], {
     size: 70,
     src: model.avatar.path
-  }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Upload"], uploudAvatar, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("a", {
+  }), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Upload"], uploudAvatar, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("a", {
     style: {
       position: 'absolute',
       bottom: 0,
       right: 0
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
     type: "edit"
-  })))))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  })))))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 20
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Card"], {
     bordered: false
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Title, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Title, {
     level: 4,
     editable: {
       onChange: handleEditName
     }
-  }, model.name), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Paragraph, {
+  }, model.name), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Paragraph, {
     style: {
       textAlign: 'justify'
     },
@@ -1572,62 +1653,62 @@ function ModelView(props) {
       rows: 4,
       expandable: true
     }
-  }, model.desc)), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, model.desc)), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24,
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: "block",
       marginBottom: 8
     },
     type: "secondary"
-  }, "Type"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
+  }, "Type"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
     value: model.isPrivate,
     onChange: handleRadioPrivate,
     buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: true
-  }, "Private"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, "Private"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: false
-  }, "Public"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "Public"))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24,
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: "block",
       marginBottom: 8
     },
     type: "secondary"
-  }, "Annotator"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
+  }, "Annotator"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
     value: model.annotator,
     buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: "classifier"
-  }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, "Classifier"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: "extractor"
-  }, "Extractor"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, "Extractor"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: "pattern-extractor"
-  }, "Pattern Extractor"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "Pattern Extractor"))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 24,
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: "block",
       marginBottom: 8
     },
     type: "secondary"
   }, "Label"), model.label.map(function (item, key) {
-    return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
+    return react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
       key: key,
       className: "ant-custom",
       color: item.color,
@@ -1639,12 +1720,12 @@ function ModelView(props) {
       },
       closable: true
     }, item.name);
-  }), inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }), inputVisible && react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       display: 'inline-block'
     },
     ref: labelWrapper
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Input"], {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Input"], {
     ref: inputRef,
     style: {
       width: 120,
@@ -1656,9 +1737,9 @@ function ModelView(props) {
     },
     onPressEnter: handleAddLabel,
     onKeyDown: handleTabLabel,
-    suffix: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Popover"], {
+    suffix: react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Popover"], {
       placement: "bottomRight",
-      content: react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_color__WEBPACK_IMPORTED_MODULE_17__["CirclePicker"], {
+      content: react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(react_color__WEBPACK_IMPORTED_MODULE_17__["CirclePicker"], {
         color: colorPicker,
         onChange: function onChange(color) {
           setColorPicker(color.hex);
@@ -1666,7 +1747,7 @@ function ModelView(props) {
         }
       }),
       trigger: "click"
-    }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
       style: {
         width: 15,
         height: 15,
@@ -1680,7 +1761,7 @@ function ModelView(props) {
   //   value={inputValue} 
   //   onChange={e => setInputValue(e.target.value)} 
   //   onPressEnter={handleAddLabel}/>
-  , !inputVisible && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
+  , !inputVisible && react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Tag"], {
     className: "ant-custom",
     style: {
       background: '#fff',
@@ -1688,96 +1769,98 @@ function ModelView(props) {
       cursor: 'pointer'
     },
     onClick: handleInputVisible
-  }, "New Label")))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, "New Label")))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       marginBottom: 16
     },
     strong: true
-  }, "UI Control"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "UI Control"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Row"], null, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 12,
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: "block",
       marginBottom: 8
     },
     type: "secondary"
-  }, "Menu Stats"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
+  }, "Menu Stats"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
     value: model.config.UIStats,
     onChange: handleRadioMenuStats,
     buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: true
-  }, "Show"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, "Show"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: false
-  }, "Hide"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+  }, "Hide"))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Col"], {
     md: 12,
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: "block",
       marginBottom: 8
     },
     type: "secondary"
-  }, "Menu Annotation"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
+  }, "Menu Annotation"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Group, {
     value: model.config.UIAnnotation,
     onChange: handleRadioAnnotation,
     buttonStyle: "solid"
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: true
-  }, "Show"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
+  }, "Show"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Radio"].Button, {
     value: false
-  }, "Hide"))))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+  }, "Hide"))))), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
+    style: {
+      marginBottom: 8
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+    strong: true
+  }, "Export Train Data")), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       marginBottom: 16
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
     style: {
       display: 'block',
-      marginBottom: 16
-    },
-    strong: true
-  }, "API Request"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, null, "To extract make a GET request to the following URL:"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
+      marginBottom: 8
+    }
+  }, "File Download:"), react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement("div", {
     style: {
       width: '100%'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "".concat("https://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train"))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Typography"].Text, {
+  }, react__WEBPACK_IMPORTED_MODULE_12___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Button"], {
     style: {
-      display: 'block',
-      marginBottom: 16
+      marginRight: 16
     },
-    strong: true
-  }, "Code Examples with Curl"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("div", {
-    style: {
-      width: '100%'
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_highlight__WEBPACK_IMPORTED_MODULE_7___default.a, null, "curl -i -H \"Authorization: ".concat(props.token, "\" -H \"Content-Type: application/json\" -X GET ").concat("https://api.sabin.arthadede.com", "/model/").concat(props.model.id, "/train")))))))))))));
+    type: "primary",
+    icon: "download",
+    onClick: handleExportCSV
+  }, "Download CSV"))))))))))));
 }
 
 ModelView.getInitialProps =
 /*#__PURE__*/
 function () {
-  var _ref6 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
+  var _ref7 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(
   /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee4(_ref5) {
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee5(_ref6) {
     var apiUrl, token, query, id, modelApi, model;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee4$(_context4) {
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            apiUrl = _ref5.apiUrl, token = _ref5.token, query = _ref5.query;
+            apiUrl = _ref6.apiUrl, token = _ref6.token, query = _ref6.query;
             id = query.id;
             modelApi = "".concat(apiUrl, "/model/").concat(id);
-            _context4.prev = 3;
-            _context4.next = 6;
+            _context5.prev = 3;
+            _context5.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_10___default()({
               method: "GET",
               url: modelApi,
@@ -1789,33 +1872,33 @@ function () {
             });
 
           case 6:
-            model = _context4.sent;
-            return _context4.abrupt("return", {
+            model = _context5.sent;
+            return _context5.abrupt("return", {
               modelApi: modelApi,
               model: model
             });
 
           case 10:
-            _context4.prev = 10;
-            _context4.t0 = _context4["catch"](3);
-            return _context4.abrupt("return", {
-              errorCode: _context4.t0.response.status
+            _context5.prev = 10;
+            _context5.t0 = _context5["catch"](3);
+            return _context5.abrupt("return", {
+              errorCode: _context5.t0.response.status
             });
 
           case 13:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4, null, [[3, 10]]);
+    }, _callee5, null, [[3, 10]]);
   }));
 
   return function (_x2) {
-    return _ref6.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_15__[/* withAuthSync */ "c"])(ModelView));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_16__[/* withAuthSync */ "c"])(ModelView));
 
 /***/ }),
 

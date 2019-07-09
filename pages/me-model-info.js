@@ -2,14 +2,16 @@ import { Typography, Popover, Row, Col, Avatar, Tag, Input, Card, Radio, Button,
 import Highlight from 'react-highlight'
 import Head from 'next/head'
 import Error from 'next/error'
-import axios from "axios";
+import axios from "axios"
+import XLSX from 'xlsx'
 import React, {useState, useRef, useEffect} from 'react'
 import {Router} from '../routes'
 import UserLayout from "../components/UserLayout";
 import ModelSider from "../components/MeModelSider";
 import {withAuthSync} from '../utils/auth'
-import _ from 'lodash'
 import { CirclePicker } from 'react-color'
+import {saveAs} from 'file-saver'
+import _ from 'lodash'
 
 function handleInputLabelRef(ref, cb) {
   function handleClickOutside(event) {
@@ -244,6 +246,31 @@ function ModelView(props) {
     },
   }
 
+  const getTrain = () => {
+    return axios({
+      method: "GET",
+      url: `${props.modelApi}/train/export`,
+      headers: {authorization: props.token}
+    })
+    .then(res => res.data)
+    .catch(err => console.log(err.response.status))
+  }
+
+  const generateCSV = data => {
+    var buffered = new ArrayBuffer(data.length);
+    var view = new Uint8Array(buffered);
+    for (var i=0; i!=data.length; ++i) view[i] = data.charCodeAt(i) & 0xFF;
+    return buffered;
+  }
+
+  const handleExportCSV = async () => {
+    const trainings = await getTrain()
+    const worksheet = XLSX.utils.json_to_sheet(trainings)
+    const csv = XLSX.utils.sheet_to_csv(worksheet);
+    
+    saveAs(new Blob([generateCSV(csv)],{type:"application/octet-stream"}), `${props.model.name}.csv`)
+  }
+
   return (
     <UserLayout {...props}>
       <Spin spinning={spinning}>
@@ -363,19 +390,13 @@ function ModelView(props) {
                           </Col>
                         </Row>
                       </div>
+                      <div style={{marginBottom: 8}}>
+                        <Typography.Text strong>Export Train Data</Typography.Text>
+                      </div>
                       <div style={{marginBottom: 16}}>
-                        <Typography.Text style={{display: 'block', marginBottom: 16}} strong>API Request</Typography.Text>
-                        <Typography.Text>To extract make a GET request to the following URL:</Typography.Text>
+                        <Typography.Text style={{display: 'block', marginBottom: 8}}>File Download:</Typography.Text>
                         <div style={{ width: '100%' }}>
-                          <Highlight>
-                            {`${process.env.API_HOST}/model/${props.model.id}/train`}
-                          </Highlight>
-                        </div>
-                        <Typography.Text style={{display: 'block', marginBottom: 16}} strong>Code Examples with Curl</Typography.Text>
-                        <div style={{ width: '100%' }}>
-                          <Highlight>
-                            {`curl -i -H "Authorization: ${props.token}" -H "Content-Type: application/json" -X GET ${process.env.API_HOST}/model/${props.model.id}/train`}
-                          </Highlight>
+                          <Button style={{marginRight: 16}} type="primary" icon="download" onClick={handleExportCSV}>Download CSV</Button>
                         </div>
                       </div>
                     </div>

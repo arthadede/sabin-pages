@@ -21,7 +21,7 @@ function ModelAnno(props) {
   const [source, setSource] = useState(null)
   const [state, setState] = useState([])
   const selectedKeys = props.route.parsedUrl.pathname
-  const Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a word"
+  const Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a sentence for annotation"
   const Annotation = props.model.annotator === 'classifier' ? Classifier  :  props.model.annotator === 'extractor' ? Extractor : PatternExtractor
 
   const handleConfirm = () => {

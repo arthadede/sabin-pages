@@ -104,7 +104,7 @@ function ModalAddSource(props) {
       key: item,
       width: 200,
       title: <Checkbox value={item}>Select Column</Checkbox>,
-      render: (text, record) => <div className="table-text">{record[item]}</div>
+      render: (text, record) => <Typography.Paragraph ellipsis={{rows: 3}}>{record[item]}</Typography.Paragraph>
     }))
     
     const dataSource = _.slice(state.sheets, 0, 10)

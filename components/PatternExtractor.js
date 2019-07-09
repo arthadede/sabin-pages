@@ -247,22 +247,36 @@ function PatternExtractor(props) {
         maskClosable={false}>
         <Row>
           <Col md={24}>
-            <Typography.Text style={{marginBottom: 16, display: 'block'}} strong>Select text and press the label</Typography.Text>
-            <div id="annotation-script-drawer">
-              {selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)}
-            </div>
-            <div className="annotation-script-label">
-              {props.dataLabel.map((item, index) => (
-                <Button 
-                  key={index}
-                  className="ant-custom ant-tag"
-                  style={{background: item.color, color: '#fff'}}
-                  onClick={() => handleAddScript(item)}>{item.name}</Button>
-              ))}
+            <Typography.Title 
+              strong
+              level={4} 
+              style={{marginBottom: 16}} 
+              >
+                Select text and press the label for annotation
+            </Typography.Title>
+            <div
+              style={{
+                minHeight: 300,
+                border: '1px dashed #d2d2d2',
+                padding: '20px 16px',
+                marginBottom: 16
+              }}>
+              <div style={{paddingBottom: 16}}>
+                {props.dataLabel.map((item, index) => (
+                  <Button 
+                    key={index}
+                    className="ant-custom ant-tag"
+                    style={{background: item.color, color: '#fff'}}
+                    onClick={() => handleAddScript(item)}>{item.name}</Button>
+                ))}
+              </div>
+              <div id="annotation-script-drawer">
+                {selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)}
+              </div>
             </div>
           </Col>
           <Col md={24}>
-            <Typography.Title level={4}>Result:</Typography.Title>
+            <Typography.Title level={4}>Result Annotation:</Typography.Title>
             <Highlight style={{height: 300}}>
               {JSON.stringify(selectedNested, null, 2)}
             </Highlight>

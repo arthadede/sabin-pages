@@ -2,11 +2,14 @@
   "modules": {
     "byIdentifier": {
       "ignored node_modules/engine.io-client/lib/transports ws": 0,
-      "multi node_modules/next-offline/register-sw-compiled.js .\\node_modules\\next\\dist\\client\\next.js": 1,
-      "ignored node_modules/readable-stream/lib util": 2,
-      "ignored node_modules/readable-stream/lib/internal/streams util": 3,
-      "ignored node_modules/bn.js/lib buffer": 4,
-      "ignored node_modules/brorand crypto": 5
+      "ignored node_modules/xlsx fs": 1,
+      "multi node_modules/next-offline/register-sw-compiled.js .\\node_modules\\next\\dist\\client\\next.js": 2,
+      "ignored node_modules/readable-stream/lib util": 3,
+      "ignored node_modules/readable-stream/lib/internal/streams util": 4,
+      "ignored node_modules/bn.js/lib buffer": 5,
+      "ignored node_modules/brorand crypto": 6,
+      "ignored node_modules/xlsx crypto": 7,
+      "ignored node_modules/xlsx stream": 8
     },
     "usedIds": {
       "0": 0,
@@ -14,7 +17,10 @@
       "2": 2,
       "3": 3,
       "4": 4,
-      "5": 5
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8
     }
   },
   "chunks": {

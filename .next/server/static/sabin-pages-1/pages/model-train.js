@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -243,7 +243,7 @@ module.exports = require("react-highlight-words");
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("djf8");
@@ -1249,16 +1249,11 @@ function ModelTrain(props) {
         }
       },
       render: function render(text) {
-        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_highlight_words__WEBPACK_IMPORTED_MODULE_11___default.a, {
-          className: "table-text",
-          highlightStyle: {
-            backgroundColor: '#ffc069',
-            padding: 0
-          },
-          searchWords: [searchText],
-          autoEscape: true,
-          textToHighlight: text.toString()
-        });
+        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
+          ellipsis: {
+            rows: 3
+          }
+        }, text);
       }
     };
   };
