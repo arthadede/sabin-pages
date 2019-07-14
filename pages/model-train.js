@@ -246,7 +246,7 @@ function ModelTrain(props) {
       }
     },
     render: text => (
-      <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph>
+      <Typography.Paragraph style={{minWidth: 0}} ellipsis={{rows: 3}}>{text}</Typography.Paragraph>
     ),
   })
 

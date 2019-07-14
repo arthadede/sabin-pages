@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import { Row, Col, Card, Button, Modal, message, Empty, Menu, Dropdown, Icon, Skeleton, List, Checkbox, Typography } from 'antd'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
-import { Row, Col, Card, Button, Modal, message, Empty, Menu, Dropdown, Icon, Skeleton, List, Checkbox, Typography } from 'antd'
+import React, {useState} from 'react'
+import io from 'socket.io-client'
+
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
 import ModalAddSource from '../components/ModalAddSource'
@@ -13,6 +15,7 @@ function ModelSource(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
+  const [socket, setSocket] = useState(io.connect(process.env.API_HOST))
   const selectedKeys = props.route.parsedUrl.pathname
   const [state, setState] = useState(props.source.json)
   const [selected, setSelected] = useState([])
@@ -28,7 +31,12 @@ function ModelSource(props) {
         headers: {authorization: props.token},
         data: {sourceIds: data}
       })
-      .then(res => res.status === 200 && resolve(res.data))
+      .then(res => {
+        if(res.status === 200) {
+          socket.emit('remove', props.model.id)
+          resolve(res.data)
+        }
+      })
       .catch(err => reject(err))
     })
   }
@@ -130,7 +138,7 @@ function ModelSource(props) {
                 <List.Item.Meta
                   style={{alignItems: 'center'}}
                   avatar={<Checkbox style={{marginLeft: 16, marginRight: 16}} value={index}/>}
-                  description={<Typography.Paragraph ellipsis={{rows: 3}}>{item}</Typography.Paragraph>}/>
+                  description={<Typography.Paragraph style={{minWidth: 0}} ellipsis={{rows: 3}}>{item}</Typography.Paragraph>}/>
               </Skeleton>
             </List.Item>
           )}>
