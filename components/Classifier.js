@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import {Typography, Tag} from 'antd'
+import {Typography, Tag, Affix} from 'antd'
 
 function Classifier(props) {
   const dataLabel = props.dataLabel.map((item) => ({
@@ -27,19 +27,21 @@ function Classifier(props) {
       display: 'flex',
       flexDirection: 'column'
     }}>
-      <div style={{marginBottom: 16}}>
-        <Typography.Text type="secondary" style={{marginRight: 16}}>Tags: </Typography.Text>
-        {dataLabel.map((item, index) => (
-          <Tag 
-            key={index} 
-            className="ant-custom" 
-            color={item.selected && item.color} 
-            style={{marginBottom: 8, cursor: 'pointer'}}
-            onClick={() => handleSet(item.name)}>
-              {item.name}
-            </Tag>
-        ))}
-      </div>
+      <Affix offsetTop={10}>
+        <div style={{marginBottom: 16, zIndex: 50}}>
+          <Typography.Text type="secondary" style={{marginRight: 16}}>Tags: </Typography.Text>
+          {dataLabel.map((item, index) => (
+            <Tag 
+              key={index} 
+              className="ant-custom" 
+              color={item.selected && item.color} 
+              style={{marginBottom: 8, cursor: 'pointer'}}
+              onClick={() => handleSet(item.name)}>
+                {item.name}
+              </Tag>
+          ))}
+        </div>
+      </Affix>
       <div>
         <Typography.Paragraph id="annotation-script">
           {props.dataSource}

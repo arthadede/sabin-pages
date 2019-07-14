@@ -405,6 +405,13 @@ function PatternExtractor(props) {
       selectedNested = _useState8[0],
       setSelectedNested = _useState8[1];
 
+  var handleResize = function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
     window.addEventListener("resize", handleResize);
     window.addEventListener("mouseup", handleOnKeyDown);
@@ -459,6 +466,53 @@ function PatternExtractor(props) {
     document.body.appendChild(element);
   };
 
+  var createScriptItemNested = function createScriptItemNested(pos, data, zIndex, classname) {
+    var wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body');
+    var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_9___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
+    var scrollTop = wrapper.scrollTop;
+    var scrollLeft = wrapper.scrollLeft;
+    element.className = "".concat(classname, " annotation-script-item annotation-script-item-mark");
+    element.style.position = 'absolute';
+    element.style.top = "".concat(pos.top + scrollTop, "px");
+    element.style.left = "".concat(pos.left + scrollLeft, "px");
+    element.style.width = "".concat(pos.width, "px");
+    element.style.height = "".concat(pos.height, "px");
+    element.style.background = data.hasOwnProperty('label') ? label.color + '70' : '#e6f7ff';
+    element.style.zIndex = zIndex;
+    wrapper.appendChild(element);
+  };
+
+  var createLabelItemNested = function createLabelItemNested(pos, data, zIndex, classname) {
+    var wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body');
+    var element = document.createElement('span');
+
+    var label = lodash__WEBPACK_IMPORTED_MODULE_9___default()(props.dataLabel).find(function (item) {
+      return item.name === data.label;
+    });
+
+    var scrollTop = wrapper.scrollTop;
+    var scrollLeft = wrapper.scrollLeft;
+    element.className = "".concat(classname, " annotation-script-item annotation-script-item-label");
+    element.style.position = 'absolute';
+    element.style.color = '#fff';
+    element.style.background = label.color;
+    element.style.padding = '0px 6px';
+    element.style.top = "".concat(pos.top + scrollTop - 15, "px");
+    element.style.left = "".concat(pos.left + scrollLeft, "px");
+    element.innerText = data.label;
+    element.style.zIndex = zIndex;
+    element.style.cursor = 'pointer';
+    element.addEventListener('click', function (e) {
+      return handleRemoveLabel(data);
+    });
+    wrapper.appendChild(element);
+  };
+
   var handleRemoveLabel = function handleRemoveLabel(data) {
     if (selected) {
       setSelectedNested(function (state) {
@@ -485,13 +539,6 @@ function PatternExtractor(props) {
 
       props.onChange(result);
     }
-  };
-
-  var handleResize = function handleResize() {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
   };
 
   var handleOnKeyDown = function handleOnKeyDown(e) {
@@ -529,7 +576,8 @@ function PatternExtractor(props) {
     var node = document.getElementById("annotation-script").childNodes[0];
     selected ? recursiveDefineLabel([].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(props.value), [selected]), node, [5, 100]) : recursiveDefineLabel(props.value, node, [5, 100]);
     return function () {
-      var elementScriptItem = document.querySelectorAll('.annotation-script-item');
+      var elementScriptItem = document.querySelectorAll('body>.annotation-script-item');
+      console.log(document.body);
       elementScriptItem.forEach(function (n) {
         return document.body.removeChild(n);
       });
@@ -548,10 +596,10 @@ function PatternExtractor(props) {
           range.setStart(elementScript, selectedNested[item].startOffset);
           range.setEnd(elementScript, selectedNested[item].endOffset);
           pos = range.getClientRects();
-          createLabelItem(pos[0], selectedNested[item], 1500, 'annotation-drawer');
+          createLabelItemNested(pos[0], selectedNested[item], 1500, 'annotation-drawer');
 
           lodash__WEBPACK_IMPORTED_MODULE_9___default.a.forEach(pos, function (n) {
-            return createScriptItem(n, selectedNested[item], 1000, 'annotation-drawer');
+            return createScriptItemNested(n, selectedNested[item], 1000, 'annotation-drawer');
           });
         }
       };
@@ -561,9 +609,10 @@ function PatternExtractor(props) {
       }
 
       return function () {
+        var wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body');
         var elementScriptItem = document.querySelectorAll('.annotation-drawer.annotation-script-item');
         elementScriptItem.forEach(function (n) {
-          return document.body.removeChild(n);
+          return wrapper.removeChild(n);
         });
       };
     }
@@ -653,6 +702,7 @@ function PatternExtractor(props) {
     id: "annotation-script"
   }, props.dataSource)), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_6__["Drawer"], {
     title: "Pattern Extractor",
+    className: "annotation-modal-drawer",
     width: 700,
     placement: "left",
     visible: drawer,
@@ -1732,7 +1782,10 @@ function Extractor(props) {
       marginBottom: 16
     }
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Affix"], {
-    offsetTop: 10
+    offsetTop: 10,
+    style: {
+      zIndex: 50
+    }
   }, props.dataLabel.map(function (item, index) {
     return react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
       key: index,
@@ -1846,9 +1899,12 @@ function Classifier(props) {
       display: 'flex',
       flexDirection: 'column'
     }
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Affix"], {
+    offsetTop: 10
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     style: {
-      marginBottom: 16
+      marginBottom: 16,
+      zIndex: 50
     }
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Text, {
     type: "secondary",
@@ -1868,7 +1924,7 @@ function Classifier(props) {
         return handleSet(item.name);
       }
     }, item.name);
-  })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
+  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, {
     id: "annotation-script"
   }, props.dataSource)));
 }

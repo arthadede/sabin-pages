@@ -10,6 +10,12 @@ function PatternExtractor(props) {
   const [selected, setSelected] = useState(null)
   const [selectedNested, setSelectedNested] = useState({})
 
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    })
+  }
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -56,6 +62,43 @@ function PatternExtractor(props) {
     document.body.appendChild(element)
   }
 
+  const createScriptItemNested = (pos, data, zIndex, classname) => {
+    const wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body')
+    const element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
+    const scrollTop = wrapper.scrollTop
+    const scrollLeft = wrapper.scrollLeft
+    element.className = `${classname} annotation-script-item annotation-script-item-mark`
+    element.style.position = 'absolute'
+    element.style.top = `${pos.top + scrollTop}px`
+    element.style.left = `${pos.left + scrollLeft}px`
+    element.style.width = `${pos.width}px`
+    element.style.height = `${pos.height}px`
+    element.style.background = data.hasOwnProperty('label') ? (label.color + '70') : '#e6f7ff'
+    element.style.zIndex = zIndex
+    wrapper.appendChild(element)
+  }
+  
+  const createLabelItemNested = (pos, data, zIndex, classname) => {
+    const wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body')
+    const element = document.createElement('span')
+    const label = _(props.dataLabel).find(item => item.name === data.label)
+    const scrollTop = wrapper.scrollTop
+    const scrollLeft = wrapper.scrollLeft
+    element.className = `${classname} annotation-script-item annotation-script-item-label`
+    element.style.position = 'absolute'
+    element.style.color = '#fff'
+    element.style.background = label.color
+    element.style.padding = '0px 6px'
+    element.style.top = `${(pos.top + scrollTop) - 15}px`
+    element.style.left = `${pos.left+ scrollLeft}px`
+    element.innerText = data.label
+    element.style.zIndex = zIndex
+    element.style.cursor = 'pointer'
+    element.addEventListener('click', e => handleRemoveLabel(data))
+    wrapper.appendChild(element)
+  }
+
   const handleRemoveLabel = data => {
     if (selected) {
       setSelectedNested(state => {
@@ -83,12 +126,6 @@ function PatternExtractor(props) {
     }
   }
 
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    })
-  }
 
   const handleOnKeyDown = e => {
     const current = e.target.childNodes[0]
@@ -120,11 +157,12 @@ function PatternExtractor(props) {
     let node = document.getElementById("annotation-script").childNodes[0];
 
     selected
-    ? recursiveDefineLabel([...props.value, selected], node, [5, 100])
-    : recursiveDefineLabel(props.value, node, [5, 100])
+      ? recursiveDefineLabel([...props.value, selected], node, [5, 100])
+      : recursiveDefineLabel(props.value, node, [5, 100])
 
     return () => {
-      let elementScriptItem = document.querySelectorAll('.annotation-script-item')
+      let elementScriptItem = document.querySelectorAll('body>.annotation-script-item')
+      console.log(document.body)
       elementScriptItem.forEach(n => document.body.removeChild(n))
     }
   }, [props.value, selected, windowSize])
@@ -143,14 +181,15 @@ function PatternExtractor(props) {
           range.setEnd(elementScript, selectedNested[item].endOffset);
           pos = range.getClientRects()
   
-          createLabelItem(pos[0], selectedNested[item], 1500, 'annotation-drawer')
-          _.forEach(pos, n => createScriptItem(n, selectedNested[item], 1000, 'annotation-drawer'))
+          createLabelItemNested(pos[0], selectedNested[item], 1500, 'annotation-drawer')
+          _.forEach(pos, n => createScriptItemNested(n, selectedNested[item], 1000, 'annotation-drawer'))
         }
       }
   
       return () => {
+        const wrapper = document.querySelector('.annotation-modal-drawer .ant-drawer-wrapper-body')
         let elementScriptItem = document.querySelectorAll('.annotation-drawer.annotation-script-item')
-        elementScriptItem.forEach(n => document.body.removeChild(n))
+        elementScriptItem.forEach(n => wrapper.removeChild(n))
       }
     }
   }, [selectedNested, windowSize])
@@ -240,6 +279,7 @@ function PatternExtractor(props) {
       </div>
       <Drawer
         title="Pattern Extractor"
+        className="annotation-modal-drawer"
         width={700}
         placement="left"
         visible={drawer}

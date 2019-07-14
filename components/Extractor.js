@@ -108,7 +108,7 @@ function Extractor(props) {
     <div
       style={{minHeight: 500}}>
       <div style={{marginBottom: 16}}>
-        <Affix offsetTop={10}>
+        <Affix offsetTop={10} style={{zIndex: 50}}>
           {props.dataLabel.map((item, index) => (
             <Button 
               key={index}

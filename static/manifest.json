@@ -3,12 +3,12 @@
   "short_name": "SANE",
   "icons": [
     {
-      "src": "./logo_192.png",
+      "src": "static/logo_192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "./logo_512.png",
+      "src": "static/logo_512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
