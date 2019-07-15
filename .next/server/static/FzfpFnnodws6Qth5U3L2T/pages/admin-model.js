@@ -103,7 +103,7 @@ module.exports = require("core-js/library/fn/object/get-prototype-of");
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("9zyH");
+module.exports = __webpack_require__("GuSX");
 
 
 /***/ }),
@@ -119,6 +119,13 @@ function _classCallCheck(instance, Constructor) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
+
+/***/ }),
+
+/***/ "1lYi":
+/***/ (function(module, exports) {
+
+module.exports = require("react-highlight-words");
 
 /***/ }),
 
@@ -155,333 +162,6 @@ module.exports = require("next-routes");
 
 /***/ }),
 
-/***/ "9zyH":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ln6h");
-/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("doui");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("O40h");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YLtl");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("t3hY");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SMlj");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_AdminLayout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("hJmc");
-
-
-
-
-
-
-
-
-
-
-
-var initMonth = ['Jan', 'Febr', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'];
-
-function AdminDashboard(props) {
-  var logAnno = {
-    labels: initMonth,
-    datasets: [{
-      data: props.training.logTraining.values,
-      label: new Date().getFullYear(),
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10
-    }]
-  };
-  var logUser = {
-    labels: initMonth,
-    datasets: [{
-      data: props.user.logUser.values,
-      label: new Date().getFullYear(),
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10
-    }]
-  };
-
-  var transformAnnotator = function transformAnnotator(annotator) {
-    return annotator === 'classifier' ? {
-      text: 'Classifier',
-      color: '#3498db'
-    } : annotator === 'extractor' ? {
-      text: 'Extractor',
-      color: '#f1c40f'
-    } : {
-      text: 'Pattern Extractor',
-      color: '#e74c3c'
-    };
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_AdminLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], {
-    title: "Dashboard",
-    bordered: false
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("title", null, "Admin Dashboard - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Row"], {
-    gutter: 16
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 10
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "Model",
-    value: props.model.countModel
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "User",
-    value: props.user.countUser
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "Source",
-    value: props.model.countSource
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "Source Used",
-    value: props.training.countTraining
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "Training Verified",
-    value: props.training.countTrainingVerified
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 12,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Statistic"], {
-    title: "Training Unverified",
-    value: props.training.countTrainingUnverified
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 24,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
-    title: "Top user",
-    style: {
-      marginBottom: 16
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
-    itemLayout: "horizontal",
-    dataSource: props.user.fiveBestUserTraining,
-    renderItem: function renderItem(item, key) {
-      var fullName = [item.firstname, item.lastname].join(" ");
-      var avatar = [item.firstname[0], item.lastname[0]].join("");
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
-        key: item.id
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
-        avatar: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
-          style: {
-            backgroundColor: item.avatar
-          }
-        }, avatar),
-        title: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Typography"].Text, {
-          ellipsis: true,
-          strong: true
-        }, fullName),
-        description: item.email
-      }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, item.sumTraining, " Contributed"));
-    }
-  }))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 24,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
-    title: "Top model",
-    style: {
-      marginBottom: 16
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"], {
-    itemLayout: "horizontal",
-    dataSource: props.model.fiveBestModelTraining,
-    renderItem: function renderItem(item, key) {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item, {
-        key: item.id
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["List"].Item.Meta, {
-        avatar: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Avatar"], {
-          src: item.avatar.path
-        }),
-        title: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Typography"].Text, {
-          ellipsis: true,
-          strong: true
-        }, item.name),
-        description: react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Tag"], {
-          color: transformAnnotator(item.annotator).color
-        }, transformAnnotator(item.annotator).text)
-      }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, "".concat(item.sumTraining, " Training")));
-    }
-  })))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 14
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 24,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
-    title: "Log Annotation",
-    style: {
-      marginBottom: 16
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__["Line"], {
-    data: logAnno
-  })))), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Col"], {
-    md: 24,
-    style: {
-      marginBottom: 24
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_9__["Card"].Meta, {
-    title: "Log User",
-    style: {
-      marginBottom: 16
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__["Bar"], {
-    data: logUser,
-    width: 100,
-    height: 390,
-    options: {
-      maintainAspectRatio: false
-    }
-  }))))))));
-}
-
-AdminDashboard.getInitialProps =
-/*#__PURE__*/
-function () {
-  var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(
-  /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-    var apiUrl, token, apiModel, apiUser, apiTrain, fetchModelStats, fetchUserStats, fetchTrainingStats, _ref3, _ref4, model, user, training;
-
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            apiUrl = _ref.apiUrl, token = _ref.token;
-            apiModel = "".concat(apiUrl, "/admin/model/stats");
-            apiUser = "".concat(apiUrl, "/admin/user/stats");
-            apiTrain = "".concat(apiUrl, "/admin/training/stats");
-
-            fetchModelStats = function fetchModelStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-                method: 'GET',
-                url: apiModel,
-                headers: {
-                  authorization: token
-                }
-              });
-            };
-
-            fetchUserStats = function fetchUserStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-                method: 'GET',
-                url: apiUser,
-                headers: {
-                  authorization: token
-                }
-              });
-            };
-
-            fetchTrainingStats = function fetchTrainingStats() {
-              return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-                method: 'GET',
-                url: apiTrain,
-                headers: {
-                  authorization: token
-                }
-              });
-            };
-
-            _context.next = 9;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default.a.all([fetchModelStats(), fetchUserStats(), fetchTrainingStats()]);
-
-          case 9:
-            _ref3 = _context.sent;
-            _ref4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(_ref3, 3);
-            model = _ref4[0];
-            user = _ref4[1];
-            training = _ref4[2];
-            return _context.abrupt("return", {
-              model: model.data,
-              user: user.data,
-              training: training.data
-            });
-
-          case 15:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_8__[/* withAuthSync */ "c"])(AdminDashboard, 1));
-
-/***/ }),
-
 /***/ "Bhuq":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -493,6 +173,501 @@ module.exports = __webpack_require__("/+oN");
 /***/ (function(module, exports) {
 
 module.exports = require("antd");
+
+/***/ }),
+
+/***/ "GuSX":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zrwo");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("ln6h");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("O40h");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("doui");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("SMlj");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("YLtl");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("1lYi");
+/* harmony import */ var react_highlight_words__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_highlight_words__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_AdminLayout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("hJmc");
+/* harmony import */ var js_flock_sort__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("N6Po");
+/* harmony import */ var js_flock_sort__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(js_flock_sort__WEBPACK_IMPORTED_MODULE_13__);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function AdminModel(props) {
+  var searchInput = Object(react__WEBPACK_IMPORTED_MODULE_9__["useRef"])(null);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_9__["useState"])(props.model),
+      _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState, 2),
+      model = _useState2[0],
+      setModel = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_9__["useState"])([]),
+      _useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState3, 2),
+      selected = _useState4[0],
+      setSelected = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_9__["useState"])({}),
+      _useState6 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState5, 2),
+      filteredInfo = _useState6[0],
+      setFilteredInfo = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_9__["useState"])({}),
+      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState7, 2),
+      sortedInfo = _useState8[0],
+      setSortedInfo = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_9__["useState"])(null),
+      _useState10 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState9, 2),
+      searchText = _useState10[0],
+      setSearchText = _useState10[1];
+
+  var handleDeleteSoft =
+  /*#__PURE__*/
+  function () {
+    var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(
+    /*#__PURE__*/
+    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(ids, isDeleted) {
+      var response;
+      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+                method: 'PATCH',
+                url: "".concat(props.apiModel),
+                data: {
+                  ids: ids,
+                  isDeleted: isDeleted
+                },
+                headers: {
+                  authorization: props.token
+                }
+              });
+
+            case 2:
+              response = _context.sent;
+
+              if (response.status === 200) {
+                antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Model updated successfully.");
+                setModel(response.data);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function handleDeleteSoft(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var handleDestroy = function handleDestroy(ids) {
+    var handleOk =
+    /*#__PURE__*/
+    function () {
+      var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(
+      /*#__PURE__*/
+      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+                  method: 'DELETE',
+                  url: "".concat(props.apiModel),
+                  headers: {
+                    authorization: props.token
+                  },
+                  data: {
+                    ids: ids
+                  }
+                });
+
+              case 2:
+                response = _context2.sent;
+
+                if (response.status === 200) {
+                  antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Model deleted successfully.");
+                  setModel(response.data);
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function handleOk() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    antd__WEBPACK_IMPORTED_MODULE_4__["Modal"].confirm({
+      title: 'Are you sure?',
+      content: 'You will not be able to recover this model.',
+      okText: 'Yes',
+      onOk: handleOk,
+      cancelText: 'Cancel'
+    });
+  };
+
+  var getColumnSearchProps = function getColumnSearchProps(dataIndex) {
+    return {
+      filterDropdown: function filterDropdown(_ref3) {
+        var setSelectedKeys = _ref3.setSelectedKeys,
+            selectedKeys = _ref3.selectedKeys,
+            confirm = _ref3.confirm,
+            clearFilters = _ref3.clearFilters;
+        return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("div", {
+          style: {
+            padding: 8
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+          ref: searchInput,
+          placeholder: "Search ".concat(dataIndex),
+          value: selectedKeys[0],
+          onChange: function onChange(e) {
+            return setSelectedKeys(e.target.value ? [e.target.value] : []);
+          },
+          onPressEnter: function onPressEnter() {
+            return handleSearch(selectedKeys, confirm);
+          },
+          style: {
+            width: 188,
+            marginBottom: 8,
+            display: 'block'
+          }
+        }), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+          type: "primary",
+          onClick: function onClick() {
+            return handleSearch(selectedKeys, confirm);
+          },
+          icon: "search",
+          size: "small",
+          style: {
+            width: 90,
+            marginRight: 8
+          }
+        }, "Search"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+          onClick: function onClick() {
+            return handleReset(clearFilters);
+          },
+          size: "small",
+          style: {
+            width: 90
+          }
+        }, "Reset"));
+      },
+      filterIcon: function filterIcon(filtered) {
+        return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Icon"], {
+          type: "search",
+          style: {
+            color: filtered ? '#1890ff' : undefined
+          }
+        });
+      },
+      onFilter: function onFilter(value, record) {
+        return record[dataIndex].toString().toLowerCase().includes(value.toLowerCase());
+      },
+      onFilterDropdownVisibleChange: function onFilterDropdownVisibleChange(visible) {
+        if (visible) {
+          setTimeout(function () {
+            return searchInput.current.select();
+          });
+        }
+      },
+      render: function render(text) {
+        return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(react_highlight_words__WEBPACK_IMPORTED_MODULE_11___default.a, {
+          className: "table-text",
+          highlightStyle: {
+            backgroundColor: '#ffc069',
+            padding: 0
+          },
+          searchWords: [searchText],
+          autoEscape: true,
+          textToHighlight: text.toString()
+        });
+      }
+    };
+  };
+
+  var handleSearch = function handleSearch(selectedKeys, confirm) {
+    confirm();
+    setSearchText(selectedKeys[0]);
+  };
+
+  var handleReset = function handleReset(clearFilters) {
+    clearFilters();
+    setSearchText('');
+  };
+
+  var handleTable = function handleTable(pagination, filters, sorter) {
+    setFilteredInfo(filters);
+    setSortedInfo(sorter);
+  };
+
+  var handleRemoves = function handleRemoves() {
+    if (selected.length === 0) {
+      antd__WEBPACK_IMPORTED_MODULE_4__["message"].warning("Nothing was selected.");
+      return;
+    }
+
+    handleDestroy(selected);
+  };
+
+  var handleMenuClick = function handleMenuClick(e, id) {
+    switch (e.key) {
+      case 'undelete_soft':
+        handleDeleteSoft(id, false);
+        break;
+
+      case 'delete_soft':
+        handleDeleteSoft(id, true);
+        break;
+
+      case 'destroy':
+        handleDestroy(id);
+        break;
+    }
+  };
+
+  var columns = [Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
+  }, getColumnSearchProps('name')), {
+    title: 'Author',
+    dataIndex: 'author',
+    key: 'author',
+    width: 200
+  }, {
+    title: 'Type',
+    dataIndex: 'isPrivate',
+    width: 110,
+    align: 'center',
+    render: function render(text) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
+        status: !text ? 'green' : 'blue',
+        text: text ? 'Private' : 'Public'
+      });
+    }
+  }, {
+    title: 'Status',
+    dataIndex: 'isDeleted',
+    width: 110,
+    align: 'center',
+    render: function render(text) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
+        status: text ? 'error' : 'success',
+        text: text ? 'Disabled' : 'Active'
+      });
+    }
+  }, {
+    title: 'Last Modified',
+    dataIndex: 'updatedAt',
+    width: 200,
+    align: 'center',
+    render: function render(text) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Text, null, moment__WEBPACK_IMPORTED_MODULE_7___default()(text).fromNow());
+    }
+  }, {
+    key: 'operation',
+    width: 200,
+    align: 'right',
+    render: function render(text, record) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Dropdown"], {
+        overlay: react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Menu"], {
+          onClick: function onClick(key) {
+            return handleMenuClick(key, record.id);
+          }
+        }, record.isDeleted && react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Menu"].Item, {
+          key: "undelete_soft"
+        }, "Recovery"), !record.isDeleted && react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Menu"].Item, {
+          key: "delete_soft"
+        }, "Disable"), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Menu"].Item, {
+          key: "destroy"
+        }, "Delete"))
+      }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], null, "Actions ", react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Icon"], {
+        type: "down"
+      })));
+    }
+  }];
+
+  var ExpandedComponent = function ExpandedComponent(record) {
+    var config = record.config;
+    var user = record.user;
+
+    var getAnnotator = function getAnnotator() {
+      return record.annotator === 'classifier' ? 'Classifier' : record.annotator === 'extractor' ? 'Extractor' : 'Pattern Extractor';
+    };
+
+    return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"], {
+      title: "Model Information",
+      bordered: true
+    }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Author"
+    }, "".concat(user.firstname, " ").concat(user.lastname)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Name"
+    }, record.name), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Description"
+    }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Typography"].Paragraph, null, record.desc)), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Labels"
+    }, record.label.map(function (item, key) {
+      return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Tag"], {
+        key: key,
+        className: "ant-custom",
+        color: item.color
+      }, item.name);
+    })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Annotator"
+    }, getAnnotator()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Type"
+    }, record.isPrivate ? 'Private' : 'Public'), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Status"
+    }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
+      status: record.isDeleted ? 'error' : 'success',
+      text: record.isDeleted ? 'Not Active' : 'Active'
+    })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "UI Stats"
+    }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
+      status: config.UIStats ? 'success' : 'error',
+      text: config.UIStats ? 'Active' : 'Not Active'
+    })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "UI Annotation"
+    }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Badge"], {
+      status: config.UIAnnotation ? 'success' : 'error',
+      text: config.UIAnnotation ? 'Active' : 'Not Active'
+    })), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Created Date"
+    }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.createdAt).fromNow()), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Descriptions"].Item, {
+      span: 3,
+      label: "Updated Date"
+    }, moment__WEBPACK_IMPORTED_MODULE_7___default()(record.updatedAt).fromNow()));
+  };
+
+  var CardExtra = [react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+    key: "0",
+    type: "danger",
+    onClick: handleRemoves
+  }, "Delete Selected")];
+  return react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(_components_AdminLayout__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], props, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Row"], null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement("title", null, "Admin Model - Sistem Anotasi Named Entity")), react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Card"], {
+    bordered: false,
+    title: "Model Data",
+    extra: CardExtra
+  }, react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Table"], {
+    rowKey: "id",
+    scroll: {
+      x: 1100
+    },
+    columns: columns,
+    dataSource: model,
+    onChange: handleTable,
+    rowSelection: {
+      selectedRowKeys: selected,
+      onChange: function onChange(selectedRowKeys) {
+        setSelected(selectedRowKeys);
+      }
+    },
+    expandedRowRender: ExpandedComponent
+  }))));
+}
+
+AdminModel.getInitialProps =
+/*#__PURE__*/
+function () {
+  var _ref5 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(
+  /*#__PURE__*/
+  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3(_ref4) {
+    var apiUrl, token, apiModel, fetchModel, _ref6, _ref7, model;
+
+    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            apiUrl = _ref4.apiUrl, token = _ref4.token;
+            apiModel = "".concat(apiUrl, "/admin/model");
+
+            fetchModel = function fetchModel() {
+              return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+                method: 'GET',
+                url: "".concat(apiUrl, "/admin/model"),
+                headers: {
+                  authorization: token
+                }
+              });
+            };
+
+            _context3.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_5___default.a.all([fetchModel()]);
+
+          case 5:
+            _ref6 = _context3.sent;
+            _ref7 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_ref6, 1);
+            model = _ref7[0];
+            return _context3.abrupt("return", {
+              apiModel: apiModel,
+              model: model.data
+            });
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function (_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_utils_auth__WEBPACK_IMPORTED_MODULE_8__[/* withAuthSync */ "c"])(AdminModel, 1));
 
 /***/ }),
 
@@ -562,6 +737,13 @@ function _possibleConstructorReturn(self, call) {
 
   return _assertThisInitialized(self);
 }
+
+/***/ }),
+
+/***/ "N6Po":
+/***/ (function(module, exports) {
+
+module.exports = require("js-flock/sort");
 
 /***/ }),
 
@@ -1234,13 +1416,6 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 /***/ }),
 
-/***/ "t3hY":
-/***/ (function(module, exports) {
-
-module.exports = require("react-chartjs-2");
-
-/***/ }),
-
 /***/ "tMJi":
 /***/ (function(module, exports) {
 
@@ -1284,6 +1459,13 @@ module.exports = require("js-cookie");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/symbol");
+
+/***/ }),
+
+/***/ "wy2R":
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
 
 /***/ }),
 

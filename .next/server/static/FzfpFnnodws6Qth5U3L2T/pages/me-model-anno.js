@@ -1192,6 +1192,11 @@ function ModelAnno(props) {
       state = _useState6[0],
       setState = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(false),
+      _useState8 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_useState7, 2),
+      loading = _useState8[0],
+      setLoading = _useState8[1];
+
   var selectedKeys = props.route.parsedUrl.pathname;
   var Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a sentence for annotation";
   var Annotation = props.model.annotator === 'classifier' ? _components_Classifier__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"] : props.model.annotator === 'extractor' ? _components_Extractor__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"] : _components_PatternExtractor__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"];
@@ -1209,14 +1214,7 @@ function ModelAnno(props) {
         training: state,
         source: source
       });
-      socket.on('post', function (res) {
-        socket.emit('get', props.model.id);
-        socket.on('response', function (res) {
-          return setSource.apply(void 0, Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(res));
-        });
-        setState([]);
-      });
-      antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Traning created successfully.");
+      setLoading(true);
     };
 
     antd__WEBPACK_IMPORTED_MODULE_4__["Modal"].confirm({
@@ -1237,6 +1235,15 @@ function ModelAnno(props) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(function () {
+    socket.on('post', function (res) {
+      socket.emit('get', props.model.id);
+      socket.on('response', function (res) {
+        return setSource.apply(void 0, Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(res));
+      });
+      antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("Traning created successfully.");
+      setLoading(false);
+      setState([]);
+    });
     socket.on('disconnect', function () {
       socket.open();
     });
@@ -1287,9 +1294,11 @@ function ModelAnno(props) {
     dataSource: props.model
   })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Col"], {
     md: 18
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Spin"], {
+    spinning: loading
   }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_4__["Card"], {
     title: Title
-  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(AnnotationComponent, null)))));
+  }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(AnnotationComponent, null))))));
 }
 
 ModelAnno.getInitialProps =
@@ -1726,7 +1735,22 @@ function Extractor(props) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
+    var keyWork = [];
+
+    for (var i = 0; i < props.dataLabel.length; i++) {
+      keyWork.push(49 + i);
+    }
+
     window.addEventListener("resize", handleResize);
+    window.addEventListener("keypress", function (e) {
+      var key = e.which || e.keyCode;
+
+      if (keyWork.includes(key)) {
+        var idx = key - 49;
+        var labelSelected = props.dataLabel[idx];
+        handleAddSource(labelSelected);
+      }
+    });
     return function () {
       window.addEventListener("resize", null);
     };
@@ -1754,22 +1778,16 @@ function Extractor(props) {
   }, [props.value, windowSize]);
 
   var handleAddSource = function handleAddSource(item) {
-    if (window.getSelection().anchorNode !== null) {
-      if (window.getSelection().anchorNode.wholeText === props.dataSource) {
-        var pos = window.getSelection().getRangeAt(0);
-        props.onChange(function (state) {
-          return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(state), [{
-            startOffset: pos.startOffset,
-            endOffset: pos.endOffset,
-            label: item.name
-          }]);
-        });
-        window.getSelection().removeAllRanges();
-      } else {
-        antd__WEBPACK_IMPORTED_MODULE_3__["message"].warning("Text yang ditandai tidak valid.");
-      }
-    } else {
-      antd__WEBPACK_IMPORTED_MODULE_3__["message"].warning("Tidak ada yang ditandai.");
+    if (window.getSelection().anchorNode !== null && window.getSelection().anchorNode.wholeText === props.dataSource) {
+      var pos = window.getSelection().getRangeAt(0);
+      props.onChange(function (state) {
+        return [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(state), [{
+          startOffset: pos.startOffset,
+          endOffset: pos.endOffset,
+          label: item.name
+        }]);
+      });
+      window.getSelection().removeAllRanges();
     }
   };
 

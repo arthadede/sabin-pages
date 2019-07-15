@@ -55,8 +55,22 @@ function Extractor(props) {
   }
   
   useEffect(() => {
+    let keyWork = []
+      
+    for (let i = 0; i < props.dataLabel.length; i++) { keyWork.push(49 + i) }
+
     window.addEventListener("resize", handleResize);
-    
+    window.addEventListener("keypress", e => {
+      var key = e.which || e.keyCode;
+      
+      if (keyWork.includes(key)) {
+        const idx = key - 49
+        const labelSelected = props.dataLabel[idx]
+        handleAddSource(labelSelected)
+      }
+    })
+
+
     return (() => {
       window.addEventListener("resize", null);
     })
@@ -84,23 +98,17 @@ function Extractor(props) {
   }, [props.value, windowSize])
 
   const handleAddSource = item => {
-    if (window.getSelection().anchorNode !== null) {
-      if (window.getSelection().anchorNode.wholeText === props.dataSource) {
-        let pos = window.getSelection().getRangeAt(0)
-        props.onChange(state => [
-          ...state, 
-          {
-            startOffset: pos.startOffset, 
-            endOffset: pos.endOffset, 
-            label: item.name
-          }
-        ])
-        window.getSelection().removeAllRanges()
-      } else {
-        message.warning("Text yang ditandai tidak valid.")
-      }
-    } else {
-      message.warning("Tidak ada yang ditandai.")
+    if (window.getSelection().anchorNode !== null && window.getSelection().anchorNode.wholeText === props.dataSource) {
+      let pos = window.getSelection().getRangeAt(0)
+      props.onChange(state => [
+        ...state, 
+        {
+          startOffset: pos.startOffset, 
+          endOffset: pos.endOffset, 
+          label: item.name
+        }
+      ])
+      window.getSelection().removeAllRanges()
     }
   }
   

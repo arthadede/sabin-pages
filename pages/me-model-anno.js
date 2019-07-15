@@ -1,4 +1,4 @@
-import { Row, Col, Card, Button, Modal, Empty, message } from 'antd'
+import { Row, Col, Card, Button, Modal, Empty, Spin, message } from 'antd'
 import Head from 'next/head'
 import Error from 'next/error'
 import axios from 'axios'
@@ -20,6 +20,7 @@ function ModelAnno(props) {
   const [socket, setSocket] = useState(io.connect(process.env.API_HOST))
   const [source, setSource] = useState(null)
   const [state, setState] = useState([])
+  const [loading, setLoading] = useState(false)
   const selectedKeys = props.route.parsedUrl.pathname
   const Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a sentence for annotation"
   const Annotation = props.model.annotator === 'classifier' ? Classifier  :  props.model.annotator === 'extractor' ? Extractor : PatternExtractor
@@ -37,14 +38,7 @@ function ModelAnno(props) {
         training: state,
         source: source
       })
-
-      socket.on('post', res => {
-        socket.emit('get', props.model.id)
-        socket.on('response', res => setSource(...res))
-        setState([])
-      })
-      
-      message.success("Traning created successfully.")
+      setLoading(true)
     }
 
     Modal.confirm({
@@ -63,6 +57,14 @@ function ModelAnno(props) {
   }
 
   useEffect(() => {
+    socket.on('post', res => {
+      socket.emit('get', props.model.id)
+      socket.on('response', res => setSource(...res))
+      message.success("Traning created successfully.")
+      setLoading(false)
+      setState([])
+    })
+    
     socket.on('disconnect', () => {
       socket.open()
     })
@@ -120,10 +122,12 @@ function ModelAnno(props) {
             dataSource={props.model}/>
         </Col>
         <Col md={18}>
-          <Card 
-          title={Title}>
-            <AnnotationComponent/>
-          </Card>
+          <Spin spinning={loading}>
+            <Card 
+            title={Title}>
+              <AnnotationComponent/>
+            </Card>
+          </Spin>
         </Col>
       </Row>
     </UserLayout>
