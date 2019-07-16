@@ -310,7 +310,7 @@ function PatternExtractor(props) {
                     onClick={() => handleAddScript(item)}>{item.name}</Button>
                 ))}
               </div>
-              <div id="annotation-script-drawer">
+              <div id="annotation-script-drawer" style={{zIndex: 1010 }}>
                 {selected && props.dataSource.substr(selected.startOffset, selected.endOffset - selected.startOffset)}
               </div>
             </div>
