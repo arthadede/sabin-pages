@@ -62,6 +62,7 @@ function ModelView(props) {
                             <Radio.Button value="classifier">Classifier</Radio.Button>
                             <Radio.Button value="extractor">Extractor</Radio.Button>
                             <Radio.Button value="pattern-extractor">Pattern Extractor</Radio.Button>
+                            <Radio.Button value="question-answer">Question Answer</Radio.Button>
                           </Radio.Group>
                         </Col>
                         <Col md={24} style={{marginBottom: 16}}>

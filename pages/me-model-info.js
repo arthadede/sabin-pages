@@ -29,7 +29,6 @@ function handleInputLabelRef(ref, cb) {
 
 function ModelView(props) {
   const selectedKeys = props.route.parsedUrl.pathname
-  
   if (props.errorCode > 200) {
     return <Error statusCode={props.errorCode}/>
   }
@@ -41,6 +40,9 @@ function ModelView(props) {
   const [spinning, setSpinning] = useState(false)
   const [inputValue, setInputValue] = useState(null)
   const [inputVisible, setInputVisible] = useState(false)
+
+  const isQA = model.annotator === 'question-answer'
+
 
   handleInputLabelRef(labelWrapper, ({ status }) => {
     if (status === false && inputValue !== null) {
@@ -330,12 +332,13 @@ function ModelView(props) {
                               <Radio.Button value="classifier">Classifier</Radio.Button>
                               <Radio.Button value="extractor">Extractor</Radio.Button>
                               <Radio.Button value="pattern-extractor">Pattern Extractor</Radio.Button>
+                              <Radio.Button value="question-answer">Question Answer</Radio.Button>
                             </Radio.Group>
                           </Col>
                           <Col md={24} style={{marginBottom: 16}}>
                             <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Label</Typography.Text>
-                            {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable>{item.name}</Tag>)}
-                            {inputVisible && (
+                            {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable={!isQA}>{item.name}</Tag>)}
+                            {!isQA && inputVisible && (
                               <div 
                                 style={{display: 'inline-block'}}
                                 ref={labelWrapper}>
@@ -358,15 +361,8 @@ function ModelView(props) {
                                   </Popover>
                                 }/>
                               </div>
-                              //  <Input 
-                              //   ref={inputRef} 
-                              //   style={{width: 90}} 
-                              //   type="text" 
-                              //   value={inputValue} 
-                              //   onChange={e => setInputValue(e.target.value)} 
-                              //   onPressEnter={handleAddLabel}/>
                             )}
-                            {!inputVisible && <Tag className="ant-custom" style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }} onClick={handleInputVisible}>New Label</Tag>}
+                            {!isQA && !inputVisible && <Tag className="ant-custom" style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }} onClick={handleInputVisible}>New Label</Tag>}
                           </Col>
                         </Row>
                       </div>

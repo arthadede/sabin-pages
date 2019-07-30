@@ -188,6 +188,25 @@ function ModelTrain(props) {
       )
     }
 
+    if (props.model.annotator === 'question-answer') {
+      return (
+        <div style={{marginBottom: 16}}>
+          <Descriptions title="Result Annotation" bordered border>
+            <Descriptions.Item span={3} label="Created date">{moment(record.createdAt).fromNow()}</Descriptions.Item>
+            <Descriptions.Item span={3} label="Status">
+              {record.confirm
+              ? <Badge color='green' text='Verified' />
+              : <Badge status='warning' text='Unverified' />}
+            </Descriptions.Item>
+            <Descriptions.Item span={2} label="User">{`${record.user.firstname} ${record.user.lastname}`}</Descriptions.Item>
+            <Descriptions.Item span={1} label="Email">{record.user.email}</Descriptions.Item>
+            <Descriptions.Item span={3} label="Question">{record.questionAnswer.question}</Descriptions.Item>
+            <Descriptions.Item span={3} label="Answer">{record.questionAnswer.answer}</Descriptions.Item>
+          </Descriptions>
+        </div>
+      )
+    }
+
     return (
       <div style={{marginBottom: 16}}>
         <Descriptions title="Result Annotation" bordered border>
@@ -298,9 +317,86 @@ function ModelTrain(props) {
     }
   ]
 
+  const columnsQA = [
+    {
+      key: 'question',
+      title: 'Question',
+      dataIndex: 'questionAnswer.question',
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+        <div style={{ padding: 8 }}>
+          <Input
+            ref={searchInput}
+            placeholder={`Search Question`}
+            value={selectedKeys[0]}
+            onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+            onPressEnter={() => handleSearch(selectedKeys, confirm)}
+            style={{ width: 188, marginBottom: 8, display: 'block' }}
+          />
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm)}
+            icon="search"
+            size="small"
+            style={{ width: 90, marginRight: 8 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </div>
+      ),
+      filterIcon: filtered => (
+        <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      ),
+      onFilter: (value, record) =>
+        record['questionAnswer']['question']
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase()),
+      onFilterDropdownVisibleChange: visible => {
+        if (visible) {
+          setTimeout(() => searchInput.current.select());
+        }
+      },
+      render: (text, record) => (
+        <Typography.Paragraph ellipsis={{rows: 3}}>{text}</Typography.Paragraph>
+      )
+    },
+    {
+      title: 'Status',
+      dataIndex: 'confirm',
+      width: 200,
+      align: 'center',
+      sorter: (a, b) => a.confirm - b.confirm,
+      render: (text, record) => text ? <Badge status="success" text="Verified" /> : <Badge status="warning" text="Unverified" />
+    },
+    {
+      key: 'operation',
+      width: 200,
+      align: 'right',
+      render: (text, record) => {
+        const menu = (
+          <Menu>
+            {!record.confirm && <Menu.Item key="2"><a onClick={() => handleRemove(record.id)}>Remove</a></Menu.Item>}
+          </Menu>
+        )
+
+        return (
+          <Dropdown overlay={menu}>
+            <Button>
+              Action <Icon type="down" />
+            </Button>
+          </Dropdown>
+        )
+      }
+    }
+  ]
+
   const tableTrain = {
     rowKey: "id",
-    columns: columns,
+    style: { overflowWrap: 'anywhere'},
+    columns: props.model.annotator === 'question-answer' ? columnsQA : columns,
     dataSource: state,
     rowSelection: {
       selectedRowKeys: selected,

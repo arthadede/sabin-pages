@@ -237,61 +237,65 @@ function ModelCreate(props) {
                       <RadioButton value="classifier">Classifier</RadioButton>
                       <RadioButton value="extractor">Extractor</RadioButton>
                       <RadioButton value="pattern-extractor">Pattern Extractor</RadioButton>
+                      <RadioButton value="question-answer">Question Answer</RadioButton>
                     </Radio.Group>,
                   )}
                 </Form.Item>
-                <Form.Item label="Labels" extra='Press tab or enter for new input label.'>
-                  {getFieldDecorator('label', {
-                    initialValue: [],
-                    rules: [
-                      {required: true, message: 'This field is required.'}
-                    ]
-                  })(
-                    <>
-                      {getFieldValue('label').map((item, key) => (
-                        <Tag key={key}
-                          className="ant-custom"
-                          color={item.color}
-                          onClose={() => handleOnCloseLabel(key)}
-                          closable>
-                            {item.name}
-                          </Tag>
-                      ))}
-                    </>
-                  )}
-                  {inputVisible && (
-                    <div 
-                      style={{display: 'inline-block'}}
-                      ref={labelWrapper}>
-                      <Input 
-                      ref={inputRef}
-                      style={{width: 120, outlineColor: colorPicker}}
-                      value={inputValue} 
-                      onChange={e => setInputValue(e.target.value)} 
-                      onPressEnter={handleAddLabel}
-                      onKeyDown={handleTabLabel}
-                      suffix={
-                        <Popover 
-                          placement="bottomRight" 
-                          content={<CirclePicker color={colorPicker} onChange={color => {
-                            setColorPicker(color.hex)
-                            inputRef.current.focus()
-                          }}/>} 
-                          trigger="click">
-                          <div style={{width: 15, height: 15, background: colorPicker}}/>    
-                        </Popover>
-                      }/>
-                    </div>)}
-                  {!inputVisible && (
-                    <button
-                      ref={labelRef}
-                      className="ant-tag ant-custom"
-                      style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }}
-                      onClick={handleInputVisible}
-                      onKeyPress={handleInputVisible}>
-                      New Label
-                    </button>)}
+                {getFieldValue('annotator') !== 'question-answer' && (
+                  <Form.Item label="Labels" extra='Press tab or enter for new input label.'>
+                    {getFieldDecorator('label', {
+                      initialValue: [],
+                      rules: [
+                        {required: true, message: 'This field is required.'}
+                      ]
+                    })(
+                      <>
+                        {getFieldValue('label').map((item, key) => (
+                          <Tag key={key}
+                            className="ant-custom"
+                            color={item.color}
+                            onClose={() => handleOnCloseLabel(key)}
+                            closable>
+                              {item.name}
+                            </Tag>
+                        ))}
+                      </>
+                    )}
+                    {inputVisible && (
+                      <div 
+                        style={{display: 'inline-block'}}
+                        ref={labelWrapper}>
+                        <Input 
+                        ref={inputRef}
+                        style={{width: 120, outlineColor: colorPicker}}
+                        value={inputValue} 
+                        onChange={e => setInputValue(e.target.value)} 
+                        onPressEnter={handleAddLabel}
+                        onKeyDown={handleTabLabel}
+                        suffix={
+                          <Popover 
+                            placement="bottomRight" 
+                            content={<CirclePicker color={colorPicker} onChange={color => {
+                              setColorPicker(color.hex)
+                              inputRef.current.focus()
+                            }}/>} 
+                            trigger="click">
+                            <div style={{width: 15, height: 15, background: colorPicker}}/>    
+                          </Popover>
+                        }/>
+                      </div>)}
+                    {!inputVisible && (
+                      <button
+                        ref={labelRef}
+                        className="ant-tag ant-custom"
+                        style={{ background: '#fff', borderStyle: 'dashed', cursor: 'pointer' }}
+                        onClick={handleInputVisible}
+                        onKeyPress={handleInputVisible}>
+                        New Label
+                      </button>
+                    )}
                   </Form.Item>
+                )}
                 <Form.Item label="Type">
                   {getFieldDecorator('isPrivate', {
                     rules: [

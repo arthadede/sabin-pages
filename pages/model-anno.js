@@ -11,19 +11,29 @@ import UserLayout from '../components/UserLayout'
 import Classifier from '../components/Classifier'
 import Extractor from '../components/Extractor'
 import PatternExtractor from '../components/PatternExtractor'
+import QuestionAnswer from '../components/QuestionAnswer'
 
 function ModelAnno(props) {
   if (props.errorCode) 
     return <Error statusCode={props.errorCode}/>
 
   const [socket, setSocket] = useState(io.connect(process.env.API_HOST))
+  const [model, setModel] = useState(props.model)
   const [source, setSource] = useState(null)
   const [state, setState] = useState([])
   const [loading, setLoading] = useState(false)
   const selectedKeys = props.route.parsedUrl.pathname
-  const Title = props.model.annotator === 'classifier' ? "Text Classification" : props.model.annotator === 'extractor' ? "Text Extractor" : "Select a word"
-  const Annotation = props.model.annotator === 'classifier' ? Classifier  :  props.model.annotator === 'extractor' ? Extractor : PatternExtractor
-  
+  const Title = 
+  model.annotator === 'classifier' ? "Text Classification" 
+  : model.annotator === 'extractor' ? "Text Extractor" 
+  : model.annotator === 'pattern-extractor' ? "Select a sentence for annotation"
+  : "Fill on field answer"
+const Annotation = 
+  model.annotator === 'classifier' ? Classifier  
+  : model.annotator === 'extractor' ? Extractor 
+  : model.annotator === 'pattern-extractor' ? PatternExtractor
+  : QuestionAnswer  
+
   const handleConfirm = () => {
     if (state.length === 0) {
       message.error("This field is empty.")
@@ -32,7 +42,7 @@ function ModelAnno(props) {
 
     const handleOk = () => {
       socket.emit('post', {
-        modelId: props.model.id,
+        modelId: model.id,
         userId: props.token,
         training: state,
         source: source
@@ -48,16 +58,36 @@ function ModelAnno(props) {
       cancelText: 'Cancel',
     })
   }
+
+  const handleConfirmQA = data => {
+    const handleOk = () => {
+      socket.emit('post', {
+        modelId: model.id,
+        userId: props.token,
+        training: data,
+        source: source
+      })
+      setLoading(true)
+    }
+
+    Modal.confirm({
+      title: 'Are you sure?',
+      content: 'You will save to train and not be able to edit this annotation.',
+      okText: 'Yes',
+      onOk: handleOk,
+      cancelText: 'Cancel',
+    })
+  }
  
   const handleNext = () => {
-    socket.emit('get', props.model.id)
+    socket.emit('get', model.id)
     socket.on('response', res => setSource(...res))
     setState([])
   }
 
   useEffect(() => {
     socket.on('post', res => {
-      socket.emit('get', props.model.id)
+      socket.emit('get', model.id)
       socket.on('response', res => setSource(...res))
       message.success("Traning created successfully.")
       setLoading(false)
@@ -68,7 +98,7 @@ function ModelAnno(props) {
       socket.open()
     })
 
-    socket.emit('get', props.model.id)
+    socket.emit('get', model.id)
     socket.on('response', res => setSource(...res))
 
     return (() => {
@@ -82,10 +112,13 @@ function ModelAnno(props) {
     return (
       <div>
         <Annotation 
-          dataLabel={props.model.label} 
+          dataLabel={model.label} 
           dataSource={source}
           value={state}
-          onChange={val => setState(val)}/>
+          onChange={val => setState(val)}
+          onSubmit={val => handleConfirmQA(val)}
+          onSkip={() => handleNext()}/>
+        {model.annotator !== 'question-answer' && (
         <div 
           className="d-flex 
           align-items-center 
@@ -102,6 +135,7 @@ function ModelAnno(props) {
             Confirm
           </Button>
         </div>
+        )}
       </div>
     )
   }
@@ -117,7 +151,7 @@ function ModelAnno(props) {
         <Col md={6}>
           <ModelSider
             id={props.model.id}
-            config={props.model.config}
+            config={model.config}
             current={selectedKeys}/>
         </Col>
         <Col md={18}>

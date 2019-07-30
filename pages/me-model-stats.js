@@ -123,10 +123,12 @@ function ModelStats(props) {
                   )}
                 />
               </Col>
-              <Col md={24} style={{ marginBottom: 60 }}>
-                <Typography.Title level={4}>Labels statistic</Typography.Title>
-                <Doughnut data={doughnutData} />
-              </Col>
+              {props.model.annotator !== 'question-answer' && (
+                <Col md={24} style={{ marginBottom: 60 }}>
+                  <Typography.Title level={4}>Labels statistic</Typography.Title>
+                  <Doughnut data={doughnutData} />
+                </Col>
+              )}
               <Col xs={24}>
                 <Typography.Title level={4}>Activity model</Typography.Title>
                 <Line data={lineData} />

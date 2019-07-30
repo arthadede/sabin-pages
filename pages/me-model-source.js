@@ -5,6 +5,7 @@ import axios from 'axios'
 import React, {useState} from 'react'
 import io from 'socket.io-client'
 
+import _ from 'lodash'
 import ModelSider from '../components/MeModelSider'
 import UserLayout from '../components/UserLayout'
 import ModalAddSource from '../components/ModalAddSource'
@@ -110,6 +111,23 @@ function ModelSource(props) {
       <Button type="danger" style={{marginLeft: 8}} onClick={removeSources}>Delete Selected</Button>
     </>
   )
+
+  const ComponentListItem = props => {
+    const data = props.dataSource
+    if (_.isObject(data)) {
+      const keys = _.keys(data)
+      return (
+        <div>
+          {keys.map(item => (
+            <Typography.Paragraph ellipsis={{rows: 1}}>
+             <b>{_.upperFirst(item)}: </b> {data[item]}
+            </Typography.Paragraph>
+          ))}
+        </div>
+      )
+    }
+    return <Typography.Paragraph style={{minWidth: 0}} ellipsis={{rows: 3}}>{data}</Typography.Paragraph>
+  }
   
   const ComponentList = () => {
     return (
@@ -136,9 +154,9 @@ function ModelSource(props) {
             ]}>
               <Skeleton avatar title={false} loading={item.loading} active>
                 <List.Item.Meta
-                  style={{alignItems: 'center'}}
+                  style={{alignItems: 'center', overflow: 'hidden'}}
                   avatar={<Checkbox style={{marginLeft: 16, marginRight: 16}} value={index}/>}
-                  description={<Typography.Paragraph style={{minWidth: 0}} ellipsis={{rows: 3}}>{item}</Typography.Paragraph>}/>
+                  description={<ComponentListItem dataSource={item}/>}/>
               </Skeleton>
             </List.Item>
           )}>
