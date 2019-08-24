@@ -1,10 +1,10 @@
 const withLess = require("@zeit/next-less")
-const withOffline = require('next-offline')
 const withProgressBar = require('next-progressbar')
 
 const nextConfig = {
   env: {
-    "API_HOST": process.env.NODE_ENV  !== 'production' ? "http://localhost:3000" : "https://api.sabin.arthadede.com",
+    "API_HOST": "http://localhost:3000",
+    "BUCKET_HOST": "http://localhost:3000",
     "PORT": 8000
   },
   cssModules: true,
@@ -14,6 +14,6 @@ const nextConfig = {
   }
 }
 
-module.exports = withProgressBar(withLess(withOffline({
+module.exports = withProgressBar(withLess({
   ...nextConfig
-})))
+}))

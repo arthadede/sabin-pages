@@ -26,7 +26,7 @@ function DashboardPage(props) {
             style={{marginBottom: 16, height: 163.090}}
             onClick={() => Router.pushRoute('MeModelInfo', {id: item.id})}>
               <List.Item.Meta
-                avatar={<Avatar size={50} src={item.avatar.path}/>}
+                avatar={<Avatar size={50} src={[process.env.BUCKET_HOST, item.avatar.path].join('/')}/>}
                 title={
                   <div>
                     <Typography.Title level={4} ellipsis>

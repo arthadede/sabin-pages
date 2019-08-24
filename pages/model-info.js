@@ -35,7 +35,7 @@ function ModelView(props) {
                 <Card bordered={false}>
                   <Avatar 
                   size={89} 
-                  src={props.model.avatar.path}/>
+                  src={[process.env.BUCKET_HOST, props.model.avatar.path].join('/')}/>
                 </Card>
               </Col>
               <Col md={20}>

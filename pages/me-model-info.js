@@ -298,7 +298,7 @@ function ModelView(props) {
                       flexDirection: 'row',
                       alignItems: 'flex-end'
                     }}>
-                      <Avatar size={70} src={model.avatar.path} />
+                      <Avatar size={70} src={[process.env.BUCKET_HOST, model.avatar.path].join('/')} />
                       <Upload {...uploudAvatar}>
                         <a style={{position: 'absolute', bottom: 0, right: 0}}><Icon type="edit"/></a>
                       </Upload> 

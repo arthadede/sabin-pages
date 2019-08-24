@@ -145,7 +145,7 @@ function AdminDashboard(props) {
                   renderItem={(item, key) => (
                     <List.Item key={item.id}>
                       <List.Item.Meta
-                        avatar={<Avatar src={item.avatar.path}/>}
+                        avatar={<Avatar src={[process.env.BUCKET_HOST, item.avatar.path].join('/')}/>}
                         title={<Typography.Text ellipsis strong>{item.name}</Typography.Text>}
                         description={
                           <Tag color={transformAnnotator(item.annotator).color}>
