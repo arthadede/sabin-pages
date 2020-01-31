@@ -337,7 +337,7 @@ function ModelView(props) {
                           </Col>
                           <Col md={24} style={{marginBottom: 16}}>
                             <Typography.Text style={{display: "block", marginBottom: 8}} type="secondary">Label</Typography.Text>
-                            {model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable={!isQA}>{item.name}</Tag>)}
+                            {model.label && model.label.map((item, key) => <Tag key={key} className="ant-custom" color={item.color} style={{marginBottom: 8}} onClose={() => handleRemoveLabel(key)} closable={!isQA}>{item.name}</Tag>)}
                             {!isQA && inputVisible && (
                               <div 
                                 style={{display: 'inline-block'}}
