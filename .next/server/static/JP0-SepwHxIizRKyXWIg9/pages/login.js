@@ -323,11 +323,11 @@ function LoginForm(props) {
                 break;
 
               case 14:
-                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error('Invalid email or password.');
+                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error("Invalid email or password.");
                 return _context.abrupt("break", 18);
 
               case 16:
-                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error('Something wrong.');
+                antd__WEBPACK_IMPORTED_MODULE_5__["message"].error("Something wrong.");
                 return _context.abrupt("break", 18);
 
               case 18:
@@ -352,7 +352,7 @@ function LoginForm(props) {
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     style: {
       height: "inherit",
-      display: 'flex',
+      display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
@@ -377,17 +377,17 @@ function LoginForm(props) {
     style: {
       marginBottom: 8
     }
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, null, getFieldDecorator('email', {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, null, getFieldDecorator("email", {
     rules: [{
       required: true,
       message: "This field is required."
     }, {
-      type: 'email',
+      type: "email",
       message: "Please provide a valid email address."
     }]
   })(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Input"], {
     placeholder: "Email"
-  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, null, getFieldDecorator('password', {
+  }))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_5__["Form"].Item, null, getFieldDecorator("password", {
     rules: [{
       required: true,
       message: "This field is required."
@@ -407,9 +407,9 @@ function LoginForm(props) {
     block: true
   }, "Log in"))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     style: {
-      display: 'flex',
-      flexDirection: 'column',
-      textAlign: 'center'
+      display: "flex",
+      flexDirection: "column",
+      textAlign: "center"
     }
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
     onClick: function onClick() {
@@ -424,7 +424,7 @@ function LoginForm(props) {
       paddingTop: 4,
       paddingBottom: 4
     }
-  }, "Don't have an account? ", react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+  }, "Don't have an account?", " ", react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
     onClick: function onClick() {
       return _routes__WEBPACK_IMPORTED_MODULE_6__["Router"].pushRoute("/register");
     }

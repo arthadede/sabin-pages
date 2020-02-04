@@ -1472,7 +1472,7 @@ function ModelSource(props) {
     statusCode: props.errorCode
   });
 
-  var _useState = Object(external_react_["useState"])(external_socket_io_client_default.a.connect("http://api.sabin.arthadede.xyz")),
+  var _useState = Object(external_react_["useState"])(external_socket_io_client_default.a.connect("http://sabin-api.arthadede.xyz")),
       _useState2 = Object(slicedToArray["a" /* default */])(_useState, 2),
       socket = _useState2[0],
       setSocket = _useState2[1];
