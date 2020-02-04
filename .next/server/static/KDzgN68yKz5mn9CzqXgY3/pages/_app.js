@@ -324,7 +324,7 @@ function (_App) {
             switch (_context.prev = _context.next) {
               case 0:
                 Component = _ref.Component, ctx = _ref.ctx;
-                apiUrl = "http://localhost:3000";
+                apiUrl = "http://sabin-api.arthadede.xyz";
                 route = _routes__WEBPACK_IMPORTED_MODULE_12___default.a.match(ctx.asPath);
                 _nextCookie = next_cookies__WEBPACK_IMPORTED_MODULE_13___default()(ctx), token = _nextCookie.token;
                 auth = token && jsonwebtoken__WEBPACK_IMPORTED_MODULE_14___default.a.verify(token, 'SECRET');
