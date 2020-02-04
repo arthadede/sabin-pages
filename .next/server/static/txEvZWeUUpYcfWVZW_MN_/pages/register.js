@@ -226,7 +226,7 @@ function RegisterForm(props) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (err) {
-                  _context.next = 19;
+                  _context.next = 20;
                   break;
                 }
 
@@ -246,31 +246,32 @@ function RegisterForm(props) {
                   setSended(true);
                 }
 
-                _context.next = 16;
+                _context.next = 17;
                 break;
 
               case 9:
                 _context.prev = 9;
                 _context.t0 = _context["catch"](1);
+                console.log(_context.t0.response);
                 _context.t1 = _context.t0.response.status;
-                _context.next = _context.t1 === 400 ? 14 : 16;
+                _context.next = _context.t1 === 400 ? 15 : 17;
                 break;
 
-              case 14:
+              case 15:
                 external_antd_["message"].error(_context.t0.response.data.message);
-                return _context.abrupt("break", 16);
+                return _context.abrupt("break", 17);
 
-              case 16:
-                _context.prev = 16;
+              case 17:
+                _context.prev = 17;
                 setLoading(false);
-                return _context.finish(16);
+                return _context.finish(17);
 
-              case 19:
+              case 20:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9, 16, 19]]);
+        }, _callee, null, [[1, 9, 17, 20]]);
       }));
 
       return function (_x, _x2) {
@@ -281,14 +282,14 @@ function RegisterForm(props) {
 
   if (sended) {
     return external_react_default.a.createElement(components_ConfirmEmail, {
-      email: getFieldValue('email')
+      email: getFieldValue("email")
     });
   }
 
   return external_react_default.a.createElement("div", {
     style: {
       height: "inherit",
-      display: 'flex',
+      display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
@@ -310,7 +311,7 @@ function RegisterForm(props) {
     }
   }, external_react_default.a.createElement(external_antd_["Form"], {
     onSubmit: handleSubmit
-  }, external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('firstname', {
+  }, external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator("firstname", {
     rules: [{
       required: true,
       message: "This field is required."
@@ -323,7 +324,7 @@ function RegisterForm(props) {
     }]
   })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "First name"
-  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('lastname', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator("lastname", {
     rules: [{
       required: true,
       message: "This field is required."
@@ -336,17 +337,17 @@ function RegisterForm(props) {
     }]
   })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "Last name"
-  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('email', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator("email", {
     rules: [{
       required: true,
       message: "This field is required."
     }, {
-      type: 'email',
+      type: "email",
       message: "Please provide a valid email address."
     }]
   })(external_react_default.a.createElement(external_antd_["Input"], {
     placeholder: "Email"
-  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator('password', {
+  }))), external_react_default.a.createElement(external_antd_["Form"].Item, null, getFieldDecorator("password", {
     rules: [{
       required: true,
       message: "This field is required."
@@ -370,7 +371,7 @@ function RegisterForm(props) {
     htmlType: "submit",
     loading: loading,
     block: true
-  }, "Register"), "Already have an account? ", external_react_default.a.createElement("a", {
+  }, "Register"), "Already have an account?", " ", external_react_default.a.createElement("a", {
     onClick: function onClick() {
       return routes["Router"].pushRoute("/login");
     }

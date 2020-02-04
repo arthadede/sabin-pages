@@ -1,116 +1,125 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { Row, Col, Card, Form, Input, Button, Icon, message } from "antd";
-import {Router} from '../routes'
-import Head from 'next/head'
-import axios from 'axios'
-import ConfirmEmail from '../components/ConfirmEmail'
+import { Router } from "../routes";
+import Head from "next/head";
+import axios from "axios";
+import ConfirmEmail from "../components/ConfirmEmail";
 
 function RegisterForm(props) {
   const { getFieldDecorator, getFieldValue } = props.form;
-  const [loading, setLoading] = useState(false)
-  const [sended, setSended] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [sended, setSended] = useState(false);
 
   const handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
-          setLoading(true)
+          setLoading(true);
           const response = await axios({
             method: "POST",
             url: `${props.apiUrl}/register`,
             data: values
-          })
-          
+          });
+
           if (response.status === 200) {
-            setSended(true)
+            setSended(true);
           }
         } catch (err) {
+          console.log(err.response);
           switch (err.response.status) {
             case 400:
-              message.error(err.response.data.message)
+              message.error(err.response.data.message);
               break;
           }
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
       }
-    })
-  }
+    });
+  };
 
   if (sended) {
-    return <ConfirmEmail email={getFieldValue('email')} />
+    return <ConfirmEmail email={getFieldValue("email")} />;
   }
 
   return (
-    <div style={{
-      height: "inherit",
-      display: 'flex',
-      alignItems: "center",
-      justifyContent: "center"
-    }}>
+    <div
+      style={{
+        height: "inherit",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
       <Head>
         <title>Register - Sistem Anotasi Named Entity</title>
       </Head>
-      <Row 
-      type="flex"
-      align="middle"
-      justify="center"
-    >
-      <Card 
-        title="Register"
-        extra={<a onClick={() => Router.pushRoute("/")}>Back <Icon type="right"/></a>}
-        style={{minWidth: 400}}>
-        <Form onSubmit={handleSubmit}>
-          <Form.Item>
-            {getFieldDecorator('firstname', {
-              rules: [
-                {required: true, message: `This field is required.`},
-                {min: 4, message: `Minimum length is 4 characters.`},
-                {max: 20, message: `Minimum length is 20 characters.`}
-              ]
-            })(<Input placeholder="First name"/>)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('lastname', {
-              rules: [
-                {required: true, message: `This field is required.`},
-                {min: 4, message: `Minimum length is 4 characters.`},
-                {max: 20, message: `Minimum length is 20 characters.`}
-              ]
-            })(<Input placeholder="Last name"/>)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('email', {
-              rules: [
-                {required: true, message: `This field is required.`},
-                {type: 'email', message: `Please provide a valid email address.`}
-              ]
-            })(<Input placeholder="Email"/>)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('password', {
-              rules: [
-                {required: true, message: `This field is required.`},
-                {min: 6, message: `Minimum length is 6 characters.`},
-                {max: 20, message: `Minimum length is 20 characters.`}
-              ]
-            })(<Input type="password" placeholder="Password"/>)}
-          </Form.Item>
-          <Form.Item style={{margin: 0, textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" loading={loading} block>
-              Register
-            </Button>
-            Already have an account? <a onClick={() => Router.pushRoute("/login")}>Sign in</a>
-          </Form.Item>
-        </Form>
-      </Card>
-    </Row>
+      <Row type="flex" align="middle" justify="center">
+        <Card
+          title="Register"
+          extra={
+            <a onClick={() => Router.pushRoute("/")}>
+              Back <Icon type="right" />
+            </a>
+          }
+          style={{ minWidth: 400 }}
+        >
+          <Form onSubmit={handleSubmit}>
+            <Form.Item>
+              {getFieldDecorator("firstname", {
+                rules: [
+                  { required: true, message: `This field is required.` },
+                  { min: 4, message: `Minimum length is 4 characters.` },
+                  { max: 20, message: `Minimum length is 20 characters.` }
+                ]
+              })(<Input placeholder="First name" />)}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("lastname", {
+                rules: [
+                  { required: true, message: `This field is required.` },
+                  { min: 4, message: `Minimum length is 4 characters.` },
+                  { max: 20, message: `Minimum length is 20 characters.` }
+                ]
+              })(<Input placeholder="Last name" />)}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("email", {
+                rules: [
+                  { required: true, message: `This field is required.` },
+                  {
+                    type: "email",
+                    message: `Please provide a valid email address.`
+                  }
+                ]
+              })(<Input placeholder="Email" />)}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: `This field is required.` },
+                  { min: 6, message: `Minimum length is 6 characters.` },
+                  { max: 20, message: `Minimum length is 20 characters.` }
+                ]
+              })(<Input type="password" placeholder="Password" />)}
+            </Form.Item>
+            <Form.Item style={{ margin: 0, textAlign: "center" }}>
+              <Button type="primary" htmlType="submit" loading={loading} block>
+                Register
+              </Button>
+              Already have an account?{" "}
+              <a onClick={() => Router.pushRoute("/login")}>Sign in</a>
+            </Form.Item>
+          </Form>
+        </Card>
+      </Row>
     </div>
-  )
+  );
 }
 
+const WrappedRegisterForm = Form.create({ name: "register-form" })(
+  RegisterForm
+);
 
-const WrappedRegisterForm = Form.create({name: "register-form"})(RegisterForm)
-
-export default WrappedRegisterForm
+export default WrappedRegisterForm;
